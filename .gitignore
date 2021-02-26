@@ -1,0 +1,12 @@
+*.pyc
+output/
+temp_output/
+tmp_output/
+output_temp/
+deduped_files/
+src/name-probability/
+*.log
+*.Rhistory
+*.RData
+tests/integration/test_output/
+*.pdf

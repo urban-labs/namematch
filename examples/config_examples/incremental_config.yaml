@@ -1,0 +1,106 @@
+
+# input data files
+# ----------------
+
+existing_data_files: 
+    'existing_an' : 
+        'filepath' : '/path/to/previously/matched/data/existing_file1_with_clusterid.csv'
+        'record_id_col' : 'record_id'
+        'use_record_id_as_is': True
+        'delim' : ','
+
+data_files :
+    'more_victims' : 
+        'filepath' : '/path/to/input/data/new_file1.csv'
+        'record_id_col' : 'row_id'
+        'delim' : ','
+        'cluster_type' : 'victim'
+        'output_file_stem' : 'more_victims'
+    'more_arrests' :  
+        'filepath' : '/path/to/input/data/new_file2.csv'
+        'record_id_col' : 'arrest_id'
+        'delim' : ','
+        'cluster_type' : 'offender'
+        'output_file_stem' : 'more_arrests' 
+
+
+
+# variable structure
+# ------------------
+
+variables :
+
+- 'name' : 'first_name'
+  'compare_type' : 'String'
+  'existing_an_col' : 'first_name'
+  'more_arrests_col' : 'FIRST_NME'
+  'more_victims_col' : 'VFIRST'
+  'drop' : [''," ",'REFUSED','FIRM','BUSINESS','CITY OF CHICAGO','STATE OF ILLINOIS']
+
+- 'name' : 'last_name'
+  'compare_type' : 'String'
+  'existing_an_col' : 'last_name'
+  'more_arrests_col' : 'LAST_NME'
+  'more_victims_col' : 'VLAST'
+  'drop' : [''," ",'REFUSED','FIRM','BUSINESS','CITY OF CHICAGO','STATE OF ILLINOIS']
+   
+- 'name' : 'dob'
+  'compare_type' : 'Date'
+  'existing_an_col' : 'dob'
+  'more_arrests_col' : 'BIRTH_DATE'
+  'more_victims_col' : 'VDOB'
+  'check' : 'Date - %Y-%m-%d'
+
+- 'name' : 'age'
+  'compare_type' : null
+  'existing_an_col' : 'age'
+  'more_arrests_col' : 'AGE_IN_2025'
+  'more_victims_col' : 'age_2025'
+
+- 'name' : 'race'
+  'compare_type' : 'Categorical'
+  'existing_an_col' : 'race'
+  'more_arrests_col' : 'RACE_CODE_CD'
+  'more_victims_col' : 'VRACE'
+  'set_missing' : 'NA'
+
+- 'name' : 'gender'
+  'compare_type' : 'Categorical'
+  'check' : 'M,F'
+  'existing_an_col' : 'gender'
+  'more_arrests_col' : 'SEX_CODE_CD'
+  'more_victims_col' : 'VSEX' 
+
+- 'name' : 'date'
+  'compare_type' : 'Date'
+  'check' : 'Date - %Y-%m-%d'
+  'existing_an_col' : 'date'
+  'more_arrests_col' : 'ARREST_DATE'
+  'more_victims_col' : 'DATEOCC'
+
+- 'name' : 'street_address'
+  'compare_type' : 'Address'
+  'existing_an_col' : 'address_street_number,address_street_name,address_street_type'
+  'more_arrests_col' : 'Address'
+  'more_victims_col' : 'Address'
+
+- 'name' : 'arrestee_id'
+  'compare_type' : 'UniqueID'
+  'existing_an_col' : 'arrestee_id'
+  'more_arrests_col' : 'ARRESTEE_ID'
+  'more_victims_col' : ''
+  'set_missing' : ['',' ','NA','nan','REDACTED','SEALED']
+
+- 'name' : 'cluster_id'
+  'compare_type' : 'ExistingID'
+  'existing_an_col' : 'cluster_id'
+  'more_arrests_col' : ''
+  'more_victims_col' : ''
+
+
+
+verbose : 50000
+num_threads : 6
+
+leven_thresh : null
+allow_clusters_w_multiple_unique_ids : False

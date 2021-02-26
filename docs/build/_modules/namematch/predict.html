@@ -1,0 +1,441 @@
+
+
+<!DOCTYPE html>
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>namematch.predict &mdash; namematch 0.0.1 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../../_static/css/theme.min.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/css/custom.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+    <link rel="author" title="About these documents" href="../../about.html" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <a class="site-nav-toggle hidden-lg-up"><i class="icon-menu"></i></a>
+            <a class="site-title" href="../../index.html">
+                namematch
+            </a>
+        </div>
+    </header>
+
+
+<div class="breadcrumbs-outer hidden-xs-down">
+    <div class="container">
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a></li>
+        
+          <li><a href="../index.html">Module code</a></li>
+        
+      <li>namematch.predict</li>
+    
+    
+      <li class="breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+</div>
+    </div>
+</div>
+    <div class="main-outer">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-lg-3 site-nav">
+                    
+<div role="search">
+    <form class="search" action="../../search.html" method="get">
+        <div class="icon-input">
+            <input type="text" name="q" placeholder="Search" />
+            <span class="icon-search"></span>
+        </div>
+        <input type="submit" value="Go" class="d-hidden" />
+        <input type="hidden" name="check_keywords" value="yes" />
+        <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+                    <div class="site-nav-tree">
+                        
+                            
+                            
+                                <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../about.html">About Name Match</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../about.html#what-is-name-match-doing">What is Name Match doing?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../about.html#inputs-and-outputs">Inputs and outputs</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../match_setup.html">Setting Up a Match</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../match_setup.html#preparing-the-data-for-name-match">Preparing the data for Name Match</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../match_setup.html#creating-the-configuration-file">Creating the configuration file</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../match_setup.html#creating-user-defined-clustering-functions">Creating user defined clustering functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../match_setup.html#running-the-code">Running the code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../match_setup.html#special-cases">Special cases</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../understanding_results.html">Understanding Results</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../algorithm.html">Algorithm Documentation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../algorithm.html#why-is-name-match-necessary">Why is Name Match necessary</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../algorithm.html#how-it-works">How it works</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../algorithm.html#things-to-consider">Things to consider</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../api.html">API Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../api.html#module-namematch.process_config"><code class="xref py py-mod docutils literal notranslate"><span class="pre">namematch.process_config</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../api.html#module-namematch.process_input_data"><code class="xref py py-mod docutils literal notranslate"><span class="pre">namematch.process_input_data</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../api.html#module-namematch.generate_must_links"><code class="xref py py-mod docutils literal notranslate"><span class="pre">namematch.generate_must_links</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../api.html#module-namematch.block"><code class="xref py py-mod docutils literal notranslate"><span class="pre">namematch.block</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../api.html#module-namematch.generate_data_rows"><code class="xref py py-mod docutils literal notranslate"><span class="pre">namematch.generate_data_rows</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../api.html#module-namematch.fit_model"><code class="xref py py-mod docutils literal notranslate"><span class="pre">namematch.fit_model</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../api.html#module-namematch.predict"><code class="xref py py-mod docutils literal notranslate"><span class="pre">namematch.predict</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../api.html#module-namematch.cluster"><code class="xref py py-mod docutils literal notranslate"><span class="pre">namematch.cluster</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../api.html#module-namematch.generate_output"><code class="xref py py-mod docutils literal notranslate"><span class="pre">namematch.generate_output</span></code></a></li>
+</ul>
+</li>
+</ul>
+
+                            
+                        
+                    </div>
+                </div>
+                <div class="col-12 col-lg-9">
+                    <div class="document">
+                        
+                            
+  <h1>Source code for namematch.predict</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">yaml</span>
+<span class="kn">import</span> <span class="nn">argparse</span>
+<span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">import</span> <span class="nn">multiprocessing</span> <span class="k">as</span> <span class="nn">mp</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">pickle</span>
+
+<span class="kn">import</span> <span class="nn">pyarrow.parquet</span> <span class="k">as</span> <span class="nn">pq</span>
+<span class="kn">import</span> <span class="nn">pyarrow</span> <span class="k">as</span> <span class="nn">pa</span>
+
+<span class="kn">from</span> <span class="nn">namematch.base</span> <span class="kn">import</span> <span class="n">NamematchBase</span>
+<span class="kn">from</span> <span class="nn">namematch.utils.utils</span> <span class="kn">import</span> <span class="n">setup_logging</span>
+<span class="kn">from</span> <span class="nn">namematch.data_structures.parameters</span> <span class="kn">import</span> <span class="n">Parameters</span>
+<span class="kn">from</span> <span class="nn">namematch.utils.utils</span> <span class="kn">import</span> <span class="n">equip_logger_id</span><span class="p">,</span> <span class="n">load_models</span><span class="p">,</span> <span class="n">log_runtime_and_memory</span><span class="p">,</span> <span class="n">determine_model_to_use</span><span class="p">,</span> <span class="n">load_yaml</span>
+
+<span class="k">try</span><span class="p">:</span>
+    <span class="n">profile</span>
+<span class="k">except</span><span class="p">:</span>
+    <span class="kn">from</span> <span class="nn">line_profiler</span> <span class="kn">import</span> <span class="n">LineProfiler</span>
+    <span class="n">profile</span> <span class="o">=</span> <span class="n">LineProfiler</span><span class="p">()</span>
+
+
+<span class="c1"># globals:</span>
+<span class="n">MATCH_COL</span> <span class="o">=</span> <span class="mi">1</span>
+
+
+<div class="viewcode-block" id="Predict"><a class="viewcode-back" href="../../namematch.html#namematch.predict.Predict">[docs]</a><span class="k">class</span> <span class="nc">Predict</span><span class="p">(</span><span class="n">NamematchBase</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">params</span><span class="p">,</span>
+        <span class="n">data_rows_dir</span><span class="o">=</span><span class="s1">&#39;output_temp/data_rows&#39;</span><span class="p">,</span>
+        <span class="n">model_info_file</span><span class="o">=</span><span class="s1">&#39;output_temp/model/model.yaml&#39;</span><span class="p">,</span>
+        <span class="n">output_file</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">output_dir</span><span class="o">=</span><span class="s1">&#39;output_temp/potential_edges&#39;</span><span class="p">,</span>
+        <span class="n">logger_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="o">*</span><span class="n">args</span><span class="p">,</span>
+        <span class="o">**</span><span class="n">kwargs</span>
+    <span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">Predict</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">params</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="n">output_file</span><span class="p">,</span> <span class="n">logger_id</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">data_rows_dir</span> <span class="o">=</span> <span class="n">data_rows_dir</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">model_info_file</span> <span class="o">=</span> <span class="n">model_info_file</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">output_dir</span> <span class="o">=</span> <span class="n">output_dir</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">output_file</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="nd">@equip_logger_id</span>
+    <span class="nd">@log_runtime_and_memory</span>
+    <span class="k">def</span> <span class="nf">main__predict</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;Read in data-rows and predict (in parallel) for each unlabeled pair. Output</span>
+<span class="sd">        the pairs above the threshold. </span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            params (Parameters object): contains parameter values</span>
+<span class="sd">            model_info_file (str): path to output_temp&#39;s data-rows dir</span>
+<span class="sd">            data_rows_dir (str): path to the model info yaml file for a trained model</span>
+<span class="sd">            output_dir (str): path to output_temp&#39;s potential-edges dir</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">output_dir</span><span class="p">):</span>
+            <span class="n">os</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">output_dir</span><span class="p">)</span>
+
+        <span class="k">global</span> <span class="n">logger</span>
+
+        <span class="n">logger_id</span> <span class="o">=</span> <span class="n">kw</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;logger_id&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">logger_id</span><span class="p">:</span>
+            <span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;namematch_</span><span class="si">{</span><span class="nb">str</span><span class="p">(</span><span class="n">logger_id</span><span class="p">)</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">logger</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">logger</span>
+
+        <span class="n">dr_file_list</span> <span class="o">=</span> <span class="p">[</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data_rows_dir</span><span class="p">,</span> <span class="n">dr_file</span><span class="p">)</span> <span class="k">for</span>
+                        <span class="n">dr_file</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data_rows_dir</span><span class="p">)]</span>
+
+        <span class="c1"># remove previous potential_edges files if they exists</span>
+        <span class="k">for</span> <span class="n">potential_edges_file</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">output_dir</span><span class="p">):</span>
+            <span class="n">os</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">output_dir</span><span class="p">,</span> <span class="n">potential_edges_file</span><span class="p">))</span>
+
+        <span class="n">match_models</span><span class="p">,</span> <span class="n">model_info</span> <span class="o">=</span> <span class="n">load_models</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">model_info_file</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">get_potential_edges_in_parallel</span><span class="p">(</span>
+                <span class="n">dr_file_list</span><span class="p">,</span>
+                <span class="n">match_models</span><span class="p">,</span>
+                <span class="n">model_info</span><span class="p">,</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">output_dir</span><span class="p">,</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">params</span><span class="p">)</span>
+
+    <span class="nd">@profile</span>
+    <span class="nd">@equip_logger_id</span>
+    <span class="nd">@log_runtime_and_memory</span>
+    <span class="k">def</span> <span class="nf">get_potential_edges</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dr_file</span><span class="p">,</span> <span class="n">match_models</span><span class="p">,</span> <span class="n">model_info</span><span class="p">,</span>
+                <span class="n">output_dir</span><span class="p">,</span> <span class="n">params</span><span class="p">,</span> <span class="n">chunksize</span><span class="o">=</span><span class="mi">1000000</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;Read in data rows in chunks and predict as needed. Write (append)</span>
+<span class="sd">        the edges above the threshold to the appropriate file.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            dr_file (string): path to data file to predict for</span>
+<span class="sd">            match_models (dict): maps model name (e.g. basic or no-dob) to a fit match model object</span>
+<span class="sd">            model_info (dict): contains information about threshold</span>
+<span class="sd">            output_dir (str): directory to place potential edges</span>
+<span class="sd">            params (Parameters obj):  contains parameter values (i.e. use_uncovered_phats)</span>
+<span class="sd">            chunksize (int): number of rows to read at a time</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">thread</span> <span class="o">=</span> <span class="n">dr_file</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;data_rows_&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;.parquet&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
+            <span class="n">output_file</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">output_dir</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;potential_edges_</span><span class="si">{</span><span class="n">thread</span><span class="si">}</span><span class="s1">.parquet&#39;</span><span class="p">)</span>
+
+            <span class="n">pq_df</span> <span class="o">=</span> <span class="n">pq</span><span class="o">.</span><span class="n">ParquetFile</span><span class="p">(</span><span class="n">dr_file</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">pq_df</span><span class="o">.</span><span class="n">num_row_groups</span><span class="p">):</span>
+
+                <span class="n">df</span> <span class="o">=</span> <span class="n">pq_df</span><span class="o">.</span><span class="n">read_row_group</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="o">.</span><span class="n">to_pandas</span><span class="p">()</span>
+                <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="o">.</span><span class="n">labeled_data</span> <span class="o">==</span> <span class="mi">0</span><span class="p">]</span>
+
+                <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                    <span class="k">continue</span>
+
+                <span class="n">df</span><span class="p">[</span><span class="s1">&#39;model_to_use&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">determine_model_to_use</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">model_info</span><span class="p">)</span>
+
+                <span class="n">df</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">match_models</span><span class="p">,</span> <span class="n">df</span><span class="p">,</span> <span class="s1">&#39;match&#39;</span><span class="p">)</span>
+
+                <span class="n">df</span><span class="p">[</span><span class="s1">&#39;potential_edge&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+                <span class="k">for</span> <span class="n">model_name</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">model_to_use</span><span class="o">.</span><span class="n">unique</span><span class="p">():</span>
+                    <span class="n">threshold</span> <span class="o">=</span> <span class="n">model_info</span><span class="p">[</span><span class="n">model_name</span><span class="p">][</span><span class="s1">&#39;match_thresh&#39;</span><span class="p">]</span>
+                    <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[(</span><span class="n">df</span><span class="o">.</span><span class="n">model_to_use</span> <span class="o">==</span> <span class="n">model_name</span><span class="p">)</span> <span class="o">&amp;</span>
+                           <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">model_name</span><span class="si">}</span><span class="s1">_match_phat&#39;</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="n">threshold</span><span class="p">),</span> <span class="s1">&#39;potential_edge&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+
+                <span class="k">if</span> <span class="ow">not</span> <span class="n">params</span><span class="o">.</span><span class="n">use_uncovered_phats</span><span class="p">:</span>
+                    <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="o">.</span><span class="n">covered_pair</span> <span class="o">==</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;potential_edge&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+
+                <span class="n">table</span> <span class="o">=</span> <span class="n">pa</span><span class="o">.</span><span class="n">Table</span><span class="o">.</span><span class="n">from_pandas</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+
+                <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                    <span class="n">pqwriter</span> <span class="o">=</span> <span class="n">pq</span><span class="o">.</span><span class="n">ParquetWriter</span><span class="p">(</span><span class="n">output_file</span><span class="p">,</span> <span class="n">table</span><span class="o">.</span><span class="n">schema</span><span class="p">)</span>
+                    <span class="n">parquet_schema</span> <span class="o">=</span> <span class="n">table</span><span class="o">.</span><span class="n">schema</span>
+
+                <span class="k">if</span> <span class="ow">not</span> <span class="n">df</span><span class="o">.</span><span class="n">empty</span><span class="p">:</span>
+                    <span class="n">pqwriter</span><span class="o">.</span><span class="n">write_table</span><span class="p">(</span><span class="n">table</span><span class="p">)</span>
+
+            <span class="k">if</span> <span class="n">pqwriter</span><span class="p">:</span>
+                <span class="n">pqwriter</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="n">os</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">dr_file</span><span class="p">)</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">dr_file</span><span class="si">}</span><span class="s2"> failed.&quot;</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="n">e</span>
+
+<div class="viewcode-block" id="Predict.get_potential_edges_in_parallel"><a class="viewcode-back" href="../../namematch.html#namematch.predict.Predict.get_potential_edges_in_parallel">[docs]</a>    <span class="k">def</span> <span class="nf">get_potential_edges_in_parallel</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dr_file_list</span><span class="p">,</span> <span class="n">match_models</span><span class="p">,</span> <span class="n">model_info</span><span class="p">,</span> <span class="n">output_dir</span><span class="p">,</span> <span class="n">params</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;Dispatch the worker threads that will predict for unlabeled pairs in paralle.</span>
+
+<span class="sd">        Args: </span>
+<span class="sd">            dr_file_list (list): paths of output_temp&#39;s data-rows files</span>
+<span class="sd">            match_models (dict): maps model name (e.g. basic or no-dob) to a fit match model object</span>
+<span class="sd">            model_info (dict): dict with information about how to fit the model</span>
+<span class="sd">            output_dir</span>
+<span class="sd">            params (Parameters object): contains parameter values</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+
+        <span class="k">if</span> <span class="n">params</span><span class="o">.</span><span class="n">parallelize</span><span class="p">:</span>
+
+            <span class="n">jobs</span> <span class="o">=</span> <span class="p">[</span>
+                <span class="n">mp</span><span class="o">.</span><span class="n">Process</span><span class="p">(</span>
+                    <span class="n">target</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_potential_edges</span><span class="p">,</span>
+                    <span class="n">args</span> <span class="o">=</span> <span class="p">(</span>
+                        <span class="n">dr_file</span><span class="p">,</span>
+                        <span class="n">match_models</span><span class="p">,</span>
+                        <span class="n">model_info</span><span class="p">,</span>
+                        <span class="n">output_dir</span><span class="p">,</span>
+                        <span class="n">params</span><span class="p">,</span>
+                        <span class="mi">500000</span><span class="p">))</span> <span class="k">for</span> <span class="n">dr_file</span> <span class="ow">in</span> <span class="n">dr_file_list</span><span class="p">]</span>
+            <span class="k">for</span> <span class="n">job</span> <span class="ow">in</span> <span class="n">jobs</span><span class="p">:</span>
+                <span class="n">job</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+            <span class="k">for</span> <span class="n">job</span> <span class="ow">in</span> <span class="n">jobs</span><span class="p">:</span>
+                <span class="n">t</span> <span class="o">=</span> <span class="n">job</span><span class="o">.</span><span class="n">join</span><span class="p">()</span>
+            <span class="n">failure_occurred</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">([</span><span class="n">job</span><span class="o">.</span><span class="n">exitcode</span> <span class="o">!=</span> <span class="mi">0</span> <span class="k">for</span> <span class="n">job</span> <span class="ow">in</span> <span class="n">jobs</span><span class="p">])</span>
+            <span class="k">if</span> <span class="n">failure_occurred</span><span class="p">:</span>
+                <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;Error occurred in </span><span class="si">%s</span><span class="s2"> worker(s).&quot;</span> <span class="o">%</span> <span class="n">failure_occurred</span><span class="p">)</span>
+                <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;Error occurred in </span><span class="si">%s</span><span class="s2"> worker(s).&quot;</span> <span class="o">%</span> <span class="n">failure_occurred</span><span class="p">)</span>
+
+        <span class="k">else</span><span class="p">:</span>
+
+            <span class="k">for</span> <span class="n">dr_file</span> <span class="ow">in</span> <span class="n">dr_file_list</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">get_potential_edges</span><span class="p">(</span><span class="n">dr_file</span><span class="p">,</span> <span class="n">match_models</span><span class="p">,</span> <span class="n">model_info</span><span class="p">,</span>
+                        <span class="n">output_dir</span><span class="p">,</span> <span class="n">params</span><span class="p">,</span> <span class="mi">500000</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Predict.predict"><a class="viewcode-back" href="../../namematch.html#namematch.predict.Predict.predict">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">predict</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">models</span><span class="p">,</span> <span class="n">df</span><span class="p">,</span> <span class="n">model_type</span><span class="p">,</span> <span class="n">oob</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">all_cols</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">all_models</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;Use the trainined models to predict for pairs of records. </span>
+
+<span class="sd">        Args: </span>
+<span class="sd">            models (dict): maps model name (e.g. basic or no-dob) to a fit match model object</span>
+<span class="sd">            df (pd.DataFrame): portion of the data-rows table, with a &quot;model_to_use&quot; column appended</span>
+<span class="sd">            model_type (str): model type (e.g. selection or match)</span>
+<span class="sd">            oob (bool): if True, use the out-of-bag predictions</span>
+<span class="sd">            all_cols (bool): if True, keep all columns in the output df; not just the relevant ones</span>
+<span class="sd">            all_models (bool): if True, predict for each row using all models, not just the &quot;model to use&quot;</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+
+        <span class="k">if</span> <span class="n">all_cols</span><span class="p">:</span>
+
+            <span class="n">phats</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+
+        <span class="k">else</span><span class="p">:</span>
+
+            <span class="n">cols_to_keep</span> <span class="o">=</span> <span class="p">[</span>
+                    <span class="s1">&#39;record_id_1&#39;</span><span class="p">,</span> <span class="s1">&#39;record_id_2&#39;</span><span class="p">,</span> <span class="s1">&#39;model_to_use&#39;</span><span class="p">,</span>
+                    <span class="s1">&#39;covered_pair&#39;</span><span class="p">,</span> <span class="s1">&#39;match_train_eligible&#39;</span><span class="p">,</span> <span class="s1">&#39;exactmatch&#39;</span><span class="p">,</span> <span class="s1">&#39;label&#39;</span><span class="p">]</span>
+            <span class="n">cols_to_keep</span> <span class="o">=</span> <span class="p">[</span><span class="n">col</span> <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">cols_to_keep</span> <span class="k">if</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">]</span>
+
+            <span class="n">phats</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">cols_to_keep</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+
+        <span class="k">for</span> <span class="n">model_name</span><span class="p">,</span> <span class="n">mod</span> <span class="ow">in</span> <span class="n">models</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+
+            <span class="n">phat_col</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">model_name</span><span class="si">}</span><span class="s1">_</span><span class="si">{</span><span class="n">model_type</span><span class="si">}</span><span class="s1">_phat&#39;</span>
+
+            <span class="c1"># initialize phat cols</span>
+            <span class="n">phats</span><span class="p">[</span><span class="n">phat_col</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">NaN</span>
+
+            <span class="k">if</span> <span class="n">oob</span><span class="p">:</span>
+                <span class="n">phats</span><span class="p">[</span><span class="n">phat_col</span><span class="p">]</span> <span class="o">=</span> <span class="n">mod</span><span class="o">.</span><span class="n">named_steps</span><span class="p">[</span><span class="s1">&#39;clf&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">oob_decision_function_</span><span class="p">[:,</span> <span class="n">MATCH_COL</span><span class="p">]</span>
+
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">all_models</span><span class="p">:</span>
+                    <span class="n">phats</span><span class="p">[</span><span class="n">phat_col</span><span class="p">]</span> <span class="o">=</span> <span class="n">mod</span><span class="o">.</span><span class="n">predict_proba</span><span class="p">(</span><span class="n">df</span><span class="p">)[:,</span> <span class="n">MATCH_COL</span><span class="p">]</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">to_predict_for</span> <span class="o">=</span> <span class="p">(</span><span class="n">phats</span><span class="o">.</span><span class="n">model_to_use</span> <span class="o">==</span> <span class="n">model_name</span><span class="p">)</span>
+                    <span class="n">phats</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">to_predict_for</span><span class="p">,</span> <span class="n">phat_col</span><span class="p">]</span> <span class="o">=</span> \
+                            <span class="n">mod</span><span class="o">.</span><span class="n">predict_proba</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">to_predict_for</span><span class="p">])[:,</span> <span class="n">MATCH_COL</span><span class="p">]</span>
+
+        <span class="k">return</span> <span class="n">phats</span></div></div>
+
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+
+    <span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="o">.</span><span class="n">ArgumentParser</span><span class="p">()</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;--params_file&#39;</span><span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;--model_info_file&#39;</span><span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;--data_rows_dir&#39;</span><span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;--output_dir&#39;</span><span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;--log_file&#39;</span><span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;--nm_code_dir&#39;</span><span class="p">)</span>
+    <span class="n">args</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse_args</span><span class="p">()</span>
+
+    <span class="n">params</span> <span class="o">=</span> <span class="n">Parameters</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">params_file</span><span class="p">)</span>
+
+    <span class="n">logging_params</span> <span class="o">=</span> <span class="n">load_yaml</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">nm_code_dir</span><span class="p">,</span> <span class="s1">&#39;utils/logging_config.yaml&#39;</span><span class="p">))</span>
+
+    <span class="n">predict</span> <span class="o">=</span> <span class="n">Predict</span><span class="p">(</span>
+        <span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">,</span>
+        <span class="n">model_info_file</span><span class="o">=</span><span class="n">args</span><span class="o">.</span><span class="n">model_info_file</span><span class="p">,</span>
+        <span class="n">data_rows_dir</span><span class="o">=</span><span class="n">args</span><span class="o">.</span><span class="n">data_rows_dir</span><span class="p">,</span>
+        <span class="n">output_dir</span><span class="o">=</span><span class="n">args</span><span class="o">.</span><span class="n">output_dir</span>
+    <span class="p">)</span>
+    <span class="n">predict</span><span class="o">.</span><span class="n">logger_init</span><span class="p">(</span><span class="n">logging_params</span><span class="p">,</span> <span class="n">args</span><span class="o">.</span><span class="n">log_file</span><span class="p">)</span>
+    <span class="n">predict</span><span class="o">.</span><span class="n">main__predict</span><span class="p">()</span>
+
+</pre></div>
+
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>    
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'0.0.1',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/language_data.js"></script>
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+    <div class="footer" role="contentinfo">
+        <div class="container">
+            &#169; Copyright 2021, Melissa McNeill, Eddie Lin, Zubin Jelveh.
+        Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.1.1.
+        </div>
+    </div>  
+
+</body>
+</html>

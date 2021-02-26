@@ -1,0 +1,80 @@
+
+
+# input data files
+# ----------------
+
+data_files :
+    'victim'   : 
+        'filepath' : '/path/to/input/data/file1.csv'
+        'record_id_col' : 'row_id'
+        'delim' : ','
+        'cluster_type' : 'victim'
+        'output_file_stem' : 'victim'
+    'arrests' :  
+        'filepath' : '/path/to/input/data/file2.csv'
+        'record_id_col' : 'arrest_id'
+        'delim' : ','
+        'cluster_type' : 'offender'
+        'output_file_stem' : 'arrests' 
+
+
+# variable structure
+# ------------------
+
+variables :
+
+- 'name' : 'first_name'
+  'compare_type' : 'String'
+  'arrests_col' : 'FIRST_NME'
+  'victim_col' : 'VFIRST'
+  'drop' : [''," ",'REFUSED','FIRM','BUSINESS','CITY OF CHICAGO','STATE OF ILLINOIS']
+
+- 'name' : 'last_name'
+  'compare_type' : 'String'
+  'arrests_col' : 'LAST_NME'
+  'victim_col' : 'VLAST'
+  'drop' : ['',' ','REFUSED','FIRM','BUSINESS','CITY OF CHICAGO','STATE OF ILLINOIS']
+
+- 'name' : 'dob'
+  'compare_type' : 'Date'
+  'arrests_col' : 'BIRTH_DATE'
+  'victim_col' : 'VDOB'
+  'check' : 'Date - %Y-%m-%d'
+
+- 'name' : 'age'
+  'compare_type' : null
+  'arrests_col' : 'AGE_IN_2025'
+  'victim_col' : 'age_2025'
+   
+- 'name' : 'race'
+  'compare_type' : 'Categorical'
+  'arrests_col' : 'RACE_CODE_CD'
+  'victim_col' : 'VRACE'
+  'set_missing' : 'NA'
+
+- 'name' : 'gender'
+  'compare_type' : 'Categorical'
+  'check' : 'M,F'
+  'arrests_col' : 'SEX_CODE_CD'
+  'victim_col' : 'VSEX' 
+
+- 'name' : 'street_address'
+  'compare_type' : 'Address'
+  'arrests_col' : 'Address'
+  'victim_col' : 'Address'
+
+- 'name' : 'arrestee_id'
+  'compare_type' : 'UniqueID'
+  'arrests_col' : 'ARRESTEE_ID'
+  'victim_col' : ''
+  'set_missing' : ['',' ','NA','nan','REDACTED','SEALED']
+
+
+verbose : 50000
+num_threads : 6
+
+leven_thresh : null
+allow_clusters_w_multiple_unique_ids : False
+
+pct_train : .9
+

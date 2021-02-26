@@ -1,0 +1,516 @@
+
+
+<!DOCTYPE html>
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>namematch.data_structures.parameters &mdash; namematch 0.0.1 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../../../_static/css/theme.min.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/css/custom.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
+    <link rel="author" title="About these documents" href="../../../about.html" />
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <a class="site-nav-toggle hidden-lg-up"><i class="icon-menu"></i></a>
+            <a class="site-title" href="../../../index.html">
+                namematch
+            </a>
+        </div>
+    </header>
+
+
+<div class="breadcrumbs-outer hidden-xs-down">
+    <div class="container">
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="breadcrumbs">
+    
+      <li><a href="../../../index.html">Docs</a></li>
+        
+          <li><a href="../../index.html">Module code</a></li>
+        
+      <li>namematch.data_structures.parameters</li>
+    
+    
+      <li class="breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+</div>
+    </div>
+</div>
+    <div class="main-outer">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-lg-3 site-nav">
+                    
+<div role="search">
+    <form class="search" action="../../../search.html" method="get">
+        <div class="icon-input">
+            <input type="text" name="q" placeholder="Search" />
+            <span class="icon-search"></span>
+        </div>
+        <input type="submit" value="Go" class="d-hidden" />
+        <input type="hidden" name="check_keywords" value="yes" />
+        <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+                    <div class="site-nav-tree">
+                        
+                            
+                            
+                                <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../about.html">About Name Match</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../about.html#what-is-name-match-doing">What is Name Match doing?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../about.html#inputs-and-outputs">Inputs and outputs</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../match_setup.html">Setting Up a Match</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../match_setup.html#preparing-the-data-for-name-match">Preparing the data for Name Match</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../match_setup.html#creating-the-configuration-file">Creating the configuration file</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../match_setup.html#creating-user-defined-clustering-functions">Creating user defined clustering functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../match_setup.html#running-the-code">Running the code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../match_setup.html#special-cases">Special cases</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../understanding_results.html">Understanding Results</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../algorithm.html">Algorithm Documentation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../algorithm.html#why-is-name-match-necessary">Why is Name Match necessary</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../algorithm.html#how-it-works">How it works</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../algorithm.html#things-to-consider">Things to consider</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../api.html">API Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../api.html#module-namematch.process_config"><code class="xref py py-mod docutils literal notranslate"><span class="pre">namematch.process_config</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../api.html#module-namematch.process_input_data"><code class="xref py py-mod docutils literal notranslate"><span class="pre">namematch.process_input_data</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../api.html#module-namematch.generate_must_links"><code class="xref py py-mod docutils literal notranslate"><span class="pre">namematch.generate_must_links</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../api.html#module-namematch.block"><code class="xref py py-mod docutils literal notranslate"><span class="pre">namematch.block</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../api.html#module-namematch.generate_data_rows"><code class="xref py py-mod docutils literal notranslate"><span class="pre">namematch.generate_data_rows</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../api.html#module-namematch.fit_model"><code class="xref py py-mod docutils literal notranslate"><span class="pre">namematch.fit_model</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../api.html#module-namematch.predict"><code class="xref py py-mod docutils literal notranslate"><span class="pre">namematch.predict</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../api.html#module-namematch.cluster"><code class="xref py py-mod docutils literal notranslate"><span class="pre">namematch.cluster</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../api.html#module-namematch.generate_output"><code class="xref py py-mod docutils literal notranslate"><span class="pre">namematch.generate_output</span></code></a></li>
+</ul>
+</li>
+</ul>
+
+                            
+                        
+                    </div>
+                </div>
+                <div class="col-12 col-lg-9">
+                    <div class="document">
+                        
+                            
+  <h1>Source code for namematch.data_structures.parameters</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">yaml</span>
+<span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">from</span> <span class="nn">copy</span> <span class="kn">import</span> <span class="n">deepcopy</span>
+
+<span class="kn">from</span> <span class="nn">namematch.utils.utils</span> <span class="kn">import</span> <span class="n">dump_yaml</span><span class="p">,</span> <span class="n">to_dict</span><span class="p">,</span> <span class="n">load_yaml</span>
+
+<span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="s1">&#39;luigi-interface&#39;</span><span class="p">)</span>
+
+<span class="n">params_lookup</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;process_input_data&#39;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="s1">&#39;auto_drop_logic&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;blocking_scheme&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;last_name_column&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;verbose&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;incremental&#39;</span><span class="p">,</span>
+        <span class="p">],</span>
+    <span class="s1">&#39;generate_must_links&#39;</span><span class="p">:</span> <span class="p">[],</span>
+    <span class="s1">&#39;block&#39;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="s1">&#39;split_names&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;last_name_column&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;blocking_scheme&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;blocking_thresholds&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;incremental&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;index&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;num_threads&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;nmslib&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;verbose&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;parallelize&#39;</span>
+        <span class="p">],</span>
+    <span class="s1">&#39;generate_data_rows&#39;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="s1">&#39;verbose&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;num_threads&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;match_train_criteria&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;first_name_column&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;last_name_column&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;parallelize&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;incremental&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;exact_match_variables&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;leven_thresh&#39;</span><span class="p">,</span>
+        <span class="p">],</span>
+    <span class="s1">&#39;fit_model&#39;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="s1">&#39;max_selection_train_eval_n&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;missingness_model&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;weight_using_selection_model&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;default_threshold&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;optimize_threshold&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;fscore_beta&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;match_train_criteria&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;pct_train&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;max_match_train_n&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;allow_clusters_w_multiple_unique_ids&#39;</span><span class="p">,</span>
+        <span class="p">],</span>
+    <span class="s1">&#39;predict&#39;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="s1">&#39;use_uncovered_phats&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;parallelize&#39;</span><span class="p">,</span>
+        <span class="p">],</span>
+    <span class="s1">&#39;cluster&#39;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="s1">&#39;initialize_from_ground_truth_1s&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;incremental&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;verbose&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;allow_clusters_w_multiple_unique_ids&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;leven_thresh&#39;</span><span class="p">,</span>
+        <span class="p">],</span>
+    <span class="s1">&#39;generate_output&#39;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="s1">&#39;blocking_scheme&#39;</span><span class="p">,</span>
+        <span class="p">],</span>
+<span class="p">}</span>
+
+<div class="viewcode-block" id="Parameters"><a class="viewcode-back" href="../../../namematch.data_structures.html#namematch.data_structures.parameters.Parameters">[docs]</a><span class="k">class</span> <span class="nc">Parameters</span><span class="p">():</span>
+    <span class="sd">&#39;&#39;&#39;Class that houses important matching parameters. Handles validation of the config file.&#39;&#39;&#39;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">validate_param_dict</span><span class="p">):</span>
+
+        <span class="k">for</span> <span class="n">param</span><span class="p">,</span> <span class="n">param_value</span> <span class="ow">in</span> <span class="n">validate_param_dict</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">param</span><span class="p">,</span> <span class="n">param_value</span><span class="p">)</span>
+
+<div class="viewcode-block" id="Parameters.check_integrity"><a class="viewcode-back" href="../../../namematch.data_structures.html#namematch.data_structures.parameters.Parameters.check_integrity">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">check_integrity</span><span class="p">(</span><span class="n">defaults</span><span class="p">,</span> <span class="n">param</span><span class="p">,</span> <span class="n">param_value</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;Ensure that parameters are of the appropriate type.</span>
+<span class="sd">        </span>
+<span class="sd">        Args: </span>
+<span class="sd">            param (str): parameter name (key) </span>
+<span class="sd">            param_value: value of the given key  (parameter name)</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+
+        <span class="n">params__start_with_alpha</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">params__numeric</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">params__positive_numeric</span> <span class="o">=</span> <span class="p">[</span>
+                <span class="s1">&#39;fscore_beta&#39;</span><span class="p">,</span> <span class="s1">&#39;leven_thresh&#39;</span><span class="p">,</span> <span class="s1">&#39;num_threads&#39;</span><span class="p">,</span> <span class="s1">&#39;pct_train&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;secondary_index_limit&#39;</span><span class="p">,</span> <span class="s1">&#39;verbose&#39;</span><span class="p">]</span>
+        <span class="n">params__boolean</span> <span class="o">=</span> <span class="p">[</span>
+                <span class="s1">&#39;use_uncovered_phats&#39;</span><span class="p">,</span> <span class="s1">&#39;allow_clusters_w_multiple_unique_ids&#39;</span><span class="p">]</span>
+        <span class="n">params__specific_value</span> <span class="o">=</span> <span class="p">{</span>
+                <span class="s1">&#39;rebuild_main_index&#39;</span> <span class="p">:</span> <span class="p">[</span><span class="s1">&#39;always&#39;</span><span class="p">,</span> <span class="s1">&#39;never&#39;</span><span class="p">,</span> <span class="s1">&#39;if_secondary_index_exceeds_limit&#39;</span><span class="p">]}</span>
+
+        <span class="n">valid</span> <span class="o">=</span> <span class="kc">True</span>
+
+        <span class="n">same_as_default</span> <span class="o">=</span> <span class="p">(</span><span class="n">param_value</span> <span class="o">==</span> <span class="n">defaults</span><span class="p">[</span><span class="n">param</span><span class="p">])</span>
+        <span class="k">if</span> <span class="n">defaults</span><span class="p">[</span><span class="n">param</span><span class="p">]</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">param_value</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">same_as_default</span> <span class="o">=</span> <span class="kc">True</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">same_as_default</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">param</span> <span class="ow">in</span> <span class="n">params__start_with_alpha</span><span class="p">:</span>
+                <span class="k">if</span> <span class="ow">not</span> <span class="nb">str</span><span class="o">.</span><span class="n">isalpha</span><span class="p">(</span><span class="n">param_value</span><span class="p">[</span><span class="mi">0</span><span class="p">]):</span>
+                    <span class="n">valid</span> <span class="o">=</span> <span class="kc">False</span>
+            <span class="k">if</span> <span class="n">param</span> <span class="ow">in</span> <span class="n">params__numeric</span><span class="p">:</span>
+                <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">param_value</span><span class="p">,</span> <span class="p">(</span><span class="nb">int</span><span class="p">,</span> <span class="nb">float</span><span class="p">,</span> <span class="nb">complex</span><span class="p">)):</span>
+                    <span class="n">valid</span> <span class="o">=</span> <span class="kc">False</span>
+            <span class="k">if</span> <span class="n">param</span> <span class="ow">in</span> <span class="n">params__positive_numeric</span><span class="p">:</span>
+                <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">param_value</span><span class="p">,</span> <span class="p">(</span><span class="nb">int</span><span class="p">,</span> <span class="nb">float</span><span class="p">,</span> <span class="nb">complex</span><span class="p">))</span> <span class="ow">or</span> <span class="n">param_value</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">:</span>
+                    <span class="n">valid</span> <span class="o">=</span> <span class="kc">False</span>
+            <span class="k">if</span> <span class="n">param</span> <span class="ow">in</span> <span class="n">params__boolean</span><span class="p">:</span>
+                <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">param_value</span><span class="p">,</span> <span class="nb">bool</span><span class="p">):</span>
+                    <span class="n">valid</span> <span class="o">=</span> <span class="kc">False</span>
+            <span class="k">if</span> <span class="n">param</span> <span class="ow">in</span> <span class="n">params__specific_value</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">param_value</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">params__specific_value</span><span class="p">[</span><span class="n">param</span><span class="p">]:</span>
+                    <span class="n">valid</span> <span class="o">=</span> <span class="kc">False</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">valid</span><span class="p">:</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The </span><span class="si">{</span><span class="n">param</span><span class="si">}</span><span class="s2"> parameter has taken an illegal value &quot;</span>
+                           <span class="sa">f</span><span class="s2">&quot;(</span><span class="si">{</span><span class="n">param_value</span><span class="si">}</span><span class="s2">). Default value (</span><span class="si">{</span><span class="n">defaults</span><span class="p">[</span><span class="n">param</span><span class="p">]</span><span class="si">}</span><span class="s2">) &quot;</span>
+                           <span class="sa">f</span><span class="s2">&quot;will be used.&quot;</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">valid</span></div>
+
+<div class="viewcode-block" id="Parameters.init"><a class="viewcode-back" href="../../../namematch.data_structures.html#namematch.data_structures.parameters.Parameters.init">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">init</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">config</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span> <span class="n">private_config</span><span class="p">:</span> <span class="nb">dict</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;Create a Parameters instance. </span>
+
+<span class="sd">        Args: </span>
+<span class="sd">            config (dict): dictionary with match parameter values</span>
+<span class="sd">            private_config_file (str): path to the private config file</span>
+<span class="sd">            logging_params (dict); dictionary with logging parameter values</span>
+
+<span class="sd">        Returns: </span>
+<span class="sd">            instance of the Parameters class</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+
+        <span class="n">param_dict</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s1">&#39;verbose&#39;</span> <span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+            <span class="s1">&#39;num_threads&#39;</span> <span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+            <span class="s1">&#39;parallelize&#39;</span> <span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+            <span class="s1">&#39;leven_thresh&#39;</span> <span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+            <span class="s1">&#39;pct_train&#39;</span> <span class="p">:</span> <span class="mf">0.9</span><span class="p">,</span>
+            <span class="s1">&#39;match_train_criteria&#39;</span> <span class="p">:</span> <span class="p">{},</span>
+            <span class="s1">&#39;fscore_beta&#39;</span> <span class="p">:</span> <span class="mf">0.5</span><span class="p">,</span>
+            <span class="s1">&#39;allow_clusters_w_multiple_unique_ids&#39;</span> <span class="p">:</span> <span class="kc">False</span>
+        <span class="p">}</span>
+
+        <span class="n">defaults</span> <span class="o">=</span> <span class="n">param_dict</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+        <span class="n">defaults</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">private_config</span><span class="p">)</span>
+
+        <span class="c1"># issue warning if user specifies param not understood by code</span>
+        <span class="n">params_default</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">defaults</span><span class="o">.</span><span class="n">keys</span><span class="p">())[:]</span>
+        <span class="n">params_user_specified</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+        <span class="n">params_acceptable_non_default</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;existing_data_files&#39;</span><span class="p">,</span>
+                                         <span class="s1">&#39;data_files&#39;</span><span class="p">,</span> <span class="s1">&#39;variables&#39;</span><span class="p">]</span>
+        <span class="n">params_acceptable</span> <span class="o">=</span> <span class="n">params_default</span> <span class="o">+</span> <span class="n">params_acceptable_non_default</span>
+        <span class="n">params_unrecognized</span> <span class="o">=</span> <span class="p">[</span>
+                <span class="n">param</span> <span class="k">for</span> <span class="n">param</span> <span class="ow">in</span> <span class="n">params_user_specified</span>
+                <span class="k">if</span> <span class="n">param</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">params_acceptable</span><span class="p">]</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">params_unrecognized</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">params_unrecognized</span> <span class="o">=</span> <span class="s1">&#39;, &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">params_unrecognized</span><span class="p">)</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The following parameters are not &quot;</span>
+                           <span class="sa">f</span><span class="s2">&quot;recognized (will be ignored): </span><span class="si">{</span><span class="n">params_unrecognized</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="n">params_only_incremental</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">param</span> <span class="ow">in</span> <span class="n">params_only_incremental</span><span class="p">:</span>
+            <span class="k">if</span> <span class="s1">&#39;existing_data_files&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">config</span> <span class="ow">and</span> <span class="n">param</span> <span class="ow">in</span> <span class="n">config</span><span class="p">:</span>
+                <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The following parameters are not recognized &quot;</span>
+                               <span class="sa">f</span><span class="s2">&quot;for non-incremental matching (will be &quot;</span>
+                               <span class="sa">f</span><span class="s2">&quot;ignored): </span><span class="si">{</span><span class="n">param</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+        <span class="c1"># add private params based on input params</span>
+        <span class="n">param_dict</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">private_config</span><span class="p">)</span>
+
+        <span class="c1"># overwrite defaults and private config values with values defined in config</span>
+        <span class="k">for</span> <span class="n">param</span><span class="p">,</span> <span class="n">param_value</span> <span class="ow">in</span> <span class="n">config</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">param_value</span><span class="p">,</span> <span class="nb">list</span><span class="p">)</span> <span class="ow">and</span> <span class="n">param</span> <span class="o">!=</span> <span class="s1">&#39;variables&#39;</span><span class="p">:</span>
+                <span class="k">for</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">param_value</span><span class="p">:</span>
+                    <span class="k">if</span> <span class="p">(</span><span class="ow">not</span> <span class="n">Parameters</span><span class="o">.</span><span class="n">check_integrity</span><span class="p">(</span><span class="n">defaults</span><span class="p">,</span> <span class="n">param</span><span class="p">,</span> <span class="n">value</span><span class="p">))</span> <span class="ow">and</span> <span class="p">(</span><span class="n">param</span> <span class="ow">in</span> <span class="n">params_default</span><span class="p">):</span>
+                        <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;parameter &#39;</span><span class="si">{</span><span class="n">param</span><span class="si">}</span><span class="s2">&#39; contains value &#39;</span><span class="si">{</span><span class="n">value</span><span class="si">}</span><span class="s2">&#39; which is an invalid type&quot;</span><span class="p">)</span>
+                <span class="n">param_dict</span><span class="p">[</span><span class="n">param</span><span class="p">]</span> <span class="o">=</span> <span class="n">param_value</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">param</span> <span class="ow">in</span> <span class="n">params_default</span><span class="p">:</span>
+                    <span class="k">if</span> <span class="n">Parameters</span><span class="o">.</span><span class="n">check_integrity</span><span class="p">(</span><span class="n">defaults</span><span class="p">,</span> <span class="n">param</span><span class="p">,</span> <span class="n">param_value</span><span class="p">):</span>
+                        <span class="n">param_dict</span><span class="p">[</span><span class="n">param</span><span class="p">]</span> <span class="o">=</span> <span class="n">param_value</span>
+                    <span class="n">param_dict</span><span class="p">[</span><span class="n">param</span><span class="p">]</span> <span class="o">=</span> <span class="n">param_value</span>
+        <span class="n">param_dict</span><span class="p">[</span><span class="s1">&#39;incremental&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;existing_data_files&#39;</span><span class="p">,</span> <span class="p">{}))</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">param_dict</span><span class="p">[</span><span class="s1">&#39;num_threads&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">param_dict</span><span class="p">[</span><span class="s1">&#39;parallelize&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
+
+        <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="n">param_dict</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Parameters.load"><a class="viewcode-back" href="../../../namematch.data_structures.html#namematch.data_structures.parameters.Parameters.load">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">load</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">filepath</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;Load a Parameters instance. </span>
+
+<span class="sd">        Args: </span>
+<span class="sd">            filepath (str): path to a yaml version of a Parameters instance</span>
+
+<span class="sd">        Returns: </span>
+<span class="sd">            instance of the Parameters class</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+
+        <span class="n">param_dict</span> <span class="o">=</span> <span class="n">load_yaml</span><span class="p">(</span><span class="n">filepath</span><span class="p">)</span>
+
+        <span class="c1"># NOTE: no need for validation because simple loading</span>
+        <span class="c1"># an object that was validated when initialized</span>
+
+        <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="n">param_dict</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Parameters.load_from_dict"><a class="viewcode-back" href="../../../namematch.data_structures.html#namematch.data_structures.parameters.Parameters.load_from_dict">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">load_from_dict</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">param_dict</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="n">param_dict</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Parameters.check_for_required_variables"><a class="viewcode-back" href="../../../namematch.data_structures.html#namematch.data_structures.parameters.Parameters.check_for_required_variables">[docs]</a>    <span class="k">def</span> <span class="nf">check_for_required_variables</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">variables</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;Validate that the config includes required variables.&#39;&#39;&#39;</span>
+
+        <span class="n">missing_required_variables</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">required_var</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">required_variables</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">required_var</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">variables</span><span class="o">.</span><span class="n">get_names</span><span class="p">():</span>
+                <span class="n">missing_required_variables</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">required_var</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">missing_required_variables</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">error_str</span> <span class="o">=</span> <span class="s1">&#39;, &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">missing_required_variables</span><span class="p">)</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;The following required variable names &#39;</span>
+                         <span class="sa">f</span><span class="s1">&#39;are missing: </span><span class="si">{</span><span class="n">error_str</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span></div>
+
+<div class="viewcode-block" id="Parameters.validate_exactmatch_variables"><a class="viewcode-back" href="../../../namematch.data_structures.html#namematch.data_structures.parameters.Parameters.validate_exactmatch_variables">[docs]</a>    <span class="k">def</span> <span class="nf">validate_exactmatch_variables</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">variables</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;Validate that the exact_match_variables and negate_exact_match_variables parameters.&#39;&#39;&#39;</span>
+
+        <span class="n">em_vars</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">exact_match_variables</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">negate_exact_match_variables</span>
+
+        <span class="n">invalid_variables</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">valid_variables</span> <span class="o">=</span> <span class="n">variables</span><span class="o">.</span><span class="n">get_names</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">variable</span> <span class="ow">in</span> <span class="n">em_vars</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">variable</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">valid_variables</span><span class="p">:</span>
+                <span class="n">invalid_variables</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">variable</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">invalid_variables</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">invalid_variables</span> <span class="o">=</span> <span class="s1">&#39;, &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">invalid_variables</span><span class="p">)</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;The exactmatch flag could not be calculated because the following &quot;</span>
+                           <span class="sa">f</span><span class="s2">&quot;variables are not defined: </span><span class="si">{</span><span class="n">invalid_variables</span><span class="si">}</span><span class="s2">. You may need to adjust &quot;</span>
+                           <span class="s2">&quot;the exact_match_variables and negate_exact_match_variables parameters.&quot;</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Parameters.validate_blocking_scheme"><a class="viewcode-back" href="../../../namematch.data_structures.html#namematch.data_structures.parameters.Parameters.validate_blocking_scheme">[docs]</a>    <span class="k">def</span> <span class="nf">validate_blocking_scheme</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">variables</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;Validate that the blocking scheme is in the correct format and provieds the minimum</span>
+<span class="sd">        number of blocking variables per blocking type (cosine_distance, edit_distance, absvalue_distance).&#39;&#39;&#39;</span>
+
+        <span class="n">blocking_params</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;cosine_distance&#39;</span><span class="p">,</span> <span class="s1">&#39;edit_distance&#39;</span><span class="p">,</span>
+                           <span class="s1">&#39;absvalue_distance&#39;</span><span class="p">,</span> <span class="s1">&#39;alpha&#39;</span><span class="p">,</span> <span class="s1">&#39;power&#39;</span><span class="p">]</span>
+        <span class="k">if</span> <span class="nb">any</span><span class="p">([</span><span class="n">v</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">blocking_params</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">blocking_scheme</span><span class="o">.</span><span class="n">keys</span><span class="p">())]):</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;Blocking scheme is misspecified.&quot;</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span>
+
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">blocking_scheme</span><span class="p">[</span><span class="s1">&#39;cosine_distance&#39;</span><span class="p">][</span><span class="s1">&#39;variables&#39;</span><span class="p">])</span> <span class="o">&gt;</span> <span class="mi">2</span><span class="p">:</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Only the first two variables in blocking_scheme&quot;</span>
+                           <span class="sa">f</span><span class="s2">&quot;[&#39;cosine_distance&#39;] will be used.&quot;</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">blocking_scheme</span><span class="p">[</span><span class="s1">&#39;cosine_distance&#39;</span><span class="p">][</span><span class="s1">&#39;variable&#39;</span><span class="p">]</span> <span class="o">=</span> \
+                    <span class="bp">self</span><span class="o">.</span><span class="n">blocking_scheme</span><span class="p">[</span><span class="s1">&#39;cosine_distance&#39;</span><span class="p">][</span><span class="s1">&#39;variable&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">:</span><span class="mi">2</span><span class="p">]</span>
+
+        <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">blocking_scheme</span><span class="p">[</span><span class="s1">&#39;edit_distance&#39;</span><span class="p">][</span><span class="s1">&#39;variable&#39;</span><span class="p">])</span> <span class="o">==</span> <span class="nb">list</span><span class="p">:</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Only one variable allowed in blocking_scheme&quot;</span>
+                           <span class="sa">f</span><span class="s2">&quot;[&#39;edit_distance&#39;]; using first one.&quot;</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">blocking_scheme</span><span class="p">[</span><span class="s1">&#39;edit_distance&#39;</span><span class="p">][</span><span class="s1">&#39;variable&#39;</span><span class="p">]</span> <span class="o">=</span> \
+                    <span class="bp">self</span><span class="o">.</span><span class="n">blocking_scheme</span><span class="p">[</span><span class="s1">&#39;edit_distance&#39;</span><span class="p">][</span><span class="s1">&#39;variable&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+
+        <span class="n">alpha</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">blocking_scheme</span><span class="p">[</span><span class="s1">&#39;alpha&#39;</span><span class="p">]</span>
+        <span class="n">power</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">blocking_scheme</span><span class="p">[</span><span class="s1">&#39;power&#39;</span><span class="p">]</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">alpha</span><span class="p">,</span> <span class="p">(</span><span class="nb">int</span><span class="p">,</span> <span class="nb">float</span><span class="p">))</span> <span class="ow">or</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">power</span><span class="p">,</span> <span class="nb">float</span><span class="p">):</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Incorrect parameter definitions in blocking_scheme: &quot;</span>
+                         <span class="sa">f</span><span class="s2">&quot;alpha (numeric) and power (float).&quot;</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span>
+
+        <span class="n">invalid_variables</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">valid_variables</span> <span class="o">=</span> <span class="n">variables</span><span class="o">.</span><span class="n">get_names</span><span class="p">()</span>
+        <span class="n">blocking_variables</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_blocking_variables</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">variable</span> <span class="ow">in</span> <span class="n">blocking_variables</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">variable</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">valid_variables</span><span class="p">:</span>
+                <span class="n">invalid_variables</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">variable</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">invalid_variables</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">invalid_variables</span> <span class="o">=</span> <span class="s1">&#39;, &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">invalid_variables</span><span class="p">)</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;The following variable names, needed for the specified &#39;</span>
+                         <span class="sa">f</span><span class="s1">&#39;blocking scheme, are missing: </span><span class="si">{</span><span class="n">invalid_variables</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span></div>
+
+<div class="viewcode-block" id="Parameters.get_blocking_variables"><a class="viewcode-back" href="../../../namematch.data_structures.html#namematch.data_structures.parameters.Parameters.get_blocking_variables">[docs]</a>    <span class="k">def</span> <span class="nf">get_blocking_variables</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;Get list of blocking variable nicknames.</span>
+<span class="sd">        </span>
+<span class="sd">        Return: </span>
+<span class="sd">            list of variable nicknames (all-names columns) to use for blocking</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+
+        <span class="n">bv</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">blocking_scheme</span><span class="p">[</span><span class="s1">&#39;cosine_distance&#39;</span><span class="p">][</span><span class="s1">&#39;variables&#39;</span><span class="p">][:]</span>
+        <span class="n">bv</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">blocking_scheme</span><span class="p">[</span><span class="s1">&#39;edit_distance&#39;</span><span class="p">][</span><span class="s1">&#39;variable&#39;</span><span class="p">])</span>
+        <span class="c1">#bv.append(self.blocking_scheme[&#39;absvalue_distance&#39;][&#39;variable&#39;])</span>
+        <span class="n">bv</span> <span class="o">=</span> <span class="p">[</span><span class="n">bv</span> <span class="k">for</span> <span class="n">bv</span> <span class="ow">in</span> <span class="n">bv</span> <span class="k">if</span> <span class="n">bv</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">]</span>
+
+        <span class="k">return</span> <span class="n">bv</span></div>
+
+<div class="viewcode-block" id="Parameters.validate"><a class="viewcode-back" href="../../../namematch.data_structures.html#namematch.data_structures.parameters.Parameters.validate">[docs]</a>    <span class="k">def</span> <span class="nf">validate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">variables</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;Validate several components of the config file.&#39;&#39;&#39;</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">check_for_required_variables</span><span class="p">(</span><span class="n">variables</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">validate_blocking_scheme</span><span class="p">(</span><span class="n">variables</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">validate_exactmatch_variables</span><span class="p">(</span><span class="n">variables</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Parameters.write"><a class="viewcode-back" href="../../../namematch.data_structures.html#namematch.data_structures.parameters.Parameters.write">[docs]</a>    <span class="k">def</span> <span class="nf">write</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">output_file</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;Write the Parameters to a yaml file.</span>
+<span class="sd">        </span>
+<span class="sd">        Args: </span>
+<span class="sd">            output_file (str): path to write parameter dictionary</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+
+        <span class="n">dump_yaml</span><span class="p">(</span><span class="n">to_dict</span><span class="p">(</span><span class="bp">self</span><span class="p">),</span> <span class="n">output_file</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Parameters.copy"><a class="viewcode-back" href="../../../namematch.data_structures.html#namematch.data_structures.parameters.Parameters.copy">[docs]</a>    <span class="k">def</span> <span class="nf">copy</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;Create a deep copy of a Parameters object.&#39;&#39;&#39;</span>
+        <span class="k">return</span> <span class="n">deepcopy</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Parameters.stage_params_lookup"><a class="viewcode-back" href="../../../namematch.data_structures.html#namematch.data_structures.parameters.Parameters.stage_params_lookup">[docs]</a>    <span class="k">def</span> <span class="nf">stage_params_lookup</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">stage_params_lookup</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">params_lookup</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="n">stage_params_lookup</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="n">p</span><span class="p">:</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">v</span><span class="p">}</span>
+        <span class="k">return</span> <span class="n">stage_params_lookup</span></div>
+
+<div class="viewcode-block" id="Parameters.get_stage_params"><a class="viewcode-back" href="../../../namematch.data_structures.html#namematch.data_structures.parameters.Parameters.get_stage_params">[docs]</a>    <span class="k">def</span> <span class="nf">get_stage_params</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">stage</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">stage_params_lookup</span><span class="p">()[</span><span class="n">stage</span><span class="p">]</span></div></div>
+</pre></div>
+
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>    
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../../',
+            VERSION:'0.0.1',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../../_static/language_data.js"></script>
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+  
+    <div class="footer" role="contentinfo">
+        <div class="container">
+            &#169; Copyright 2021, Melissa McNeill, Eddie Lin, Zubin Jelveh.
+        Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.1.1.
+        </div>
+    </div>  
+
+</body>
+</html>

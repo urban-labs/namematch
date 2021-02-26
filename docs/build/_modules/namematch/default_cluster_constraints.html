@@ -1,0 +1,268 @@
+
+
+<!DOCTYPE html>
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>namematch.default_cluster_constraints &mdash; namematch 0.0.1 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../../_static/css/theme.min.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/css/custom.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+    <link rel="author" title="About these documents" href="../../about.html" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <a class="site-nav-toggle hidden-lg-up"><i class="icon-menu"></i></a>
+            <a class="site-title" href="../../index.html">
+                namematch
+            </a>
+        </div>
+    </header>
+
+
+<div class="breadcrumbs-outer hidden-xs-down">
+    <div class="container">
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a></li>
+        
+          <li><a href="../index.html">Module code</a></li>
+        
+      <li>namematch.default_cluster_constraints</li>
+    
+    
+      <li class="breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+</div>
+    </div>
+</div>
+    <div class="main-outer">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-lg-3 site-nav">
+                    
+<div role="search">
+    <form class="search" action="../../search.html" method="get">
+        <div class="icon-input">
+            <input type="text" name="q" placeholder="Search" />
+            <span class="icon-search"></span>
+        </div>
+        <input type="submit" value="Go" class="d-hidden" />
+        <input type="hidden" name="check_keywords" value="yes" />
+        <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+                    <div class="site-nav-tree">
+                        
+                            
+                            
+                                <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../about.html">About Name Match</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../about.html#what-is-name-match-doing">What is Name Match doing?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../about.html#inputs-and-outputs">Inputs and outputs</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../match_setup.html">Setting Up a Match</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../match_setup.html#preparing-the-data-for-name-match">Preparing the data for Name Match</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../match_setup.html#creating-the-configuration-file">Creating the configuration file</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../match_setup.html#creating-user-defined-clustering-functions">Creating user defined clustering functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../match_setup.html#running-the-code">Running the code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../match_setup.html#special-cases">Special cases</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../understanding_results.html">Understanding Results</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../algorithm.html">Algorithm Documentation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../algorithm.html#why-is-name-match-necessary">Why is Name Match necessary</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../algorithm.html#how-it-works">How it works</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../algorithm.html#things-to-consider">Things to consider</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../api.html">API Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../api.html#module-namematch.process_config"><code class="xref py py-mod docutils literal notranslate"><span class="pre">namematch.process_config</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../api.html#module-namematch.process_input_data"><code class="xref py py-mod docutils literal notranslate"><span class="pre">namematch.process_input_data</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../api.html#module-namematch.generate_must_links"><code class="xref py py-mod docutils literal notranslate"><span class="pre">namematch.generate_must_links</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../api.html#module-namematch.block"><code class="xref py py-mod docutils literal notranslate"><span class="pre">namematch.block</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../api.html#module-namematch.generate_data_rows"><code class="xref py py-mod docutils literal notranslate"><span class="pre">namematch.generate_data_rows</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../api.html#module-namematch.fit_model"><code class="xref py py-mod docutils literal notranslate"><span class="pre">namematch.fit_model</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../api.html#module-namematch.predict"><code class="xref py py-mod docutils literal notranslate"><span class="pre">namematch.predict</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../api.html#module-namematch.cluster"><code class="xref py py-mod docutils literal notranslate"><span class="pre">namematch.cluster</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../api.html#module-namematch.generate_output"><code class="xref py py-mod docutils literal notranslate"><span class="pre">namematch.generate_output</span></code></a></li>
+</ul>
+</li>
+</ul>
+
+                            
+                        
+                    </div>
+                </div>
+                <div class="col-12 col-lg-9">
+                    <div class="document">
+                        
+                            
+  <h1>Source code for namematch.default_cluster_constraints</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="kn">import</span> <span class="nn">logging</span>
+<span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">()</span>
+
+<span class="k">try</span><span class="p">:</span>
+    <span class="n">profile</span>
+<span class="k">except</span><span class="p">:</span>
+    <span class="kn">from</span> <span class="nn">line_profiler</span> <span class="kn">import</span> <span class="n">LineProfiler</span>
+    <span class="n">profile</span> <span class="o">=</span> <span class="n">LineProfiler</span><span class="p">()</span>
+
+
+<div class="viewcode-block" id="get_columns_used"><a class="viewcode-back" href="../../namematch.html#namematch.default_cluster_constraints.get_columns_used">[docs]</a><span class="k">def</span> <span class="nf">get_columns_used</span><span class="p">():</span>
+    <span class="sd">&#39;&#39;&#39;The `get_columns_used()` function returns a dictionary mapping data fields needed for </span>
+<span class="sd">    constraint checking to the datatype they should be read in as. For this defaultversion,</span>
+<span class="sd">    it simply returns an empty dictionary.</span>
+<span class="sd">    </span>
+<span class="sd">    Special note: if you want something to be treated as a date, use </span>
+<span class="sd">    dtype &quot;date&quot; (will be converted to a valid pandas dtype internally).</span>
+
+<span class="sd">    Returns: </span>
+<span class="sd">        dict: empty for default version</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+	
+    <span class="k">return</span> <span class="p">{}</span></div>
+
+
+<div class="viewcode-block" id="is_valid_edge"><a class="viewcode-back" href="../../namematch.html#namematch.default_cluster_constraints.is_valid_edge">[docs]</a><span class="k">def</span> <span class="nf">is_valid_edge</span><span class="p">(</span><span class="n">record1</span><span class="p">,</span> <span class="n">record2</span><span class="p">,</span> <span class="n">phat</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;Check if two records would form a valid link, or edge. For this default version, </span>
+<span class="sd">    it simply returns True.</span>
+
+<span class="sd">    Special note: for fields read in as dtype object (above), NAs have been filled with &quot;&quot;</span>
+
+<span class="sd">    Args: </span>
+<span class="sd">        record1 (pd.Series): one row of the all-names file (relevant columns only)</span>
+<span class="sd">        record2 (pd.Series): one row of the all-names file (relevant columns only)</span>
+<span class="sd">        phat (float): phat value of the proposed edge</span>
+
+<span class="sd">    Returns: </span>
+<span class="sd">        bool: True for default version</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+
+    <span class="k">return</span> <span class="kc">True</span></div>
+
+
+<div class="viewcode-block" id="is_valid_cluster"><a class="viewcode-back" href="../../namematch.html#namematch.default_cluster_constraints.is_valid_cluster">[docs]</a><span class="k">def</span> <span class="nf">is_valid_cluster</span><span class="p">(</span><span class="n">cluster</span><span class="p">,</span> <span class="n">phat</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;Check if a proposed cluster is valid. For this default version, </span>
+<span class="sd">    it simply returns True. The information you&#39;ll have access to for the </span>
+<span class="sd">    cluster&#39;s records is determined by the column(s) specified in `get_columns_used`.</span>
+
+<span class="sd">    Args: </span>
+<span class="sd">        cluster (pd.DataFrame): all-names file (relevant columns only) records for the proposed cluster</span>
+<span class="sd">        phat (float): phat value of the proposed edge</span>
+
+<span class="sd">    Returns: </span>
+<span class="sd">        bool: True for default version</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+
+    <span class="k">return</span> <span class="kc">True</span></div>
+
+
+<div class="viewcode-block" id="apply_edge_priority"><a class="viewcode-back" href="../../namematch.html#namematch.default_cluster_constraints.apply_edge_priority">[docs]</a><span class="k">def</span> <span class="nf">apply_edge_priority</span><span class="p">(</span><span class="n">edges_df</span><span class="p">,</span> <span class="n">records_df</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;Adjust the order in which potential edges will be considered by altering </span>
+<span class="sd">    the phat (predicted probability of a record pair being a match). Edges will be </span>
+<span class="sd">    considered in decreasing order of phat. For the vast majority of runs, the default </span>
+<span class="sd">    behaviour of doing nothing is best. </span>
+
+<span class="sd">    Args: </span>
+<span class="sd">        edges_df (pd.DataFrame): potential edges information</span>
+<span class="sd">            ================      =======================================================</span>
+<span class="sd">            record_id_1           unique record identifier (for first in pair)</span>
+<span class="sd">            record_id_2           unique record identifier (for second in pair)</span>
+<span class="sd">            phat                     predicted probability of a record pair being a match</span>
+<span class="sd">            ================      =======================================================</span>
+<span class="sd">        records_df (pd.DataFrame): all-names file (relevant columns only)</span>
+
+<span class="sd">    Returns: </span>
+<span class="sd">        pd.DataFrame: same as input, with phat columns potentially adjusted</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+
+    <span class="n">edges_df</span> <span class="o">=</span> <span class="n">edges_df</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;phat&#39;</span><span class="p">,</span> <span class="s1">&#39;original_order&#39;</span><span class="p">],</span> <span class="n">ascending</span><span class="o">=</span><span class="p">[</span><span class="kc">False</span><span class="p">,</span> <span class="kc">True</span><span class="p">])</span>
+
+    <span class="k">return</span> <span class="n">edges_df</span></div>
+</pre></div>
+
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>    
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'0.0.1',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/language_data.js"></script>
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+    <div class="footer" role="contentinfo">
+        <div class="container">
+            &#169; Copyright 2021, Melissa McNeill, Eddie Lin, Zubin Jelveh.
+        Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.1.1.
+        </div>
+    </div>  
+
+</body>
+</html>

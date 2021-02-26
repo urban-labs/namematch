@@ -1,0 +1,47 @@
+
+version : 1
+disable_existing_loggers : False
+
+formatters : 
+    simple : 
+        format : "%(levelname)-8s %(message)s"
+    detailed : 
+        format: "%(asctime)s %(levelname)-8s %(message)s"
+        datefmt : '%m/%d/%Y %H:%M:%S'
+    message : 
+        format : "%(message)s"
+
+filters : 
+    stat_filter : 
+        '()' : StatLogFilter
+
+handlers : 
+    console : 
+        class : logging.StreamHandler
+        level : INFO
+        formatter : simple
+        filters : [stat_filter]
+        stream : ext://sys.stdout    
+    
+    file_handler : 
+        class : logging.handlers.WatchedFileHandler
+        level : DEBUG
+        formatter : detailed
+        filters : [stat_filter]
+        encoding : utf8
+
+    file_handler_stat : 
+        class : logging.handlers.WatchedFileHandler
+        level : STAT
+        formatter : message
+        encoding : utf8
+    
+    file_handler_stat_memory : 
+        class: logging.StreamHandler
+        level : STAT
+        formatter : message
+
+root : 
+    level : DEBUG
+    handlers : [console, file_handler, file_handler_stat]
+

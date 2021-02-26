@@ -1,0 +1,343 @@
+
+
+<!DOCTYPE html>
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Setting Up a Match &mdash; namematch 0.0.1 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="_static/css/theme.min.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+    <link rel="author" title="About these documents" href="about.html" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Understanding Results" href="understanding_results.html" />
+    <link rel="prev" title="About Name Match" href="about.html" /> 
+
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <a class="site-nav-toggle hidden-lg-up"><i class="icon-menu"></i></a>
+            <a class="site-title" href="index.html">
+                namematch
+            </a>
+        </div>
+    </header>
+
+
+<div class="breadcrumbs-outer hidden-xs-down">
+    <div class="container">
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="breadcrumbs">
+    
+      <li><a href="index.html">Docs</a></li>
+        
+      <li>Setting Up a Match</li>
+    
+    
+      <li class="breadcrumbs-aside">
+        
+            
+            <a href="_sources/match_setup.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+</div>
+    </div>
+</div>
+    <div class="main-outer">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-lg-3 site-nav">
+                    
+<div role="search">
+    <form class="search" action="search.html" method="get">
+        <div class="icon-input">
+            <input type="text" name="q" placeholder="Search" />
+            <span class="icon-search"></span>
+        </div>
+        <input type="submit" value="Go" class="d-hidden" />
+        <input type="hidden" name="check_keywords" value="yes" />
+        <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+                    <div class="site-nav-tree">
+                        
+                            
+                            
+                                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="about.html">About Name Match</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="about.html#what-is-name-match-doing">What is Name Match doing?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="about.html#inputs-and-outputs">Inputs and outputs</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Setting Up a Match</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#preparing-the-data-for-name-match">Preparing the data for Name Match</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#creating-the-configuration-file">Creating the configuration file</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#creating-user-defined-clustering-functions">Creating user defined clustering functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#running-the-code">Running the code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#special-cases">Special cases</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="understanding_results.html">Understanding Results</a></li>
+<li class="toctree-l1"><a class="reference internal" href="algorithm.html">Algorithm Documentation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="algorithm.html#why-is-name-match-necessary">Why is Name Match necessary</a></li>
+<li class="toctree-l2"><a class="reference internal" href="algorithm.html#how-it-works">How it works</a></li>
+<li class="toctree-l2"><a class="reference internal" href="algorithm.html#things-to-consider">Things to consider</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="api.html">API Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="api.html#module-namematch.process_config"><code class="xref py py-mod docutils literal notranslate"><span class="pre">namematch.process_config</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.html#module-namematch.process_input_data"><code class="xref py py-mod docutils literal notranslate"><span class="pre">namematch.process_input_data</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.html#module-namematch.generate_must_links"><code class="xref py py-mod docutils literal notranslate"><span class="pre">namematch.generate_must_links</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.html#module-namematch.block"><code class="xref py py-mod docutils literal notranslate"><span class="pre">namematch.block</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.html#module-namematch.generate_data_rows"><code class="xref py py-mod docutils literal notranslate"><span class="pre">namematch.generate_data_rows</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.html#module-namematch.fit_model"><code class="xref py py-mod docutils literal notranslate"><span class="pre">namematch.fit_model</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.html#module-namematch.predict"><code class="xref py py-mod docutils literal notranslate"><span class="pre">namematch.predict</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.html#module-namematch.cluster"><code class="xref py py-mod docutils literal notranslate"><span class="pre">namematch.cluster</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.html#module-namematch.generate_output"><code class="xref py py-mod docutils literal notranslate"><span class="pre">namematch.generate_output</span></code></a></li>
+</ul>
+</li>
+</ul>
+
+                            
+                        
+                    </div>
+                </div>
+                <div class="col-12 col-lg-9">
+                    <div class="document">
+                        
+                            
+  <div class="section" id="setting-up-a-match">
+<h1>Setting Up a Match<a class="headerlink" href="#setting-up-a-match" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="preparing-the-data-for-name-match">
+<h2>Preparing the data for Name Match<a class="headerlink" href="#preparing-the-data-for-name-match" title="Permalink to this headline">¶</a></h2>
+<p>The following important steps need to be taken before inputting CSVs to Name Match:</p>
+<ul class="spaced-list simple">
+<li><p>Ensure that categorical variables across CSVs are the same. If one CSV labels a female person as <code class="docutils literal notranslate"><span class="pre">F</span></code>, and a second CSV labels her as <code class="docutils literal notranslate"><span class="pre">fem</span></code>, then Name Match will not recognize these fields as a match.</p></li>
+<li><p>Standardize date formats across files. If dob is represented in one dataset as <code class="docutils literal notranslate"><span class="pre">%Y-%m-%d</span></code> and <code class="docutils literal notranslate"><span class="pre">%d%B%y</span></code> in another, select one and convert the other prior to running Name Match.</p></li>
+<li><p>Drop any place holders that occur <em>across multiple fields</em>. If you want to drop all records where the first name is <code class="docutils literal notranslate"><span class="pre">NA</span></code>, this can be listed in the config, and Name Match will take care of that automatically (see below). However, if you want to drop all records where the first name is “POLICE” <em>and</em> the last name is “OFFICER”, this needs to be taken care of before running Name Match. Dropping records that don’t quite map to a person (e.g. businesses, municipalities, officers) during pre-processing can greatly improve the runtime and quality of the match. NOTE: John Doe and Jane Doe will be automatically handled by the code.</p></li>
+<li><p>Identify other place holder values and either set them to <code class="docutils literal notranslate"><span class="pre">NA</span></code> prior to Name Match or include them in that variable’s <code class="docutils literal notranslate"><span class="pre">set_missing</span></code> list in the config (see below). A missing date of birth is commonly encoded as, for example, ‘1800-01-01’ rather than <code class="docutils literal notranslate"><span class="pre">NA</span></code>, which will lower Name Match’s performance. Missing unique identifiers are sometimes encoded as <code class="docutils literal notranslate"><span class="pre">UNKNWN</span></code> or <code class="docutils literal notranslate"><span class="pre">99999999</span></code> which would result in a lot of incorrectly labeled training data.</p></li>
+<li><p>Create an ‘age’ column that uses a single reference date (i.e. “age” is really “age as of 2025-01-01”). If a person is 18 in an arrest that happened in 2010 and 26 in victimization record from 2016, we don’t want the algorithm to see 18 and 26 and assume it’s not the same person.</p></li>
+</ul>
+</div>
+<div class="section" id="creating-the-configuration-file">
+<h2>Creating the configuration file<a class="headerlink" href="#creating-the-configuration-file" title="Permalink to this headline">¶</a></h2>
+<p>The config contains instructions for how Name Match will read the data. You can see samples in the <code class="docutils literal notranslate"><span class="pre">config_examples</span></code> directory. Below is an overview of each of the fields.</p>
+<div class="section" id="input-data-files">
+<h3>Input data files<a class="headerlink" href="#input-data-files" title="Permalink to this headline">¶</a></h3>
+<p>Each input CSV should have a short descriptive nickname, like <code class="docutils literal notranslate"><span class="pre">victim</span></code> or <code class="docutils literal notranslate"><span class="pre">arrests</span></code>. These nicknames serves as the keys in a dictionary of information about each input file. The following information is needed for each input data file:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">filepath</span></code>: Path to where the CSV is stored</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">record_id_col</span></code>: Column that uniquely identifies a row (cannot contain nulls)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">delim</span></code>: The character that separates each field</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">cluster_type</span></code>: String that describes the type of entity, such as victim, offender, student (default: “cluster”)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">output_file_stem</span></code>: String used to name the file output by name match, <code class="docutils literal notranslate"><span class="pre">&lt;output_file_stem&gt;_with_clusterid.csv</span></code> (default: file nickname)</p></li>
+</ul>
+</div>
+<div class="section" id="variable-structure">
+<h3>Variable structure<a class="headerlink" href="#variable-structure" title="Permalink to this headline">¶</a></h3>
+<p>Name Match needs to know which fields in the input data files contain information that is relevant to matching. In this section, you must define the fields you want Name Match to have access to, how to use them (i.e. <code class="docutils literal notranslate"><span class="pre">compare_type</span></code>), and what they’re called in each of the input data files.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">name</span></code>: The name of the column in the single file that Name Match constructs.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">compare_type</span></code>: This determines what distance-metric will be used to compare this field in two records. (One of <code class="docutils literal notranslate"><span class="pre">String</span></code>, <code class="docutils literal notranslate"><span class="pre">Date</span></code>, <code class="docutils literal notranslate"><span class="pre">Categorical</span></code>, <code class="docutils literal notranslate"><span class="pre">Address</span></code>, or <code class="docutils literal notranslate"><span class="pre">UniqueID</span></code>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&lt;nickname&gt;_col</span></code>: These fields tells Name Match where to find this variable in the input CSVs, using the short, descriptive nickname established in the <code class="docutils literal notranslate"><span class="pre">input</span> <span class="pre">data</span> <span class="pre">files</span></code> section. If we run Name Match with two input CSVs, nicknamed <code class="docutils literal notranslate"><span class="pre">arrests</span></code> and <code class="docutils literal notranslate"><span class="pre">victim</span></code>, then each variable listed in the <code class="docutils literal notranslate"><span class="pre">variable</span> <span class="pre">structure</span></code> section will need to have a field called <code class="docutils literal notranslate"><span class="pre">arrests_col</span></code> and one called <code class="docutils literal notranslate"><span class="pre">victim_col</span></code>, which tell Name Match the column names to read in from the input CSVs. If one of the CSVs doesn’t have this information (e.g. usually when the <code class="docutils literal notranslate"><span class="pre">compare_type</span></code> is <code class="docutils literal notranslate"><span class="pre">UniqueID</span></code>), assign an empty string to this field in the config.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">drop</span></code>: A list of values. If a record has one of these values in this column, that record will be dropped and ignored by Name Match</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">set_missing</span></code>: A list of values. If a field has one of these values in this column, it will be replaced with a <code class="docutils literal notranslate"><span class="pre">NA</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">check</span></code>: For a <code class="docutils literal notranslate"><span class="pre">Date</span></code>, this will be in the format <code class="docutils literal notranslate"><span class="pre">Date</span> <span class="pre">-</span> <span class="pre">format_string</span></code>, and records that don’t have the date formatted in this way will be replaced with <code class="docutils literal notranslate"><span class="pre">NA</span></code>. For a <code class="docutils literal notranslate"><span class="pre">Categorical</span></code> variable, this should be a list of the values that are allowed (ex, <code class="docutils literal notranslate"><span class="pre">M,F</span></code>), and records with something other than one of these values in this field will be replaced with <code class="docutils literal notranslate"><span class="pre">NA</span></code>.</p></li>
+</ul>
+<p><strong>The default version of Name Match requires at least the following four variables:</strong> <code class="docutils literal notranslate"><span class="pre">first_name</span></code>, <code class="docutils literal notranslate"><span class="pre">last_name</span></code>, <code class="docutils literal notranslate"><span class="pre">dob</span></code>, and <code class="docutils literal notranslate"><span class="pre">age</span></code>. Some missingness is tolerated for the dob and age fields.</p>
+<p>Note, first and last name fields will be cleaned automatically (e.g. non-letter characters removed).</p>
+</div>
+<div class="section" id="uniqueid-variables">
+<h3>UniqueID variables<a class="headerlink" href="#uniqueid-variables" title="Permalink to this headline">¶</a></h3>
+<p>Variables specified with <code class="docutils literal notranslate"><span class="pre">compare_type</span> <span class="pre">:</span> <span class="pre">UniqueID</span></code> are used to create the labeled dataset for the prediction model. So the UniqueID variable should be a <strong>person-identifier</strong>, and is often only available in a subset of the data (otherwise you woulnd’t need Name Match). For example, say you’re matching two dataset where one is linked by SSN and the other has no person-identifier. SSN should be the UniqueID for this match.</p>
+<p><strong>Multiple UniqueIDs:</strong> <em>In almost all use cases, only one UniqueID variable should be specified. The ability to handle multiple UniqueIDs is an advanced Name Match feature, with very litte testing.</em> If you specify multiple UniqueIDs, then links will be made between records if <em>either</em> of their UniqueIDs match. For example, if a record has SSN 123 and Fingerprint No. 456 and another record has SSN 123 but Fingerprint No. 052, a link will be generated. In cases with conflicts like this, the first UniqueID variable will be prioritized.</p>
+</div>
+<div class="section" id="general-params">
+<h3>General params<a class="headerlink" href="#general-params" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">verbose</span></code>: Number controlling how frequently progress is logged (if verbose is set to 50000, then a message will print every 50000 records/pairs processed)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">num_threads</span></code>: The number of threads that should be used to parallelize processes</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">allow_clusters_w_multiple_unique_ids</span></code>: Flag indicating if the final groupings of records into people, or clusters, can contain more than one unique value for a given <code class="docutils literal notranslate"><span class="pre">UniqueID</span></code> field. If you trust that your unique id data is highly accurate, you’d set this to False. However, if you think it’s possible for some people to have multiple values (for example, a student moves schools and is accidentally assigned a new student_id), then you can set this to True.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">leven_thresh</span></code>: Sometimes the unique id used to label data will be filled with typos. To minimize the issues this might cause, this parameter flips 0 labels (not a match) to “unknown” labels if two <code class="docutils literal notranslate"><span class="pre">UniqueID</span></code> values have an edit distance that is less than or equal to <code class="docutils literal notranslate"><span class="pre">leven_thresh</span></code>. This essentially moves record pairs from the training data to the unlabeled test set.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">pct_train</span></code>: The percentage of labeled data that should be used to train the model. Setting this below 1 allows us to evaluate performance on a labeled test set.</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="creating-user-defined-clustering-functions">
+<h2>Creating user defined clustering functions<a class="headerlink" href="#creating-user-defined-clustering-functions" title="Permalink to this headline">¶</a></h2>
+<p>Aspects of the Name Match algorithm are specific to the input data, in a way that is difficult to encode abstractly. To make Name Match more flexible, we provide the ability for the user to write domain-specific constraints (logic that determines if a final cluster is valid or invalid). For example, matches that link person-level data (e.g. program participants) to event-level data should encode an “at most one program participant record per cluster” rule.</p>
+<p>There are four functions defined in <code class="docutils literal notranslate"><span class="pre">cluster_logic.py</span></code> that can be edited before running Name Match. The types <em>must</em> be as described below, or Name Match will either crash or produce incorrect results. The variable names that are used should correspond to the <code class="docutils literal notranslate"><span class="pre">name</span></code> field of the config, rather than the <code class="docutils literal notranslate"><span class="pre">nickname_col</span></code> fields.</p>
+<div class="section" id="is-valid-edge">
+<h3><code class="docutils literal notranslate"><span class="pre">is_valid_edge()</span></code><a class="headerlink" href="#is-valid-edge" title="Permalink to this headline">¶</a></h3>
+<p>This function takes in two records and returns <code class="docutils literal notranslate"><span class="pre">True</span></code> if linking them would be valid (not violate a constraint), <code class="docutils literal notranslate"><span class="pre">False</span></code> otherwise. Each record is represented as a <code class="docutils literal notranslate"><span class="pre">pandas</span> <span class="pre">Series</span></code>, through which you can access its values for fields like dob and address.</p>
+<p>Let’s say that you want to prohibit links between homicide victimizations and records with later date (e.g. a person cannot get arrested after being a homicide victim). You could enforce this using the is_valid_edge function like so:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">is_valid_edge</span><span class="p">(</span><span class="n">record1</span><span class="p">,</span> <span class="n">record2</span><span class="p">,</span> <span class="n">phat</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+
+    <span class="n">homicide_date</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="k">if</span> <span class="n">record1</span><span class="p">[</span><span class="s1">&#39;dataset&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;HOMICIDE_VICTIMS&#39;</span><span class="p">:</span>
+        <span class="n">homicide_date</span> <span class="o">=</span> <span class="n">record1</span><span class="p">[</span><span class="s1">&#39;date&#39;</span><span class="p">]</span>
+        <span class="n">other_date</span> <span class="o">=</span> <span class="n">record2</span><span class="p">[</span><span class="s1">&#39;date&#39;</span><span class="p">]</span>
+    <span class="k">if</span> <span class="n">record2</span><span class="p">[</span><span class="s1">&#39;dataset&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;HOMICIDE_VICTIMS&#39;</span><span class="p">:</span>
+        <span class="n">homicide_date</span> <span class="o">=</span> <span class="n">record2</span><span class="p">[</span><span class="s1">&#39;date&#39;</span><span class="p">]</span>
+        <span class="n">other_date</span> <span class="o">=</span> <span class="n">record1</span><span class="p">[</span><span class="s1">&#39;date&#39;</span><span class="p">]</span>
+    <span class="k">if</span> <span class="n">homicide_date</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">other_date</span> <span class="o">&gt;</span> <span class="n">homicide_date</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">False</span>
+
+    <span class="k">return</span> <span class="kc">True</span>
+</pre></div>
+</div>
+<p>If there is no special logic you wish to encode, this function should simply return <code class="docutils literal notranslate"><span class="pre">True</span></code>.</p>
+<p>You’ll notice that the <code class="docutils literal notranslate"><span class="pre">phat</span></code>, or probability that the two records belong to the same person, is also passed to this function. This information might be useful if, for example, you want to apply looser constraints to edges with a very high phat than those with a lower phat.</p>
+</div>
+<div class="section" id="is-valid-cluster">
+<h3><code class="docutils literal notranslate"><span class="pre">is_valid_cluster()</span></code><a class="headerlink" href="#is-valid-cluster" title="Permalink to this headline">¶</a></h3>
+<p>This function takes in a <code class="docutils literal notranslate"><span class="pre">pandas</span> <span class="pre">DataFrame</span></code> with information about a potential cluster and returns <code class="docutils literal notranslate"><span class="pre">True</span></code> if this cluster is valid, <code class="docutils literal notranslate"><span class="pre">False</span></code> otherwise. A common situation that occurs is a cluster will end up with multiple unique IDs. Consider three records: record A has unique id of 5, record B has a unique ID of 8, and record C is from the unlabeled data and has no unique id. Our model predicts that A and C are almost certainly a match, and B and C are almost certainly a match. Now we have a cluster with records A, B, and C that has more than one unique identifier (5 and 8). You can use <code class="docutils literal notranslate"><span class="pre">is_valid_cluster</span></code> to prevent this from happening like so:</p>
+<p><em>Note: the input dataframe denotes missing values as the empty string, rather than NaN</em></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">is_valid_cluster</span><span class="p">(</span><span class="n">cluster</span><span class="p">,</span> <span class="n">phat</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+
+    <span class="c1"># count the number of unique IDs that are in this cluster</span>
+    <span class="n">n_unique_ids</span> <span class="o">=</span> <span class="n">cluster</span><span class="p">[</span><span class="s2">&quot;unique_id&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">nunique</span><span class="p">()</span>
+
+    <span class="c1"># only one is allowed (or 0, if it&#39;s all missing values)</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">n_unique_ids</span> <span class="o">&lt;=</span> <span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>If there is no special logic you wish to encode, this function should simply return <code class="docutils literal notranslate"><span class="pre">True</span></code>.</p>
+<p>You’ll notice that the optional phat parameter is passed to <code class="docutils literal notranslate"><span class="pre">is_valid_cluster</span></code> as well.</p>
+</div>
+<div class="section" id="get-columns-used">
+<h3><code class="docutils literal notranslate"><span class="pre">get_columns_used()</span></code><a class="headerlink" href="#get-columns-used" title="Permalink to this headline">¶</a></h3>
+<p>This function tells Name Match which columns to read in (and as what type) when enforcing cluster constraints. For example, if you reference “dob” in <code class="docutils literal notranslate"><span class="pre">is_valid_edge</span></code> or <code class="docutils literal notranslate"><span class="pre">is_valid_cluster</span></code>, then “dob” needs to be listed in this dictionary. Type options are <code class="docutils literal notranslate"><span class="pre">object</span></code> (string), <code class="docutils literal notranslate"><span class="pre">float</span></code>, or <code class="docutils literal notranslate"><span class="pre">date</span></code>. Note, <code class="docutils literal notranslate"><span class="pre">fillna('')</span></code> will happen automatically for columns that are read in as type <code class="docutils literal notranslate"><span class="pre">object</span></code>.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">get_columns_used</span><span class="p">():</span>
+    <span class="n">type_dict</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;age&quot;</span><span class="p">:</span> <span class="s1">&#39;float&#39;</span><span class="p">,</span>
+        <span class="s2">&quot;dob&quot;</span><span class="p">:</span> <span class="s1">&#39;date&#39;</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="n">type_dict</span>
+</pre></div>
+</div>
+<p>If there is no special logic you wish to encode in <code class="docutils literal notranslate"><span class="pre">is_valid_edge</span></code> or <code class="docutils literal notranslate"><span class="pre">is_valid_cluster</span></code>, this function should simply return <code class="docutils literal notranslate"><span class="pre">{}</span></code>.</p>
+</div>
+<div class="section" id="apply-edge-priority">
+<h3><code class="docutils literal notranslate"><span class="pre">apply_edge_priority()</span></code><a class="headerlink" href="#apply-edge-priority" title="Permalink to this headline">¶</a></h3>
+<p>This function takes in a <code class="docutils literal notranslate"><span class="pre">pandas</span> <span class="pre">DataFrame</span></code> of potential edges (links between two records). During clustering, Name Match iterates through this list and allows the edges that don’t violate a constraint (using is_valid_edge and is_valid_cluster above). The purpose of this function is to allow the user to change the priority of an edge by increasing or decreasing its phat and/or choosing the order in which potential edges are considered. <strong>The vast majority of the time, this function will not need to be changed.</strong> The three columns present in this dataframe are <code class="docutils literal notranslate"><span class="pre">record_id_1</span></code>, <code class="docutils literal notranslate"><span class="pre">record_id_2</span></code>, and <code class="docutils literal notranslate"><span class="pre">phat</span></code>. One example of what you could do in this function is boost the phats for edges that involve program records.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">apply_edge_priority</span><span class="p">(</span><span class="n">edges_df</span><span class="p">,</span> <span class="n">records_df</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+
+    <span class="n">edges_df</span> <span class="o">=</span> <span class="n">edges_df</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+
+    <span class="n">boost</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="n">edges_df</span><span class="p">[</span><span class="s1">&#39;involve_program_record&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="n">edges_df</span><span class="o">.</span><span class="n">record_id_1</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">contains</span><span class="p">(</span><span class="s1">&#39;program&#39;</span><span class="p">)</span> <span class="o">|</span>
+        <span class="n">edges_df</span><span class="o">.</span><span class="n">record_id_2</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">contains</span><span class="p">(</span><span class="s1">&#39;program&#39;</span><span class="p">))</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+    <span class="n">edges_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">edges_df</span><span class="o">.</span><span class="n">involve_program_record</span> <span class="o">==</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;phat&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">edges_df</span><span class="o">.</span><span class="n">phat</span> <span class="o">+</span> <span class="n">boost</span>
+
+    <span class="n">edges_df</span> <span class="o">=</span> <span class="n">edges_df</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;phat&#39;</span><span class="p">,</span> <span class="s1">&#39;original_order&#39;</span><span class="p">],</span> <span class="n">ascending</span><span class="o">=</span><span class="p">[</span><span class="kc">False</span><span class="p">,</span> <span class="kc">True</span><span class="p">])</span>
+
+    <span class="k">return</span> <span class="n">edges_df</span>
+</pre></div>
+</div>
+<p>If there is no special logic you wish to encode, this function should simply return the input dataframe, <code class="docutils literal notranslate"><span class="pre">edges_df</span></code>, but sorted in descending order of P(match), or <code class="docutils literal notranslate"><span class="pre">phat</span></code>. This is the default behavior.</p>
+<p>The optional <code class="docutils literal notranslate"><span class="pre">records_df</span></code> parameter refers to a dataframe of all the records being linked. It can be merged onto the edges_df if your ideal priority logic requires information from the records (e.g. if you want to manually reduce the P(match) by some percentage for rows with missing DOB).</p>
+</div>
+</div>
+<div class="section" id="running-the-code">
+<h2>Running the code<a class="headerlink" href="#running-the-code" title="Permalink to this headline">¶</a></h2>
+<p>After setting up your virtual environment, preparing your data, filling out the config, and establishing the user defined functions, the last step is to update the <code class="docutils literal notranslate"><span class="pre">makefile</span></code>. The <code class="docutils literal notranslate"><span class="pre">config_file</span></code> variable needs to be updated to wherever you stored your config file. If you created custom cluster contraint logic, the  <code class="docutils literal notranslate"><span class="pre">cluster_constraints_file</span></code> variable needs to be updated as well. Then, you can run the code by navigating into the repo and typing <code class="docutils literal notranslate"><span class="pre">make</span></code>. That’s it!</p>
+<p>After the code finishes, the final output CSVs can be found in the <code class="docutils literal notranslate"><span class="pre">output_dir</span></code> directory defined in the makefile. A log and intermediate output files can be found in the <code class="docutils literal notranslate"><span class="pre">output_dir</span></code>_temp.</p>
+</div>
+<div class="section" id="special-cases">
+<h2>Special cases<a class="headerlink" href="#special-cases" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="incremental-runs">
+<h3>Incremental runs<a class="headerlink" href="#incremental-runs" title="Permalink to this headline">¶</a></h3>
+<p>An “incremental” run of Name Match is where you have some data that has already been matched (assigned person ids, or “clusters”) and you want to match more data to these same ids. This type of run will very rarely be required the first time you use Name Match. If you do need to do an incremental run, however, then there are a few additional config requirements and parameters to be aware of:</p>
+<ul class="spaced-list simple">
+<li><p>In addition to defining the <code class="docutils literal notranslate"><span class="pre">data_files</span></code> to match during the run, you need to define the set of <code class="docutils literal notranslate"><span class="pre">existing_data_files</span></code> in your config – these are the file(s) that already have a person_id assigned by a previous run of Name Match. This section of the config is set up almost identically to the <code class="docutils literal notranslate"><span class="pre">data_files</span></code> section, however you don’t need to define a <code class="docutils literal notranslate"><span class="pre">cluster_type</span></code> or <code class="docutils literal notranslate"><span class="pre">output_file_stem</span></code> for these files. Keep in mind that these existing files still need to have corresponding <code class="docutils literal notranslate"><span class="pre">_col</span></code> definitions in the variables section. If you are using the all-names output of a previous Name Match run as the existing data file for an incremental run, the record_id column likely already contains a prefix such as “arrests__XXXX.” If that is the case, then feel free to set the ‘use_record_id_as_is’ parameter to True.</p></li>
+<li><p>You must add a variable with <code class="docutils literal notranslate"><span class="pre">compare_type</span> <span class="pre">:</span> <span class="pre">ExistingID</span></code> (set up in the same way as all of the other variables) that indicates which column is the person id to match to (e.g. cluster_id).</p></li>
+<li><p>Incremental runs don’t take the time to re-learn the match model, so you must provide the path to the “model info” file produced in the original “from scratch” run (this model info file itself contains the path to the trained model). This can be accomplished by changing the <code class="docutils literal notranslate"><span class="pre">trained_model_info_file</span></code> path in the makefile (to no longer be None).</p></li>
+<li><p>(Optional) Incremental runs can take advantage of the already-built blocking index from the original run as well, which can sometimes yeild runtime savings. If you would like to do this, then change the <code class="docutils literal notranslate"><span class="pre">og_blocking_index_file</span></code> variable in the makefile from None to the path to the <code class="docutils literal notranslate"><span class="pre">blocking_index.bin</span></code> file produced in the original run.</p></li>
+<li><p>Because  no model training happens during incremental runs, it is unnecessary to include the <code class="docutils literal notranslate"><span class="pre">pct_train</span></code> parameter in the config.</p></li>
+</ul>
+<p>It is important to realize that people (record clusters) in the <code class="docutils literal notranslate"><span class="pre">existing_data_files</span></code> files are fixed – they can acquire more records during subsequent incremantal Name Match runs, but they cannot lose any of their original records. And two people from the existing data files cannot merge to become one person during incremental runs, even if you change the cluster constraints to be more lax during the incremental run. Note, imposing new cluster constraints during incremental runs that are stricter than the original constraints can prohibit new records from getting added to existing clusters if not coded carefully.</p>
+</div>
+</div>
+</div>
+
+
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>    
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'0.0.1',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/language_data.js"></script>
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+    <div class="footer" role="contentinfo">
+        <div class="container">
+            &#169; Copyright 2021, Melissa McNeill, Eddie Lin, Zubin Jelveh.
+        Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.1.1.
+        </div>
+    </div>  
+
+</body>
+</html>

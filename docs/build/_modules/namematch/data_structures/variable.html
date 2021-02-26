@@ -1,0 +1,570 @@
+
+
+<!DOCTYPE html>
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>namematch.data_structures.variable &mdash; namematch 0.0.1 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../../../_static/css/theme.min.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/css/custom.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
+    <link rel="author" title="About these documents" href="../../../about.html" />
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <a class="site-nav-toggle hidden-lg-up"><i class="icon-menu"></i></a>
+            <a class="site-title" href="../../../index.html">
+                namematch
+            </a>
+        </div>
+    </header>
+
+
+<div class="breadcrumbs-outer hidden-xs-down">
+    <div class="container">
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="breadcrumbs">
+    
+      <li><a href="../../../index.html">Docs</a></li>
+        
+          <li><a href="../../index.html">Module code</a></li>
+        
+      <li>namematch.data_structures.variable</li>
+    
+    
+      <li class="breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+</div>
+    </div>
+</div>
+    <div class="main-outer">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-lg-3 site-nav">
+                    
+<div role="search">
+    <form class="search" action="../../../search.html" method="get">
+        <div class="icon-input">
+            <input type="text" name="q" placeholder="Search" />
+            <span class="icon-search"></span>
+        </div>
+        <input type="submit" value="Go" class="d-hidden" />
+        <input type="hidden" name="check_keywords" value="yes" />
+        <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+                    <div class="site-nav-tree">
+                        
+                            
+                            
+                                <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../about.html">About Name Match</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../about.html#what-is-name-match-doing">What is Name Match doing?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../about.html#inputs-and-outputs">Inputs and outputs</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../match_setup.html">Setting Up a Match</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../match_setup.html#preparing-the-data-for-name-match">Preparing the data for Name Match</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../match_setup.html#creating-the-configuration-file">Creating the configuration file</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../match_setup.html#creating-user-defined-clustering-functions">Creating user defined clustering functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../match_setup.html#running-the-code">Running the code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../match_setup.html#special-cases">Special cases</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../understanding_results.html">Understanding Results</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../algorithm.html">Algorithm Documentation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../algorithm.html#why-is-name-match-necessary">Why is Name Match necessary</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../algorithm.html#how-it-works">How it works</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../algorithm.html#things-to-consider">Things to consider</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../api.html">API Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../api.html#module-namematch.process_config"><code class="xref py py-mod docutils literal notranslate"><span class="pre">namematch.process_config</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../api.html#module-namematch.process_input_data"><code class="xref py py-mod docutils literal notranslate"><span class="pre">namematch.process_input_data</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../api.html#module-namematch.generate_must_links"><code class="xref py py-mod docutils literal notranslate"><span class="pre">namematch.generate_must_links</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../api.html#module-namematch.block"><code class="xref py py-mod docutils literal notranslate"><span class="pre">namematch.block</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../api.html#module-namematch.generate_data_rows"><code class="xref py py-mod docutils literal notranslate"><span class="pre">namematch.generate_data_rows</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../api.html#module-namematch.fit_model"><code class="xref py py-mod docutils literal notranslate"><span class="pre">namematch.fit_model</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../api.html#module-namematch.predict"><code class="xref py py-mod docutils literal notranslate"><span class="pre">namematch.predict</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../api.html#module-namematch.cluster"><code class="xref py py-mod docutils literal notranslate"><span class="pre">namematch.cluster</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../api.html#module-namematch.generate_output"><code class="xref py py-mod docutils literal notranslate"><span class="pre">namematch.generate_output</span></code></a></li>
+</ul>
+</li>
+</ul>
+
+                            
+                        
+                    </div>
+                </div>
+                <div class="col-12 col-lg-9">
+                    <div class="document">
+                        
+                            
+  <h1>Source code for namematch.data_structures.variable</h1><div class="highlight"><pre>
+<span></span>
+<span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">import</span> <span class="nn">re</span>
+<span class="kn">from</span> <span class="nn">copy</span> <span class="kn">import</span> <span class="n">deepcopy</span>
+
+<span class="kn">from</span> <span class="nn">namematch.utils.utils</span> <span class="kn">import</span> <span class="o">*</span>
+
+<span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">()</span>
+
+
+<div class="viewcode-block" id="Variable"><a class="viewcode-back" href="../../../namematch.data_structures.html#namematch.data_structures.variable.Variable">[docs]</a><span class="k">class</span> <span class="nc">Variable</span><span class="p">():</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">validated_variable_dict</span><span class="p">):</span>
+
+        <span class="k">for</span> <span class="n">attribute</span><span class="p">,</span> <span class="n">attribute_value</span> <span class="ow">in</span> <span class="n">validated_variable_dict</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attribute</span><span class="p">,</span> <span class="n">attribute_value</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="Variable.build"><a class="viewcode-back" href="../../../namematch.data_structures.html#namematch.data_structures.variable.Variable.build">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">build</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">variable_dict</span><span class="p">,</span> <span class="n">params</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;Create a Variable instance. </span>
+
+<span class="sd">        Args: </span>
+<span class="sd">            variable_dict (dict): info about a variable definition from user-input config</span>
+<span class="sd">            params (dict): dictionary with processed match parameter values</span>
+
+<span class="sd">        Returns: </span>
+<span class="sd">            instance of the Variable class</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+
+        <span class="n">validated_variable_dict</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+        <span class="n">validated_variable_dict</span><span class="p">[</span><span class="s1">&#39;check&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+        <span class="n">validated_variable_dict</span><span class="p">[</span><span class="s1">&#39;drop_list&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">validated_variable_dict</span><span class="p">[</span><span class="s1">&#39;colname_dict&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="n">validated_variable_dict</span><span class="p">[</span><span class="s1">&#39;set_missing_list&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="k">if</span> <span class="s1">&#39;name&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">variable_dict</span> <span class="ow">or</span> <span class="s1">&#39;compare_type&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">variable_dict</span><span class="p">:</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error in variable definition. Please ensure &quot;</span>
+                         <span class="sa">f</span><span class="s2">&quot;name and compare_type are specified.&quot;</span><span class="p">)</span>
+            <span class="k">raise</span>
+
+        <span class="n">validated_variable_dict</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">variable_dict</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span>
+        <span class="n">validated_variable_dict</span><span class="p">[</span><span class="s1">&#39;compare_type&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">variable_dict</span><span class="p">[</span><span class="s1">&#39;compare_type&#39;</span><span class="p">]</span>
+        <span class="n">is_last_name</span> <span class="o">=</span> <span class="p">(</span><span class="n">variable_dict</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="n">params</span><span class="o">.</span><span class="n">last_name_column</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">is_last_name</span> <span class="ow">and</span> <span class="n">params</span><span class="o">.</span><span class="n">split_names</span><span class="p">:</span>
+            <span class="n">validated_variable_dict</span><span class="p">[</span><span class="s2">&quot;compare_type&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;LastName&quot;</span>
+
+        <span class="n">col_var_list</span> <span class="o">=</span> <span class="p">[</span><span class="n">k</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">variable_dict</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span> <span class="k">if</span> <span class="s1">&#39;_col&#39;</span> <span class="ow">in</span> <span class="n">k</span><span class="p">]</span>
+        <span class="k">for</span> <span class="n">col_var</span> <span class="ow">in</span> <span class="n">col_var_list</span><span class="p">:</span>
+            <span class="n">file_nickname</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="s1">&#39;_col$&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">col_var</span><span class="p">)</span>
+            <span class="n">validated_variable_dict</span><span class="p">[</span><span class="s1">&#39;colname_dict&#39;</span><span class="p">][</span><span class="n">file_nickname</span><span class="p">]</span> <span class="o">=</span> <span class="n">variable_dict</span><span class="p">[</span><span class="n">col_var</span><span class="p">]</span>
+            <span class="c1"># NOTE: will validate in NameMatch.build next step</span>
+
+        <span class="c1"># issue warning if user specifies param not understood by code</span>
+        <span class="n">params_user_specified</span> <span class="o">=</span> <span class="p">[</span><span class="n">v</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="n">variable_dict</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span> <span class="k">if</span> <span class="s1">&#39;_col&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">v</span><span class="p">]</span>
+        <span class="n">params_acceptable</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="s1">&#39;compare_type&#39;</span><span class="p">,</span> <span class="s1">&#39;check&#39;</span><span class="p">,</span> <span class="s1">&#39;drop&#39;</span><span class="p">,</span> <span class="s1">&#39;set_missing&#39;</span><span class="p">]</span>
+        <span class="n">params_unrecognized</span> <span class="o">=</span> <span class="p">[</span>
+                <span class="n">param</span> <span class="k">for</span> <span class="n">param</span> <span class="ow">in</span> <span class="n">params_user_specified</span>
+                <span class="k">if</span> <span class="n">param</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">params_acceptable</span><span class="p">]</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">params_unrecognized</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">params_unrecognized</span> <span class="o">=</span> <span class="s1">&#39;, &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">params_unrecognized</span><span class="p">)</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The following parameters of </span><span class="si">{</span><span class="n">validated_variable_dict</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2"> &quot;</span>
+                           <span class="sa">f</span><span class="s2">&quot;are not recognized (will be ignored): </span><span class="si">{</span><span class="n">params_unrecognized</span><span class="si">}</span><span class="s2">.&quot;</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="s1">&#39;check&#39;</span> <span class="ow">in</span> <span class="n">variable_dict</span><span class="p">:</span>
+            <span class="n">validated_variable_dict</span><span class="p">[</span><span class="s1">&#39;check&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">variable_dict</span><span class="p">[</span><span class="s1">&#39;check&#39;</span><span class="p">]</span>
+
+        <span class="k">if</span> <span class="s1">&#39;drop&#39;</span> <span class="ow">in</span> <span class="n">variable_dict</span><span class="p">:</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">variable_dict</span><span class="p">[</span><span class="s1">&#39;drop&#39;</span><span class="p">],</span> <span class="nb">list</span><span class="p">):</span>
+                <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The drop parameters of </span><span class="si">{</span><span class="n">validated_variable_dict</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span>
+                             <span class="sa">f</span><span class="s2">&quot;must be a list. It&#39;s currently a </span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">variable_dict</span><span class="p">[</span><span class="s1">&#39;drop&#39;</span><span class="p">])</span><span class="si">}</span><span class="s2">.&quot;</span><span class="p">)</span>
+                <span class="k">raise</span> <span class="ne">Exception</span>
+            <span class="n">validated_variable_dict</span><span class="p">[</span><span class="s1">&#39;drop_list&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">variable_dict</span><span class="p">[</span><span class="s1">&#39;drop&#39;</span><span class="p">]</span>
+
+        <span class="k">if</span> <span class="s1">&#39;set_missing&#39;</span> <span class="ow">in</span> <span class="n">variable_dict</span><span class="p">:</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">variable_dict</span><span class="p">[</span><span class="s1">&#39;set_missing&#39;</span><span class="p">],</span> <span class="nb">list</span><span class="p">):</span>
+                <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The set_missing parameters of </span><span class="si">{</span><span class="n">validated_variable_dict</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span>
+                             <span class="sa">f</span><span class="s2">&quot;must be a list. It&#39;s currently a </span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">variable_dict</span><span class="p">[</span><span class="s1">&#39;set_missing&#39;</span><span class="p">])</span><span class="si">}</span><span class="s2">.&quot;</span><span class="p">)</span>
+                <span class="k">raise</span> <span class="ne">Exception</span>
+            <span class="n">validated_variable_dict</span><span class="p">[</span><span class="s1">&#39;set_missing_list&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">variable_dict</span><span class="p">[</span><span class="s1">&#39;set_missing&#39;</span><span class="p">]</span>
+
+        <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="n">validated_variable_dict</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Variable.validate_col_parameters"><a class="viewcode-back" href="../../../namematch.data_structures.html#namematch.data_structures.variable.Variable.validate_col_parameters">[docs]</a>    <span class="k">def</span> <span class="nf">validate_col_parameters</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data_files</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;Validate that each data file has a corresponding &quot;_col&quot; parameter in each </span>
+<span class="sd">        variable defintion.</span>
+<span class="sd">        </span>
+<span class="sd">        Args: </span>
+<span class="sd">            data_files (DataFileList object): info about what input files are being matched    </span>
+<span class="sd">        &#39;&#39;&#39;</span>
+
+        <span class="n">col_var_name_list</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">colname_dict</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+
+        <span class="n">data_file_name_list</span> <span class="o">=</span> <span class="n">data_files</span><span class="o">.</span><span class="n">get_all_nicknames</span><span class="p">()</span>
+
+        <span class="n">missing_col_var_list</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">data_file_name</span> <span class="ow">in</span> <span class="n">data_file_name_list</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">data_file_name</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">col_var_name_list</span><span class="p">:</span>
+                <span class="n">missing_col_var_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">data_file_name</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">missing_col_var_list</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">missing_col_var_list</span> <span class="o">=</span> <span class="s1">&#39;, &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">missing_col_var_list</span><span class="p">)</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;The following data files do not have a column definition &#39;</span>
+                         <span class="sa">f</span><span class="s1">&#39;in the </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s1"> variable: </span><span class="si">{</span><span class="n">missing_col_var_list</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span>
+
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">col_var_name_list</span><span class="p">)</span> <span class="o">&gt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">data_file_name_list</span><span class="p">):</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">((</span><span class="sa">f</span><span class="s1">&#39;There are more column definitions in the </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s1"> variable &#39;</span><span class="p">,</span>
+                            <span class="sa">f</span><span class="s1">&#39;than data files. Column definitions that do not correspond to &#39;</span>
+                            <span class="sa">f</span><span class="s1">&#39;a data file will be ignored.&#39;</span><span class="p">))</span></div>
+
+
+<div class="viewcode-block" id="Variable.get_columns_to_read"><a class="viewcode-back" href="../../../namematch.data_structures.html#namematch.data_structures.variable.Variable.get_columns_to_read">[docs]</a>    <span class="k">def</span> <span class="nf">get_columns_to_read</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">file_nickname</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;Get the name(s) of the column(s) from the input file that need to be read in order to </span>
+<span class="sd">        create the current all-names column.</span>
+<span class="sd">        </span>
+<span class="sd">        Args:</span>
+<span class="sd">            file_nickname (str): nickname of input file being searched</span>
+
+<span class="sd">        Return:</span>
+<span class="sd">            list of column names</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+
+        <span class="n">column_name_list</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">colname_dict</span><span class="p">[</span><span class="n">file_nickname</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">)</span>
+
+        <span class="n">all_column_names</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">column_name</span> <span class="ow">in</span> <span class="n">column_name_list</span><span class="p">:</span>
+            <span class="k">if</span> <span class="s1">&#39;,&#39;</span> <span class="ow">in</span> <span class="n">column_name</span><span class="p">:</span>  <span class="c1"># geography</span>
+                <span class="n">all_column_names</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">column_name</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">))</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">column_name</span> <span class="o">!=</span> <span class="s1">&#39;&#39;</span><span class="p">:</span>
+                    <span class="n">all_column_names</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">column_name</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">all_column_names</span></div>
+
+
+<div class="viewcode-block" id="Variable.get_an_columns"><a class="viewcode-back" href="../../../namematch.data_structures.html#namematch.data_structures.variable.Variable.get_an_columns">[docs]</a>    <span class="k">def</span> <span class="nf">get_an_columns</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;Get the name(s) of the current all-names column(s).</span>
+<span class="sd">        </span>
+<span class="sd">        Return: </span>
+<span class="sd">            list of column names</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">compare_type</span> <span class="o">==</span> <span class="s1">&#39;Address&#39;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">[</span><span class="s1">&#39;address_street_number&#39;</span><span class="p">,</span> <span class="s1">&#39;address_street_name&#39;</span><span class="p">,</span> <span class="s1">&#39;address_street_type&#39;</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span></div>
+
+
+<div class="viewcode-block" id="Variable.copy"><a class="viewcode-back" href="../../../namematch.data_structures.html#namematch.data_structures.variable.Variable.copy">[docs]</a>    <span class="k">def</span> <span class="nf">copy</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;Create a deep copy of a Variable object.&#39;&#39;&#39;</span>
+        <span class="k">return</span> <span class="n">deepcopy</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span></div></div>
+
+
+
+<div class="viewcode-block" id="VariableList"><a class="viewcode-back" href="../../../namematch.data_structures.html#namematch.data_structures.variable.VariableList">[docs]</a><span class="k">class</span> <span class="nc">VariableList</span><span class="p">():</span>
+    <span class="sd">&#39;&#39;&#39;Class that houses a list of Variable objects.&#39;&#39;&#39;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">variable_list</span><span class="p">):</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">varlist</span> <span class="o">=</span> <span class="n">variable_list</span>
+
+<div class="viewcode-block" id="VariableList.build"><a class="viewcode-back" href="../../../namematch.data_structures.html#namematch.data_structures.variable.VariableList.build">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">build</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">variable_dict_list</span><span class="p">,</span> <span class="n">params</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;Create a VariableList instance. </span>
+
+<span class="sd">        Args: </span>
+<span class="sd">            variable_dict_list (dict): dictionary with variable info from user-input config</span>
+<span class="sd">            params (dict): dictionary with processed match parameter values</span>
+
+<span class="sd">        Returns: </span>
+<span class="sd">            instance of the VariableList class</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+
+        <span class="n">validated_variable_list</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">variable_dict</span> <span class="ow">in</span> <span class="n">variable_dict_list</span><span class="p">:</span>
+            <span class="n">validated_variable</span> <span class="o">=</span> <span class="n">Variable</span><span class="o">.</span><span class="n">build</span><span class="p">(</span><span class="n">variable_dict</span><span class="p">,</span> <span class="n">params</span><span class="p">)</span>
+            <span class="n">validated_variable_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">validated_variable</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="n">validated_variable_list</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="VariableList.load"><a class="viewcode-back" href="../../../namematch.data_structures.html#namematch.data_structures.variable.VariableList.load">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">load</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">variables_list_dict</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;Load a VariableList instance. </span>
+
+<span class="sd">        Args: </span>
+<span class="sd">            variables_list_dict (dict): dictionary version of a VariableList instance</span>
+
+<span class="sd">        Returns: </span>
+<span class="sd">            instance of the VariableList class</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+
+        <span class="n">variable_list</span> <span class="o">=</span> <span class="p">[</span>
+                <span class="n">Variable</span><span class="p">(</span><span class="n">variable_dict</span><span class="p">)</span>
+                <span class="k">for</span> <span class="n">variable_dict</span> <span class="ow">in</span> <span class="n">variables_list_dict</span><span class="p">[</span><span class="s1">&#39;varlist&#39;</span><span class="p">]]</span>
+
+        <span class="c1"># NOTE: no need for validation because simple loading</span>
+        <span class="c1"># an object that was validated when initialized</span>
+
+        <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="n">variable_list</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="VariableList.validate_col_parameters"><a class="viewcode-back" href="../../../namematch.data_structures.html#namematch.data_structures.variable.VariableList.validate_col_parameters">[docs]</a>    <span class="k">def</span> <span class="nf">validate_col_parameters</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data_files</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;Validate that the &quot;_col&quot; variables referenced in the config&#39;s variable definitions</span>
+<span class="sd">        actually exist in the input datasets.</span>
+
+<span class="sd">        Args: </span>
+<span class="sd">            data_files (DataFileList object): info about what input files are being matched    </span>
+<span class="sd">        &#39;&#39;&#39;</span>
+
+        <span class="k">for</span> <span class="n">variable</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">varlist</span><span class="p">:</span>
+            <span class="n">variable</span><span class="o">.</span><span class="n">validate_col_parameters</span><span class="p">(</span><span class="n">data_files</span><span class="p">)</span>
+
+        <span class="c1"># make sure the variables actually exist</span>
+        <span class="k">for</span> <span class="n">data_file</span> <span class="ow">in</span> <span class="p">(</span><span class="n">data_files</span><span class="o">.</span><span class="n">data_files</span> <span class="o">+</span> <span class="n">data_files</span><span class="o">.</span><span class="n">existing_data_files</span><span class="p">):</span>
+            <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">data_file</span><span class="o">.</span><span class="n">filepath</span><span class="p">,</span> <span class="n">nrows</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+            <span class="n">cols_to_read</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_columns_to_read</span><span class="p">(</span><span class="n">data_file</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">cols_to_read</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">col</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">tolist</span><span class="p">():</span>
+                    <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The </span><span class="si">{</span><span class="n">col</span><span class="si">}</span><span class="s2"> column does not exist in the &quot;</span>
+                                 <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">data_file</span><span class="o">.</span><span class="n">nickname</span><span class="si">}</span><span class="s2"> file.&quot;</span><span class="p">)</span>
+                    <span class="k">raise</span></div>
+
+<div class="viewcode-block" id="VariableList.validate_variable_names"><a class="viewcode-back" href="../../../namematch.data_structures.html#namematch.data_structures.variable.VariableList.validate_variable_names">[docs]</a>    <span class="k">def</span> <span class="nf">validate_variable_names</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;Validate that the Variables in the VariableList all have unique nicknames.&#39;&#39;&#39;</span>
+
+        <span class="c1"># make sure names unique</span>
+        <span class="n">variable_name_list</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_names</span><span class="p">()</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">variable_name_list</span><span class="p">)</span> <span class="o">!=</span> <span class="nb">len</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">variable_name_list</span><span class="p">)):</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s1">&#39;Variables must have unique names.&#39;</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span>
+
+        <span class="c1"># if variable with compare_type Adress exists, check to see if variables</span>
+        <span class="c1"># address_street_number, address_street_name, or address_street_type already exist</span>
+        <span class="k">if</span> <span class="nb">any</span><span class="p">([</span><span class="n">variable</span><span class="o">.</span><span class="n">compare_type</span> <span class="o">==</span> <span class="s1">&#39;Address&#39;</span> <span class="k">for</span> <span class="n">variable</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">varlist</span><span class="p">]):</span>
+            <span class="n">addr_vars</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;address_street_number&#39;</span><span class="p">,</span> <span class="s1">&#39;address_street_name&#39;</span><span class="p">,</span> <span class="s1">&#39;address_street_type&#39;</span><span class="p">]</span>
+            <span class="n">variable_names_to_check</span> <span class="o">=</span> <span class="n">addr_vars</span>
+            <span class="n">variable_names_invalid</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="k">for</span> <span class="n">variable_name</span> <span class="ow">in</span> <span class="n">variable_names_to_check</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">variable_name</span> <span class="ow">in</span> <span class="n">variable_name_list</span><span class="p">:</span>
+                    <span class="n">variable_names_invalid</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">variable_name</span><span class="p">)</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">variable_names_invalid</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="n">variable_names_invalid</span> <span class="o">=</span> <span class="s1">&#39;, &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">variable_names_invalid</span><span class="p">)</span>
+                <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Given a variable of compare_type Address, the following &#39;</span>
+                             <span class="sa">f</span><span class="s1">&#39;variable names are invalid: </span><span class="si">{</span><span class="n">variable_names_invalid</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span></div>
+
+<div class="viewcode-block" id="VariableList.validate_type_counts"><a class="viewcode-back" href="../../../namematch.data_structures.html#namematch.data_structures.variable.VariableList.validate_type_counts">[docs]</a>    <span class="k">def</span> <span class="nf">validate_type_counts</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">incremental</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;Validate that there is exactly one variable with compare type UniqueID. If </span>
+<span class="sd">        incremental, validate that there is exactly one variable with compare type ExistingID.</span>
+<span class="sd">        </span>
+<span class="sd">        Args:</span>
+<span class="sd">            incremental (bool): True if the config file provides &quot;existing&quot; data files</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+
+        <span class="c1"># count number of unique ids and issue warning if greater than 1</span>
+        <span class="n">n_uids</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">get_variables_where</span><span class="p">(</span><span class="n">attr</span><span class="o">=</span><span class="s1">&#39;compare_type&#39;</span><span class="p">,</span> <span class="n">attr_value</span><span class="o">=</span><span class="s1">&#39;UniqueID&#39;</span><span class="p">))</span>
+        <span class="k">if</span> <span class="n">n_uids</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;You have more than one variable with compare_type &#39;</span>
+                           <span class="sa">f</span><span class="s1">&#39;UniqueID. This is only recommended in rare cases -- &#39;</span>
+                           <span class="sa">f</span><span class="s1">&#39;please review the documentation.&#39;</span><span class="p">)</span>
+
+        <span class="c1"># if count number of existing ids and raise error if greater than 1</span>
+        <span class="k">if</span> <span class="n">incremental</span><span class="p">:</span>
+            <span class="n">n_eids</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">get_variables_where</span><span class="p">(</span><span class="n">attr</span><span class="o">=</span><span class="s1">&#39;compare_type&#39;</span><span class="p">,</span> <span class="n">attr_value</span><span class="o">=</span><span class="s1">&#39;ExistingID&#39;</span><span class="p">))</span>
+            <span class="k">if</span> <span class="n">n_eids</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;You must specify a variable with compare type ExistingID for incremental &#39;</span>
+                             <span class="sa">f</span><span class="s1">&#39;matching, -- please review the documentation.&#39;</span><span class="p">)</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span>
+            <span class="k">if</span> <span class="n">n_eids</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;You have more than one variable with compare_type ExistingID, &#39;</span>
+                             <span class="sa">f</span><span class="s1">&#39;which is prohibited -- please review the documentation.&#39;</span><span class="p">)</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span></div>
+
+<div class="viewcode-block" id="VariableList.validate"><a class="viewcode-back" href="../../../namematch.data_structures.html#namematch.data_structures.variable.VariableList.validate">[docs]</a>    <span class="k">def</span> <span class="nf">validate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data_files</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;Validate several components of the variables defined in the config.</span>
+<span class="sd">        </span>
+<span class="sd">        Args: </span>
+<span class="sd">            data_files (DataFileList object): info about what input files are being matched</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">validate_col_parameters</span><span class="p">(</span><span class="n">data_files</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">validate_variable_names</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">validate_type_counts</span><span class="p">(</span><span class="n">incremental</span><span class="o">=</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">data_files</span><span class="o">.</span><span class="n">existing_data_files</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">))</span></div>
+
+<div class="viewcode-block" id="VariableList.get_variables_where"><a class="viewcode-back" href="../../../namematch.data_structures.html#namematch.data_structures.variable.VariableList.get_variables_where">[docs]</a>    <span class="k">def</span> <span class="nf">get_variables_where</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attr</span><span class="p">,</span> <span class="n">attr_value</span><span class="p">,</span> <span class="n">equality_type</span><span class="o">=</span><span class="s1">&#39;equals&#39;</span><span class="p">,</span> <span class="n">return_type</span><span class="o">=</span><span class="s1">&#39;name&#39;</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;Select variables that meet a certain condition (e.g. compare_type == &#39;Category&#39;).</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            attr (str): variable feature to condition on</span>
+<span class="sd">            attr_value (str): acceptable values for the variable feature</span>
+<span class="sd">            equality_type (str): check conditions using either &quot;equals&quot; or &quot;in&quot;</span>
+<span class="sd">            return_type (str): either &quot;name&quot; or &quot;ix&quot;, determining what return type to use</span>
+
+<span class="sd">        Return: </span>
+<span class="sd">            list of variable nicknames (all-names columns) or corresponding all-names column indices</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+
+        <span class="n">ix_list</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">name_list</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">ix</span><span class="p">,</span> <span class="n">variable</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">varlist</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">equality_type</span> <span class="o">==</span> <span class="s1">&#39;equals&#39;</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">variable</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">[</span><span class="n">attr</span><span class="p">]</span> <span class="o">==</span> <span class="n">attr_value</span><span class="p">:</span>
+                    <span class="n">ix_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ix</span><span class="p">)</span>
+                    <span class="n">name_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">variable</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="n">equality_type</span> <span class="o">==</span> <span class="s1">&#39;in&#39;</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">variable</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">[</span><span class="n">attr</span><span class="p">]</span> <span class="ow">in</span> <span class="n">attr_value</span><span class="p">:</span>
+                    <span class="n">ix_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ix</span><span class="p">)</span>
+                    <span class="n">name_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">variable</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Invalid equality type (</span><span class="si">{</span><span class="n">equality_type</span><span class="si">}</span><span class="s1">) passed to &#39;</span>
+                             <span class="sa">f</span><span class="s1">&#39;get_variables_where. Only values &quot;equals&quot; or &quot;in&quot; are valid.&#39;</span><span class="p">)</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span>
+
+        <span class="k">if</span> <span class="n">return_type</span> <span class="o">==</span> <span class="s1">&#39;ix&#39;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">ix_list</span>
+        <span class="k">elif</span> <span class="n">return_type</span> <span class="o">==</span> <span class="s1">&#39;name&#39;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">name_list</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s1">&#39;Unknown value passed as return_type in get_variables_where.&#39;</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span></div>
+
+<div class="viewcode-block" id="VariableList.get_names"><a class="viewcode-back" href="../../../namematch.data_structures.html#namematch.data_structures.variable.VariableList.get_names">[docs]</a>    <span class="k">def</span> <span class="nf">get_names</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;Get list of variable nicknames.</span>
+<span class="sd">        </span>
+<span class="sd">        Returns: </span>
+<span class="sd">            list of variable nicknames</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+
+        <span class="n">variable_names</span> <span class="o">=</span> <span class="p">[</span><span class="n">variable</span><span class="o">.</span><span class="n">name</span> <span class="k">for</span> <span class="n">variable</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">varlist</span><span class="p">]</span>
+
+        <span class="k">return</span> <span class="n">variable_names</span></div>
+
+<div class="viewcode-block" id="VariableList.get_columns_to_read"><a class="viewcode-back" href="../../../namematch.data_structures.html#namematch.data_structures.variable.VariableList.get_columns_to_read">[docs]</a>    <span class="k">def</span> <span class="nf">get_columns_to_read</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data_file</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;Get the name(s) of the column(s) from the input file that need to be read in order to </span>
+<span class="sd">        create the all-names file.</span>
+<span class="sd">        </span>
+<span class="sd">        Args:</span>
+<span class="sd">            data_file (DataFile object): contains info about a given input file</span>
+
+<span class="sd">        Return:</span>
+<span class="sd">            list of column names</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+
+        <span class="n">all_column_names</span> <span class="o">=</span> <span class="p">[</span><span class="n">data_file</span><span class="o">.</span><span class="n">record_id_col</span><span class="p">]</span>
+        <span class="k">for</span> <span class="n">variable</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">varlist</span><span class="p">:</span>
+            <span class="n">column_names</span> <span class="o">=</span> <span class="n">variable</span><span class="o">.</span><span class="n">get_columns_to_read</span><span class="p">(</span><span class="n">data_file</span><span class="o">.</span><span class="n">nickname</span><span class="p">)</span>
+            <span class="n">all_column_names</span><span class="o">.</span><span class="n">extend</span><span class="p">([</span><span class="n">column_names</span><span class="p">]</span> <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">column_names</span><span class="p">)</span> <span class="o">==</span> <span class="nb">str</span> <span class="k">else</span> <span class="n">column_names</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">all_column_names</span><span class="p">))</span></div>
+
+<div class="viewcode-block" id="VariableList.get_an_column_names"><a class="viewcode-back" href="../../../namematch.data_structures.html#namematch.data_structures.variable.VariableList.get_an_column_names">[docs]</a>    <span class="k">def</span> <span class="nf">get_an_column_names</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;Get the final list of all-names columns, including internally created columns </span>
+<span class="sd">        like `file_type` and `drop_from_nm`. </span>
+
+<span class="sd">        Return: </span>
+<span class="sd">            list of all-names columns</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+
+        <span class="n">variable_list</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span><span class="o">.</span><span class="n">varlist</span>
+
+        <span class="n">column_names</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;record_id&quot;</span><span class="p">,</span> <span class="s2">&quot;file_type&quot;</span><span class="p">,</span> <span class="s2">&quot;drop_from_nm&quot;</span><span class="p">,</span> <span class="s2">&quot;dataset&quot;</span><span class="p">]</span>
+        <span class="k">for</span> <span class="n">variable</span> <span class="ow">in</span> <span class="n">variable_list</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">variable</span><span class="o">.</span><span class="n">compare_type</span> <span class="o">==</span> <span class="s1">&#39;Address&#39;</span><span class="p">:</span>
+                <span class="n">column_names</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span>
+                        <span class="p">[</span><span class="s1">&#39;address_street_number&#39;</span><span class="p">,</span>
+                        <span class="s1">&#39;address_street_name&#39;</span><span class="p">,</span>
+                        <span class="s1">&#39;address_street_type&#39;</span><span class="p">])</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">column_names</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">variable</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">column_names</span></div>
+
+<div class="viewcode-block" id="VariableList.write"><a class="viewcode-back" href="../../../namematch.data_structures.html#namematch.data_structures.variable.VariableList.write">[docs]</a>    <span class="k">def</span> <span class="nf">write</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">output_file</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;Write the VariableList to a yaml file.</span>
+<span class="sd">        </span>
+<span class="sd">        Args: </span>
+<span class="sd">            output_file (str): path to write variable list dictionary</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+
+        <span class="n">dump_yaml</span><span class="p">(</span><span class="n">to_dict</span><span class="p">(</span><span class="bp">self</span><span class="p">),</span> <span class="n">output_file</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="VariableList.copy"><a class="viewcode-back" href="../../../namematch.data_structures.html#namematch.data_structures.variable.VariableList.copy">[docs]</a>    <span class="k">def</span> <span class="nf">copy</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;Create a deep copy of a VariableList object.&#39;&#39;&#39;</span>
+
+        <span class="k">return</span> <span class="n">deepcopy</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span></div></div>
+</pre></div>
+
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>    
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../../',
+            VERSION:'0.0.1',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../../_static/language_data.js"></script>
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+  
+    <div class="footer" role="contentinfo">
+        <div class="container">
+            &#169; Copyright 2021, Melissa McNeill, Eddie Lin, Zubin Jelveh.
+        Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.1.1.
+        </div>
+    </div>  
+
+</body>
+</html>

@@ -1,0 +1,220 @@
+
+
+<!DOCTYPE html>
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Understanding Results &mdash; namematch 0.0.1 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="_static/css/theme.min.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+    <link rel="author" title="About these documents" href="about.html" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Algorithm Documentation" href="algorithm.html" />
+    <link rel="prev" title="Setting Up a Match" href="match_setup.html" /> 
+
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <a class="site-nav-toggle hidden-lg-up"><i class="icon-menu"></i></a>
+            <a class="site-title" href="index.html">
+                namematch
+            </a>
+        </div>
+    </header>
+
+
+<div class="breadcrumbs-outer hidden-xs-down">
+    <div class="container">
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="breadcrumbs">
+    
+      <li><a href="index.html">Docs</a></li>
+        
+      <li>Understanding Results</li>
+    
+    
+      <li class="breadcrumbs-aside">
+        
+            
+            <a href="_sources/understanding_results.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+</div>
+    </div>
+</div>
+    <div class="main-outer">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-lg-3 site-nav">
+                    
+<div role="search">
+    <form class="search" action="search.html" method="get">
+        <div class="icon-input">
+            <input type="text" name="q" placeholder="Search" />
+            <span class="icon-search"></span>
+        </div>
+        <input type="submit" value="Go" class="d-hidden" />
+        <input type="hidden" name="check_keywords" value="yes" />
+        <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+                    <div class="site-nav-tree">
+                        
+                            
+                            
+                                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="about.html">About Name Match</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="about.html#what-is-name-match-doing">What is Name Match doing?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="about.html#inputs-and-outputs">Inputs and outputs</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="match_setup.html">Setting Up a Match</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="match_setup.html#preparing-the-data-for-name-match">Preparing the data for Name Match</a></li>
+<li class="toctree-l2"><a class="reference internal" href="match_setup.html#creating-the-configuration-file">Creating the configuration file</a></li>
+<li class="toctree-l2"><a class="reference internal" href="match_setup.html#creating-user-defined-clustering-functions">Creating user defined clustering functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="match_setup.html#running-the-code">Running the code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="match_setup.html#special-cases">Special cases</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Understanding Results</a></li>
+<li class="toctree-l1"><a class="reference internal" href="algorithm.html">Algorithm Documentation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="algorithm.html#why-is-name-match-necessary">Why is Name Match necessary</a></li>
+<li class="toctree-l2"><a class="reference internal" href="algorithm.html#how-it-works">How it works</a></li>
+<li class="toctree-l2"><a class="reference internal" href="algorithm.html#things-to-consider">Things to consider</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="api.html">API Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="api.html#module-namematch.process_config"><code class="xref py py-mod docutils literal notranslate"><span class="pre">namematch.process_config</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.html#module-namematch.process_input_data"><code class="xref py py-mod docutils literal notranslate"><span class="pre">namematch.process_input_data</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.html#module-namematch.generate_must_links"><code class="xref py py-mod docutils literal notranslate"><span class="pre">namematch.generate_must_links</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.html#module-namematch.block"><code class="xref py py-mod docutils literal notranslate"><span class="pre">namematch.block</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.html#module-namematch.generate_data_rows"><code class="xref py py-mod docutils literal notranslate"><span class="pre">namematch.generate_data_rows</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.html#module-namematch.fit_model"><code class="xref py py-mod docutils literal notranslate"><span class="pre">namematch.fit_model</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.html#module-namematch.predict"><code class="xref py py-mod docutils literal notranslate"><span class="pre">namematch.predict</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.html#module-namematch.cluster"><code class="xref py py-mod docutils literal notranslate"><span class="pre">namematch.cluster</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.html#module-namematch.generate_output"><code class="xref py py-mod docutils literal notranslate"><span class="pre">namematch.generate_output</span></code></a></li>
+</ul>
+</li>
+</ul>
+
+                            
+                        
+                    </div>
+                </div>
+                <div class="col-12 col-lg-9">
+                    <div class="document">
+                        
+                            
+  <div class="section" id="understanding-results">
+<h1>Understanding Results<a class="headerlink" href="#understanding-results" title="Permalink to this headline">¶</a></h1>
+<p>During the run, Name Match will log information about the matching process: tracking execution, reporting performance metrics, and flagging any issues. In addition to printing in the console, this log is written to the name_match.log file.</p>
+<p>The name match report contains several different metrics indicating how successful the match was, and should be checked after the match is finished to ensure high quality. Below is a breakdown of the terms and metrics you will see – what they mean and what values are reasonable.</p>
+<p><strong>Blocking</strong></p>
+<ul class="simple">
+<li><p>True pairs: first_name/last_name/dob string pairs that we know refer to the same entity based on the <code class="docutils literal notranslate"><span class="pre">UniqueID</span></code></p></li>
+<li><p>Covered pairs: first_name/last_name/dob string pairs that do make it through the blocking stage</p></li>
+<li><p>Uncovered pairs: true pairs that don’t make it through the blocking stage (the fewer the better)</p></li>
+<li><p>Pair completeness: share of true pairs that are covered (the bigger the better, max 1)</p>
+<ul>
+<li><p>Including equal blockstrings: &gt; 0.90 in our experience</p></li>
+<li><p>For non-equal blockstrings: &gt; 0.75 in our experience</p></li>
+</ul>
+</li>
+</ul>
+<p><strong>Modeling</strong></p>
+<ul class="simple">
+<li><p>Threshold: which phat threshold is being used to classify a pair as a “match” vs. “non-match” (expected range: 0.6-0.85)</p></li>
+<li><p>Base rate: what fraction of labeled pairs are a known match?</p></li>
+<li><p>Various typical classifier performance metrics (e.g. precision, recall, f1, auc): out-of-sample metrics reported (precision and recall should be &gt; 0.9 and auc should be &gt; 0.95)</p></li>
+</ul>
+<p><strong>Clustering</strong></p>
+<ul class="simple">
+<li><p>Cluster: a group of records all referring to the same entity (person)</p></li>
+<li><p>Invalid edges: record pairs that wanted to get clustered together, based on phat, but couldn’t because it would have caused an edge logic violation</p></li>
+<li><p>Invalid clusters: record pairs that wanted to get clustered together, based on phat, but couldn’t because it would have caused a cluster logic violation</p></li>
+<li><p>Merges: record pairs that were allowed to form</p></li>
+<li><p>Singleton clusters: records that did not match any other record (so are now in a cluster by themselves)</p></li>
+</ul>
+<p><strong>Error Rates</strong></p>
+<p>These statistics have to do with the blocking metrics (pair completeness or “covered rate”) and are broken down by category (for the variables with <code class="docutils literal notranslate"><span class="pre">compare_type:</span> <span class="pre">'Categorical'</span></code> in your config).</p>
+</div>
+
+
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>    
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'0.0.1',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/language_data.js"></script>
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+    <div class="footer" role="contentinfo">
+        <div class="container">
+            &#169; Copyright 2021, Melissa McNeill, Eddie Lin, Zubin Jelveh.
+        Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.1.1.
+        </div>
+    </div>  
+
+</body>
+</html>

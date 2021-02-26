@@ -1,0 +1,638 @@
+
+
+<!DOCTYPE html>
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>namematch.generate_data_rows &mdash; namematch 0.0.1 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../../_static/css/theme.min.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/css/custom.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+    <link rel="author" title="About these documents" href="../../about.html" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <a class="site-nav-toggle hidden-lg-up"><i class="icon-menu"></i></a>
+            <a class="site-title" href="../../index.html">
+                namematch
+            </a>
+        </div>
+    </header>
+
+
+<div class="breadcrumbs-outer hidden-xs-down">
+    <div class="container">
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a></li>
+        
+          <li><a href="../index.html">Module code</a></li>
+        
+      <li>namematch.generate_data_rows</li>
+    
+    
+      <li class="breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+</div>
+    </div>
+</div>
+    <div class="main-outer">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-lg-3 site-nav">
+                    
+<div role="search">
+    <form class="search" action="../../search.html" method="get">
+        <div class="icon-input">
+            <input type="text" name="q" placeholder="Search" />
+            <span class="icon-search"></span>
+        </div>
+        <input type="submit" value="Go" class="d-hidden" />
+        <input type="hidden" name="check_keywords" value="yes" />
+        <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+                    <div class="site-nav-tree">
+                        
+                            
+                            
+                                <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../about.html">About Name Match</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../about.html#what-is-name-match-doing">What is Name Match doing?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../about.html#inputs-and-outputs">Inputs and outputs</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../match_setup.html">Setting Up a Match</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../match_setup.html#preparing-the-data-for-name-match">Preparing the data for Name Match</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../match_setup.html#creating-the-configuration-file">Creating the configuration file</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../match_setup.html#creating-user-defined-clustering-functions">Creating user defined clustering functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../match_setup.html#running-the-code">Running the code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../match_setup.html#special-cases">Special cases</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../understanding_results.html">Understanding Results</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../algorithm.html">Algorithm Documentation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../algorithm.html#why-is-name-match-necessary">Why is Name Match necessary</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../algorithm.html#how-it-works">How it works</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../algorithm.html#things-to-consider">Things to consider</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../api.html">API Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../api.html#module-namematch.process_config"><code class="xref py py-mod docutils literal notranslate"><span class="pre">namematch.process_config</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../api.html#module-namematch.process_input_data"><code class="xref py py-mod docutils literal notranslate"><span class="pre">namematch.process_input_data</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../api.html#module-namematch.generate_must_links"><code class="xref py py-mod docutils literal notranslate"><span class="pre">namematch.generate_must_links</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../api.html#module-namematch.block"><code class="xref py py-mod docutils literal notranslate"><span class="pre">namematch.block</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../api.html#module-namematch.generate_data_rows"><code class="xref py py-mod docutils literal notranslate"><span class="pre">namematch.generate_data_rows</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../api.html#module-namematch.fit_model"><code class="xref py py-mod docutils literal notranslate"><span class="pre">namematch.fit_model</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../api.html#module-namematch.predict"><code class="xref py py-mod docutils literal notranslate"><span class="pre">namematch.predict</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../api.html#module-namematch.cluster"><code class="xref py py-mod docutils literal notranslate"><span class="pre">namematch.cluster</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../api.html#module-namematch.generate_output"><code class="xref py py-mod docutils literal notranslate"><span class="pre">namematch.generate_output</span></code></a></li>
+</ul>
+</li>
+</ul>
+
+                            
+                        
+                    </div>
+                </div>
+                <div class="col-12 col-lg-9">
+                    <div class="document">
+                        
+                            
+  <h1>Source code for namematch.generate_data_rows</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">argparse</span>
+<span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">import</span> <span class="nn">os</span>
+
+<span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">defaultdict</span>
+<span class="kn">import</span> <span class="nn">multiprocessing</span> <span class="k">as</span> <span class="nn">mp</span>
+<span class="kn">from</span> <span class="nn">math</span> <span class="kn">import</span> <span class="n">ceil</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">NameProbability</span> <span class="k">as</span> <span class="nn">nm_prob</span>
+
+<span class="kn">import</span> <span class="nn">pyarrow.parquet</span> <span class="k">as</span> <span class="nn">pq</span>
+<span class="kn">import</span> <span class="nn">pyarrow</span> <span class="k">as</span> <span class="nn">pa</span>
+
+<span class="kn">from</span> <span class="nn">namematch.utils.utils</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">namematch.comparison_functions</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">namematch.data_structures.schema</span> <span class="kn">import</span> <span class="n">Schema</span>
+<span class="kn">from</span> <span class="nn">namematch.data_structures.parameters</span> <span class="kn">import</span> <span class="n">Parameters</span>
+<span class="kn">from</span> <span class="nn">namematch.base</span> <span class="kn">import</span> <span class="n">NamematchBase</span>
+
+<span class="k">try</span><span class="p">:</span>
+    <span class="n">profile</span>
+<span class="k">except</span><span class="p">:</span>
+    <span class="kn">from</span> <span class="nn">line_profiler</span> <span class="kn">import</span> <span class="n">LineProfiler</span>
+    <span class="n">profile</span> <span class="o">=</span> <span class="n">LineProfiler</span><span class="p">()</span>
+
+
+<div class="viewcode-block" id="GenerateDataRows"><a class="viewcode-back" href="../../namematch.html#namematch.generate_data_rows.GenerateDataRows">[docs]</a><span class="k">class</span> <span class="nc">GenerateDataRows</span><span class="p">(</span><span class="n">NamematchBase</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">params</span><span class="p">,</span>
+        <span class="n">schema</span><span class="p">,</span>
+        <span class="n">all_names_file</span><span class="p">,</span>
+        <span class="n">candidate_pairs_file</span><span class="p">,</span>
+        <span class="n">batch_size</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span>
+        <span class="n">output_file</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">output_dir</span><span class="o">=</span><span class="s1">&#39;output_temp/data_rows&#39;</span><span class="p">,</span>
+        <span class="n">logger_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="o">*</span><span class="n">args</span><span class="p">,</span>
+        <span class="o">**</span><span class="n">kwargs</span>
+    <span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">GenerateDataRows</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">params</span><span class="p">,</span> <span class="n">schema</span><span class="p">,</span> <span class="n">output_file</span><span class="p">,</span> <span class="n">logger_id</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">all_names_file</span> <span class="o">=</span> <span class="n">all_names_file</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">candidate_pairs_file</span> <span class="o">=</span> <span class="n">candidate_pairs_file</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">output_dir</span> <span class="o">=</span> <span class="n">output_dir</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">output_file</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">batch_size</span> <span class="o">=</span> <span class="n">batch_size</span>
+
+    <span class="nd">@equip_logger_id</span>
+    <span class="nd">@log_runtime_and_memory</span>
+    <span class="k">def</span> <span class="nf">main__generate_data_rows</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;Take candidate pairs and merge on the all-names records (twice) to get a dataset at the</span>
+<span class="sd">        record pair level. Compute distance metrics between the records in the pair -- these are the</span>
+<span class="sd">        features for modeling.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            params (Parameters object): contains parameter values</span>
+<span class="sd">            schema (Schema object): contains match schema info (files to match, variables to use, etc.)</span>
+<span class="sd">            all_names_file (str): path to output_temp&#39;s all-names file</span>
+<span class="sd">            candidate_pairs_file (str): path to output_temp&#39;s candidate-pairs file</span>
+<span class="sd">            output_dir (str): path to output_temp&#39;s data-rows dir</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">output_dir</span><span class="p">):</span>
+            <span class="n">os</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">output_dir</span><span class="p">)</span>
+
+        <span class="k">global</span> <span class="n">logger</span>
+
+        <span class="n">logger_id</span> <span class="o">=</span> <span class="n">kw</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;logger_id&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">logger_id</span><span class="p">:</span>
+            <span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;namematch_</span><span class="si">{</span><span class="nb">str</span><span class="p">(</span><span class="n">logger_id</span><span class="p">)</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">logger</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">logger</span>
+
+        <span class="n">an_columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;blockstring&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">schema</span><span class="o">.</span><span class="n">variables</span><span class="o">.</span><span class="n">get_an_column_names</span><span class="p">()</span>
+        <span class="n">table</span> <span class="o">=</span> <span class="n">pq</span><span class="o">.</span><span class="n">read_table</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">all_names_file</span><span class="p">)</span>
+        <span class="n">an</span> <span class="o">=</span> <span class="n">table</span><span class="o">.</span><span class="n">to_pandas</span><span class="p">()[</span><span class="n">an_columns</span><span class="p">]</span>
+
+        <span class="n">an</span> <span class="o">=</span> <span class="n">an</span><span class="p">[</span><span class="n">an</span><span class="o">.</span><span class="n">drop_from_nm</span> <span class="o">==</span> <span class="mi">0</span><span class="p">]</span>
+        <span class="n">an</span> <span class="o">=</span> <span class="n">an</span><span class="o">.</span><span class="n">drop_duplicates</span><span class="p">([</span><span class="s1">&#39;record_id&#39;</span><span class="p">])</span>
+
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;Building name probability object.&#39;</span><span class="p">)</span>
+        <span class="n">name_probs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">generate_name_probabilities_object</span><span class="p">(</span>
+                <span class="n">an</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">params</span><span class="o">.</span><span class="n">first_name_column</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">params</span><span class="o">.</span><span class="n">last_name_column</span><span class="p">)</span>
+
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;Generating data rows...&#39;</span><span class="p">)</span>
+
+        <span class="c1"># remove previous data rows files if they exist</span>
+        <span class="k">for</span> <span class="n">dr_file</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">output_dir</span><span class="p">):</span>
+            <span class="n">os</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">output_dir</span><span class="p">,</span> <span class="n">dr_file</span><span class="p">))</span>
+
+        <span class="n">table</span> <span class="o">=</span> <span class="n">pq</span><span class="o">.</span><span class="n">read_table</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">candidate_pairs_file</span><span class="p">)</span>
+        <span class="n">cp_df</span> <span class="o">=</span> <span class="n">table</span><span class="o">.</span><span class="n">to_pandas</span><span class="p">()[[</span><span class="s1">&#39;blockstring_1&#39;</span><span class="p">,</span> <span class="s1">&#39;blockstring_2&#39;</span><span class="p">,</span> <span class="s1">&#39;covered_pair&#39;</span><span class="p">]]</span>
+
+        <span class="c1"># get data rows</span>
+        <span class="n">end_points</span> <span class="o">=</span> <span class="n">get_endpoints</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">cp_df</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">params</span><span class="o">.</span><span class="n">num_threads</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">params</span><span class="o">.</span><span class="n">parallelize</span><span class="p">:</span>
+            <span class="n">jobs</span> <span class="o">=</span> <span class="p">[</span><span class="n">mp</span><span class="o">.</span><span class="n">Process</span><span class="p">(</span>
+                        <span class="n">target</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">generate_data_row_files</span><span class="p">,</span>
+                        <span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">params</span><span class="p">,</span>
+                              <span class="bp">self</span><span class="o">.</span><span class="n">schema</span><span class="p">,</span>
+                              <span class="n">an</span><span class="p">,</span>
+                              <span class="n">cp_df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">end_point</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span><span class="n">end_point</span><span class="p">[</span><span class="mi">1</span><span class="p">]],</span>
+                              <span class="n">name_probs</span><span class="p">,</span>
+                              <span class="n">end_point</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+                              <span class="n">end_point</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
+                              <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">output_dir</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;data_rows_</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s1">.parquet&#39;</span><span class="p">))</span>
+                    <span class="p">)</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">end_point</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">end_points</span><span class="p">)]</span>
+
+            <span class="k">for</span> <span class="n">job</span> <span class="ow">in</span> <span class="n">jobs</span><span class="p">:</span>
+                <span class="n">job</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+            <span class="k">for</span> <span class="n">job</span> <span class="ow">in</span> <span class="n">jobs</span><span class="p">:</span>
+                <span class="n">t</span> <span class="o">=</span> <span class="n">job</span><span class="o">.</span><span class="n">join</span><span class="p">()</span>
+            <span class="n">failure_occurred</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">([</span><span class="n">job</span><span class="o">.</span><span class="n">exitcode</span> <span class="o">!=</span> <span class="mi">0</span> <span class="k">for</span> <span class="n">job</span> <span class="ow">in</span> <span class="n">jobs</span><span class="p">])</span>
+            <span class="k">if</span> <span class="n">failure_occurred</span><span class="p">:</span>
+                <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error occurred in </span><span class="si">{</span><span class="n">failure_occurred</span><span class="si">}</span><span class="s2"> worker(s).&quot;</span><span class="p">)</span>
+                <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error occurred in </span><span class="si">{</span><span class="n">failure_occurred</span><span class="si">}</span><span class="s2"> worker(s).&quot;</span><span class="p">)</span>
+
+        <span class="k">else</span><span class="p">:</span>
+
+            <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">end_point</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">end_points</span><span class="p">):</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">generate_data_row_files</span><span class="p">(</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">params</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">schema</span><span class="p">,</span>
+                        <span class="n">an</span><span class="p">,</span> <span class="n">cp_df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">end_point</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span><span class="n">end_point</span><span class="p">[</span><span class="mi">1</span><span class="p">]],</span> <span class="n">name_probs</span><span class="p">,</span>
+                        <span class="n">end_point</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">end_point</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
+                        <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">output_dir</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;data_rows_</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s1">.parquet&#39;</span><span class="p">))</span>
+
+    <span class="nd">@equip_logger_id</span>
+    <span class="nd">@log_runtime_and_memory</span>
+    <span class="k">def</span> <span class="nf">generate_name_probabilities_object</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">an</span><span class="p">,</span> <span class="n">fn_col</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">ln_col</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;The generate_name_probabilites function uses a list of names (from all_names</span>
+<span class="sd">        file) and creates an object containing queryable probability</span>
+<span class="sd">        information for each name.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            an (pd.DataFrame): all-names, just the name columns</span>
+<span class="sd">            fn_col (str): name of first name column</span>
+<span class="sd">            ln_col (str): name of last name column</span>
+
+<span class="sd">        Return:</span>
+<span class="sd">            name probability object</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="n">fn_col</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">)</span> <span class="ow">or</span> <span class="p">(</span><span class="n">ln_col</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">):</span>
+            <span class="k">return</span> <span class="kc">None</span>
+
+        <span class="n">an</span><span class="p">[</span><span class="s1">&#39;fn&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">an</span><span class="p">[</span><span class="n">fn_col</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
+        <span class="n">an</span><span class="p">[</span><span class="s1">&#39;ln&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">an</span><span class="p">[</span><span class="n">ln_col</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
+        <span class="n">an</span><span class="p">[</span><span class="s1">&#39;name_prob_str&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;*&#39;</span> <span class="o">+</span> <span class="n">an</span><span class="p">[</span><span class="s1">&#39;fn&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="s1">&#39; &#39;</span> <span class="o">+</span> <span class="n">an</span><span class="p">[</span><span class="s1">&#39;ln&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="s1">&#39;*&#39;</span>
+
+        <span class="n">np_object</span> <span class="o">=</span> <span class="n">nm_prob</span><span class="o">.</span><span class="n">NameMatcher</span><span class="p">(</span><span class="n">name_list</span><span class="o">=</span><span class="n">an</span><span class="o">.</span><span class="n">name_prob_str</span><span class="o">.</span><span class="n">tolist</span><span class="p">())</span>
+        <span class="n">np_object</span><span class="o">.</span><span class="n">n_name_appearances_dict</span> <span class="o">=</span> <span class="n">an</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;name_prob_str&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">size</span><span class="p">()</span><span class="o">.</span><span class="n">rank</span><span class="p">(</span><span class="n">pct</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">to_dict</span><span class="p">()</span>
+
+        <span class="k">return</span> <span class="n">np_object</span>
+
+    <span class="nd">@equip_logger_id</span>
+    <span class="nd">@log_runtime_and_memory</span>
+    <span class="k">def</span> <span class="nf">find_valid_training_records</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">an</span><span class="p">,</span> <span class="n">an_match_criteria</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">):</span>
+
+        <span class="n">an</span><span class="p">[</span><span class="s1">&#39;meets_match_criteria&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="k">for</span> <span class="n">col</span><span class="p">,</span> <span class="n">accepted_values</span> <span class="ow">in</span> <span class="n">an_match_criteria</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">accepted_values</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
+                <span class="n">accepted_values</span> <span class="o">=</span> <span class="p">[</span><span class="n">accepted_values</span><span class="p">]</span>
+            <span class="n">accepted_values</span> <span class="o">=</span> <span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">av</span><span class="p">)</span> <span class="k">for</span> <span class="n">av</span> <span class="ow">in</span> <span class="n">accepted_values</span><span class="p">]</span>
+            <span class="n">an</span><span class="p">[</span><span class="s1">&#39;meets_match_criteria&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">an</span><span class="p">[</span><span class="s1">&#39;meets_match_criteria&#39;</span><span class="p">])</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">an</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">accepted_values</span><span class="p">))</span>
+
+        <span class="k">return</span> <span class="n">an</span><span class="p">[</span><span class="s1">&#39;meets_match_criteria&#39;</span><span class="p">]</span>
+
+
+<div class="viewcode-block" id="GenerateDataRows.generate_actual_data_rows"><a class="viewcode-back" href="../../namematch.html#namematch.generate_data_rows.GenerateDataRows.generate_actual_data_rows">[docs]</a>    <span class="nd">@profile</span>
+    <span class="k">def</span> <span class="nf">generate_actual_data_rows</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">params</span><span class="p">,</span> <span class="n">schema</span><span class="p">,</span> <span class="n">sbs_df</span><span class="p">,</span> <span class="n">np_object</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;Create modeling dataframe by comparing each variable (via numerous distance metrics).</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            params (Parameters object): contains matching parameters</span>
+<span class="sd">            schema (Schema object): contains matching schema (data files and variables)</span>
+<span class="sd">            sbs_df (pd.DatFrame): side-by-side table (record pair level, with info from both an records)</span>
+
+<span class="sd">                ==============================   =======================================================</span>
+<span class="sd">                record_id (_1, _2)               unique record identifier</span>
+<span class="sd">                blockstring (_1, _2)             concatenated version of blocking columns (sep by ::)</span>
+<span class="sd">                file_type (_1, _2)               either &quot;new&quot; or &quot;existing&quot;</span>
+<span class="sd">                candidate_pair_ix                index from candidate-pairs list</span>
+<span class="sd">                covered_pair                     flag, 1 if blockstring pair passed blocking 0 otherwise</span>
+<span class="sd">                &lt;fields for matching&gt; (_1, _2)   both for the matching model and for constraint checking</span>
+<span class="sd">                ==============================   =======================================================</span>
+<span class="sd">            np_object (nm_prob.NameMatcher object): contains information about name probabilities</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            pd.DataFrame: chunk of the data-rows file</span>
+
+<span class="sd">            =====================   =======================================================</span>
+<span class="sd">            dr_id                   unique record pair identifier (record_id_1__record_id_2)</span>
+<span class="sd">            record_id (_1, _2)      unique record identifiers</span>
+<span class="sd">            &lt;distance metrics&gt;      how similar are the different matching fields between recrods</span>
+<span class="sd">            label                   &quot;1&quot; if the records refer to the same person, &quot;0&quot; if not, &quot;&quot; otherwise</span>
+<span class="sd">            =====================   =======================================================</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+
+        <span class="n">sbs_df</span> <span class="o">=</span> <span class="n">sbs_df</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+
+        <span class="c1"># don&#39;t compare a record to itself</span>
+        <span class="n">sbs_df</span> <span class="o">=</span> <span class="n">sbs_df</span><span class="p">[</span><span class="n">sbs_df</span><span class="o">.</span><span class="n">record_id_1</span> <span class="o">!=</span> <span class="n">sbs_df</span><span class="o">.</span><span class="n">record_id_2</span><span class="p">]</span>
+
+        <span class="c1"># if blockstrings are same, don&#39;t want to compare A to B then B to A</span>
+        <span class="n">sbs_df</span> <span class="o">=</span> <span class="n">sbs_df</span><span class="p">[</span>
+                <span class="p">(</span><span class="n">sbs_df</span><span class="o">.</span><span class="n">blockstring_1</span> <span class="o">!=</span> <span class="n">sbs_df</span><span class="o">.</span><span class="n">blockstring_2</span><span class="p">)</span> <span class="o">|</span>
+                <span class="p">(</span><span class="n">sbs_df</span><span class="o">.</span><span class="n">record_id_1</span> <span class="o">&lt;</span> <span class="n">sbs_df</span><span class="o">.</span><span class="n">record_id_2</span><span class="p">)]</span>
+
+        <span class="k">if</span> <span class="n">params</span><span class="o">.</span><span class="n">incremental</span><span class="p">:</span>
+
+            <span class="c1"># dont compare if both are from existing (this would work outside of</span>
+            <span class="c1"># if statement, but would always be true -- do it here to save time)</span>
+            <span class="n">sbs_df</span> <span class="o">=</span> <span class="n">sbs_df</span><span class="p">[</span>
+                    <span class="p">(</span><span class="n">sbs_df</span><span class="o">.</span><span class="n">file_type_1</span> <span class="o">==</span> <span class="s1">&#39;new&#39;</span><span class="p">)</span> <span class="o">|</span>
+                    <span class="p">(</span><span class="n">sbs_df</span><span class="o">.</span><span class="n">file_type_2</span> <span class="o">==</span> <span class="s1">&#39;new&#39;</span><span class="p">)]</span>
+
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">sbs_df</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">None</span>
+
+        <span class="n">non_feature_cols</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;candidate_pair_ix&#39;</span><span class="p">,</span> <span class="s1">&#39;record_id_1&#39;</span><span class="p">,</span> <span class="s1">&#39;record_id_2&#39;</span><span class="p">,</span><span class="s1">&#39;covered_pair&#39;</span><span class="p">]</span>
+
+        <span class="n">data_rows_df</span> <span class="o">=</span> <span class="n">sbs_df</span><span class="p">[</span><span class="n">non_feature_cols</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+
+        <span class="n">data_rows_df</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="n">sbs_df</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">np_object</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+
+            <span class="c1"># get name probabilities (both as feature and for knowing which</span>
+            <span class="c1"># name to switch if a switch is needed)</span>
+            <span class="n">sbs_df</span> <span class="o">=</span> <span class="n">get_name_probabilities</span><span class="p">(</span><span class="n">sbs_df</span><span class="p">,</span> <span class="n">np_object</span><span class="p">,</span>
+                    <span class="n">params</span><span class="o">.</span><span class="n">first_name_column</span><span class="p">,</span> <span class="n">params</span><span class="o">.</span><span class="n">last_name_column</span><span class="p">)</span>
+
+            <span class="c1"># determine if name switch need to happen</span>
+            <span class="n">sbs_df</span> <span class="o">=</span> <span class="n">try_switch_first_last_name</span><span class="p">(</span><span class="n">sbs_df</span><span class="p">,</span>
+                    <span class="n">params</span><span class="o">.</span><span class="n">first_name_column</span><span class="p">,</span> <span class="n">params</span><span class="o">.</span><span class="n">last_name_column</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="nb">any</span><span class="p">(</span><span class="n">data_rows_df</span><span class="o">.</span><span class="n">index</span> <span class="o">!=</span> <span class="n">sbs_df</span><span class="o">.</span><span class="n">index</span><span class="p">):</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s1">&#39;Index mismatch when creating data rows.&#39;</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span>
+
+        <span class="c1"># add name probability columns to data_rows_df</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">data_rows_df</span><span class="p">[</span><span class="s1">&#39;prob_name1&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">sbs_df</span><span class="p">[</span><span class="s1">&#39;prob_name_1&#39;</span><span class="p">]</span>
+            <span class="n">data_rows_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[(</span><span class="n">sbs_df</span><span class="o">.</span><span class="n">switched_name</span> <span class="o">==</span> <span class="mi">1</span><span class="p">),</span> <span class="s1">&#39;prob_name1&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">sbs_df</span><span class="o">.</span><span class="n">prob_rev_name_1</span>
+            <span class="n">data_rows_df</span><span class="p">[</span><span class="s1">&#39;prob_name2&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">sbs_df</span><span class="p">[</span><span class="s1">&#39;prob_name_2&#39;</span><span class="p">]</span>
+            <span class="n">data_rows_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[(</span><span class="n">sbs_df</span><span class="o">.</span><span class="n">switched_name</span> <span class="o">==</span> <span class="mi">2</span><span class="p">),</span> <span class="s1">&#39;prob_name2&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">sbs_df</span><span class="p">[</span><span class="s1">&#39;prob_rev_name_2&#39;</span><span class="p">]</span>
+            <span class="n">data_rows_df</span><span class="p">[</span><span class="s1">&#39;prob_same_name&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">sbs_df</span><span class="p">[</span><span class="s1">&#39;prob_same_name&#39;</span><span class="p">]</span>
+            <span class="n">data_rows_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">sbs_df</span><span class="o">.</span><span class="n">switched_name</span> <span class="o">==</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;prob_same_name&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">sbs_df</span><span class="p">[</span><span class="s1">&#39;prob_same_name_rev_1&#39;</span><span class="p">]</span>
+            <span class="n">data_rows_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">sbs_df</span><span class="o">.</span><span class="n">switched_name</span> <span class="o">==</span> <span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;prob_same_name&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">sbs_df</span><span class="p">[</span><span class="s1">&#39;prob_same_name_rev_2&#39;</span><span class="p">]</span>
+            <span class="n">data_rows_df</span><span class="p">[</span><span class="s1">&#39;max_prob_name&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data_rows_df</span><span class="p">[[</span><span class="s1">&#39;prob_name1&#39;</span><span class="p">,</span> <span class="s1">&#39;prob_name2&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+            <span class="n">data_rows_df</span><span class="p">[</span><span class="s1">&#39;count_pctl_name_1&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">sbs_df</span><span class="p">[</span><span class="s1">&#39;count_pctl_name_1&#39;</span><span class="p">]</span>
+            <span class="n">data_rows_df</span><span class="p">[</span><span class="s1">&#39;count_pctl_name_2&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">sbs_df</span><span class="p">[</span><span class="s1">&#39;count_pctl_name_2&#39;</span><span class="p">]</span>
+            <span class="n">data_rows_df</span><span class="p">[</span><span class="s1">&#39;max_count_pctl_name&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data_rows_df</span><span class="p">[[</span><span class="s1">&#39;count_pctl_name_1&#39;</span><span class="p">,</span> <span class="s1">&#39;count_pctl_name_2&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="k">except</span><span class="p">:</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;No name probability features generated.&#39;</span><span class="p">)</span>
+
+        <span class="k">for</span> <span class="n">variable</span> <span class="ow">in</span> <span class="n">schema</span><span class="o">.</span><span class="n">variables</span><span class="o">.</span><span class="n">varlist</span><span class="p">:</span>
+
+            <span class="k">if</span> <span class="n">variable</span><span class="o">.</span><span class="n">compare_type</span> <span class="o">==</span> <span class="s1">&#39;String&#39;</span><span class="p">:</span>
+                <span class="n">features_df</span> <span class="o">=</span> <span class="n">compare_strings</span><span class="p">(</span><span class="n">sbs_df</span><span class="p">,</span> <span class="n">variable</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="n">variable</span><span class="o">.</span><span class="n">compare_type</span> <span class="o">==</span> <span class="s1">&#39;Numeric&#39;</span><span class="p">:</span>
+                <span class="n">features_df</span> <span class="o">=</span> <span class="n">compare_numbers</span><span class="p">(</span><span class="n">sbs_df</span><span class="p">,</span> <span class="n">variable</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="n">variable</span><span class="o">.</span><span class="n">compare_type</span> <span class="o">==</span> <span class="s1">&#39;Categorical&#39;</span><span class="p">:</span>
+                <span class="n">features_df</span> <span class="o">=</span> <span class="n">compare_categories</span><span class="p">(</span><span class="n">sbs_df</span><span class="p">,</span> <span class="n">variable</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="n">variable</span><span class="o">.</span><span class="n">compare_type</span> <span class="o">==</span> <span class="s1">&#39;Date&#39;</span><span class="p">:</span>
+                <span class="n">features_df</span> <span class="o">=</span> <span class="n">compare_dates</span><span class="p">(</span><span class="n">sbs_df</span><span class="p">,</span> <span class="n">variable</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="n">variable</span><span class="o">.</span><span class="n">compare_type</span> <span class="o">==</span> <span class="s1">&#39;Geography&#39;</span><span class="p">:</span>
+                <span class="n">features_df</span> <span class="o">=</span> <span class="n">compare_geographies</span><span class="p">(</span><span class="n">sbs_df</span><span class="p">,</span> <span class="n">variable</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="n">variable</span><span class="o">.</span><span class="n">compare_type</span> <span class="o">==</span> <span class="s1">&#39;Address&#39;</span><span class="p">:</span>
+                <span class="n">features_df_1</span> <span class="o">=</span> <span class="n">compare_strings</span><span class="p">(</span><span class="n">sbs_df</span><span class="p">,</span> <span class="s1">&#39;address_street_number&#39;</span><span class="p">)</span>
+                <span class="n">features_df_2</span> <span class="o">=</span> <span class="n">compare_strings</span><span class="p">(</span><span class="n">sbs_df</span><span class="p">,</span> <span class="s1">&#39;address_street_name&#39;</span><span class="p">)</span>
+                <span class="n">features_df_3</span> <span class="o">=</span> <span class="n">compare_categories</span><span class="p">(</span><span class="n">sbs_df</span><span class="p">,</span> <span class="s1">&#39;address_street_type&#39;</span><span class="p">)</span>
+                <span class="n">features_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">features_df_1</span><span class="p">,</span> <span class="n">features_df_2</span><span class="p">,</span> <span class="n">features_df_3</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="n">variable</span><span class="o">.</span><span class="n">compare_type</span> <span class="o">==</span> <span class="s2">&quot;LastName&quot;</span><span class="p">:</span>
+                <span class="c1">##features_df_1 = compare_strings(sbs_df, variable.name)</span>
+                <span class="c1">##features_df_2 = compare_last_name(sbs_df, variable.name)</span>
+                <span class="c1">##features_df = pd.concat([features_df_1, features_df_2], axis=1)</span>
+                <span class="c1"># TODO add back in some sort of JR, SR check</span>
+                <span class="n">features_df</span> <span class="o">=</span> <span class="n">compare_strings</span><span class="p">(</span><span class="n">sbs_df</span><span class="p">,</span> <span class="n">variable</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">features_df</span> <span class="o">=</span> <span class="kc">None</span>
+
+            <span class="k">if</span> <span class="n">features_df</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">data_rows_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">data_rows_df</span><span class="p">,</span> <span class="n">features_df</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+        <span class="n">data_rows_df</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;var_&#39;</span> <span class="o">+</span>  <span class="n">colname</span> <span class="k">if</span> <span class="n">colname</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">non_feature_cols</span> <span class="k">else</span> <span class="n">colname</span>
+                <span class="k">for</span> <span class="n">colname</span> <span class="ow">in</span> <span class="n">data_rows_df</span><span class="o">.</span><span class="n">columns</span><span class="p">]</span>
+
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">data_rows_df</span><span class="p">[</span><span class="s1">&#39;exactmatch&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+            <span class="k">for</span> <span class="n">exact_match_col</span> <span class="ow">in</span> <span class="n">params</span><span class="o">.</span><span class="n">exact_match_variables</span><span class="p">:</span>
+                <span class="n">data_rows_df</span><span class="p">[</span><span class="s1">&#39;exactmatch&#39;</span><span class="p">]</span> <span class="o">=</span> \
+                        <span class="p">((</span><span class="n">data_rows_df</span><span class="o">.</span><span class="n">exactmatch</span><span class="p">)</span> <span class="o">&amp;</span>
+                        <span class="p">(</span><span class="n">sbs_df</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">exact_match_col</span><span class="si">}</span><span class="s1">_1&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">sbs_df</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">exact_match_col</span><span class="si">}</span><span class="s1">_2&#39;</span><span class="p">])</span> <span class="o">&amp;</span>
+                        <span class="p">(</span><span class="n">sbs_df</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">exact_match_col</span><span class="si">}</span><span class="s1">_1&#39;</span><span class="p">]</span> <span class="o">!=</span> <span class="s1">&#39;&#39;</span><span class="p">))</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+            <span class="n">data_rows_df</span><span class="p">[</span><span class="s1">&#39;var_exact_match&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data_rows_df</span><span class="o">.</span><span class="n">exactmatch</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+            <span class="k">for</span> <span class="n">neg_var</span> <span class="ow">in</span> <span class="n">params</span><span class="o">.</span><span class="n">negate_exact_match_variables</span><span class="p">:</span>
+                <span class="n">data_rows_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[(</span><span class="n">sbs_df</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">neg_var</span><span class="si">}</span><span class="s1">_1&#39;</span><span class="p">]</span> <span class="o">!=</span> <span class="n">sbs_df</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">neg_var</span><span class="si">}</span><span class="s1">_2&#39;</span><span class="p">])</span> <span class="o">&amp;</span>
+                                <span class="p">(</span><span class="n">sbs_df</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">neg_var</span><span class="si">}</span><span class="s1">_1&#39;</span><span class="p">]</span> <span class="o">!=</span> <span class="s1">&#39;&#39;</span><span class="p">)</span> <span class="o">&amp;</span>
+                                <span class="p">(</span><span class="n">sbs_df</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">neg_var</span><span class="si">}</span><span class="s1">_2&#39;</span><span class="p">]</span> <span class="o">!=</span> <span class="s1">&#39;&#39;</span><span class="p">),</span> <span class="s1">&#39;var_exact_match&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">except</span><span class="p">:</span>
+            <span class="k">pass</span>
+
+        <span class="n">data_rows_df</span><span class="p">[</span><span class="s1">&#39;label&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">generate_label</span><span class="p">(</span>
+                <span class="n">sbs_df</span><span class="p">,</span>
+                <span class="n">schema</span><span class="o">.</span><span class="n">variables</span><span class="o">.</span><span class="n">get_variables_where</span><span class="p">(</span><span class="n">attr</span><span class="o">=</span><span class="s1">&#39;compare_type&#39;</span><span class="p">,</span> <span class="n">attr_value</span><span class="o">=</span><span class="s1">&#39;UniqueID&#39;</span><span class="p">),</span>
+                <span class="n">params</span><span class="o">.</span><span class="n">leven_thresh</span><span class="p">)</span>
+
+
+        <span class="k">if</span> <span class="n">data_rows_df</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">data_rows_df</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">data_rows_df</span><span class="p">[</span><span class="s1">&#39;dr_id&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data_rows_df</span><span class="o">.</span><span class="n">record_id_1</span> <span class="o">+</span> <span class="s1">&#39;__&#39;</span> <span class="o">+</span> <span class="n">data_rows_df</span><span class="o">.</span><span class="n">record_id_2</span>
+            <span class="n">data_rows_df</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;dr_id&#39;</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">data_rows_df</span></div>
+
+    <span class="nd">@profile</span>
+    <span class="nd">@equip_logger_id</span>
+    <span class="nd">@log_runtime_and_memory</span>
+    <span class="k">def</span> <span class="nf">generate_data_row_files</span><span class="p">(</span>
+                <span class="bp">self</span><span class="p">,</span> <span class="n">params</span><span class="p">,</span> <span class="n">schema</span><span class="p">,</span> <span class="n">an</span><span class="p">,</span> <span class="n">cp_df</span><span class="p">,</span> <span class="n">name_probs</span><span class="p">,</span>
+                <span class="n">start_ix_worker</span><span class="p">,</span> <span class="n">end_ix_worker</span><span class="p">,</span> <span class="n">dr_file</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;The get_data_row_files function is run in parallel to generate the data needed for</span>
+<span class="sd">        the random forest; it performs the merge between candidate pairs and all-names and</span>
+<span class="sd">        calls the function that calculates distance metrics.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            params (Parameters object): contains matching parameters</span>
+<span class="sd">            schema (Schema object): contains matching schema (data files and variables)</span>
+<span class="sd">            an (pd.DatFrame): all-names table (one row per input record)</span>
+
+<span class="sd">                =====================   =======================================================</span>
+<span class="sd">                record_id               unique record identifier</span>
+<span class="sd">                file_type               either &quot;new&quot; or &quot;existing&quot;</span>
+<span class="sd">                &lt;fields for matching&gt;   both for the matching model and for constraint checking</span>
+<span class="sd">                &lt;raw name fields&gt;       pre-cleaning version of first and last name</span>
+<span class="sd">                blockstring             concatenated version of blocking columns (sep by ::)</span>
+<span class="sd">                drop_from_nm            flag, 1 if met any &quot;to drop&quot; criteria 0 otherwise</span>
+<span class="sd">                =====================   =======================================================</span>
+
+<span class="sd">            cp_df (pd.DataFrame): candidate-pairs list</span>
+
+<span class="sd">                ======================   =======================================================</span>
+<span class="sd">                blockstring_1            concatenated version of blocking columns for first element in pair (sep by ::)</span>
+<span class="sd">                blockstring_2            concatenated version of blocking columns for second element in pair (sep by ::)</span>
+<span class="sd">                covered_pair             flag; 1 for pairs that made it through blocking, 0 otherwise; all 1s here</span>
+<span class="sd">                ======================   =======================================================</span>
+
+<span class="sd">            name_probs (nm_prob.NameMatcher object): contains information about name probabilities</span>
+<span class="sd">            start_ix_worker (int): starting index of the candidate-pairs chunk to read in this thread</span>
+<span class="sd">            end_ix_worker (int): end index of the candidate-pairs chunk to read in this thread</span>
+<span class="sd">            dr_file (str): path to data-rows file to write (one for each worker thread)</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">cp_df</span> <span class="o">=</span> <span class="n">cp_df</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+
+            <span class="c1"># sqlite replacement</span>
+            <span class="n">an_bs</span> <span class="o">=</span> <span class="n">an</span><span class="p">[[</span><span class="s1">&#39;blockstring&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+            <span class="n">an_bs</span><span class="p">[</span><span class="s1">&#39;i&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">an_bs</span><span class="p">))</span>
+            <span class="n">an_ix_map</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="k">lambda</span><span class="p">:</span> <span class="p">[])</span>
+            <span class="k">for</span> <span class="n">tup</span> <span class="ow">in</span> <span class="n">an_bs</span><span class="o">.</span><span class="n">itertuples</span><span class="p">():</span>
+                <span class="n">an_ix_map</span><span class="p">[</span><span class="n">tup</span><span class="o">.</span><span class="n">blockstring</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">tup</span><span class="o">.</span><span class="n">i</span><span class="p">)</span>
+
+            <span class="c1"># for each candidate pair, get the records associated with each name and compute</span>
+            <span class="c1"># distances between features like date, first_name, dob, etc.</span>
+
+            <span class="n">cp_df</span><span class="p">[</span><span class="s1">&#39;candidate_pair_ix&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">cp_df</span><span class="o">.</span><span class="n">index</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">num_batches</span> <span class="o">=</span> <span class="n">ceil</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">cp_df</span><span class="p">)</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">batch_size</span><span class="p">)</span>
+            <span class="n">start_ix_cp</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="k">while</span> <span class="n">start_ix_cp</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">cp_df</span><span class="p">):</span>
+                <span class="k">if</span> <span class="p">(</span><span class="n">start_ix_worker</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">params</span><span class="o">.</span><span class="n">verbose</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">start_ix_cp</span> <span class="o">%</span> <span class="n">params</span><span class="o">.</span><span class="n">verbose</span> <span class="o">==</span> <span class="mi">0</span><span class="p">):</span>
+                    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;   Generated features for </span><span class="si">{</span><span class="n">start_ix_cp</span> <span class="o">*</span> <span class="n">params</span><span class="o">.</span><span class="n">num_threads</span><span class="si">}</span><span class="s2"> &quot;</span>
+                                <span class="sa">f</span><span class="s2">&quot;of ~</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">cp_df</span><span class="p">)</span> <span class="o">*</span> <span class="n">params</span><span class="o">.</span><span class="n">num_threads</span><span class="si">}</span><span class="s2"> pairs of blockstrings.&quot;</span><span class="p">)</span>
+
+                <span class="n">end_ix_cp</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">start_ix_cp</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">batch_size</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">cp_df</span><span class="p">))</span>
+
+                <span class="n">relevant_cp</span> <span class="o">=</span> <span class="n">cp_df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">start_ix_cp</span> <span class="p">:</span> <span class="n">end_ix_cp</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+                <span class="n">relevant_blockstrings</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">relevant_cp</span><span class="o">.</span><span class="n">blockstring_1</span><span class="p">,</span>
+                                                   <span class="n">relevant_cp</span><span class="o">.</span><span class="n">blockstring_2</span><span class="p">])</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+                <span class="n">relevant_bs_ix</span> <span class="o">=</span> <span class="p">[</span><span class="n">an_ix_map</span><span class="p">[</span><span class="n">bs</span><span class="p">]</span> <span class="k">for</span> <span class="n">bs</span> <span class="ow">in</span> <span class="n">relevant_blockstrings</span><span class="p">]</span>
+                <span class="n">relevant_bs_ix</span> <span class="o">=</span> <span class="p">[</span><span class="n">item</span> <span class="k">for</span> <span class="n">sublist</span> <span class="ow">in</span> <span class="n">relevant_bs_ix</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">sublist</span><span class="p">]</span>
+
+                <span class="c1"># get relevant records for this batch</span>
+                <span class="n">relevant_records</span> <span class="o">=</span> <span class="n">an</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">relevant_bs_ix</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+                <span class="n">relevant_records</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;blockstring&#39;</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+                <span class="c1"># expand the candidate pairs from a blockstring level to a record level</span>
+                <span class="n">side_by_side_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span>
+                    <span class="n">relevant_cp</span><span class="p">[[</span><span class="s1">&#39;blockstring_1&#39;</span><span class="p">,</span> <span class="s1">&#39;blockstring_2&#39;</span><span class="p">,</span> <span class="s1">&#39;candidate_pair_ix&#39;</span><span class="p">,</span> <span class="s1">&#39;covered_pair&#39;</span><span class="p">]],</span>
+                    <span class="n">relevant_records</span><span class="o">.</span><span class="n">copy</span><span class="p">(),</span>
+                    <span class="n">left_on</span><span class="o">=</span><span class="s1">&#39;blockstring_1&#39;</span><span class="p">,</span> <span class="n">right_index</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+                <span class="n">side_by_side_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span>
+                    <span class="n">side_by_side_df</span><span class="p">,</span>
+                    <span class="n">relevant_records</span><span class="o">.</span><span class="n">copy</span><span class="p">(),</span>
+                    <span class="n">left_on</span><span class="o">=</span><span class="s1">&#39;blockstring_2&#39;</span><span class="p">,</span> <span class="n">right_index</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">suffixes</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;_1&#39;</span><span class="p">,</span> <span class="s1">&#39;_2&#39;</span><span class="p">])</span>
+
+                <span class="n">data_rows_df</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">generate_actual_data_rows</span><span class="p">(</span>
+                        <span class="n">params</span><span class="p">,</span> <span class="n">schema</span><span class="p">,</span> <span class="n">side_by_side_df</span><span class="p">,</span> <span class="n">name_probs</span><span class="p">)</span>
+
+                <span class="k">if</span> <span class="n">data_rows_df</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                    <span class="n">start_ix_cp</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">batch_size</span>
+                    <span class="k">continue</span>
+
+                <span class="c1"># outcome for selection model</span>
+                <span class="n">data_rows_df</span><span class="p">[</span><span class="s1">&#39;labeled_data&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">data_rows_df</span><span class="o">.</span><span class="n">label</span> <span class="o">!=</span> <span class="s1">&#39;&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+
+                <span class="n">table</span> <span class="o">=</span> <span class="n">pa</span><span class="o">.</span><span class="n">Table</span><span class="o">.</span><span class="n">from_pandas</span><span class="p">(</span><span class="n">data_rows_df</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">start_ix_cp</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                    <span class="n">pqwriter</span> <span class="o">=</span> <span class="n">pq</span><span class="o">.</span><span class="n">ParquetWriter</span><span class="p">(</span><span class="n">dr_file</span><span class="p">,</span> <span class="n">table</span><span class="o">.</span><span class="n">schema</span><span class="p">)</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">output_file</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">dr_file</span><span class="p">)</span>
+
+                <span class="n">pqwriter</span><span class="o">.</span><span class="n">write_table</span><span class="p">(</span><span class="n">table</span><span class="p">)</span>
+
+                <span class="n">start_ix_cp</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">batch_size</span>
+
+            <span class="k">if</span> <span class="n">pqwriter</span><span class="p">:</span>
+                <span class="n">pqwriter</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="n">os</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">dr_file</span><span class="p">)</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">dr_file</span><span class="si">}</span><span class="s2"> failed.&quot;</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="n">e</span></div>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+
+    <span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="o">.</span><span class="n">ArgumentParser</span><span class="p">()</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;--params_file&#39;</span><span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;--schema_file&#39;</span><span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;--all_names_file&#39;</span><span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;--candidate_pairs_file&#39;</span><span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;--output_dir&#39;</span><span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;--log_file&#39;</span><span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;--nm_code_dir&#39;</span><span class="p">)</span>
+    <span class="n">args</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse_args</span><span class="p">()</span>
+
+    <span class="n">params</span> <span class="o">=</span> <span class="n">Parameters</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">params_file</span><span class="p">)</span>
+    <span class="n">schema</span> <span class="o">=</span> <span class="n">Schema</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">schema_file</span><span class="p">)</span>
+
+    <span class="n">logging_params</span> <span class="o">=</span> <span class="n">load_yaml</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">nm_code_dir</span><span class="p">,</span> <span class="s1">&#39;utils/logging_config.yaml&#39;</span><span class="p">))</span>
+
+    <span class="n">generate_data_rows</span> <span class="o">=</span> <span class="n">GenerateDataRows</span><span class="p">(</span>
+        <span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">,</span>
+        <span class="n">schema</span><span class="o">=</span><span class="n">schema</span><span class="p">,</span>
+        <span class="n">all_names_file</span><span class="o">=</span><span class="n">args</span><span class="o">.</span><span class="n">all_names_file</span><span class="p">,</span>
+        <span class="n">candidate_pairs_file</span><span class="o">=</span><span class="n">args</span><span class="o">.</span><span class="n">candidate_pairs_file</span><span class="p">,</span>
+        <span class="n">output_dir</span><span class="o">=</span><span class="n">args</span><span class="o">.</span><span class="n">output_dir</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">generate_data_rows</span><span class="o">.</span><span class="n">logger_init</span><span class="p">(</span><span class="n">logging_params</span><span class="p">,</span> <span class="n">args</span><span class="o">.</span><span class="n">log_file</span><span class="p">)</span>
+    <span class="n">generate_data_rows</span><span class="o">.</span><span class="n">main__generate_data_rows</span><span class="p">()</span>
+</pre></div>
+
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>    
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'0.0.1',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/language_data.js"></script>
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+    <div class="footer" role="contentinfo">
+        <div class="container">
+            &#169; Copyright 2021, Melissa McNeill, Eddie Lin, Zubin Jelveh.
+        Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.1.1.
+        </div>
+    </div>  
+
+</body>
+</html>

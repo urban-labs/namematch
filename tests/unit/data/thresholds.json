@@ -1,0 +1,9 @@
+{
+    "high_editdist_bar": 5,
+    "low_editdist_bar": 0,
+    "high_cosine_bar": 0.5,
+    "nodob_cosine_bar": 0.5,
+    "low_cosine_bar": 0,
+    "absvalue_bar": 3,
+    "common_name_max_penalty": 0.1
+}

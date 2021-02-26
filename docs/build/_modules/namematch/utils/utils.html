@@ -1,0 +1,698 @@
+
+
+<!DOCTYPE html>
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>namematch.utils.utils &mdash; namematch 0.0.1 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../../../_static/css/theme.min.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/css/custom.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
+    <link rel="author" title="About these documents" href="../../../about.html" />
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <a class="site-nav-toggle hidden-lg-up"><i class="icon-menu"></i></a>
+            <a class="site-title" href="../../../index.html">
+                namematch
+            </a>
+        </div>
+    </header>
+
+
+<div class="breadcrumbs-outer hidden-xs-down">
+    <div class="container">
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="breadcrumbs">
+    
+      <li><a href="../../../index.html">Docs</a></li>
+        
+          <li><a href="../../index.html">Module code</a></li>
+        
+      <li>namematch.utils.utils</li>
+    
+    
+      <li class="breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+</div>
+    </div>
+</div>
+    <div class="main-outer">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-lg-3 site-nav">
+                    
+<div role="search">
+    <form class="search" action="../../../search.html" method="get">
+        <div class="icon-input">
+            <input type="text" name="q" placeholder="Search" />
+            <span class="icon-search"></span>
+        </div>
+        <input type="submit" value="Go" class="d-hidden" />
+        <input type="hidden" name="check_keywords" value="yes" />
+        <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+                    <div class="site-nav-tree">
+                        
+                            
+                            
+                                <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../about.html">About Name Match</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../about.html#what-is-name-match-doing">What is Name Match doing?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../about.html#inputs-and-outputs">Inputs and outputs</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../match_setup.html">Setting Up a Match</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../match_setup.html#preparing-the-data-for-name-match">Preparing the data for Name Match</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../match_setup.html#creating-the-configuration-file">Creating the configuration file</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../match_setup.html#creating-user-defined-clustering-functions">Creating user defined clustering functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../match_setup.html#running-the-code">Running the code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../match_setup.html#special-cases">Special cases</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../understanding_results.html">Understanding Results</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../algorithm.html">Algorithm Documentation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../algorithm.html#why-is-name-match-necessary">Why is Name Match necessary</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../algorithm.html#how-it-works">How it works</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../algorithm.html#things-to-consider">Things to consider</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../api.html">API Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../api.html#module-namematch.process_config"><code class="xref py py-mod docutils literal notranslate"><span class="pre">namematch.process_config</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../api.html#module-namematch.process_input_data"><code class="xref py py-mod docutils literal notranslate"><span class="pre">namematch.process_input_data</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../api.html#module-namematch.generate_must_links"><code class="xref py py-mod docutils literal notranslate"><span class="pre">namematch.generate_must_links</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../api.html#module-namematch.block"><code class="xref py py-mod docutils literal notranslate"><span class="pre">namematch.block</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../api.html#module-namematch.generate_data_rows"><code class="xref py py-mod docutils literal notranslate"><span class="pre">namematch.generate_data_rows</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../api.html#module-namematch.fit_model"><code class="xref py py-mod docutils literal notranslate"><span class="pre">namematch.fit_model</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../api.html#module-namematch.predict"><code class="xref py py-mod docutils literal notranslate"><span class="pre">namematch.predict</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../api.html#module-namematch.cluster"><code class="xref py py-mod docutils literal notranslate"><span class="pre">namematch.cluster</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../api.html#module-namematch.generate_output"><code class="xref py py-mod docutils literal notranslate"><span class="pre">namematch.generate_output</span></code></a></li>
+</ul>
+</li>
+</ul>
+
+                            
+                        
+                    </div>
+                </div>
+                <div class="col-12 col-lg-9">
+                    <div class="document">
+                        
+                            
+  <h1>Source code for namematch.utils.utils</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">hashlib</span>
+<span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">import</span> <span class="nn">logging.config</span>
+<span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">pickle</span>
+<span class="kn">import</span> <span class="nn">random</span>
+<span class="kn">import</span> <span class="nn">re</span>
+<span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">import</span> <span class="nn">yaml</span>
+<span class="kn">import</span> <span class="nn">io</span>
+
+<span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">Mapping</span>
+<span class="kn">from</span> <span class="nn">functools</span> <span class="kn">import</span> <span class="n">wraps</span>
+
+<span class="kn">import</span> <span class="nn">pyarrow</span> <span class="k">as</span> <span class="nn">pa</span>
+<span class="kn">import</span> <span class="nn">pyarrow.parquet</span> <span class="k">as</span> <span class="nn">pq</span>
+
+
+<span class="kn">from</span> <span class="nn">memory_profiler</span> <span class="kn">import</span> <span class="n">memory_usage</span>
+
+<span class="k">try</span><span class="p">:</span>
+    <span class="n">profile</span>
+<span class="k">except</span><span class="p">:</span>
+    <span class="kn">from</span> <span class="nn">line_profiler</span> <span class="kn">import</span> <span class="n">LineProfiler</span>
+    <span class="n">profile</span> <span class="o">=</span> <span class="n">LineProfiler</span><span class="p">()</span>
+
+
+<div class="viewcode-block" id="StatLogFilter"><a class="viewcode-back" href="../../../namematch.utils.html#namematch.block.StatLogFilter">[docs]</a><span class="k">class</span> <span class="nc">StatLogFilter</span><span class="p">():</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__level</span> <span class="o">=</span> <span class="mi">100</span>
+
+<div class="viewcode-block" id="StatLogFilter.filter"><a class="viewcode-back" href="../../../namematch.utils.html#namematch.block.StatLogFilter.filter">[docs]</a>    <span class="k">def</span> <span class="nf">filter</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">logRecord</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">logRecord</span><span class="o">.</span><span class="n">levelno</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">__level</span></div></div>
+
+
+<div class="viewcode-block" id="setup_logging"><a class="viewcode-back" href="../../../namematch.utils.html#namematch.block.setup_logging">[docs]</a><span class="k">def</span> <span class="nf">setup_logging</span><span class="p">(</span><span class="n">log_params</span><span class="p">,</span> <span class="n">log_filepath</span><span class="p">,</span> <span class="n">logger_ids</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Setup logging configuration.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        log_params (dict): contains info for logging setup</span>
+<span class="sd">        log_filepath (str): path to store logs</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">if</span> <span class="n">log_filepath</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">log_params</span><span class="p">[</span><span class="s1">&#39;handlers&#39;</span><span class="p">][</span><span class="s1">&#39;file_handler&#39;</span><span class="p">][</span><span class="s1">&#39;filename&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">log_filepath</span>
+        <span class="n">log_params</span><span class="p">[</span><span class="s1">&#39;handlers&#39;</span><span class="p">][</span><span class="s1">&#39;file_handler_stat&#39;</span><span class="p">][</span><span class="s1">&#39;filename&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">log_filepath</span> <span class="o">+</span> <span class="s1">&#39;.yaml&#39;</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">log_filepath</span><span class="p">)):</span>
+        <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">log_filepath</span><span class="p">))</span>
+
+    <span class="c1"># mappingproxy type is not hashable!</span>
+    <span class="n">log_params</span><span class="p">[</span><span class="s1">&#39;filters&#39;</span><span class="p">][</span><span class="s1">&#39;stat_filter&#39;</span><span class="p">][</span><span class="s1">&#39;()&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">eval</span><span class="p">(</span><span class="n">log_params</span><span class="p">[</span><span class="s1">&#39;filters&#39;</span><span class="p">][</span><span class="s1">&#39;stat_filter&#39;</span><span class="p">][</span><span class="s1">&#39;()&#39;</span><span class="p">])</span>
+
+    <span class="n">runtime_num</span> <span class="o">=</span> <span class="mi">15</span>
+    <span class="n">logging</span><span class="o">.</span><span class="n">addLevelName</span><span class="p">(</span><span class="n">runtime_num</span><span class="p">,</span> <span class="s2">&quot;RUNTIME&quot;</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">runtime</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">message</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kws</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">runtime_num</span><span class="p">,</span> <span class="n">message</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kws</span><span class="p">)</span>
+    <span class="n">logging</span><span class="o">.</span><span class="n">Logger</span><span class="o">.</span><span class="n">runtime</span> <span class="o">=</span> <span class="n">runtime</span>
+
+    <span class="n">memory_num</span> <span class="o">=</span> <span class="mi">16</span>
+    <span class="n">logging</span><span class="o">.</span><span class="n">addLevelName</span><span class="p">(</span><span class="n">memory_num</span><span class="p">,</span> <span class="s2">&quot;MEMORY&quot;</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">memory</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">message</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kws</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">memory_num</span><span class="p">,</span> <span class="n">message</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kws</span><span class="p">)</span>
+    <span class="n">logging</span><span class="o">.</span><span class="n">Logger</span><span class="o">.</span><span class="n">memory</span> <span class="o">=</span> <span class="n">memory</span>
+
+    <span class="n">stat_num</span> <span class="o">=</span> <span class="mi">100</span>
+    <span class="n">logging</span><span class="o">.</span><span class="n">addLevelName</span><span class="p">(</span><span class="n">stat_num</span><span class="p">,</span> <span class="s2">&quot;STAT&quot;</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">stat</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">message</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kws</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">stat_num</span><span class="p">,</span> <span class="n">message</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">stat_dict</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">message</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kws</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">stat_num</span><span class="p">,</span> <span class="n">yaml</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">message</span><span class="p">,</span> <span class="n">default_flow_style</span><span class="o">=</span><span class="kc">False</span><span class="p">))</span>
+    <span class="n">logging</span><span class="o">.</span><span class="n">Logger</span><span class="o">.</span><span class="n">stat</span> <span class="o">=</span> <span class="n">stat</span>
+    <span class="n">logging</span><span class="o">.</span><span class="n">Logger</span><span class="o">.</span><span class="n">stat_dict</span> <span class="o">=</span> <span class="n">stat_dict</span>
+
+    <span class="n">log_params</span><span class="p">[</span><span class="s1">&#39;loggers&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
+
+    <span class="k">if</span> <span class="n">logger_ids</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">logger_ids</span><span class="p">:</span>
+            <span class="n">log_params</span><span class="p">[</span><span class="s1">&#39;handlers&#39;</span><span class="p">][</span><span class="sa">f</span><span class="s1">&#39;file_handler_stat</span><span class="si">{</span><span class="nb">str</span><span class="p">(</span><span class="n">n</span><span class="p">)</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">]</span> <span class="o">=</span>  <span class="n">log_params</span><span class="p">[</span><span class="s1">&#39;handlers&#39;</span><span class="p">][</span><span class="s1">&#39;file_handler_stat&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+            <span class="n">log_params</span><span class="p">[</span><span class="s1">&#39;handlers&#39;</span><span class="p">][</span><span class="sa">f</span><span class="s1">&#39;file_handler_stat</span><span class="si">{</span><span class="nb">str</span><span class="p">(</span><span class="n">n</span><span class="p">)</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">][</span><span class="s1">&#39;filename&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;output_temp/name_match_</span><span class="si">{</span><span class="nb">str</span><span class="p">(</span><span class="n">n</span><span class="p">)</span><span class="si">}</span><span class="s1">.log.yaml&#39;</span>
+            <span class="n">log_params</span><span class="p">[</span><span class="s1">&#39;loggers&#39;</span><span class="p">][</span><span class="sa">f</span><span class="s1">&#39;namematch_</span><span class="si">{</span><span class="nb">str</span><span class="p">(</span><span class="n">n</span><span class="p">)</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;handlers&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;console&#39;</span><span class="p">,</span> <span class="s1">&#39;file_handler&#39;</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;file_handler_stat</span><span class="si">{</span><span class="nb">str</span><span class="p">(</span><span class="n">n</span><span class="p">)</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="s1">&#39;file_handler_stat_memory&#39;</span><span class="p">]}</span>
+
+    <span class="n">logging</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">dictConfig</span><span class="p">(</span><span class="n">log_params</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="log_stat"><a class="viewcode-back" href="../../../namematch.utils.html#namematch.block.log_stat">[docs]</a><span class="k">def</span> <span class="nf">log_stat</span><span class="p">(</span><span class="n">human_desc</span><span class="p">,</span> <span class="n">yaml_desc</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;Log a statistic in the log and in the stats yaml.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        human_desc (str): human readable description of the stat (could be a phrase)</span>
+<span class="sd">        yaml_desc (str): concise yaml-key compatible description of the stat</span>
+<span class="sd">        value (float or str): value of the stat</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+
+    <span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">()</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">human_desc</span><span class="si">}</span><span class="s1">: </span><span class="si">{</span><span class="n">value</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">stat</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">yaml_desc</span><span class="si">}</span><span class="s1">: </span><span class="si">{</span><span class="n">value</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="equip_logger_id"><a class="viewcode-back" href="../../../namematch.utils.html#namematch.block.equip_logger_id">[docs]</a><span class="k">def</span> <span class="nf">equip_logger_id</span><span class="p">(</span><span class="n">func</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">wrapper</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">):</span>
+        <span class="n">kw</span><span class="p">[</span><span class="s1">&#39;logger_id&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">logger_id</span>
+        <span class="k">return</span> <span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">wrapper</span></div>
+
+
+<div class="viewcode-block" id="log_runtime_and_memory"><a class="viewcode-back" href="../../../namematch.utils.html#namematch.block.log_runtime_and_memory">[docs]</a><span class="k">def</span> <span class="nf">log_runtime_and_memory</span><span class="p">(</span><span class="n">method</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;Decorator that logs time to execute functions and records max memory usage in GB.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        method (function): function to measure/log runtime and memory usage</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        value returned by the function being decorated</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+
+    <span class="k">def</span> <span class="nf">inner_log_runtime_and_memory</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">):</span>
+
+        <span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">timedelta</span>
+        <span class="n">logger_id</span> <span class="o">=</span> <span class="n">kw</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;logger_id&#39;</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">logger_id</span><span class="p">:</span>
+            <span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;namematch_</span><span class="si">{</span><span class="nb">str</span><span class="p">(</span><span class="n">logger_id</span><span class="p">)</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># import ipdb</span>
+            <span class="c1"># ipdb.set_trace()</span>
+            <span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">()</span>
+
+        <span class="n">ts</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+        <span class="n">memory_val</span><span class="p">,</span> <span class="n">result</span> <span class="o">=</span> <span class="n">memory_usage</span><span class="p">(</span><span class="n">proc</span><span class="o">=</span><span class="p">(</span><span class="n">method</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">kw</span><span class="p">),</span>
+                <span class="n">retval</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">max_usage</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">max_iterations</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">te</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+
+        <span class="n">elapsed_time</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="n">te</span> <span class="o">-</span> <span class="n">ts</span><span class="p">)</span>
+        <span class="n">elapsed_time_str</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">timedelta</span><span class="p">(</span><span class="n">seconds</span> <span class="o">=</span> <span class="n">elapsed_time</span><span class="p">))</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">runtime</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">%s</span><span class="s1">: </span><span class="si">%s</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">method</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span> <span class="n">elapsed_time_str</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">memory_val</span><span class="p">)</span> <span class="o">==</span> <span class="nb">list</span><span class="p">:</span>
+            <span class="n">memory_val</span> <span class="o">=</span> <span class="n">memory_val</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">memory</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">%s</span><span class="s1">: </span><span class="si">%s</span><span class="s1"> GB&#39;</span><span class="p">,</span> <span class="n">method</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">memory_val</span><span class="o">/</span><span class="mf">1000.</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">if</span> <span class="s2">&quot;main__&quot;</span> <span class="ow">in</span> <span class="n">method</span><span class="o">.</span><span class="vm">__name__</span><span class="p">:</span>
+                <span class="n">logger</span><span class="o">.</span><span class="n">stat</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;runtime__</span><span class="si">{</span><span class="n">method</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s1">: &quot;</span><span class="si">{</span><span class="n">elapsed_time_str</span><span class="si">}</span><span class="s1">&quot;&#39;</span><span class="p">)</span>
+                <span class="n">logger</span><span class="o">.</span><span class="n">stat</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;ram__</span><span class="si">{</span><span class="n">method</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s1">: &quot;</span><span class="si">{</span><span class="nb">round</span><span class="p">(</span><span class="n">memory_val</span><span class="o">/</span><span class="mf">1000.</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span><span class="si">}</span><span class="s1"> GB&quot;&#39;</span><span class="p">)</span>
+        <span class="k">except</span><span class="p">:</span>
+            <span class="k">pass</span>
+
+        <span class="k">return</span> <span class="n">result</span>
+    <span class="k">return</span> <span class="n">inner_log_runtime_and_memory</span></div>
+
+
+<div class="viewcode-block" id="load_yaml"><a class="viewcode-back" href="../../../namematch.utils.html#namematch.block.load_yaml">[docs]</a><span class="k">def</span> <span class="nf">load_yaml</span><span class="p">(</span><span class="n">yaml_file</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;Load a yaml file into a dictionary.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        yaml_file (str): path to yaml file</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        dict: dictionary version of input yaml file</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">yaml_file</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="n">yaml_as_dict</span> <span class="o">=</span> <span class="n">yaml</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">Loader</span><span class="o">=</span><span class="n">yaml</span><span class="o">.</span><span class="n">FullLoader</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">yaml_as_dict</span></div>
+
+
+<div class="viewcode-block" id="dump_yaml"><a class="viewcode-back" href="../../../namematch.utils.html#namematch.block.dump_yaml">[docs]</a><span class="k">def</span> <span class="nf">dump_yaml</span><span class="p">(</span><span class="n">dict_to_write</span><span class="p">,</span> <span class="n">yaml_file</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;Write a dictionary into a yaml file.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        dict_to_write (dict): dict to write to yaml</span>
+<span class="sd">        yaml_file (str): path to output yaml file</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">yaml_file</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="n">yaml</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">dict_to_write</span><span class="p">,</span> <span class="n">f</span><span class="p">,</span> <span class="n">default_flow_style</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="to_dict"><a class="viewcode-back" href="../../../namematch.utils.html#namematch.block.to_dict">[docs]</a><span class="k">def</span> <span class="nf">to_dict</span><span class="p">(</span><span class="n">obj</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;Convert an object (i.e. instance of a user-defined class) into a dictionary</span>
+<span class="sd">    to make writing easier.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        obj (object): class instance to convert to dict</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+
+    <span class="k">return</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="k">lambda</span> <span class="n">o</span><span class="p">:</span> <span class="n">o</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">))</span></div>
+
+
+<div class="viewcode-block" id="create_nm_record_id"><a class="viewcode-back" href="../../../namematch.utils.html#namematch.block.create_nm_record_id">[docs]</a><span class="k">def</span> <span class="nf">create_nm_record_id</span><span class="p">(</span><span class="n">nickname</span><span class="p">,</span> <span class="n">record_id_series</span><span class="p">):</span>
+
+    <span class="n">record_id_series</span> <span class="o">=</span> <span class="n">nickname</span> <span class="o">+</span> <span class="s1">&#39;__&#39;</span> <span class="o">+</span> <span class="n">record_id_series</span>
+    <span class="k">return</span> <span class="n">record_id_series</span></div>
+
+
+<div class="viewcode-block" id="clean_nn_string"><a class="viewcode-back" href="../../../namematch.utils.html#namematch.block.clean_nn_string">[docs]</a><span class="k">def</span> <span class="nf">clean_nn_string</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;Removes JR, SR, II, extra spaces, etc. from nn strings. The original string</span>
+<span class="sd">    in the dataframe keeps punctuation and suffixes.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        n (str): raw name value</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        str: clean version of the input name</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+
+    <span class="c1"># remove suffixes</span>
+    <span class="n">clean</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\\</span><span class="s2">bSR</span><span class="se">\\</span><span class="s2">b&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
+    <span class="n">clean</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\\</span><span class="s2">bJR</span><span class="se">\\</span><span class="s2">b&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">clean</span><span class="p">)</span>
+    <span class="n">clean</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\\</span><span class="s2">bIII</span><span class="se">\\</span><span class="s2">b&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">clean</span><span class="p">)</span>
+    <span class="n">clean</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\\</span><span class="s2">bII</span><span class="se">\\</span><span class="s2">b&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">clean</span><span class="p">)</span>
+    <span class="n">clean</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\\</span><span class="s2">bIV</span><span class="se">\\</span><span class="s2">b&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">clean</span><span class="p">)</span>
+
+    <span class="c1"># drop all non letters and spaces</span>
+    <span class="n">regex</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="s1">&#39;[^A-Z ]&#39;</span><span class="p">)</span>
+    <span class="n">clean</span> <span class="o">=</span> <span class="n">regex</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">clean</span><span class="p">)</span>
+
+    <span class="c1"># clean up spacing</span>
+    <span class="n">clean</span> <span class="o">=</span> <span class="n">clean</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+    <span class="n">clean</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="s2">&quot;\s+&quot;</span><span class="p">,</span> <span class="s2">&quot; &quot;</span><span class="p">,</span> <span class="n">clean</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">clean</span></div>
+
+
+<div class="viewcode-block" id="build_blockstring"><a class="viewcode-back" href="../../../namematch.utils.html#namematch.block.build_blockstring">[docs]</a><span class="k">def</span> <span class="nf">build_blockstring</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">blocking_scheme</span><span class="p">,</span> <span class="n">incl_ed_string</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;Create blockstrings (values for blocking separated by ::, such as</span>
+<span class="sd">    JOHN::SMITH::1993-07-23) from all-names data.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        df (pd.DataFrame): all-names table</span>
+
+<span class="sd">            =====================   =======================================================</span>
+<span class="sd">            record_id               unique record identifier</span>
+<span class="sd">            file_type               either &quot;new&quot; or &quot;existing&quot;</span>
+<span class="sd">            &lt;fields for matching&gt;   both for the matching model and for constraint checking</span>
+<span class="sd">            drop_from_nm            flag, 1 if met any &quot;to drop&quot; criteria 0 otherwise</span>
+<span class="sd">            =====================   =======================================================</span>
+
+<span class="sd">        blocking_scheme (dict): contains info about fields to block on</span>
+<span class="sd">        incl_ed_string (bool): True if the blockstring should end with the edit-distance string (e.g. dob)</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        pd.Series: blockstrings</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+
+    <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+
+    <span class="n">blocking_cols</span> <span class="o">=</span> <span class="n">blocking_scheme</span><span class="p">[</span><span class="s1">&#39;cosine_distance&#39;</span><span class="p">][</span><span class="s1">&#39;variables&#39;</span><span class="p">]</span>
+    <span class="k">if</span> <span class="n">incl_ed_string</span><span class="p">:</span>
+        <span class="n">blocking_cols</span> <span class="o">=</span> \
+                <span class="n">blocking_scheme</span><span class="p">[</span><span class="s1">&#39;cosine_distance&#39;</span><span class="p">][</span><span class="s1">&#39;variables&#39;</span><span class="p">]</span> <span class="o">+</span> \
+                <span class="p">[</span><span class="n">blocking_scheme</span><span class="p">[</span><span class="s1">&#39;edit_distance&#39;</span><span class="p">][</span><span class="s1">&#39;variable&#39;</span><span class="p">]]</span>
+
+    <span class="n">df</span><span class="p">[</span><span class="s1">&#39;bs&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">col</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">blocking_cols</span><span class="p">):</span>
+
+        <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">df</span><span class="p">[</span><span class="s1">&#39;bs&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">col</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">df</span><span class="p">[</span><span class="s1">&#39;bs&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">bs</span> <span class="o">+</span> <span class="s1">&#39;::&#39;</span> <span class="o">+</span> <span class="n">df</span><span class="p">[</span><span class="n">col</span><span class="p">]</span>
+
+    <span class="k">return</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;bs&#39;</span><span class="p">]</span></div>
+
+
+<div class="viewcode-block" id="get_nn_string_from_blockstring"><a class="viewcode-back" href="../../../namematch.utils.html#namematch.block.get_nn_string_from_blockstring">[docs]</a><span class="k">def</span> <span class="nf">get_nn_string_from_blockstring</span><span class="p">(</span><span class="n">blockstring</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;Parse out the near-neighbor string (e.g. first-name and last-name) from a blockstring.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        blockstring (str): string with info for blocking (e.g. JOHN::SMITH::1993-07-23)</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        str: near-neighbor string (e.g. JOHN::SMITH)</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+
+    <span class="k">return</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="s1">&#39;::[A-Z0-9\-]*$&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">blockstring</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="get_ed_string_from_blockstring"><a class="viewcode-back" href="../../../namematch.utils.html#namematch.block.get_ed_string_from_blockstring">[docs]</a><span class="k">def</span> <span class="nf">get_ed_string_from_blockstring</span><span class="p">(</span><span class="n">blockstring</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;Parse out the edit-distance string (e.g. dob) from a blockstring.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        blockstring (str): string with info for blocking (e.g. JOHN::SMITH::1993-07-23)</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        str: edit-distance string (e.g. 1993-07-23)</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+
+    <span class="k">return</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="s1">&#39;[A-Z ]*::[A-Z ]*::&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">blockstring</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="get_endpoints"><a class="viewcode-back" href="../../../namematch.utils.html#namematch.block.get_endpoints">[docs]</a><span class="k">def</span> <span class="nf">get_endpoints</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">num_threads</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;Divide a number into some number of chunks/intervals.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        n (int): number to divide into chunks/intervals</span>
+<span class="sd">        num_threads (int): number of chunks/intervals to create</span>
+
+
+<span class="sd">    Returns:</span>
+<span class="sd">        list of int tuples: list of start and end points to cover entire range</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+
+    <span class="n">end_points</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">factor</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">n</span> <span class="o">/</span> <span class="n">num_threads</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_threads</span><span class="p">):</span>
+        <span class="n">start_ix_worker</span> <span class="o">=</span> <span class="n">i</span> <span class="o">*</span> <span class="n">factor</span> <span class="c1"># create chunks for parallelization</span>
+        <span class="n">end_ix_worker</span> <span class="o">=</span> <span class="n">start_ix_worker</span> <span class="o">+</span> <span class="n">factor</span>
+        <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="n">num_threads</span> <span class="o">-</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">end_points</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">start_ix_worker</span><span class="p">,</span> <span class="n">n</span><span class="p">])</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">end_points</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">start_ix_worker</span><span class="p">,</span> <span class="n">end_ix_worker</span><span class="p">])</span>
+
+    <span class="k">return</span> <span class="n">end_points</span></div>
+
+
+<div class="viewcode-block" id="load_sample"><a class="viewcode-back" href="../../../namematch.utils.html#namematch.block.load_sample">[docs]</a><span class="k">def</span> <span class="nf">load_sample</span><span class="p">(</span><span class="n">csv_path</span><span class="p">,</span> <span class="n">pct</span><span class="p">,</span> <span class="n">cols</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;Load a random sample of a csv into pandas.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        csv_path (str): path to csv file</span>
+<span class="sd">        pct (float): what percent of the file to randomly read</span>
+<span class="sd">        cols (list): columns to load</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        pd.DataFrame: random subset of the input csv</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+
+    <span class="n">df_sample</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">csv_path</span><span class="p">,</span> <span class="n">usecols</span><span class="o">=</span><span class="n">cols</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+            <span class="n">skiprows</span><span class="o">=</span><span class="k">lambda</span> <span class="n">i</span><span class="p">:</span> <span class="n">i</span><span class="o">&gt;</span><span class="mi">0</span> <span class="ow">and</span> <span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">()</span> <span class="o">&gt;</span> <span class="n">pct</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">df_sample</span></div>
+
+
+<div class="viewcode-block" id="load_csv_list"><a class="viewcode-back" href="../../../namematch.utils.html#namematch.block.load_csv_list">[docs]</a><span class="k">def</span> <span class="nf">load_csv_list</span><span class="p">(</span><span class="n">df_file_list</span><span class="p">,</span> <span class="n">cols</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">conditions_dict</span><span class="o">=</span><span class="p">{},</span> <span class="n">sample</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;Read a list of .csv files into a single pd.DataFrame.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        df_file_list (list of str): list of .csv files to read</span>
+<span class="sd">        cols (list): columns to keep in the dataframe</span>
+<span class="sd">        conditions_dict (dict): conditions for row filtering</span>
+<span class="sd">        sample (float): share of rows to randomly sample from the final dataframe</span>
+
+<span class="sd">    Return:</span>
+<span class="sd">        pd.DataFrame: filtered sampled dataframe read in from the .csv files</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+
+    <span class="n">all_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">df_file</span> <span class="ow">in</span> <span class="n">df_file_list</span><span class="p">:</span>
+
+        <span class="k">if</span> <span class="n">sample</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">df_file</span><span class="p">,</span> <span class="n">usecols</span><span class="o">=</span><span class="n">cols</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">df</span> <span class="o">=</span> <span class="n">load_sample</span><span class="p">(</span><span class="n">df_file</span><span class="p">,</span> <span class="n">usecols</span><span class="o">=</span><span class="n">cols</span><span class="p">,</span> <span class="n">pct</span><span class="o">=</span><span class="n">sample</span><span class="p">)</span>
+
+        <span class="k">for</span> <span class="n">col</span><span class="p">,</span> <span class="n">acceptable_value</span> <span class="ow">in</span> <span class="n">conditions_dict</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="n">col</span><span class="p">]</span> <span class="o">==</span> <span class="n">acceptable_value</span><span class="p">]</span>
+
+        <span class="n">all_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">all_df</span><span class="p">,</span> <span class="n">df</span><span class="p">])</span>
+
+    <span class="n">all_df</span> <span class="o">=</span> <span class="n">all_df</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">all_df</span></div>
+
+
+<div class="viewcode-block" id="load_parquet_list"><a class="viewcode-back" href="../../../namematch.utils.html#namematch.block.load_parquet_list">[docs]</a><span class="k">def</span> <span class="nf">load_parquet_list</span><span class="p">(</span><span class="n">df_file_list</span><span class="p">,</span> <span class="n">cols</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">conditions_dict</span><span class="o">=</span><span class="p">{},</span> <span class="n">sample</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;Read a list of .parquet files into a single pd.DataFrame.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        df_file_list (list of str): list of .parquet files to read</span>
+<span class="sd">        cols (list): columns to keep in the dataframe</span>
+<span class="sd">        conditions_dict (dict): conditions for row filtering</span>
+<span class="sd">        sample (float): share of rows to randomly sample from the final dataframe</span>
+
+<span class="sd">    Return:</span>
+<span class="sd">        pd.DataFrame: filtered sampled dataframe read in from the .parquet files</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+
+    <span class="n">all_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">df_file</span> <span class="ow">in</span> <span class="n">df_file_list</span><span class="p">:</span>
+        <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_parquet</span><span class="p">(</span><span class="n">df_file</span><span class="p">,</span> <span class="n">engine</span><span class="o">=</span><span class="s1">&#39;pyarrow&#39;</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">cols</span><span class="p">)</span>
+
+        <span class="k">for</span> <span class="n">col</span><span class="p">,</span> <span class="n">acceptable_value</span> <span class="ow">in</span> <span class="n">conditions_dict</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="n">col</span><span class="p">]</span> <span class="o">==</span> <span class="n">acceptable_value</span><span class="p">]</span>
+
+        <span class="n">all_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">all_df</span><span class="p">,</span> <span class="n">df</span><span class="p">])</span>
+
+    <span class="k">if</span> <span class="n">sample</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">all_df</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">all_df</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">frac</span><span class="o">=</span><span class="n">sample</span><span class="p">)</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="determine_model_to_use"><a class="viewcode-back" href="../../../namematch.utils.html#namematch.block.determine_model_to_use">[docs]</a><span class="nd">@profile</span>
+<span class="k">def</span> <span class="nf">determine_model_to_use</span><span class="p">(</span><span class="n">dr_df</span><span class="p">,</span> <span class="n">model_info</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;Assign a model to each data row based on which fields are available.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        dr_df (pd.DataFrame): data rows</span>
+
+<span class="sd">            ========================   ===============================================================</span>
+<span class="sd">            record_id_1                unique identifier for the first record in the pair</span>
+<span class="sd">            record_id_2                unique identifier for the second record in the pair</span>
+<span class="sd">            &lt;distance metric fields&gt;   distance metrics between the two records&#39; matching fields</span>
+<span class="sd">            label                      flag, &quot;1&quot; if the records are a match, &quot;0&quot; if not, &quot;&quot; if unknown</span>
+<span class="sd">            ========================   ===============================================================</span>
+
+<span class="sd">        model_info (dict): information about models and their universes</span>
+<span class="sd">        verbose (bool): flag controlling print statement (set according to which function calls this one)</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        pd.Series: string indicating which model to use for a given record pair</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+
+    <span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">()</span>
+    <span class="n">dr_df</span> <span class="o">=</span> <span class="n">dr_df</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+
+    <span class="c1"># each data row gets assigned a model based on the values available in each field</span>
+    <span class="c1"># TODO need to rank non-basic models if more than one and not mutually exclusive</span>
+    <span class="n">dr_df</span><span class="p">[</span><span class="s1">&#39;model_to_use&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;basic&#39;</span>
+    <span class="k">for</span> <span class="n">this_model_name</span><span class="p">,</span> <span class="n">this_model_info</span> <span class="ow">in</span> <span class="n">model_info</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+
+        <span class="c1"># basic is the default</span>
+        <span class="k">if</span> <span class="n">this_model_name</span> <span class="o">==</span> <span class="s1">&#39;basic&#39;</span><span class="p">:</span>
+            <span class="k">continue</span>
+
+        <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Determining rows for </span><span class="si">{</span><span class="n">this_model_name</span><span class="si">}</span><span class="s1"> model.&#39;</span><span class="p">)</span>
+
+        <span class="n">phat_universe</span> <span class="o">=</span> <span class="n">this_model_info</span><span class="p">[</span><span class="s2">&quot;actual_phat_universe&quot;</span><span class="p">]</span>
+
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">phat_universe</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;Special model types must have a limited actual_phat_universe.&quot;</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span>
+
+        <span class="n">acceptable</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;meets_criteria__</span><span class="si">{</span><span class="n">this_model_name</span><span class="si">}</span><span class="s1">&#39;</span>
+        <span class="n">dr_df</span><span class="p">[</span><span class="n">acceptable</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="k">for</span> <span class="n">col</span><span class="p">,</span> <span class="n">accepted_values</span> <span class="ow">in</span> <span class="n">phat_universe</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">accepted_values</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
+                <span class="n">accepted_values</span> <span class="o">=</span> <span class="p">[</span><span class="n">accepted_values</span><span class="p">]</span>
+            <span class="n">dr_df</span><span class="p">[</span><span class="n">acceptable</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">dr_df</span><span class="p">[</span><span class="n">acceptable</span><span class="p">])</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">dr_df</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">accepted_values</span><span class="p">))</span>
+
+        <span class="n">dr_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">dr_df</span><span class="p">[</span><span class="n">acceptable</span><span class="p">],</span> <span class="s1">&#39;model_to_use&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">this_model_name</span>
+
+    <span class="k">return</span> <span class="n">dr_df</span><span class="p">[</span><span class="s1">&#39;model_to_use&#39;</span><span class="p">]</span></div>
+
+
+<div class="viewcode-block" id="load_models"><a class="viewcode-back" href="../../../namematch.utils.html#namematch.block.load_models">[docs]</a><span class="k">def</span> <span class="nf">load_models</span><span class="p">(</span><span class="n">model_info_file</span><span class="p">,</span> <span class="n">selection</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;Load pre-trained models (selection and match, as available)</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        model_info_file (str): path to original model config</span>
+<span class="sd">        selection (bool): if True, try to load a corresponding selection model</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        dict: maps model name (e.g. basic or no-dob) to a fit model object</span>
+<span class="sd">        dict: dict with information about how to fit the model</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+
+    <span class="n">model_info</span> <span class="o">=</span> <span class="n">load_yaml</span><span class="p">(</span><span class="n">model_info_file</span><span class="p">)</span>
+
+    <span class="n">selection_models</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="n">match_models</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">for</span> <span class="n">model_name</span><span class="p">,</span> <span class="n">this_model_info</span> <span class="ow">in</span> <span class="n">model_info</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="k">if</span> <span class="n">selection</span><span class="p">:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">this_model_info</span><span class="p">[</span><span class="s1">&#39;selection_model_path&#39;</span><span class="p">],</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">mf</span><span class="p">:</span>
+                    <span class="n">selection_models</span><span class="p">[</span><span class="n">model_name</span><span class="p">]</span> <span class="o">=</span> <span class="n">pickle</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">mf</span><span class="p">)</span>
+            <span class="k">except</span><span class="p">:</span>
+                <span class="k">pass</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">this_model_info</span><span class="p">[</span><span class="s1">&#39;match_model_path&#39;</span><span class="p">],</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">mf</span><span class="p">:</span>
+            <span class="n">match_models</span><span class="p">[</span><span class="n">model_name</span><span class="p">]</span> <span class="o">=</span> <span class="n">pickle</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">mf</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">selection</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">selection_models</span><span class="p">,</span> <span class="n">match_models</span><span class="p">,</span> <span class="n">model_info</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">match_models</span><span class="p">,</span> <span class="n">model_info</span></div>
+
+
+<div class="viewcode-block" id="recursively_convert_tuple_to_list"><a class="viewcode-back" href="../../../namematch.utils.html#namematch.block.recursively_convert_tuple_to_list">[docs]</a><span class="k">def</span> <span class="nf">recursively_convert_tuple_to_list</span><span class="p">(</span><span class="n">value</span><span class="p">):</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">Mapping</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">dict</span><span class="p">((</span><span class="n">k</span><span class="p">,</span> <span class="n">recursively_convert_tuple_to_list</span><span class="p">(</span><span class="n">v</span><span class="p">))</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">value</span><span class="o">.</span><span class="n">items</span><span class="p">())</span>
+
+    <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="n">recursively_convert_tuple_to_list</span><span class="p">(</span><span class="n">v</span><span class="p">)</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">value</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">value</span></div>
+
+
+<div class="viewcode-block" id="luigi_dict_parameter_to_dict"><a class="viewcode-back" href="../../../namematch.utils.html#namematch.block.luigi_dict_parameter_to_dict">[docs]</a><span class="k">def</span> <span class="nf">luigi_dict_parameter_to_dict</span><span class="p">(</span><span class="n">d</span><span class="p">):</span>
+    <span class="n">out</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">d</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="n">out</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">recursively_convert_tuple_to_list</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">out</span></div>
+
+
+<div class="viewcode-block" id="filename_friendly_hash"><a class="viewcode-back" href="../../../namematch.utils.html#namematch.block.filename_friendly_hash">[docs]</a><span class="k">def</span> <span class="nf">filename_friendly_hash</span><span class="p">(</span><span class="n">inputs</span><span class="p">):</span>
+    <span class="kn">import</span> <span class="nn">datetime</span>
+    <span class="k">def</span> <span class="nf">dt_handler</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="p">)</span> <span class="ow">or</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">datetime</span><span class="o">.</span><span class="n">date</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">x</span><span class="o">.</span><span class="n">isoformat</span><span class="p">()</span>
+        <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;Unknown type&quot;</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">hashlib</span><span class="o">.</span><span class="n">md5</span><span class="p">(</span>
+        <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">inputs</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="n">dt_handler</span><span class="p">,</span> <span class="n">sort_keys</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span>
+    <span class="p">)</span><span class="o">.</span><span class="n">hexdigest</span><span class="p">()</span></div>
+
+
+<div class="viewcode-block" id="load_logging_params"><a class="viewcode-back" href="../../../namematch.utils.html#namematch.block.load_logging_params">[docs]</a><span class="k">def</span> <span class="nf">load_logging_params</span><span class="p">(</span><span class="n">logging_params_file</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="n">default_logging_params_file</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="vm">__file__</span><span class="p">),</span> <span class="s1">&#39;logging_config.yaml&#39;</span><span class="p">)</span>
+    <span class="n">logging_params_file</span> <span class="o">=</span> <span class="n">logging_params_file</span> <span class="k">if</span> <span class="n">logging_params_file</span> <span class="k">else</span> <span class="n">default_logging_params_file</span>
+    <span class="k">return</span> <span class="n">yaml</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="n">logging_params_file</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">),</span> <span class="n">Loader</span><span class="o">=</span><span class="n">yaml</span><span class="o">.</span><span class="n">FullLoader</span><span class="p">)</span></div>
+
+</pre></div>
+
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>    
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../../',
+            VERSION:'0.0.1',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../../_static/language_data.js"></script>
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+  
+    <div class="footer" role="contentinfo">
+        <div class="container">
+            &#169; Copyright 2021, Melissa McNeill, Eddie Lin, Zubin Jelveh.
+        Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.1.1.
+        </div>
+    </div>  
+
+</body>
+</html>

@@ -1,0 +1,62 @@
+
+p + ul {
+    margin-top: -25px;
+}
+
+ul li p + ul {
+    margin-top: -10px;
+}
+
+p + .spaced-list {
+    margin-top: 0px;
+}
+
+.spaced-list li {
+    margin-top: 15px
+}
+
+ul {
+    padding-left: 4rem;
+}
+
+ol {
+    padding-left: 4rem;
+}
+
+ol li {
+    padding-left: 1rem;
+}
+
+.footnote {
+    margin-bottom: 0rem;
+}
+
+a {
+    color: #ad565a
+}
+
+a:hover, a:focus {
+    color: #c28285;
+}
+
+dl:not(.docutils) dt {
+    background-color: #f2dadb;
+    color: #ad565a;
+    border-top-color: #ad565a;
+}
+
+code.literal {
+    color: #ad565a
+}
+
+
+
+/*
+maroon: #800000;
+lighter maroon: #ad565a;
+dusty pink: #c28285;
+orange: #c16622;
+dark teal: #117762;
+lighter teal: #148d74;
+redish: #cc4747;
+*/

@@ -1,0 +1,5 @@
+nn_string_1,nn_string_2,cos_dist,commonness_penalty_1,commonness_penalty_2
+PETER::HICKS,PETER::HICKS,0,0.05,0.02
+VITO::AMENDOLA,VITO::AMENDOLA,0,0.01,0.03
+JANICE::DAVIS,JANICE::DAVIS,0,0.02,0.01
+MARCOS::WILCOX,MARCOS::WILCOX,0,0.03,0.03

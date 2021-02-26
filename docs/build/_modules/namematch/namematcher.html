@@ -1,0 +1,465 @@
+
+
+<!DOCTYPE html>
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>namematch.namematcher &mdash; namematch 0.0.1 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../../_static/css/theme.min.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/css/custom.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+    <link rel="author" title="About these documents" href="../../about.html" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <a class="site-nav-toggle hidden-lg-up"><i class="icon-menu"></i></a>
+            <a class="site-title" href="../../index.html">
+                namematch
+            </a>
+        </div>
+    </header>
+
+
+<div class="breadcrumbs-outer hidden-xs-down">
+    <div class="container">
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a></li>
+        
+          <li><a href="../index.html">Module code</a></li>
+        
+      <li>namematch.namematcher</li>
+    
+    
+      <li class="breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+</div>
+    </div>
+</div>
+    <div class="main-outer">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-lg-3 site-nav">
+                    
+<div role="search">
+    <form class="search" action="../../search.html" method="get">
+        <div class="icon-input">
+            <input type="text" name="q" placeholder="Search" />
+            <span class="icon-search"></span>
+        </div>
+        <input type="submit" value="Go" class="d-hidden" />
+        <input type="hidden" name="check_keywords" value="yes" />
+        <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+                    <div class="site-nav-tree">
+                        
+                            
+                            
+                                <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../about.html">About Name Match</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../about.html#what-is-name-match-doing">What is Name Match doing?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../about.html#inputs-and-outputs">Inputs and outputs</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../match_setup.html">Setting Up a Match</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../match_setup.html#preparing-the-data-for-name-match">Preparing the data for Name Match</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../match_setup.html#creating-the-configuration-file">Creating the configuration file</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../match_setup.html#creating-user-defined-clustering-functions">Creating user defined clustering functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../match_setup.html#running-the-code">Running the code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../match_setup.html#special-cases">Special cases</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../understanding_results.html">Understanding Results</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../algorithm.html">Algorithm Documentation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../algorithm.html#why-is-name-match-necessary">Why is Name Match necessary</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../algorithm.html#how-it-works">How it works</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../algorithm.html#things-to-consider">Things to consider</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../api.html">API Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../api.html#module-namematch.process_config"><code class="xref py py-mod docutils literal notranslate"><span class="pre">namematch.process_config</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../api.html#module-namematch.process_input_data"><code class="xref py py-mod docutils literal notranslate"><span class="pre">namematch.process_input_data</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../api.html#module-namematch.generate_must_links"><code class="xref py py-mod docutils literal notranslate"><span class="pre">namematch.generate_must_links</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../api.html#module-namematch.block"><code class="xref py py-mod docutils literal notranslate"><span class="pre">namematch.block</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../api.html#module-namematch.generate_data_rows"><code class="xref py py-mod docutils literal notranslate"><span class="pre">namematch.generate_data_rows</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../api.html#module-namematch.fit_model"><code class="xref py py-mod docutils literal notranslate"><span class="pre">namematch.fit_model</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../api.html#module-namematch.predict"><code class="xref py py-mod docutils literal notranslate"><span class="pre">namematch.predict</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../api.html#module-namematch.cluster"><code class="xref py py-mod docutils literal notranslate"><span class="pre">namematch.cluster</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../api.html#module-namematch.generate_output"><code class="xref py py-mod docutils literal notranslate"><span class="pre">namematch.generate_output</span></code></a></li>
+</ul>
+</li>
+</ul>
+
+                            
+                        
+                    </div>
+                </div>
+                <div class="col-12 col-lg-9">
+                    <div class="document">
+                        
+                            
+  <h1>Source code for namematch.namematcher</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">import</span> <span class="nn">yaml</span>
+<span class="kn">import</span> <span class="nn">os</span>
+
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Union</span>
+<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
+
+<span class="kn">from</span> <span class="nn">namematch.data_structures.schema</span> <span class="kn">import</span> <span class="n">Schema</span>
+<span class="kn">from</span> <span class="nn">namematch.data_structures.parameters</span> <span class="kn">import</span> <span class="n">Parameters</span>
+<span class="kn">from</span> <span class="nn">namematch.utils.utils</span> <span class="kn">import</span> <span class="n">setup_logging</span><span class="p">,</span> <span class="n">load_logging_params</span>
+<span class="kn">from</span> <span class="nn">namematch.utils</span> <span class="kn">import</span> <span class="n">default_parameter</span>
+<span class="kn">from</span> <span class="nn">namematch.process_input_data</span> <span class="kn">import</span> <span class="n">ProcessInputData</span>
+<span class="kn">from</span> <span class="nn">namematch.generate_must_links</span> <span class="kn">import</span> <span class="n">GenerateMustLinks</span>
+<span class="kn">from</span> <span class="nn">namematch.block</span> <span class="kn">import</span> <span class="n">Block</span>
+<span class="kn">from</span> <span class="nn">namematch.generate_data_rows</span> <span class="kn">import</span> <span class="n">GenerateDataRows</span>
+<span class="kn">from</span> <span class="nn">namematch.fit_model</span> <span class="kn">import</span> <span class="n">FitModel</span>
+<span class="kn">from</span> <span class="nn">namematch.predict</span> <span class="kn">import</span> <span class="n">Predict</span>
+<span class="kn">from</span> <span class="nn">namematch.cluster</span> <span class="kn">import</span> <span class="n">Cluster</span><span class="p">,</span> <span class="n">ClusterConstraints</span>
+<span class="kn">from</span> <span class="nn">namematch.generate_output</span> <span class="kn">import</span> <span class="n">GenerateOutput</span>
+
+<span class="n">logging</span><span class="o">.</span><span class="n">basicConfig</span><span class="p">(</span>
+    <span class="nb">format</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">%(asctime)s</span><span class="s2"> </span><span class="si">%(levelname)-8s</span><span class="s2"> </span><span class="si">%(message)s</span><span class="s2">&quot;</span><span class="p">,</span>
+    <span class="n">datefmt</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">%d</span><span class="s2">-%b-%y %H:%M:%S&quot;</span><span class="p">,</span>
+    <span class="n">level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">INFO</span>
+<span class="p">)</span>
+
+<div class="viewcode-block" id="NameMatcher"><a class="viewcode-back" href="../../namematch.html#namematch.namematcher.NameMatcher">[docs]</a><span class="k">class</span> <span class="nc">NameMatcher</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Name Matcher python interface to run all the steps in namematch&quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
+        <span class="n">config</span><span class="p">:</span> <span class="nb">dict</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">private_config</span><span class="p">:</span> <span class="nb">dict</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">input_data_batch_size</span><span class="p">:</span> <span class="nb">int</span><span class="o">=</span><span class="mi">50000</span><span class="p">,</span>
+        <span class="n">data_row_batch_size</span><span class="p">:</span> <span class="nb">int</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span>
+        <span class="n">log_file</span><span class="p">:</span> <span class="nb">str</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">logging_params_file</span><span class="p">:</span> <span class="nb">str</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">output_dir</span><span class="p">:</span> <span class="nb">str</span><span class="o">=</span><span class="s1">&#39;output&#39;</span><span class="p">,</span>
+        <span class="n">output_temp_dir</span><span class="p">:</span> <span class="nb">str</span><span class="o">=</span><span class="s1">&#39;output_temp&#39;</span><span class="p">,</span>
+        <span class="n">all_name_file</span><span class="p">:</span> <span class="nb">str</span><span class="o">=</span><span class="s1">&#39;all_names.parquet&#39;</span><span class="p">,</span>
+        <span class="n">must_links</span><span class="p">:</span> <span class="nb">str</span><span class="o">=</span><span class="s1">&#39;must_links.csv&#39;</span><span class="p">,</span>
+        <span class="n">og_blocking_index_file</span><span class="p">:</span> <span class="nb">str</span><span class="o">=</span><span class="s1">&#39;None&#39;</span><span class="p">,</span> <span class="c1"># We should open an issue for this</span>
+        <span class="n">candidate_pairs_file</span><span class="p">:</span> <span class="nb">str</span><span class="o">=</span><span class="s1">&#39;candidate_pairs.parquet&#39;</span><span class="p">,</span>
+        <span class="n">data_rows_dir</span><span class="p">:</span> <span class="nb">str</span><span class="o">=</span><span class="s1">&#39;data_rows&#39;</span><span class="p">,</span>
+        <span class="n">trained_model_info_file</span><span class="p">:</span> <span class="nb">str</span><span class="o">=</span><span class="s1">&#39;None&#39;</span><span class="p">,</span>
+        <span class="n">selection_model_path</span><span class="p">:</span> <span class="nb">str</span><span class="o">=</span><span class="s1">&#39;basic_selection_model.pkl&#39;</span><span class="p">,</span>
+        <span class="n">match_model_path</span><span class="p">:</span> <span class="nb">str</span><span class="o">=</span><span class="s1">&#39;basic_match_model.pkl&#39;</span><span class="p">,</span>
+        <span class="n">flipped0_file</span><span class="p">:</span> <span class="nb">str</span><span class="o">=</span><span class="s1">&#39;flipped0_potential_edges.csv&#39;</span><span class="p">,</span>
+        <span class="n">model_dir</span><span class="p">:</span> <span class="nb">str</span><span class="o">=</span><span class="s1">&#39;model&#39;</span><span class="p">,</span>
+        <span class="n">model_info_file</span><span class="p">:</span> <span class="nb">str</span><span class="o">=</span><span class="s1">&#39;model.yaml&#39;</span><span class="p">,</span>
+        <span class="n">potential_edges_dir</span><span class="p">:</span> <span class="nb">str</span><span class="o">=</span><span class="s1">&#39;potential_edges&#39;</span><span class="p">,</span>
+        <span class="n">cluster_assignments</span><span class="p">:</span> <span class="nb">str</span><span class="o">=</span><span class="s1">&#39;cluster_assignments.pkl&#39;</span><span class="p">,</span>
+        <span class="n">cluster_constraints</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">ClusterConstraints</span><span class="p">]</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">an_output_file</span><span class="p">:</span> <span class="nb">str</span><span class="o">=</span><span class="s1">&#39;all_names_with_clusterid.csv&#39;</span><span class="p">,</span>
+        <span class="n">write_schema_params</span><span class="p">:</span> <span class="nb">bool</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="p">):</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">config</span> <span class="o">=</span> <span class="n">config</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">private_config</span> <span class="o">=</span> <span class="n">private_config</span> <span class="k">if</span> <span class="n">private_config</span> <span class="k">else</span> <span class="n">default_parameter</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">write_schema_params</span> <span class="o">=</span> <span class="n">write_schema_params</span>
+
+        <span class="c1"># batch size</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">data_row_batch_size</span> <span class="o">=</span> <span class="n">data_row_batch_size</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">input_data_batch_size</span> <span class="o">=</span> <span class="n">input_data_batch_size</span>
+
+        <span class="c1"># output</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">output_dir</span> <span class="o">=</span> <span class="n">output_dir</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">output_temp_dir</span> <span class="o">=</span> <span class="n">output_temp_dir</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">output_dir</span><span class="p">):</span>
+            <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">output_dir</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">output_temp_dir</span><span class="p">):</span>
+            <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">output_temp_dir</span><span class="p">)</span>
+
+        <span class="c1"># logging files</span>
+        <span class="k">if</span> <span class="n">log_file</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">log_file</span> <span class="o">=</span> <span class="n">log_file</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">log_file</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">output_temp_dir</span><span class="p">,</span> <span class="s1">&#39;name_match.log&#39;</span><span class="p">)</span>
+            <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The log file will be loacted at </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">log_file</span><span class="si">}</span><span class="s2">.&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">logging_params_file</span> <span class="o">=</span> <span class="n">logging_params_file</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">logging_params</span> <span class="o">=</span> <span class="n">load_logging_params</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">logging_params_file</span><span class="p">)</span>
+
+        <span class="c1"># schema and params</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">params</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">schem</span> <span class="o">=</span> <span class="kc">None</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">schema_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">output_temp_dir</span><span class="p">,</span> <span class="s1">&#39;schema.yaml&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">schema_path</span><span class="p">):</span>
+            <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">schema_path</span><span class="si">}</span><span class="s2"> was found! Schema is loaded.&quot;</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">schema</span> <span class="o">=</span> <span class="n">Schema</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">schema_path</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">params_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">output_temp_dir</span><span class="p">,</span> <span class="s1">&#39;parameters.yaml&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">params_path</span><span class="p">):</span>
+            <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">params_path</span><span class="si">}</span><span class="s2"> was found! Parameters is loaded&quot;</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">params</span> <span class="o">=</span> <span class="n">Parameters</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">params_path</span><span class="p">)</span>
+
+        <span class="c1"># all the intermediates in output_temp</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_all_names_file</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">output_temp_dir</span><span class="p">,</span> <span class="n">all_name_file</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_must_links</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">output_temp_dir</span><span class="p">,</span> <span class="n">must_links</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_og_blocking_index_file</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">output_temp_dir</span><span class="p">,</span> <span class="n">og_blocking_index_file</span><span class="p">)</span> <span class="k">if</span> <span class="n">og_blocking_index_file</span> <span class="o">!=</span> <span class="s1">&#39;None&#39;</span> <span class="k">else</span> <span class="n">og_blocking_index_file</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_candidate_pairs_file</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">output_temp_dir</span><span class="p">,</span> <span class="n">candidate_pairs_file</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_data_rows_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">output_temp_dir</span><span class="p">,</span> <span class="n">data_rows_dir</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_trained_model_info_file</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">output_temp_dir</span><span class="p">,</span> <span class="n">trained_model_info_file</span><span class="p">)</span> <span class="k">if</span> <span class="n">trained_model_info_file</span> <span class="o">!=</span> <span class="s1">&#39;None&#39;</span> <span class="k">else</span> <span class="n">trained_model_info_file</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_selection_model_path</span> <span class="o">=</span> <span class="n">selection_model_path</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_match_model_path</span> <span class="o">=</span> <span class="n">match_model_path</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_flipped0_file</span> <span class="o">=</span> <span class="n">flipped0_file</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_model_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">output_temp_dir</span><span class="p">,</span> <span class="n">model_dir</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_model_info_file</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_model_dir</span><span class="p">,</span> <span class="n">model_info_file</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_potential_edges_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">output_temp_dir</span><span class="p">,</span> <span class="n">potential_edges_dir</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_cluster_assignments</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">output_temp_dir</span><span class="p">,</span> <span class="n">cluster_assignments</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_cluster_constraints</span> <span class="o">=</span> <span class="n">cluster_constraints</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_an_output_file</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">output_temp_dir</span><span class="p">,</span> <span class="n">an_output_file</span><span class="p">)</span>
+
+        <span class="c1"># Instantiate each step</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_process_config</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">write_schema_params</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">process_input_data</span> <span class="o">=</span> <span class="n">ProcessInputData</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">params</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">schema</span><span class="p">,</span>
+            <span class="n">input_data_batch_size</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">input_data_batch_size</span><span class="p">,</span>
+            <span class="n">output_file</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_all_names_file</span>
+        <span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">generate_must_links</span> <span class="o">=</span> <span class="n">GenerateMustLinks</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">params</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">schema</span><span class="p">,</span>
+            <span class="n">all_names_file</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_all_names_file</span><span class="p">,</span>
+            <span class="n">output_file</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_must_links</span>
+        <span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">block</span> <span class="o">=</span> <span class="n">Block</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">params</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">schema</span><span class="p">,</span>
+            <span class="n">all_names_file</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_all_names_file</span><span class="p">,</span>
+            <span class="n">must_links_file</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_must_links</span><span class="p">,</span>
+            <span class="n">og_blocking_index_file</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_og_blocking_index_file</span><span class="p">,</span>
+            <span class="n">output_file</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_candidate_pairs_file</span>
+        <span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">generate_data_rows</span> <span class="o">=</span> <span class="n">GenerateDataRows</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">params</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">schema</span><span class="p">,</span>
+            <span class="n">all_names_file</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_all_names_file</span><span class="p">,</span>
+            <span class="n">candidate_pairs_file</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_candidate_pairs_file</span><span class="p">,</span>
+            <span class="n">batch_size</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">data_row_batch_size</span><span class="p">,</span>
+            <span class="n">output_dir</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_data_rows_dir</span><span class="p">,</span>
+        <span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">fit_model</span> <span class="o">=</span> <span class="n">FitModel</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">params</span><span class="p">,</span>
+            <span class="n">all_names_file</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_all_names_file</span><span class="p">,</span>
+            <span class="n">data_rows_dir</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_data_rows_dir</span><span class="p">,</span>
+            <span class="n">trained_model_info_file</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_trained_model_info_file</span><span class="p">,</span>
+            <span class="n">selection_model_path</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_selection_model_path</span><span class="p">,</span>
+            <span class="n">match_model_path</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_match_model_path</span><span class="p">,</span>
+            <span class="n">flipped0_file</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_flipped0_file</span><span class="p">,</span>
+            <span class="n">output_file</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_model_info_file</span><span class="p">,</span>
+            <span class="n">output_dir</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_model_dir</span><span class="p">,</span>
+        <span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">predict</span> <span class="o">=</span> <span class="n">Predict</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">params</span><span class="p">,</span>
+            <span class="n">data_rows_dir</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_data_rows_dir</span><span class="p">,</span>
+            <span class="n">model_info_file</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_model_info_file</span><span class="p">,</span>
+            <span class="n">output_dir</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_potential_edges_dir</span><span class="p">,</span>
+        <span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">cluster</span> <span class="o">=</span> <span class="n">Cluster</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">params</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">schema</span><span class="p">,</span>
+            <span class="n">constraints_file</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_cluster_constraints</span><span class="p">,</span>
+            <span class="n">must_links_file</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_must_links</span><span class="p">,</span>
+            <span class="n">potential_edges_dir</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_potential_edges_dir</span><span class="p">,</span>
+            <span class="n">flipped0_edges_file</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_flipped0_file</span><span class="p">,</span>
+            <span class="n">all_names_file</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_all_names_file</span><span class="p">,</span>
+            <span class="n">output_file</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_cluster_assignments</span><span class="p">,</span>
+        <span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">generate_output</span> <span class="o">=</span> <span class="n">GenerateOutput</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">params</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">schema</span><span class="p">,</span>
+            <span class="n">all_names_file</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_all_names_file</span><span class="p">,</span>
+            <span class="n">cluster_assignments_file</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_cluster_assignments</span><span class="p">,</span>
+            <span class="n">an_output_file</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_an_output_file</span><span class="p">,</span>
+            <span class="n">output_dir</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">output_dir</span><span class="p">,</span>
+        <span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_process_config</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">write_to_file</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Process config file to create parameter and schema&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">params</span> <span class="o">=</span> <span class="n">Parameters</span><span class="o">.</span><span class="n">init</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">private_config</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">schema</span> <span class="o">=</span> <span class="n">Schema</span><span class="o">.</span><span class="n">init</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">params</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">params</span><span class="o">.</span><span class="n">validate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">schema</span><span class="o">.</span><span class="n">variables</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">write_to_file</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">schema</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">schema_path</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">params</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">params_path</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_process_input_data</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Process input data&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">process_input_data</span><span class="o">.</span><span class="n">output_exists</span><span class="p">:</span>
+            <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Output </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">process_input_data</span><span class="o">.</span><span class="n">output_file</span><span class="si">}</span><span class="s2"> exists! &quot;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">process_input_data</span><span class="o">.</span><span class="n">logger_init</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">logging_params</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">log_file</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">process_input_data</span><span class="o">.</span><span class="n">main__process_input_data</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">process_input_data</span><span class="o">.</span><span class="n">release_log_handlers</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">_generate_must_links</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Generate must links&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">generate_must_links</span><span class="o">.</span><span class="n">output_exists</span><span class="p">:</span>
+            <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Output </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">generate_must_links</span><span class="o">.</span><span class="n">output_file</span><span class="si">}</span><span class="s2"> exists!&quot;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">generate_must_links</span><span class="o">.</span><span class="n">logger_init</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">logging_params</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">log_file</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">generate_must_links</span><span class="o">.</span><span class="n">main__generate_must_links</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">generate_must_links</span><span class="o">.</span><span class="n">release_log_handlers</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">_block</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Block&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">block</span><span class="o">.</span><span class="n">output_exists</span><span class="p">:</span>
+            <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Output </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">block</span><span class="o">.</span><span class="n">output_file</span><span class="si">}</span><span class="s2"> exists!&quot;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">block</span><span class="o">.</span><span class="n">logger_init</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">logging_params</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">log_file</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">block</span><span class="o">.</span><span class="n">main__block</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">block</span><span class="o">.</span><span class="n">release_log_handlers</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">_generate_data_rows</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Generate data rows&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">generate_data_rows</span><span class="o">.</span><span class="n">output_exists</span><span class="p">:</span>
+            <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Output </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">generate_data_rows</span><span class="o">.</span><span class="n">output_dir</span><span class="si">}</span><span class="s2"> exists!&quot;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">generate_data_rows</span><span class="o">.</span><span class="n">logger_init</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">logging_params</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">log_file</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">generate_data_rows</span><span class="o">.</span><span class="n">main__generate_data_rows</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">generate_data_rows</span><span class="o">.</span><span class="n">release_log_handlers</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">_fit_model</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Fit model&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">fit_model</span><span class="o">.</span><span class="n">output_exists</span><span class="p">:</span>
+            <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Output </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">fit_model</span><span class="o">.</span><span class="n">output_dir</span><span class="si">}</span><span class="s2"> exists!&quot;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">fit_model</span><span class="o">.</span><span class="n">logger_init</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">logging_params</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">log_file</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">fit_model</span><span class="o">.</span><span class="n">main__fit_model</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">fit_model</span><span class="o">.</span><span class="n">release_log_handlers</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">_predict</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Predict&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">predict</span><span class="o">.</span><span class="n">output_exists</span><span class="p">:</span>
+            <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Output </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">predict</span><span class="o">.</span><span class="n">output_dir</span><span class="si">}</span><span class="s2"> exists!&quot;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">predict</span><span class="o">.</span><span class="n">logger_init</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">logging_params</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">log_file</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">predict</span><span class="o">.</span><span class="n">main__predict</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">predict</span><span class="o">.</span><span class="n">release_log_handlers</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">_cluster</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Cluster&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">cluster</span><span class="o">.</span><span class="n">output_exists</span><span class="p">:</span>
+            <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Output </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">cluster</span><span class="o">.</span><span class="n">output_file</span><span class="si">}</span><span class="s2"> exists!&quot;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">cluster</span><span class="o">.</span><span class="n">logger_init</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">logging_params</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">log_file</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">cluster</span><span class="o">.</span><span class="n">main__cluster</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">cluster</span><span class="o">.</span><span class="n">release_log_handlers</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">_generate_output</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Generate output&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">generate_output</span><span class="o">.</span><span class="n">output_exists</span><span class="p">:</span>
+            <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Output </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">generate_output</span><span class="o">.</span><span class="n">output_dir</span><span class="si">}</span><span class="s2"> exists!&quot;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">generate_output</span><span class="o">.</span><span class="n">logger_init</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">logging_params</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">log_file</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">generate_output</span><span class="o">.</span><span class="n">main__generate_output</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">generate_output</span><span class="o">.</span><span class="n">release_log_handlers</span><span class="p">()</span>
+
+<div class="viewcode-block" id="NameMatcher.run"><a class="viewcode-back" href="../../namematch.html#namematch.namematcher.NameMatcher.run">[docs]</a>    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_process_config</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_process_input_data</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_generate_must_links</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_block</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_generate_data_rows</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_fit_model</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_predict</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_cluster</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_generate_output</span><span class="p">()</span></div></div>
+
+</pre></div>
+
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>    
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'0.0.1',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/language_data.js"></script>
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+    <div class="footer" role="contentinfo">
+        <div class="container">
+            &#169; Copyright 2021, Melissa McNeill, Eddie Lin, Zubin Jelveh.
+        Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.1.1.
+        </div>
+    </div>  
+
+</body>
+</html>

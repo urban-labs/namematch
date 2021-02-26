@@ -1,0 +1,67 @@
+
+# setup
+required_variables : ['first_name', 'last_name', 'dob'] # plus any others used in blocking
+first_name_column : 'first_name'
+last_name_column : 'last_name'
+split_names : True
+
+exact_match_variables : ['first_name', 'last_name', 'dob']
+
+# data 
+auto_drop_logic : 
+  - 'first_name' : 'JOHN'
+    'last_name' : 'DOE'
+  - 'first_name' : 'JANE'
+    'last_name' : 'DOE'
+
+# blocking 
+blocking_scheme : 
+  'cosine_distance' :
+    'variables' : ['first_name', 'last_name']
+  'edit_distance' : 
+    'variable' : 'dob'
+  'absvalue_distance' : # serves as a backup second filter (e.g. if no dob)
+    'variable' : 'age'
+  'alpha' : 1.4  # relative weight of the second cosine variable relative to the first
+  'power' : 0.1  # controls the impact of name length in cosine distance
+blocking_thresholds : 
+  'common_name_max_penalty' : 0.1
+  'nodob_cosine_bar' :  0.26
+  'high_cosine_bar' : 0.3
+  'low_cosine_bar' : 0.4
+  'high_editdist_bar' : 1
+  'low_editdist_bar' : 2
+  'absvalue_bar' : 3
+index: 
+  'rebuild_main_index' : 'if_secondary_index_exceeds_limit'
+  'secondary_index_limit' : 500000
+nmslib : 
+  'M' : 100
+  'efC' : 1000
+  'post' : 0
+  'efS' : 750
+  'k' : 500
+
+# modeling
+use_uncovered_phats : False
+missingness_model : 'dob'
+max_match_train_n : 3000000
+max_selection_train_eval_n : 1000000
+weight_using_selection_model : False
+
+# phats
+default_threshold : 0.7
+optimize_threshold : True
+
+match_train_criteria : 
+  'data_rows' : 
+    'covered_pair' : 1
+
+initialize_from_ground_truth_1s : True # needed for edge priority
+
+# example
+# match_train_criteria : 
+#   'data_rows' : 
+#     'covered_pair' : 1
+#   'all_names' : 
+#     'race' : ['WHT','BLK']
