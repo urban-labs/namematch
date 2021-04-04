@@ -17,7 +17,7 @@ import pyarrow.parquet as pq
 from namematch.base import NamematchBase
 from namematch.data_structures.parameters import Parameters
 from namematch.data_structures.schema import Schema
-from namematch.utils.utils import setup_logging, equip_logger_id, log_runtime_and_memory, load_parquet_list, load_yaml
+from namematch.utils.utils import equip_logger_id, log_runtime_and_memory, load_parquet_list, load_yaml
 from namematch.default_cluster_constraints import get_columns_used, is_valid_edge, is_valid_cluster, apply_edge_priority
 
 
@@ -27,6 +27,8 @@ except:
     from line_profiler import LineProfiler
     profile = LineProfiler()
 
+
+logger = logging.getLogger()
 
 class ClusterConstraints(object):
 
@@ -92,12 +94,12 @@ class Cluster(NamematchBase):
         self,
         params,
         schema,
+        must_links_file,
+        potential_edges_dir,
+        flipped0_edges_file,
+        all_names_file,
+        output_file,
         constraints_file=None,
-        must_links_file='output_temp/must_links.csv',
-        potential_edges_dir='output_temp/potential_edges',
-        flipped0_edges_file='flipped0_potential_edges.csv',
-        all_names_file='output_temp/all_names.parquet',
-        output_file='output_temp/cluster_assignments.pkl',
         logger_id=None,
         *args,
         **kwargs
@@ -113,7 +115,7 @@ class Cluster(NamematchBase):
     @equip_logger_id
     @log_runtime_and_memory
     def main__cluster(self, **kw):
-        '''Read the record pairs with high probability of matching and connect them in a way 
+        '''Read the record pairs with high probability of matching and connect them in a way
         that doesn't violate any logic constraints to form clusters.
 
         Args:
@@ -206,18 +208,18 @@ class Cluster(NamematchBase):
                 eid_col=None):
         '''Check if two records would violate a unique id or existing id constraint.
 
-        Args: 
+        Args:
             record1 (pd.Series): one row of the all-names file (relevant columns only)
             record2 (pd.Series): one row of the all-names file (relevant columns only)
-            uid_cols (list): all-names column(s) with compare_type UniqueID 
+            uid_cols (list): all-names column(s) with compare_type UniqueID
             allow_clusters_w_multiple_unique_ids (bool): True if a cluster can have multiple uid values
-            leven_thresh (int): n character edits to allow between uids before they're considered different 
+            leven_thresh (int): n character edits to allow between uids before they're considered different
             eid_col (str): all-names column with compare_type ExistingID (None for non-incremental runs)
 
-        Returns: 
+        Returns:
             bool: False if an automated constraint is violated
         '''
-        
+
         # NOTE: isinstance(v, float) is a hacky way of checking if null here, since
         #       we force the input of these cols to be strings
 
@@ -237,7 +239,7 @@ class Cluster(NamematchBase):
         violations = 0
         attempts = 0
         for uid_col in uid_cols:
-            
+
             if ((not isinstance(record1[uid_col], float)) and \
                 (not isinstance(record2[uid_col], float))):
 
@@ -253,7 +255,7 @@ class Cluster(NamematchBase):
                         if uid_editdist > leven_thresh:
                             violations += 1
                             continue
-        
+
         if (attempts > 0) and  (violations == attempts):
             return False
 
@@ -268,14 +270,14 @@ class Cluster(NamematchBase):
                 eid_col=None):
         '''Check if a proposed cluster would violate a unique id or existing id constraint.
 
-        Args: 
+        Args:
             cluster (pd.DataFrame): all-names file (relevant columns only) records for the proposed cluster
-            uid_cols (list): all-names column(s) with compare_type UniqueID 
+            uid_cols (list): all-names column(s) with compare_type UniqueID
             allow_clusters_w_multiple_unique_ids (bool): True if a cluster can have multiple uid values
-            leven_thresh (int): n character edits to allow between uids before they're considered different 
+            leven_thresh (int): n character edits to allow between uids before they're considered different
             eid_col (str): all-names column with compare_type ExistingID (None for non-incremental runs)
 
-        Returns: 
+        Returns:
             bool: False if an automated constraint is violated
         '''
 
@@ -321,7 +323,7 @@ class Cluster(NamematchBase):
         '''Use must links (ground truth and/or a previous run) to create the
         starting clusters.
 
-        Args: 
+        Args:
             must_links_df (pd.DataFrame): record pairs that must be linked together no matter what
                 ===================   =======================================================
                 record_id_1           unique identifier for the first record in the pair
@@ -331,21 +333,21 @@ class Cluster(NamematchBase):
                 drop_from_nm_1        flag, 1 if the first record in the pair was not eligible for matching
                 drop_from_nm_2        flag, 1 if the second record in the pair was not eligible for matching
                 existing              flag, 1 if the pair is must-link because of ExistingID
-                ===================   =======================================================  
+                ===================   =======================================================
 
             an_df (pd.DataFrame): all-names file, with only the columns relevant for clustering
                 ========================     =======================================================
-                record_id                    unique record identifier 
+                record_id                    unique record identifier
                 <uid column(s)>              columns with compare_type UniqueID
                 <eid column(s)>              columns with compare_type ExistingID
                 <user-constraint column(s)>  (optional) columns mentioned in `get_columns_used()`
-                ========================     =======================================================   
+                ========================     =======================================================
 
             eid_col (str): all-names column with compare_type ExistingID, or None
 
-        Returns: 
+        Returns:
             dict: clusters maps a cluster id to a list of record ids
-            dict: cluster_assignments maps a record_id to a cluster_id 
+            dict: cluster_assignments maps a record_id to a cluster_id
             set: cluster ids that are already in use (only for incremental)
         '''
 
@@ -422,8 +424,8 @@ class Cluster(NamematchBase):
         Use all predictions file to make a list of edges that the constrained
         clustering algorithm should try to add.
 
-        Args: 
-            potential_edges_files (list): paths to output_temp's potential edges files 
+        Args:
+            potential_edges_files (list): paths to output_temp's potential edges files
             flipped0_edges_file (str): path to output_temp's flipped0-edges file
             gt_1s_df (pd.DataFrame): for incremental runs, subset of the must-link df that are "new" 1s
             cluster_logic (module): user-defined constraint functions
@@ -480,20 +482,20 @@ class Cluster(NamematchBase):
     def load_cluster_info(self, all_names_file, uid_cols, eid_col, cluster_logic, **kw):
         '''Read in the all_names information needed for cluster constraint checking.
 
-        Args: 
+        Args:
             all_names_file (str): path to output_temp's all-names file
             uid_cols (list): all-name columns with compare_type UniqueID
             eid_col (list): all-name columns with compare_type ExistingID
             cluster_logic (module): user-defined constraint functions
 
-        Returns: 
+        Returns:
             pd.DataFrame: all-names file, with only the columns relevant for clustering
                 ========================     =======================================================
-                record_id                    unique record identifier 
+                record_id                    unique record identifier
                 <uid column(s)>              columns with compare_type UniqueID
                 <eid column(s)>              columns with compare_type ExistingID
                 <user-constraint column(s)>  (optional) columns mentioned in `get_columns_used()`
-                ========================     =======================================================   
+                ========================     =======================================================
         '''
 
         # add things that are missing from get_columns_used
@@ -552,17 +554,17 @@ class Cluster(NamematchBase):
         '''For clusters by add potential edges to the cluster graph in order of importance, skipping those
         that cause violations.
 
-        Args: 
+        Args:
             clusters (dict): maps a cluster id to a list of record ids -- post initialization
             cluster_assignments (dict): maps a record_id to a cluster_id -- post initialization
             original_cluster_ids (set): set: cluster ids that are already in use (only for incremental)
             cluster_info (pd.DataFrame): all-names file, with only the columns relevant for clustering
                 ========================     =======================================================
-                record_id                    unique record identifier 
+                record_id                    unique record identifier
                 <uid column(s)>              columns with compare_type UniqueID
                 <eid column(s)>              columns with compare_type ExistingID
                 <user-constraint column(s)>  (optional) columns mentioned in `get_columns_used()`
-                ========================     =======================================================  
+                ========================     =======================================================
 
             potential_edges (list): each element is a dict version of a potential edge's record
             cluster_logic (module): user-defined constraint functions
@@ -657,59 +659,16 @@ class Cluster(NamematchBase):
 
         logger.info(f"Invalid edges: {invalid_edges}")
         logger.stat(f"n_invalid_edges: {invalid_edges}")
-        # log_stat("Invalid edges", "n_invalid_edges", invalid_edges)
         logger.info(f"Invalid clusters: {invalid_clusters}")
         logger.stat(f"n_invalid_clusters: {invalid_clusters}")
-        # log_stat("Invalid clusters", "n_invalid_clusters", invalid_clusters)
         logger.info(f"Merges: {merges}")
         logger.info(f"n_merges: {merges}")
-        # log_stat("Merges", "n_merges", merges)
         logger.info(f"Number of clusters total: {len(clusters)}")
         logger.stat(f"n_clusters: {len(clusters)}")
-        # log_stat("Number of clusters total", 'n_clusters', len(clusters))
         logger.info(f"Number of singleton clusters: {len([recs for c_id, recs in clusters.items() if (len(recs) == 1)])}")
         logger.stat(f"n_singleton_clusters: {len([recs for c_id, recs in clusters.items() if (len(recs) == 1)])}")
-        # log_stat("Number of singleton clusters", 'n_singleton_clusters',
-                # len([recs for c_id, recs in clusters.items() if (len(recs) == 1)]))
-
         # make cluster_id a string
         cluster_assignments = {k: str(v) for k, v in cluster_assignments.items()}
 
         return cluster_assignments
 
-
-if __name__ == '__main__':
-
-    parser = argparse.ArgumentParser()
-    parser.add_argument('--params_file')
-    parser.add_argument('--schema_file')
-    parser.add_argument('--constraints_file')
-    parser.add_argument('--must_links_file')
-    parser.add_argument('--potential_edges_dir')
-    parser.add_argument('--flipped0_edges_file')
-    parser.add_argument('--all_names_file')
-    parser.add_argument('--output_file')
-    parser.add_argument('--log_file')
-    parser.add_argument('--nm_code_dir')
-    args = parser.parse_args()
-
-    params = Parameters.load(args.params_file)
-    schema = Schema.load(args.schema_file)
-
-    logging_params = load_yaml(os.path.join(args.nm_code_dir, 'utils/logging_config.yaml'))
-
-    flipped0_edges_file = args.flipped0_edges_file
-    if args.flipped0_edges_file == "None":
-        flipped0_edges_file = None
-
-    cluster = Cluster(
-        params,
-        schema,
-        constraints_file=args.constraints_file,
-        must_links_file=args.must_links_file,
-        potential_edges_dir=args.potential_edges_dir,
-        flipped0_edges_file=flipped0_edges_file,
-        all_names_file=args.all_names_file,
-        output_file=args.output_file)
-    cluster.logger_init(logging_params, args.log_file)
-    cluster.main__cluster()

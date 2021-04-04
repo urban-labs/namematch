@@ -1,5 +1,4 @@
 import logging
-import yaml
 import os
 
 from typing import Union
@@ -31,11 +30,11 @@ class NameMatcher(object):
         private_config: dict=None,
         input_data_batch_size: int=50000,
         data_row_batch_size: int=500,
-        log_file: str=None,
+        log_file_name: str=None,
         logging_params_file: str=None,
         output_dir: str='output',
-        output_temp_dir: str='output_temp',
-        all_name_file: str='all_names.parquet',
+        output_temp_dir: str=None,
+        all_names_file: str='all_names.parquet',
         must_links: str='must_links.csv',
         og_blocking_index_file: str='None', # We should open an issue for this
         candidate_pairs_file: str='candidate_pairs.parquet',
@@ -64,7 +63,11 @@ class NameMatcher(object):
 
         # output
         self.output_dir = output_dir
-        self.output_temp_dir = output_temp_dir
+
+        if output_temp_dir:
+            self.output_temp_dir = output_temp_dir
+        else:
+            self.output_temp_dir = os.path.join(self.output_dir, 'details')
 
         if not os.path.exists(self.output_dir):
             os.makedirs(self.output_dir)
@@ -73,11 +76,10 @@ class NameMatcher(object):
             os.makedirs(self.output_temp_dir)
 
         # logging files
-        if log_file:
-            self.log_file = log_file
-        else:
-            self.log_file = os.path.join(self.output_temp_dir, 'name_match.log')
-            logging.info(f"The log file will be loacted at {self.log_file}.")
+        log_file_name = log_file_name if log_file_name else 'name_match.log'
+        self.log_file = os.path.join(self.output_temp_dir, log_file_name)
+
+        logging.info(f"The log file will be loacted at {self.log_file}.")
         self.logging_params_file = logging_params_file
         self.logging_params = load_logging_params(self.logging_params_file)
 
@@ -96,7 +98,7 @@ class NameMatcher(object):
             self.params = Parameters.load(self.params_path)
 
         # all the intermediates in output_temp
-        self._all_names_file = os.path.join(self.output_temp_dir, all_name_file)
+        self._all_names_file = os.path.join(self.output_temp_dir, all_names_file)
         self._must_links = os.path.join(self.output_temp_dir, must_links)
         self._og_blocking_index_file = os.path.join(self.output_temp_dir, og_blocking_index_file) if og_blocking_index_file != 'None' else og_blocking_index_file
         self._candidate_pairs_file = os.path.join(self.output_temp_dir, candidate_pairs_file)
@@ -116,22 +118,22 @@ class NameMatcher(object):
         self._process_config(self.write_schema_params)
 
         self.process_input_data = ProcessInputData(
-            self.params,
-            self.schema,
+            params=self.params,
+            schema=self.schema,
             input_data_batch_size=self.input_data_batch_size,
             output_file=self._all_names_file
         )
 
         self.generate_must_links = GenerateMustLinks(
-            self.params,
-            self.schema,
+            params=self.params,
+            schema=self.schema,
             all_names_file=self._all_names_file,
             output_file=self._must_links
         )
 
         self.block = Block(
-            self.params,
-            self.schema,
+            params=self.params,
+            schema=self.schema,
             all_names_file=self._all_names_file,
             must_links_file=self._must_links,
             og_blocking_index_file=self._og_blocking_index_file,
@@ -139,8 +141,8 @@ class NameMatcher(object):
         )
 
         self.generate_data_rows = GenerateDataRows(
-            self.params,
-            self.schema,
+            params=self.params,
+            schema=self.schema,
             all_names_file=self._all_names_file,
             candidate_pairs_file=self._candidate_pairs_file,
             batch_size=self.data_row_batch_size,
@@ -148,7 +150,7 @@ class NameMatcher(object):
         )
 
         self.fit_model = FitModel(
-            self.params,
+            params=self.params,
             all_names_file=self._all_names_file,
             data_rows_dir=self._data_rows_dir,
             trained_model_info_file=self._trained_model_info_file,
@@ -160,15 +162,15 @@ class NameMatcher(object):
         )
 
         self.predict = Predict(
-            self.params,
+            params=self.params,
             data_rows_dir=self._data_rows_dir,
             model_info_file=self._model_info_file,
             output_dir=self._potential_edges_dir,
         )
 
         self.cluster = Cluster(
-            self.params,
-            self.schema,
+            params=self.params,
+            schema=self.schema,
             constraints_file=self._cluster_constraints,
             must_links_file=self._must_links,
             potential_edges_dir=self._potential_edges_dir,
@@ -178,8 +180,8 @@ class NameMatcher(object):
         )
 
         self.generate_output = GenerateOutput(
-            self.params,
-            self.schema,
+            params=self.params,
+            schema=self.schema,
             all_names_file=self._all_names_file,
             cluster_assignments_file=self._cluster_assignments,
             an_output_file=self._an_output_file,
@@ -201,7 +203,7 @@ class NameMatcher(object):
         if self.process_input_data.output_exists:
             logging.info(f"Output {self.process_input_data.output_file} exists! ")
         else:
-            self.process_input_data.logger_init(self.logging_params, self.log_file)
+            self.process_input_data.logger_init(self.logging_params, self.log_file, self.output_temp_dir)
             self.process_input_data.main__process_input_data()
             self.process_input_data.release_log_handlers()
 
@@ -210,7 +212,7 @@ class NameMatcher(object):
         if self.generate_must_links.output_exists:
             logging.info(f"Output {self.generate_must_links.output_file} exists!")
         else:
-            self.generate_must_links.logger_init(self.logging_params, self.log_file)
+            self.generate_must_links.logger_init(self.logging_params, self.log_file, self.output_temp_dir)
             self.generate_must_links.main__generate_must_links()
             self.generate_must_links.release_log_handlers()
 
@@ -219,7 +221,7 @@ class NameMatcher(object):
         if self.block.output_exists:
             logging.info(f"Output {self.block.output_file} exists!")
         else:
-            self.block.logger_init(self.logging_params, self.log_file)
+            self.block.logger_init(self.logging_params, self.log_file, self.output_temp_dir)
             self.block.main__block()
             self.block.release_log_handlers()
 
@@ -228,7 +230,7 @@ class NameMatcher(object):
         if self.generate_data_rows.output_exists:
             logging.info(f"Output {self.generate_data_rows.output_dir} exists!")
         else:
-            self.generate_data_rows.logger_init(self.logging_params, self.log_file)
+            self.generate_data_rows.logger_init(self.logging_params, self.log_file, self.output_temp_dir)
             self.generate_data_rows.main__generate_data_rows()
             self.generate_data_rows.release_log_handlers()
 
@@ -237,7 +239,7 @@ class NameMatcher(object):
         if self.fit_model.output_exists:
             logging.info(f"Output {self.fit_model.output_dir} exists!")
         else:
-            self.fit_model.logger_init(self.logging_params, self.log_file)
+            self.fit_model.logger_init(self.logging_params, self.log_file, self.output_temp_dir)
             self.fit_model.main__fit_model()
             self.fit_model.release_log_handlers()
 
@@ -246,7 +248,7 @@ class NameMatcher(object):
         if self.predict.output_exists:
             logging.info(f"Output {self.predict.output_dir} exists!")
         else:
-            self.predict.logger_init(self.logging_params, self.log_file)
+            self.predict.logger_init(self.logging_params, self.log_file, self.output_temp_dir)
             self.predict.main__predict()
             self.predict.release_log_handlers()
 
@@ -255,7 +257,7 @@ class NameMatcher(object):
         if self.cluster.output_exists:
             logging.info(f"Output {self.cluster.output_file} exists!")
         else:
-            self.cluster.logger_init(self.logging_params, self.log_file)
+            self.cluster.logger_init(self.logging_params, self.log_file, self.output_temp_dir)
             self.cluster.main__cluster()
             self.cluster.release_log_handlers()
 
@@ -264,12 +266,12 @@ class NameMatcher(object):
         if self.generate_output.output_exists:
             logging.info(f"Output {self.generate_output.output_dir} exists!")
         else:
-            self.generate_output.logger_init(self.logging_params, self.log_file)
+            self.generate_output.logger_init(self.logging_params, self.log_file, self.output_temp_dir)
             self.generate_output.main__generate_output()
             self.generate_output.release_log_handlers()
 
-    def run(self):
-        self._process_config()
+    def run(self, write_params_schema_file=True):
+        self._process_config(write_params_schema_file)
         self._process_input_data()
         self._generate_must_links()
         self._block()

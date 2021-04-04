@@ -20,17 +20,22 @@ class NamematchBase(ABC):
         logger(object): logging.logger object
 
     """
-    def __init__(self, params: Parameters, schema: Schema, output_file: str=None, logger_id: str=None):
+    def __init__(
+        self,
+        params: Parameters,
+        schema: Schema,
+        output_file: str=None,
+        logger_id: str=None,
+    ):
 
         self.params = params
         self.schema = schema
-
         self.logger_id = logger_id
         self.output_file = output_file
         self.logger = None
 
-    def logger_init(self, logging_params, log_file):
-        setup_logging(logging_params, log_file)
+    def logger_init(self, logging_params, log_file, output_temp_dir):
+        setup_logging(logging_params, log_file, output_temp_dir)
         logging_params['filters']['stat_filter']['()'] = 'StatLogFilter'
         self.logger = logging.getLogger()
 

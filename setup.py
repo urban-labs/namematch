@@ -27,8 +27,11 @@ setup(
     url='https://urbangitlab.uchicago.edu/namematch/name_match',
     packages=find_packages(),
     include_package_data=True,
-    install_requires=get_requirements(),
+    install_requires=get_requirements('requirement/main.txt'),
     package_data={'': ['utils/*.yaml']},
+    entry_points={
+        'console_scripts': [
+            'namematch = namematch.cli:execute']},
     license='University of Chicago Crime Lab',
     keywords='record linkage',
     classifiers=[
@@ -38,5 +41,8 @@ setup(
         'Programming Language :: Python :: 3',
         'Programming Language :: Python :: 3.7',
     ],
+    python_require='>=3.6',
+    test_suite='tests',
+    tests_require=get_requirements('requirement/dev.txt')
 )
 

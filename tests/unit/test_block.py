@@ -1,67 +1,95 @@
 import pandas as pd
 import numpy as np
 import pickle
-import unittest
+import pytest
 
 from collections import Counter
-from unittest.mock import Mock
+from unittest.mock import patch
 
-from namematch.block import *
-from namematch.data_structures.schema import *
-from namematch.data_structures.data_file import *
-from namematch.data_structures.parameters import *
-from namematch.data_structures.variable import *
+from namematch.block import (
+    Block,
+    get_common_name_penalties,
+    read_an,
+    get_second_index_nn_strings,
+    apply_blocking_filter,
+    get_actual_candidates,
+    get_near_neighbors_df
+)
 
-logging_config = yaml.load(open('tests/logging_config.yaml', 'r'), Loader=yaml.FullLoader)
-setup_logging(logging_config, None)
-logger = logging.getLogger()
-logging.disable(logging.CRITICAL)
+from namematch.data_structures.parameters import Parameters
 
 
-class TestBlocking(unittest.TestCase):
+def test_get_params_and_schema(params_and_schema):
+    params, schema = params_and_schema
 
-    PATH = "tests/unit/data/"
+    print(params)
+    print(schema)
+    assert params.verbose == 50000
 
-    def test_get_blocking_columns(self):
+def test_get_blocking_columns():
 
-        #get_blocking_columns(blocking_scheme)
-        pass
+    #get_blocking_columns(blocking_scheme)
+    pass
 
-    def test_read_an(self):
 
-        #read_an(an_file, nn_cols, ed_col, absval_col)
-        pass
+def test_read_an():
 
-    def test_get_nn_string_counts(self):
+    #read_an(an_file, nn_cols, ed_col, absval_col)
+    pass
 
-        #get_nn_string_counts(an)
-        pass
 
-    def test_get_common_name_penalties(self):
+def test_get_nn_string_counts():
 
-        # load fake data
-        last_names = pd.read_csv(self.PATH + "an.csv").last_name
-        max_penalty = 0.4
-        bins = 3
+    #get_nn_string_counts(an)
+    pass
 
-        # get the threshholds
-        common = get_common_name_penalties(last_names, max_penalty, bins)
 
-        # test
-        self.assertEqual(last_names.nunique(), len(common))
-        self.assertEqual(bins, len(Counter(common.values())))
-        for k in common.keys():
-            self.assertTrue(common[k] <= max_penalty)
+def test_get_common_name_penalties(an_df):
 
-    def test_split_last_names(self):
+    # load fake data
+    last_names = an_df.last_name
+    max_penalty = 0.4
+    bins = 3
 
-        #split_last_names(df, last_name_column, blocking_scheme)
-        pass
+    # get the threshholds
+    common = get_common_name_penalties(last_names, max_penalty, bins)
 
-    def test_convert_all_names_to_blockstring_info(self):
+    # test
+    assert last_names.nunique() == len(common)
+    assert bins == len(Counter(common.values()))
+    for k in common.keys():
+        assert common[k] <= max_penalty
 
-        an = read_an(self.PATH + "an.parquet", ['first_name', 'last_name'], 'dob', None)
 
+def test_read_all_names_parquet(all_names_parquet_file):
+    an = read_an(all_names_parquet_file, ['first_name', 'last_name'], 'dob', None)
+    assert an.shape == (23, 9)
+
+
+def test_split_last_names(params_and_schema, all_names_parquet_file, logger_for_testing):
+    params, schema = params_and_schema
+    an = read_an(all_names_parquet_file, ['first_name', 'last_name'], 'dob', None)
+
+    with patch('namematch.process_input_data.logger', logger_for_testing) as mock_debug:
+        block = Block(
+            params,
+            schema,
+            all_names_file=all_names_parquet_file,
+            must_links_file=None,
+            og_blocking_index_file=None,
+            output_file=None,
+        )
+        an_split_ln = block.split_last_names(an, 'last_name', params.blocking_scheme)
+
+        assert "orig_last_name" in an_split_ln
+        assert "orig_record" in an_split_ln
+
+
+def test_convert_all_names_to_blockstring_info(params_and_schema, all_names_parquet_file, logger_for_testing):
+    _, schema = params_and_schema
+    an = read_an(all_names_parquet_file, ['first_name', 'last_name'], 'dob', None)
+
+    with patch('namematch.block.logger', logger_for_testing) as mock_debug:
         params = Parameters({
                 "last_name_column": 'last_name',
                 "blocking_scheme": {
@@ -71,219 +99,244 @@ class TestBlocking(unittest.TestCase):
                 'blocking_thresholds': {'common_name_max_penalty' : .1},
                 'split_names' : True})
 
-        nn_string_info, nn_string_expanded_df = convert_all_names_to_blockstring_info(an, None, params)
+        block = Block(
+            params,
+            schema,
+            all_names_file=all_names_parquet_file,
+            must_links_file=None,
+            og_blocking_index_file=None,
+            output_file=None,
+        )
 
-        self.assertEqual(nn_string_info[nn_string_info.nn_string == 'BEN::SMITH'].n_new.iloc[0], 2)
-        self.assertEqual(len(nn_string_info), 19)
-        self.assertEqual(len(nn_string_expanded_df), 21)
+        nn_string_info, nn_string_expanded_df = block.convert_all_names_to_blockstring_info(an, None, params)
 
-    def test_get_all_shingles(self):
+        assert nn_string_info[nn_string_info.nn_string == 'BEN::SMITH'].n_new.iloc[0] == 2
+        assert len(nn_string_info) == 19
+        assert len(nn_string_expanded_df) == 21
 
-        #get_all_shingles()
-        pass
 
-    def test_generate_shingles_matrix(self):
+def test_get_all_shingles():
+
+    #get_all_shingles()
+    pass
+
+
+def test_generate_shingles_matrix(params_and_schema, all_names_parquet_file, logger_for_testing):
+    params, schema = params_and_schema
+
+    with patch('namematch.block.logger', logger_for_testing) as mock_debug:
+        block = Block(
+            params,
+            schema,
+            all_names_file=all_names_parquet_file,
+            must_links_file=None,
+            og_blocking_index_file=None,
+            output_file=None,
+        )
 
         nn_strings = ['JOHN::SMITH', 'TAYLOR::JOHNSON', 'JAMES::JOHNS']
         alpha = 0.5
         power = 1
         matrix_type = "test"
         verbose = False
-        m = generate_shingles_matrix(nn_strings, alpha, power, matrix_type, verbose)
+        m = block.generate_shingles_matrix(nn_strings, alpha, power, matrix_type, verbose)
 
         # sum of m's rows should equal 1 + alpha (but also floating point error)
         summed = m.sum()
-        self.assertAlmostEqual(summed, (1 + alpha) * len(nn_strings))
+        assert pytest.approx(summed) == (1 + alpha) * len(nn_strings)
 
-    def test_prep_index(self):
 
-        #prep_index()
-        pass
+def test_prep_index():
 
-    def test_load_main_index_nn_strings(self):
+    #prep_index()
+    pass
 
-        #load_main_index_nn_strings(og_blocking_index_file)
-        pass
 
-    def test_load_main_index(self):
+def test_load_main_index_nn_strings():
 
-        #load_main_index(index_file)
-        pass
+    #load_main_index_nn_strings(og_blocking_index_file)
+    pass
 
-    def test_generate_index(self):
 
-        #generate_index(nn_strings, num_threads, M, efC, post, alpha, power, print_progress=True)
-        pass
+def test_load_main_index():
 
-    def test_get_second_index_nn_strings(self):
+    #load_main_index(index_file)
+    pass
 
-        all_strings = ["a", "b", "c"]
-        main_strings = ["c"]
-        expected_strings = ["a", "b"]
-        strings = get_second_index_nn_strings(all_strings, main_strings)
-        self.assertEqual(sorted(expected_strings), sorted(strings))
 
-    def test_save_main_index(self):
+def test_generate_index():
 
-        #save_main_index(main_index, main_index_nn_strings, main_index_file)
-        pass
+    #generate_index(nn_strings, num_threads, M, efC, post, alpha, power, print_progress=True)
+    pass
 
-    def test_get_indices(self):
 
-        #get_indices(params, all_nn_strings, og_blocking_index_file)
-        pass
+def test_get_second_index_nn_strings():
 
-    def test_apply_blocking_filter(self):
+    all_strings = ["a", "b", "c"]
+    main_strings = ["c"]
+    expected_strings = ["a", "b"]
+    strings = get_second_index_nn_strings(all_strings, main_strings)
+    assert sorted(expected_strings) == sorted(strings)
 
-        # load fake data
-        df_exact = pd.read_csv(self.PATH + "apply_blocking_exact.csv")
-        df_notexact = pd.read_csv(self.PATH + "apply_blocking_notexact.csv")
-        full_info = pd.read_csv(self.PATH + "nn_string_full_df.csv").set_index("nn_string")
-        ed_info = pd.read_csv(self.PATH + "nn_string_ed_string_df.csv").set_index("nn_string")
-        expanded_info = full_info.join(ed_info) # TEMP
-        with open(self.PATH + "thresholds.json") as j:
-            thresholds = json.load(j)
 
-        # exact matches
-        out = apply_blocking_filter(df_exact, thresholds, expanded_info, nns_match=True)
-        expected_names = ['blockstring_1', 'blockstring_2', 'cos_dist', 'edit_dist', 'covered_pair']
-        self.assertEqual(expected_names, list(out))
-        self.assertEqual(out.shape[0], out.covered_pair.sum())
+def test_save_main_index():
 
-        # not exact matches-- could be tested more exhaustively
-        out = apply_blocking_filter(df_notexact, thresholds, expanded_info, nns_match=False)
-        self.assertEqual(expected_names, list(out))
-        self.assertTrue(df_notexact.shape[0] >= out.shape[0])
+    #save_main_index(main_index, main_index_nn_strings, main_index_file)
+    pass
 
-    def test_disallow_switched_pairs(self):
 
-        #disallow_switched_pairs(df, incremental, nn_strings_to_query)
-        pass
+def test_get_indices():
 
-    def test_get_actual_candidates(self):
+    #get_indices(params, all_nn_strings, og_blocking_index_file)
+    pass
 
-        # load fake data
-        near_neighbors_df = pd.read_csv(self.PATH + "near_neighbors_df.csv")
-        nn_string_full_df = pd.read_csv(self.PATH + "nn_string_full_df.csv").set_index("nn_string")
-        nn_string_ed_string_df = pd.read_csv(self.PATH + "nn_string_ed_string_df.csv").set_index("nn_string")
-        nn_strings_to_query = pd.read_csv(self.PATH + "nn_string_info.csv").nn_string.tolist()
-        expanded_info = nn_string_full_df.join(nn_string_ed_string_df) # TEMP
-        with open(self.PATH + "thresholds.json") as j:
-            thresholds = json.load(j)
-        start_ix_worker = 0
-        end_ix_worker = near_neighbors_df.shape[0]
-        incremental = False
 
-        # get pairs
-        cand_pairs = get_actual_candidates(
-            near_neighbors_df.iloc[start_ix_worker : end_ix_worker],
-            expanded_info,
-            nn_strings_to_query,
-            thresholds,
-            incremental)
+def test_apply_blocking_filter_exact(blocking_exact_df, nn_string_full_df, nn_string_ed_string_df, thresholds_dict):
 
-        # test
-        self.assertTrue(cand_pairs.shape[0] <= near_neighbors_df.shape[0])
+    expanded_info = nn_string_full_df.join(nn_string_ed_string_df) # TEMP
+    # exact matches
+    out = apply_blocking_filter(blocking_exact_df, thresholds_dict, expanded_info, nns_match=True)
+    expected_names = ['blockstring_1', 'blockstring_2', 'cos_dist', 'edit_dist', 'covered_pair']
+    assert expected_names == list(out)
+    assert out.shape[0] == out.covered_pair.sum()
 
-    def test_get_near_neighbors_df(self):
 
-        # load fake data
+def test_apply_blocking_filter_not_exact(blocking_notexact_df, nn_string_full_df, nn_string_ed_string_df, thresholds_dict):
+    # not exact matches-- could be tested more exhaustively
+    expanded_info = nn_string_full_df.join(nn_string_ed_string_df)
+    expected_names = ['blockstring_1', 'blockstring_2', 'cos_dist', 'edit_dist', 'covered_pair']
+    out = apply_blocking_filter(blocking_notexact_df, thresholds_dict, expanded_info, nns_match=False)
+    assert expected_names == list(out)
+    assert blocking_notexact_df.shape[0] >= out.shape[0]
 
-        # changing this test involves re-calculating the near_neighbors_list using
-        # functions like generate_indices and get_all_shingles and knnQueryBatch
-        with open(self.PATH + "near_neighbors_list.pkl", "rb") as fp:
-            near_neighbors_list = pickle.load(fp)
-            k = len(near_neighbors_list[0][0])
 
-        nn_string_info = pd.DataFrame({
-            "nn_string": ["MALI::H", "ZUB::JELVEH", "J::SMITS", "JOHN::SMITH", "JON::SMITH", "ABBY::LI", "ZABBIE::LI"],
-            "commonness_penalty": [0, 0, 0, 0, 0, 0, 0],
-            "n_new": [3, 6, 1, 2, 6, 8, 9]
-        })
+def test_disallow_switched_pairs():
 
-        nn_strings_this_index = nn_string_info.nn_string.tolist()
+    #disallow_switched_pairs(df, incremental, nn_strings_to_query)
+    pass
 
-        start_ix_batch = 3
-        end_ix_batch = 8
-        nn_strings_queried_this_batch = nn_strings_this_index[start_ix_batch:end_ix_batch]
 
-        # get the df
-        near_neighbors_df = get_near_neighbors_df(
-            near_neighbors_list,
-            nn_string_info,
-            nn_strings_this_index,
-            nn_strings_queried_this_batch)
+def test_get_actual_candidates(near_neighbors_df, nn_string_full_df, nn_string_ed_string_df, nn_strings_to_query, thresholds_dict):
+    expanded_info = nn_string_full_df.join(nn_string_ed_string_df) # TEMP
+    start_ix_worker = 0
+    end_ix_worker = near_neighbors_df.shape[0]
+    incremental = False
 
-        # test
-        self.assertEqual(k * len(nn_strings_queried_this_batch), near_neighbors_df.shape[0])
-        js = {"JOHN::SMITH", "JON::SMITH"}
-        azl = {"ABBY::LI", "ZABBIE::LI"}
-        for (i, row) in near_neighbors_df.iterrows():
-            if (row.nn_string_1 == row.nn_string_2):
-                self.assertAlmostEqual(0, row.cos_dist, places=5)
-            else:
-                if (row.nn_string_1 in js):
-                    self.assertTrue(row.nn_string_2 in js)
-                elif (row.nn_string_2 in azl):
-                    self.assertTrue(row.nn_string_2 in azl)
+    # get pairs
+    cand_pairs = get_actual_candidates(
+        near_neighbors_df.iloc[start_ix_worker : end_ix_worker],
+        expanded_info,
+        nn_strings_to_query,
+        thresholds_dict,
+        incremental)
 
-    def test_get_exact_match_candidate_pairs(self):
+    # test
+    assert cand_pairs.shape[0] <= near_neighbors_df.shape[0]
 
-        #get_exact_match_candidate_pairs(
-        #    nn_string_info_multi, nn_string_expanded_df, blocking_thresholds)
-        pass
 
-    def test_get_query_strings(self):
+def test_get_near_neighbors_df():
+    # changing this test involves re-calculating the near_neighbors_list using
+    # functions like generate_indices and get_all_shingles and knnQueryBatch
+    near_neighbors_list = [
+        (np.array([3, 4]), np.array([0., 0.18983728])),
+        (np.array([4, 3]), np.array([1.1920929e-07, 1.8983728e-01])),
+        (np.array([5, 6]), np.array([5.9604645e-08, 2.2517276e-01])),
+        (np.array([6, 5]), np.array([0., 0.22517282])),
+    ]
 
-        #get_query_strings(nn_string_info, blocking_scheme)
-        pass
+    k = len(near_neighbors_list[0][0])
 
-    def test_write_some_cps(self):
+    nn_string_info = pd.DataFrame({
+        "nn_string": ["MALI::H", "ZUB::JELVEH", "J::SMITS", "JOHN::SMITH", "JON::SMITH", "ABBY::LI", "ZABBIE::LI"],
+        "commonness_penalty": [0, 0, 0, 0, 0, 0, 0],
+        "n_new": [3, 6, 1, 2, 6, 8, 9]
+    })
 
-        #write_some_cps(cand_pairs, output_file, header=False)
-        pass
+    nn_strings_this_index = nn_string_info.nn_string.tolist()
 
-    def test_generate_candidate_pairs(self):
+    start_ix_batch = 3
+    end_ix_batch = 8
+    nn_strings_queried_this_batch = nn_strings_this_index[start_ix_batch:end_ix_batch]
 
-        # generate_candidate_pairs(
-        #     params, nn_strings_to_query, shingles_to_query,
-        #     nn_string_info, nn_string_expanded_df,
-        #     main_index, main_index_nn_strings,
-        #     second_index, second_index_nn_strings,
-        #     output_file)
-        pass
+    # get the df
+    near_neighbors_df = get_near_neighbors_df(
+        near_neighbors_list,
+        nn_string_info,
+        nn_strings_this_index,
+        nn_strings_queried_this_batch)
 
-    def test_generate_true_pairs(self):
+    # test
+    assert k * len(nn_strings_queried_this_batch) == near_neighbors_df.shape[0]
 
-        #generate_true_pairs(must_links_df)
-        pass
+    js = {"JOHN::SMITH", "JON::SMITH"}
+    azl = {"ABBY::LI", "ZABBIE::LI"}
+    for (i, row) in near_neighbors_df.iterrows():
+        if (row.nn_string_1 == row.nn_string_2):
+            assert 0 == pytest.approx(row.cos_dist, abs=1e-5)
+        else:
+            if (row.nn_string_1 in js):
+                assert row.nn_string_2 in js
+            elif (row.nn_string_2 in azl):
+                assert row.nn_string_2 in azl
 
-    def test_compute_cosine_sim(self):
 
-        #compute_cosine_sim(blockstrings_in_pairs, pairs_df, shingles_matrix)
-        pass
+def test_get_exact_match_candidate_pairs():
 
-    def test_evaluate_blocking(self):
+    #get_exact_match_candidate_pairs(
+    #    nn_string_info_multi, nn_string_expanded_df, blocking_thresholds)
+    pass
 
-        #evaluate_blocking(cp_df, tp_df, blocking_scheme)
-        pass
+def test_get_query_strings():
 
-    def test_add_uncovered_pairs(self):
+    #get_query_strings(nn_string_info, blocking_scheme)
+    pass
 
-        #add_uncovered_pairs(candidate_pairs_df, uncovered_pairs_df)
-        pass
+def test_write_some_cps():
 
-    def test_pandas_default_min(self):
+    #write_some_cps(cand_pairs, output_file, header=False)
+    pass
 
-        # point is to test that min() default skipna=True doesn't change
-        # for some reason, explicitely passing skinpna=True makes
-        # the function a lot slower
+def test_generate_candidate_pairs():
 
-        df = pd.DataFrame(data={
-            'a':[1, 1, 2, 3, 4],
-            'b':[np.NaN, 3, 1, 5, np.NaN]
-        })
-        df = df.groupby('a').b.min()
+    # generate_candidate_pairs(
+    #     params, nn_strings_to_query, shingles_to_query,
+    #     nn_string_info, nn_string_expanded_df,
+    #     main_index, main_index_nn_strings,
+    #     second_index, second_index_nn_strings,
+    #     output_file)
+    pass
 
-        self.assertEqual(df.isnull().sum(), 1)
+def test_generate_true_pairs():
+
+    #generate_true_pairs(must_links_df)
+    pass
+
+def test_compute_cosine_sim():
+
+    #compute_cosine_sim(blockstrings_in_pairs, pairs_df, shingles_matrix)
+    pass
+
+def test_evaluate_blocking():
+
+    #evaluate_blocking(cp_df, tp_df, blocking_scheme)
+    pass
+
+def test_add_uncovered_pairs():
+
+    #add_uncovered_pairs(candidate_pairs_df, uncovered_pairs_df)
+    pass
+
+def test_pandas_default_min():
+
+    # point is to test that min() default skipna=True doesn't change
+    # for some reason, explicitely passing skinpna=True makes
+    # the function a lot slower
+
+    df = pd.DataFrame(data={
+        'a':[1, 1, 2, 3, 4],
+        'b':[np.NaN, 3, 1, 5, np.NaN]
+    })
+    df = df.groupby('a').b.min()
+
+    assert df.isnull().sum(), 1
 

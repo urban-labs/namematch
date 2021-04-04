@@ -301,12 +301,12 @@ def load_model_data(dr_file_list, an_train_eligible_dict, model_info, params, mo
 
     temp_dr = load_parquet_list(dr_file_list, cols=['dr_id', 'labeled_data'])
     n_data_rows = len(temp_dr)
-    log_stat("Number of data rows", 'n_data_rows', n_data_rows)
-    prob_match_train = temp_dr.labeled_data.mean()
-    log_stat("Share of match-train-eligible datarows", 'prob_match_train', prob_match_train)
-    del temp_dr
-
+    logger.info(f"Number of data rows: {n_data_rows}")
     logger.stat(f"n_data_rows: {n_data_rows}")
+    prob_match_train = temp_dr.labeled_data.mean()
+    logger.info("Share of match-train-eligible datarows: {prob_match_train}")
+    logger.stat(f"prob_match_train: {prob_match_train}")
+    del temp_dr
 
     if model_type == 'selection':
         sample = params.max_selection_train_eval_n / n_data_rows
@@ -325,7 +325,8 @@ def load_model_data(dr_file_list, an_train_eligible_dict, model_info, params, mo
 
     train_eval_df = load_parquet_list(
             dr_file_list,
-            conditions_dict=conditions_dict)
+            conditions_dict=conditions_dict,
+            sample=sample)
 
     # create match_train_eligible flag
     train_eval_df['match_train_eligible'] = \
@@ -343,7 +344,7 @@ def load_model_data(dr_file_list, an_train_eligible_dict, model_info, params, mo
     else: # need train/eval split
 
         pct_train = params.pct_train
-        if pct_train * len(train_eval_df) > params.max_match_train_n:
+        if (model_type == 'match') and (pct_train * len(train_eval_df) > params.max_match_train_n):
             pct_train = params.max_match_train_n / len(train_eval_df)
 
         train_eval_df['train'] = [random.random() <= pct_train
@@ -423,14 +424,14 @@ class FitModel(NamematchBase):
     def __init__(
         self,
         params,
-        all_names_file='output_temp/all_names.parquet',
-        data_rows_dir='output_temp/data_rows',
+        all_names_file,
+        data_rows_dir,
+        output_file,
+        output_dir,
         trained_model_info_file='None',
         selection_model_path='basic_selection_model.pkl',
         match_model_path='basic_match_model.pkl',
         flipped0_file='flipped0_potential_edges.csv',
-        output_file='output_temp/model/model.yaml',
-        output_dir='output_temp/model',
         logger_id=None,
         *args,
         **kwargs
@@ -703,31 +704,4 @@ class FitModel(NamematchBase):
                     fscore_beta,
                     logger_id
                     )
-
-
-if __name__ == '__main__':
-
-    parser = argparse.ArgumentParser()
-    parser.add_argument('--params_file')
-    parser.add_argument('--all_names_file')
-    parser.add_argument('--data_rows_dir')
-    parser.add_argument('--trained_model_info_file')
-    parser.add_argument('--output_file')
-    parser.add_argument('--log_file')
-    parser.add_argument('--nm_code_dir')
-    args = parser.parse_args()
-
-    params = Parameters.load(args.params_file)
-
-    logging_params = load_yaml(os.path.join(args.nm_code_dir, 'utils/logging_config.yaml'))
-
-    fit_model = FitModel(
-        params=params,
-        all_names_file=args.all_names_file,
-        data_rows_dir=args.data_rows_dir,
-        trained_model_info_file=args.trained_model_info_file,
-        output_file=args.output_file
-    )
-    fit_model.logger_init(logging_params, args.log_file)
-    fit_model.main__fit_model()
 

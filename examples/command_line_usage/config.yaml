@@ -18,7 +18,7 @@ data_files:
 
 variables: 
 
-  - name : 'first_name'
+- name : 'first_name'
   compare_type : 'String'
   potential_candidates_col : 'first_name'
   past_candidates_col : 'first_name'

@@ -30,10 +30,10 @@ class Predict(NamematchBase):
     def __init__(
         self,
         params,
-        data_rows_dir='output_temp/data_rows',
-        model_info_file='output_temp/model/model.yaml',
+        data_rows_dir,
+        model_info_file,
+        output_dir,
         output_file=None,
-        output_dir='output_temp/potential_edges',
         logger_id=None,
         *args,
         **kwargs
@@ -49,7 +49,7 @@ class Predict(NamematchBase):
     @log_runtime_and_memory
     def main__predict(self, **kw):
         '''Read in data-rows and predict (in parallel) for each unlabeled pair. Output
-        the pairs above the threshold. 
+        the pairs above the threshold.
 
         Args:
             params (Parameters object): contains parameter values
@@ -148,7 +148,7 @@ class Predict(NamematchBase):
     def get_potential_edges_in_parallel(self, dr_file_list, match_models, model_info, output_dir, params):
         '''Dispatch the worker threads that will predict for unlabeled pairs in paralle.
 
-        Args: 
+        Args:
             dr_file_list (list): paths of output_temp's data-rows files
             match_models (dict): maps model name (e.g. basic or no-dob) to a fit match model object
             model_info (dict): dict with information about how to fit the model
@@ -185,9 +185,9 @@ class Predict(NamematchBase):
 
     @classmethod
     def predict(cls, models, df, model_type, oob=False, all_cols=False, all_models=True):
-        '''Use the trainined models to predict for pairs of records. 
+        '''Use the trainined models to predict for pairs of records.
 
-        Args: 
+        Args:
             models (dict): maps model name (e.g. basic or no-dob) to a fit match model object
             df (pd.DataFrame): portion of the data-rows table, with a "model_to_use" column appended
             model_type (str): model type (e.g. selection or match)
@@ -228,30 +228,4 @@ class Predict(NamematchBase):
                             mod.predict_proba(df[to_predict_for])[:, MATCH_COL]
 
         return phats
-
-
-
-if __name__ == '__main__':
-
-    parser = argparse.ArgumentParser()
-    parser.add_argument('--params_file')
-    parser.add_argument('--model_info_file')
-    parser.add_argument('--data_rows_dir')
-    parser.add_argument('--output_dir')
-    parser.add_argument('--log_file')
-    parser.add_argument('--nm_code_dir')
-    args = parser.parse_args()
-
-    params = Parameters.load(args.params_file)
-
-    logging_params = load_yaml(os.path.join(args.nm_code_dir, 'utils/logging_config.yaml'))
-
-    predict = Predict(
-        params=params,
-        model_info_file=args.model_info_file,
-        data_rows_dir=args.data_rows_dir,
-        output_dir=args.output_dir
-    )
-    predict.logger_init(logging_params, args.log_file)
-    predict.main__predict()
 

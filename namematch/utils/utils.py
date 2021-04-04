@@ -12,7 +12,7 @@ import time
 import yaml
 import io
 
-from collections import Mapping
+from collections.abc import Mapping
 from functools import wraps
 
 import pyarrow as pa
@@ -36,7 +36,7 @@ class StatLogFilter():
         return logRecord.levelno < self.__level
 
 
-def setup_logging(log_params, log_filepath, logger_ids=None):
+def setup_logging(log_params, log_filepath, output_temp_dir, logger_ids=None):
     """Setup logging configuration.
 
     Args:
@@ -80,7 +80,7 @@ def setup_logging(log_params, log_filepath, logger_ids=None):
     if logger_ids:
         for n in logger_ids:
             log_params['handlers'][f'file_handler_stat{str(n)}'] =  log_params['handlers']['file_handler_stat'].copy()
-            log_params['handlers'][f'file_handler_stat{str(n)}']['filename'] = f'output_temp/name_match_{str(n)}.log.yaml'
+            log_params['handlers'][f'file_handler_stat{str(n)}']['filename'] = f'{output_temp_dir}/name_match_{str(n)}.log.yaml'
             log_params['loggers'][f'namematch_{str(n)}'] = {'handlers': ['console', 'file_handler', f'file_handler_stat{str(n)}', 'file_handler_stat_memory']}
 
     logging.config.dictConfig(log_params)

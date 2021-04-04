@@ -12,7 +12,7 @@ import pyarrow.parquet as pq
 from namematch.base import NamematchBase
 from namematch.data_structures.schema import Schema
 from namematch.data_structures.parameters import Parameters
-from namematch.utils.utils import equip_logger_id, log_runtime_and_memory, load_yaml, setup_logging
+from namematch.utils.utils import equip_logger_id, log_runtime_and_memory, load_yaml
 
 try:
     profile
@@ -26,7 +26,7 @@ class GenerateMustLinks(NamematchBase):
         params,
         schema,
         all_names_file,
-        output_file='output_temp/must_links.csv',
+        output_file,
         logger_id=None,
         *args,
         **kwargs
@@ -80,25 +80,25 @@ class GenerateMustLinks(NamematchBase):
                 quoting=csv.QUOTE_NONNUMERIC)
 
     def build_ml_var_df(self, all_names_file, uid_vars_list, eid_vars_list, **kw):
-        '''Load the all-names file and limit it to the rows that have either 
-        a non-missing UniqueID or ExistingID value. 
-        
-        Args: 
+        '''Load the all-names file and limit it to the rows that have either
+        a non-missing UniqueID or ExistingID value.
+
+        Args:
             all_names_file (str): path to output_temp's all-names file
-            uid_vars_list (list of strings): all-name columns with compare_type "UniqueID" 
+            uid_vars_list (list of strings): all-name columns with compare_type "UniqueID"
             eid_vars_list (list of strings): all-name columns with compare_type "ExistingID"
 
-        Returns: 
+        Returns:
             pd.DataFrame: a subset of the all-names file, relevant colums only
                 ======================   =======================================================
-                record_id                unique record identifier 
-                blockstring              concatenation of all the blocking variables (sep by ::) 
+                record_id                unique record identifier
+                blockstring              concatenation of all the blocking variables (sep by ::)
                 file_type                either "new" or "existing"
-                drop_from_nm             flag, 1 if met any "to drop" criteria 0 otherwise 
+                drop_from_nm             flag, 1 if met any "to drop" criteria 0 otherwise
                 <UniqueID column(s)>     variables of compare_type UniqueID
                 <ExistingID column(s)>   variables of compare_type ExistingID
                 has_ml_var               flag, always 1 in output (ml stands for must-link)
-                ======================   =======================================================    
+                ======================   =======================================================
         '''
 
         cols = ['record_id', 'blockstring', 'drop_from_nm',
@@ -118,24 +118,24 @@ class GenerateMustLinks(NamematchBase):
     @log_runtime_and_memory
     def get_must_links(self, ml_var_df, uid_vars_list, eid_vars_list, **kw):
         '''Expand the list of records with must-link information to pairs of records
-        that must be linked togehter in the final match. 
+        that must be linked togehter in the final match.
 
-        Args: 
-            ml_var_df (pd.DataFrame): 
+        Args:
+            ml_var_df (pd.DataFrame):
                 ======================   =======================================================
-                record_id                unique record identifier 
-                blockstring              concatenation of all the blocking variables (sep by ::) 
+                record_id                unique record identifier
+                blockstring              concatenation of all the blocking variables (sep by ::)
                 file_type                either "new" or "existing"
-                drop_from_nm             flag, 1 if met any "to drop" criteria 0 otherwise 
+                drop_from_nm             flag, 1 if met any "to drop" criteria 0 otherwise
                 <UniqueID column(s)>     variables of compare_type UniqueID
                 <ExistingID column(s)>   variables of compare_type ExistingID
                 has_ml_var               flag, always 1 in output (ml stands for must-link)
-                ======================   =======================================================    
+                ======================   =======================================================
 
-            uid_vars_list (list of strings): all-name columns with compare_type "UniqueID" 
+            uid_vars_list (list of strings): all-name columns with compare_type "UniqueID"
             eid_vars_list (list of strings): all-name columns with compare_type "ExistingID"
 
-        Returns: 
+        Returns:
             pd.DataFrame: list of must-link record pairs
                 ===================   =======================================================
                 record_id_1           unique identifier for the first record in the pair
@@ -145,7 +145,7 @@ class GenerateMustLinks(NamematchBase):
                 drop_from_nm_1        flag, 1 if the first record in the pair was not eligible for matching
                 drop_from_nm_2        flag, 1 if the second record in the pair was not eligible for matching
                 existing              flag, 1 if the pair is must-link because of ExistingID
-                ===================   =======================================================  
+                ===================   =======================================================
         '''
 
         ml_var_df = ml_var_df.copy()
@@ -207,28 +207,3 @@ class GenerateMustLinks(NamematchBase):
 
         return must_link_df
 
-
-if __name__ == '__main__':
-
-    parser = argparse.ArgumentParser()
-    parser.add_argument('--params_file')
-    parser.add_argument('--schema_file')
-    parser.add_argument('--all_names_file')
-    parser.add_argument('--output_file')
-    parser.add_argument('--log_file')
-    parser.add_argument('--nm_code_dir')
-    args = parser.parse_args()
-
-    params = Parameters.load(args.params_file)
-    schema = Schema.load(args.schema_file)
-
-    logging_params = load_yaml(os.path.join(args.nm_code_dir, 'utils/logging_config.yaml'))
-
-    generate_must_links = GenerateMustLinks(
-        params=params,
-        schema=schema,
-        output_file=args.output_file,
-        all_names_file=args.all_names_file,
-    )
-    generate_must_links.logger_init(logging_params, args.log_file)
-    generate_must_links.main__generate_must_links()

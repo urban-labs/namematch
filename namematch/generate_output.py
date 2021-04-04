@@ -29,10 +29,10 @@ class GenerateOutput(NamematchBase):
         self,
         params,
         schema,
-        all_names_file='output_temp/all_names.parquet',
-        cluster_assignments_file='output_temp/cluster_assignments.pkl',
-        an_output_file='output_temp/all_names_with_clusterid.csv',
-        output_dir='output',
+        all_names_file,
+        cluster_assignments_file,
+        an_output_file,
+        output_dir,
         output_file=None,
         output_file_uuid=None,
         logger_id=None,
@@ -50,7 +50,7 @@ class GenerateOutput(NamematchBase):
     @equip_logger_id
     def main__generate_output(self, **kw):
         '''Read in the cluster assignments dictionary and use it to create all-names-with-cluster-id
-        and the "with-cluster-id" versions of input dataset. 
+        and the "with-cluster-id" versions of input dataset.
 
         Args:
             params (Parameters object): contains parameter values
@@ -90,21 +90,21 @@ class GenerateOutput(NamematchBase):
     @equip_logger_id
     @log_runtime_and_memory
     def create_allnames_clusterid_file(self, all_names_file, cluster_assignments, cleaned_col_names, **kw):
-        '''Create all-names-with-clusterid dataframe. 
+        '''Create all-names-with-clusterid dataframe.
 
-        Args: 
+        Args:
             all_names_file (str): path to output_temp's all-names file
             cluster_assignments (dict): maps record_id to cluster_id
-            cleaned_col_names (list): all-name columns used in cosine blocking 
+            cleaned_col_names (list): all-name columns used in cosine blocking
 
-        Returns: 
-            pd.DataFrame: all-names-with-cluster-id 
+        Returns:
+            pd.DataFrame: all-names-with-cluster-id
                 =====================   =======================================================
-                record_id               unique record identifier 
+                record_id               unique record identifier
                 file_type               either "new" or "existing"
                 <fields for matching>   both for the matching model and for constraint checking
                 blockstring             concatenated version of blocking columns (sep by ::)
-                drop_from_nm            flag, 1 if met any "to drop" criteria 0 otherwise 
+                drop_from_nm            flag, 1 if met any "to drop" criteria 0 otherwise
                 cluster_id              unique person identifier, no missing values
                 =====================   =======================================================
         '''
@@ -174,32 +174,3 @@ class GenerateOutput(NamematchBase):
             df.drop(columns=['temp_nm_rec_id']).to_csv(
                     output_file_path, index=False, quoting=csv.QUOTE_NONNUMERIC)
 
-
-if __name__ == '__main__':
-
-    parser = argparse.ArgumentParser()
-    parser.add_argument('--params_file')
-    parser.add_argument('--schema_file')
-    parser.add_argument('--all_names_file')
-    parser.add_argument('--cluster_assignments_file')
-    parser.add_argument('--an_output_file')
-    parser.add_argument('--output_dir')
-    parser.add_argument('--log_file')
-    parser.add_argument('--nm_code_dir')
-    args = parser.parse_args()
-
-    params = Parameters.load(args.params_file)
-    schema = Schema.load(args.schema_file)
-
-    logging_params = load_yaml(os.path.join(args.nm_code_dir, 'utils/logging_config.yaml'))
-
-    generate_output = GenerateOutput(
-        params,
-        schema,
-        all_names_file=args.all_names_file,
-        cluster_assignments_file=args.cluster_assignments_file,
-        output_file=args.an_output_file,
-        output_dir=args.output_dir
-    )
-    generate_output.logger_init(logging_params, args.log_file)
-    generate_output.main__generate_output()

@@ -1,62 +1,47 @@
 import numpy as np
-import random
-import time
-import unittest
-import yaml
+import tempfile
 
-from unittest.mock import MagicMock
+from namematch.fit_model import define_necessary_models
 
 
-from namematch.fit_model import *
-
-logging_config = yaml.load(open('tests/logging_config.yaml', 'r'), Loader=yaml.FullLoader)
-setup_logging(logging_config, None)
-logger = logging.getLogger()
-logging.disable(logging.CRITICAL)
+def test_get_feature_info():
+    pass
 
 
-class TestModeling(unittest.TestCase):
-
-    PATH = "tests/unit/data/"
-
-    def test_get_feature_info(self):
-        pass
+def test_fit_model():
+    pass
 
 
-    def test_fit_model(self):
-        pass
+def test_fit_models():
+    pass
 
 
-    def test_fit_models(self):
-        pass
+def test_define_necessary_models(data_rows_parquet_file):
 
+    # fake data
+    dr_file_list = [data_rows_parquet_file]
+    missing_field = "first_name"
 
-    def test_define_necessary_models(self):
-
-        # fake data
-        dr_file_list = [self.PATH + "data_rows.parquet"]
-        output_dir = ''
-        missing_field = "first_name"
-
+    with tempfile.TemporaryDirectory() as temp_output_dir:
         # missing
-        model_info = define_necessary_models(dr_file_list, output_dir, missing_field)
-        self.assertEqual(2, len(model_info))
-        self.assertTrue("no_{}".format(missing_field) in model_info)
+        model_info = define_necessary_models(dr_file_list, temp_output_dir, missing_field)
+        assert 2 == len(model_info)
+        assert "no_{}".format(missing_field) in model_info
 
         # not missing
-        model_info = define_necessary_models(dr_file_list, output_dir, None)
-        self.assertEqual(1, len(model_info))
+        model_info = define_necessary_models(dr_file_list, temp_output_dir, None)
+        assert 1 == len(model_info)
 
 
-    def test_get_match_train_eligible_flag(self):
-        pass
+def test_get_match_train_eligible_flag():
+    pass
 
 
-    def test_load_model_data(self):
-        pass
+def test_load_model_data():
+    pass
 
 
-    def test_get_flipped0_potential_edges(self):
-        pass
+def test_get_flipped0_potential_edges():
+    pass
 
 

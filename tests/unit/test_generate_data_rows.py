@@ -1,34 +1,45 @@
 import json
+from unittest.mock import patch
+
 import pandas as pd
-import unittest
 
-from namematch.data_structures.data_file import *
-from namematch.generate_data_rows import *
-from namematch.data_structures.variable import *
-
-logging_config = yaml.load(open('tests/logging_config.yaml', 'r'), Loader=yaml.FullLoader)
-setup_logging(logging_config, None)
-logger = logging.getLogger()
-logging.disable(logging.CRITICAL)
+from namematch.generate_data_rows import GenerateDataRows
 
 
-class TestGenerateDataRows(unittest.TestCase):
+def test_generate_name_probabilities_object(params_and_schema, an_df, logger_for_testing):
+    params, schema = params_and_schema
+    with patch('namematch.generate_data_rows.logger', logger_for_testing) as mock_debug:
+        generate_data_rows = GenerateDataRows(
+            params,
+            schema,
+            all_names_file=an_df,
+            candidate_pairs_file=None,
+            batch_size=500,
+            output_dir=None,
+        )
 
-    PATH = "tests/unit/data/"
+        prob_obj = generate_data_rows.generate_name_probabilities_object(
+            an=an_df,
+            fn_col=None,
+            ln_col="column_name"
+        )
+        assert prob_obj is None
 
-    def test_generate_name_probabilities_object(self):
-
-        prob_obj = generate_name_probabilities_object("fake_an_obj", None, "column_name")
-        self.assertTrue(prob_obj is None)
-
-
-    def test_find_valid_training_records(self):
-        pass
+        prob_obj = generate_data_rows.generate_name_probabilities_object(
+            an=an_df,
+            fn_col='first_name',
+            ln_col='last_name',
+        )
+        assert prob_obj is not None
 
 
-    def test_generate_actual_data_rows(self):
-        pass
+def test_find_valid_training_records():
+    pass
 
 
-    def test_generate_data_row_files(self):
-        pass
+def test_generate_actual_data_rows():
+    pass
+
+
+def test_generate_data_row_files():
+    pass

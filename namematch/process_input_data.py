@@ -21,13 +21,22 @@ from streetaddress import StreetAddressParser
 from namematch.base import NamematchBase
 from namematch.data_structures.schema import Schema
 from namematch.data_structures.parameters import Parameters
-from namematch.utils.utils import build_blockstring, clean_nn_string, create_nm_record_id, setup_logging, log_runtime_and_memory, load_yaml, log_stat, equip_logger_id
+from namematch.utils.utils import (
+    build_blockstring,
+    clean_nn_string,
+    create_nm_record_id,
+    log_runtime_and_memory,
+    load_yaml,
+    equip_logger_id
+)
 
 try:
     profile
 except:
     from line_profiler import LineProfiler
     profile = LineProfiler()
+
+logger = logging.getLogger()
 
 
 @profile
@@ -296,21 +305,21 @@ def process_data(df, variables, data_file, params):
     '''Read in part of an input file and process it according to the config in order
     to create part of the all-names file.
 
-    Args: 
+    Args:
         df (pd.DataFrame): chunk of an input data file
         variables (VariableList object): contains info about the fields for matching (from config)
         data_file (DataFile object): contains info about the input data set
         params (dict): dictionary of param values
 
-    Returns: 
+    Returns:
         pd.DataFrame: a chunk of the all-names table (one row per input record)
             =====================   =======================================================
-            record_id               unique record identifier 
+            record_id               unique record identifier
             file_type               either "new" or "existing"
             <fields for matching>   both for the matching model and for constraint checking
             <raw name fields>       pre-cleaning version of first and last name
             blockstring             concatenated version of blocking columns (sep by ::)
-            drop_from_nm            flag, 1 if met any "to drop" criteria 0 otherwise 
+            drop_from_nm            flag, 1 if met any "to drop" criteria 0 otherwise
             =====================   =======================================================
     '''
 
@@ -410,7 +419,7 @@ class ProcessInputData(NamematchBase):
         self,
         params,
         schema,
-        output_file="output_temp/all_names.parquet",
+        output_file,
         logger_id=None,
         input_data_batch_size=50000,
         *args,
@@ -423,7 +432,7 @@ class ProcessInputData(NamematchBase):
     @equip_logger_id
     @log_runtime_and_memory
     def main__process_input_data(self, quick_test=False, **kw):
-        '''Follow the instructions in the schema and params objects to build the all-names file from 
+        '''Follow the instructions in the schema and params objects to build the all-names file from
         the raw input file(s).
 
         Args:
@@ -508,35 +517,8 @@ class ProcessInputData(NamematchBase):
         if pqwriter:
             pqwriter.close()
 
-        log_stat("Number of input records", "n_an", n_an_rows)
-        log_stat("Number of valid input records", "n_valid_an", n_valid_an_rows)
-
+        logger.info(f"Number of input records: {n_an_rows}")
+        logger.info(f"Number of valid input records: {n_valid_an_rows}")
         logger.stat(f"n_an: {n_an_rows}")
         logger.stat(f"n_valid_an: {n_valid_an_rows}")
         logger.debug("End: process_input_data")
-
-
-if __name__ == '__main__':
-    parser = argparse.ArgumentParser()
-    parser.add_argument('--params_file')
-    parser.add_argument('--schema_file')
-    parser.add_argument('--output_file')
-    parser.add_argument('--log_file')
-    parser.add_argument('--quick_test', default=False)
-    parser.add_argument('--nm_code_dir')
-    args = parser.parse_args()
-
-    params = Parameters.load(args.params_file)
-    schema = Schema.load(args.schema_file)
-
-    logging_params = load_yaml(os.path.join(args.nm_code_dir, 'utils/logging_config.yaml'))
-
-    quick_test = (args.quick_test == 'True')
-
-    process_input_data = ProcessInputData(
-        params=params,
-        schema=schema,
-        output_file=args.output_file
-    )
-    process_input_data.logger_init(logging_params, args.log_file)
-    process_input_data.main__process_input_data(quick_test)

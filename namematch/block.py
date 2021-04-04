@@ -1,5 +1,6 @@
 import argparse
 import csv
+import os
 import editdistance
 import logging
 import multiprocessing as mp
@@ -12,7 +13,6 @@ import numpy as np
 import itertools
 import pandas as pd
 import pickle
-import re
 import string
 
 import pyarrow as pa
@@ -24,7 +24,14 @@ from sklearn.feature_extraction.text import CountVectorizer
 from namematch.data_structures.schema import Schema
 from namematch.data_structures.parameters import Parameters
 from namematch.base import NamematchBase
-from namematch.utils.utils import *
+from namematch.utils.utils import (
+    log_runtime_and_memory,
+    equip_logger_id,
+    get_nn_string_from_blockstring,
+    build_blockstring,
+    get_endpoints,
+    get_ed_string_from_blockstring,
+)
 
 try:
     profile
@@ -52,11 +59,11 @@ def get_blocking_columns(blocking_scheme):
         absval_col = blocking_scheme['absvalue_distance']['variable']
         if absval_col is None:
             raise
-        cols_to_read =  nn_cols + [ed_col, absval_col, 'file_type', 'drop_from_nm', 'record_id']
+        cols_to_read = nn_cols + [ed_col, absval_col, 'file_type', 'drop_from_nm', 'record_id']
         logger.debug('Absvalue filter used as backup to edit_distance filter.')
     except:
         absval_col = None
-        cols_to_read =  nn_cols + [ed_col, 'file_type', 'drop_from_nm', 'record_id']
+        cols_to_read = nn_cols + [ed_col, 'file_type', 'drop_from_nm', 'record_id']
         logger.debug('No backup to edit_distance filter being used.')
 
     return nn_cols, ed_col, absval_col
@@ -682,7 +689,7 @@ class Block(NamematchBase):
         all_names_file,
         must_links_file,
         og_blocking_index_file,
-        output_file='output_temp/candidate_pairs.parquet',
+        output_file,
         logger_id=None,
         *args,
         **kwargs
@@ -1494,33 +1501,3 @@ class Block(NamematchBase):
 
         return up_df
 
-
-
-if __name__ == '__main__':
-
-    parser = argparse.ArgumentParser()
-    parser.add_argument('--params_file')
-    parser.add_argument('--schema_file')
-    parser.add_argument('--all_names_file')
-    parser.add_argument('--must_links_file')
-    parser.add_argument('--og_blocking_index_file')
-    parser.add_argument('--output_file')
-    parser.add_argument('--log_file')
-    parser.add_argument('--nm_code_dir')
-    args = parser.parse_args()
-
-    params = Parameters.load(args.params_file)
-    schema = Schema.load(args.schema_file)
-
-    logging_params = load_yaml(os.path.join(args.nm_code_dir, 'utils/logging_config.yaml'))
-
-    block = Block(
-        params=params,
-        schema=schema,
-        all_names_file=args.all_names_file,
-        must_links_file=args.must_links_file,
-        og_blocking_index_file=args.og_blocking_index_file,
-        output_file=args.output_file
-    )
-    block.logger_init(logging_params, args.log_file)
-    block.main__block()

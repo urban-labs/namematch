@@ -31,11 +31,11 @@ class GenerateDataRows(NamematchBase):
         self,
         params,
         schema,
+        output_dir,
         all_names_file,
         candidate_pairs_file,
         batch_size=500,
         output_file=None,
-        output_dir='output_temp/data_rows',
         logger_id=None,
         *args,
         **kwargs
@@ -426,29 +426,3 @@ class GenerateDataRows(NamematchBase):
             logger.error(f"{dr_file} failed.")
             raise e
 
-if __name__ == '__main__':
-
-    parser = argparse.ArgumentParser()
-    parser.add_argument('--params_file')
-    parser.add_argument('--schema_file')
-    parser.add_argument('--all_names_file')
-    parser.add_argument('--candidate_pairs_file')
-    parser.add_argument('--output_dir')
-    parser.add_argument('--log_file')
-    parser.add_argument('--nm_code_dir')
-    args = parser.parse_args()
-
-    params = Parameters.load(args.params_file)
-    schema = Schema.load(args.schema_file)
-
-    logging_params = load_yaml(os.path.join(args.nm_code_dir, 'utils/logging_config.yaml'))
-
-    generate_data_rows = GenerateDataRows(
-        params=params,
-        schema=schema,
-        all_names_file=args.all_names_file,
-        candidate_pairs_file=args.candidate_pairs_file,
-        output_dir=args.output_dir,
-    )
-    generate_data_rows.logger_init(logging_params, args.log_file)
-    generate_data_rows.main__generate_data_rows()
