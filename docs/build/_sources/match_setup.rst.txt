@@ -228,6 +228,7 @@ Notice the optional ``phat`` parameter being passed into ``is_valid_cluster()``.
 
 **A quick note about variable names:** Notice how we reference a column called ``school_id`` in the ``is_valid_cluster`` example above. This is made possible via the Name Match config file where we defined a variable called `school_id`, like so:
 ::
+
     - 'name' : 'school_id'
       'compare_type' : null 
       'dataset_1_col' : 'SchoolID'
