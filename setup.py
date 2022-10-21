@@ -32,7 +32,7 @@ setup(
     entry_points={
         'console_scripts': [
             'namematch = namematch.cli:execute']},
-    license='University of Chicago Crime Lab',
+    license='AGPL-3.0',
     keywords='record linkage',
     classifiers=[
         'Development Status :: 2 - Pre-Alpha',
@@ -40,8 +40,9 @@ setup(
         'Natural Language :: English',
         'Programming Language :: Python :: 3',
         'Programming Language :: Python :: 3.7',
+        'Programming Language :: Python :: 3.8',
     ],
-    python_require='>=3.6',
+    python_require='>=3.7',
     test_suite='tests',
     tests_require=get_requirements('requirement/dev.txt')
 )

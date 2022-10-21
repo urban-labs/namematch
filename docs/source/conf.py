@@ -18,11 +18,11 @@ sys.path.insert(0, os.path.abspath('../../'))
 # -- Project information -----------------------------------------------------
 
 project = 'namematch'
-copyright = '2021, Melissa McNeill, Eddie Lin, Zubin Jelveh'
-author = 'Melissa McNeill, Eddie Lin, Zubin Jelveh'
+copyright = '2022, Melissa McNeill, Eddie Tzu-Yun Lin, Zubin Jelveh'
+author = 'Melissa McNeill, Eddie Tzu-Yun Lin, Zubin Jelveh'
 
 # The full version, including alpha/beta/rc tags
-release = '0.0.1'
+release = '1.2.0'
 
 # append the __init__ to class definitions
 autoclass_content = 'both'
