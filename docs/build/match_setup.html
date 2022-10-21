@@ -14,7 +14,9 @@
         <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
         <script src="_static/jquery.js"></script>
         <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="author" title="About these documents" href="about.html" />
     <link rel="index" title="Index" href="genindex.html" />
@@ -95,9 +97,9 @@
            <div itemprop="articleBody">
              
   <section id="setting-up-a-match">
-<span id="id1"></span><h1>Setting Up a Match<a class="headerlink" href="#setting-up-a-match" title="Permalink to this headline"></a></h1>
+<span id="id1"></span><h1>Setting Up a Match<a class="headerlink" href="#setting-up-a-match" title="Permalink to this heading"></a></h1>
 <section id="identifying-which-fields-to-use">
-<h2>Identifying which fields to use<a class="headerlink" href="#identifying-which-fields-to-use" title="Permalink to this headline"></a></h2>
+<h2>Identifying which fields to use<a class="headerlink" href="#identifying-which-fields-to-use" title="Permalink to this heading"></a></h2>
 <p>Naturally, the dataset(s) you are using Name Match to link or deduplicate contains information about people. But exactly what information do they contain? What fields should Name Match rely on to compare two records and decide if they refer to the same person or not? Answering this question is the first step for setting up a match.</p>
 <dl class="simple">
 <dt>Certain fields are required:</dt><dd><ul class="simple">
@@ -124,70 +126,70 @@
 </dl>
 </section>
 <section id="creating-the-configuration-file">
-<h2>Creating the configuration file<a class="headerlink" href="#creating-the-configuration-file" title="Permalink to this headline"></a></h2>
+<h2>Creating the configuration file<a class="headerlink" href="#creating-the-configuration-file" title="Permalink to this heading"></a></h2>
 <p>The config contains instructions for how Name Match will read the input data and complete the match. You can see more samples in the repo’s <code class="docutils literal notranslate"><span class="pre">config_examples</span></code> directory, but it generally looks like this.</p>
-<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">data_files </span><span class="p">:</span>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">data_files </span><span class="p">:</span><span class="w"></span>
 
-    <span class="s">&#39;victim&#39;</span> <span class="p p-Indicator">:</span>
-        <span class="s">&#39;filepath&#39;</span> <span class="p p-Indicator">:</span> <span class="s">&#39;/path/to/input/data/file1.csv&#39;</span>
-        <span class="s">&#39;record_id_col&#39;</span> <span class="p p-Indicator">:</span> <span class="s">&#39;row_id&#39;</span>
-        <span class="s">&#39;delim&#39;</span> <span class="p p-Indicator">:</span> <span class="s">&#39;,&#39;</span>
-        <span class="s">&#39;cluster_type&#39;</span> <span class="p p-Indicator">:</span> <span class="s">&#39;victim&#39;</span>
-        <span class="s">&#39;output_file_stem&#39;</span> <span class="p p-Indicator">:</span> <span class="s">&#39;victim&#39;</span>
+<span class="w">    </span><span class="s">&#39;victim&#39;</span><span class="w"> </span><span class="p p-Indicator">:</span><span class="w"></span>
+<span class="w">        </span><span class="s">&#39;filepath&#39;</span><span class="w"> </span><span class="p p-Indicator">:</span><span class="w"> </span><span class="s">&#39;/path/to/input/data/file1.csv&#39;</span><span class="w"></span>
+<span class="w">        </span><span class="s">&#39;record_id_col&#39;</span><span class="w"> </span><span class="p p-Indicator">:</span><span class="w"> </span><span class="s">&#39;row_id&#39;</span><span class="w"></span>
+<span class="w">        </span><span class="s">&#39;delim&#39;</span><span class="w"> </span><span class="p p-Indicator">:</span><span class="w"> </span><span class="s">&#39;,&#39;</span><span class="w"></span>
+<span class="w">        </span><span class="s">&#39;cluster_type&#39;</span><span class="w"> </span><span class="p p-Indicator">:</span><span class="w"> </span><span class="s">&#39;victim&#39;</span><span class="w"></span>
+<span class="w">        </span><span class="s">&#39;output_file_stem&#39;</span><span class="w"> </span><span class="p p-Indicator">:</span><span class="w"> </span><span class="s">&#39;victim&#39;</span><span class="w"></span>
 
-    <span class="s">&#39;arrests&#39;</span> <span class="p p-Indicator">:</span>
-        <span class="s">&#39;filepath&#39;</span> <span class="p p-Indicator">:</span> <span class="s">&#39;/path/to/input/data/file2.csv&#39;</span>
-        <span class="s">&#39;record_id_col&#39;</span> <span class="p p-Indicator">:</span> <span class="s">&#39;arrest_id&#39;</span>
-        <span class="s">&#39;delim&#39;</span> <span class="p p-Indicator">:</span> <span class="s">&#39;,&#39;</span>
-        <span class="s">&#39;cluster_type&#39;</span> <span class="p p-Indicator">:</span> <span class="s">&#39;offender&#39;</span>
-        <span class="s">&#39;output_file_stem&#39;</span> <span class="p p-Indicator">:</span> <span class="s">&#39;arrests&#39;</span>
+<span class="w">    </span><span class="s">&#39;arrests&#39;</span><span class="w"> </span><span class="p p-Indicator">:</span><span class="w"></span>
+<span class="w">        </span><span class="s">&#39;filepath&#39;</span><span class="w"> </span><span class="p p-Indicator">:</span><span class="w"> </span><span class="s">&#39;/path/to/input/data/file2.csv&#39;</span><span class="w"></span>
+<span class="w">        </span><span class="s">&#39;record_id_col&#39;</span><span class="w"> </span><span class="p p-Indicator">:</span><span class="w"> </span><span class="s">&#39;arrest_id&#39;</span><span class="w"></span>
+<span class="w">        </span><span class="s">&#39;delim&#39;</span><span class="w"> </span><span class="p p-Indicator">:</span><span class="w"> </span><span class="s">&#39;,&#39;</span><span class="w"></span>
+<span class="w">        </span><span class="s">&#39;cluster_type&#39;</span><span class="w"> </span><span class="p p-Indicator">:</span><span class="w"> </span><span class="s">&#39;offender&#39;</span><span class="w"></span>
+<span class="w">        </span><span class="s">&#39;output_file_stem&#39;</span><span class="w"> </span><span class="p p-Indicator">:</span><span class="w"> </span><span class="s">&#39;arrests&#39;</span><span class="w"></span>
 
-<span class="nt">variables </span><span class="p">:</span>
+<span class="nt">variables </span><span class="p">:</span><span class="w"></span>
 
-    <span class="p p-Indicator">-</span> <span class="s">&#39;name&#39;</span> <span class="p p-Indicator">:</span> <span class="s">&#39;first_name&#39;</span>
-      <span class="s">&#39;compare_type&#39;</span> <span class="p p-Indicator">:</span> <span class="s">&#39;String&#39;</span>
-      <span class="s">&#39;arrests_col&#39;</span> <span class="p p-Indicator">:</span> <span class="s">&#39;FIRST_NME&#39;</span>
-      <span class="s">&#39;victim_col&#39;</span> <span class="p p-Indicator">:</span> <span class="s">&#39;VFIRST&#39;</span>
-      <span class="s">&#39;drop&#39;</span> <span class="p p-Indicator">:</span> <span class="p p-Indicator">[</span><span class="s">&#39;&#39;</span><span class="p p-Indicator">,</span><span class="s">&quot;</span><span class="nv"> </span><span class="s">&quot;</span><span class="p p-Indicator">,</span><span class="s">&#39;REFUSED&#39;</span><span class="p p-Indicator">,</span><span class="s">&#39;FIRM&#39;</span><span class="p p-Indicator">,</span><span class="s">&#39;BUSINESS&#39;</span><span class="p p-Indicator">]</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&#39;name&#39;</span><span class="w"> </span><span class="p p-Indicator">:</span><span class="w"> </span><span class="s">&#39;first_name&#39;</span><span class="w"></span>
+<span class="w">      </span><span class="s">&#39;compare_type&#39;</span><span class="w"> </span><span class="p p-Indicator">:</span><span class="w"> </span><span class="s">&#39;String&#39;</span><span class="w"></span>
+<span class="w">      </span><span class="s">&#39;arrests_col&#39;</span><span class="w"> </span><span class="p p-Indicator">:</span><span class="w"> </span><span class="s">&#39;FIRST_NME&#39;</span><span class="w"></span>
+<span class="w">      </span><span class="s">&#39;victim_col&#39;</span><span class="w"> </span><span class="p p-Indicator">:</span><span class="w"> </span><span class="s">&#39;VFIRST&#39;</span><span class="w"></span>
+<span class="w">      </span><span class="s">&#39;drop&#39;</span><span class="w"> </span><span class="p p-Indicator">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="s">&#39;&#39;</span><span class="p p-Indicator">,</span><span class="s">&quot;</span><span class="nv"> </span><span class="s">&quot;</span><span class="p p-Indicator">,</span><span class="s">&#39;REFUSED&#39;</span><span class="p p-Indicator">,</span><span class="s">&#39;FIRM&#39;</span><span class="p p-Indicator">,</span><span class="s">&#39;BUSINESS&#39;</span><span class="p p-Indicator">]</span><span class="w"></span>
 
-    <span class="p p-Indicator">-</span> <span class="s">&#39;name&#39;</span> <span class="p p-Indicator">:</span> <span class="s">&#39;last_name&#39;</span>
-      <span class="s">&#39;compare_type&#39;</span> <span class="p p-Indicator">:</span> <span class="s">&#39;String&#39;</span>
-      <span class="s">&#39;arrests_col&#39;</span> <span class="p p-Indicator">:</span> <span class="s">&#39;LAST_NME&#39;</span>
-      <span class="s">&#39;victim_col&#39;</span> <span class="p p-Indicator">:</span> <span class="s">&#39;VLAST&#39;</span>
-      <span class="s">&#39;drop&#39;</span> <span class="p p-Indicator">:</span> <span class="p p-Indicator">[</span><span class="s">&#39;&#39;</span><span class="p p-Indicator">,</span><span class="s">&#39;</span><span class="nv"> </span><span class="s">&#39;</span><span class="p p-Indicator">,</span><span class="s">&#39;REFUSED&#39;</span><span class="p p-Indicator">,</span><span class="s">&#39;FIRM&#39;</span><span class="p p-Indicator">,</span><span class="s">&#39;BUSINESS&#39;</span><span class="p p-Indicator">]</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&#39;name&#39;</span><span class="w"> </span><span class="p p-Indicator">:</span><span class="w"> </span><span class="s">&#39;last_name&#39;</span><span class="w"></span>
+<span class="w">      </span><span class="s">&#39;compare_type&#39;</span><span class="w"> </span><span class="p p-Indicator">:</span><span class="w"> </span><span class="s">&#39;String&#39;</span><span class="w"></span>
+<span class="w">      </span><span class="s">&#39;arrests_col&#39;</span><span class="w"> </span><span class="p p-Indicator">:</span><span class="w"> </span><span class="s">&#39;LAST_NME&#39;</span><span class="w"></span>
+<span class="w">      </span><span class="s">&#39;victim_col&#39;</span><span class="w"> </span><span class="p p-Indicator">:</span><span class="w"> </span><span class="s">&#39;VLAST&#39;</span><span class="w"></span>
+<span class="w">      </span><span class="s">&#39;drop&#39;</span><span class="w"> </span><span class="p p-Indicator">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="s">&#39;&#39;</span><span class="p p-Indicator">,</span><span class="s">&#39;</span><span class="nv"> </span><span class="s">&#39;</span><span class="p p-Indicator">,</span><span class="s">&#39;REFUSED&#39;</span><span class="p p-Indicator">,</span><span class="s">&#39;FIRM&#39;</span><span class="p p-Indicator">,</span><span class="s">&#39;BUSINESS&#39;</span><span class="p p-Indicator">]</span><span class="w"></span>
 
-    <span class="p p-Indicator">-</span> <span class="s">&#39;name&#39;</span> <span class="p p-Indicator">:</span> <span class="s">&#39;dob&#39;</span>
-      <span class="s">&#39;compare_type&#39;</span> <span class="p p-Indicator">:</span> <span class="s">&#39;Date&#39;</span>
-      <span class="s">&#39;arrests_col&#39;</span> <span class="p p-Indicator">:</span> <span class="s">&#39;BIRTH_DATE&#39;</span>
-      <span class="s">&#39;victim_col&#39;</span> <span class="p p-Indicator">:</span> <span class="s">&#39;VDOB&#39;</span>
-      <span class="s">&#39;check&#39;</span> <span class="p p-Indicator">:</span> <span class="s">&#39;Date</span><span class="nv"> </span><span class="s">-</span><span class="nv"> </span><span class="s">%Y-%m-%d&#39;</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&#39;name&#39;</span><span class="w"> </span><span class="p p-Indicator">:</span><span class="w"> </span><span class="s">&#39;dob&#39;</span><span class="w"></span>
+<span class="w">      </span><span class="s">&#39;compare_type&#39;</span><span class="w"> </span><span class="p p-Indicator">:</span><span class="w"> </span><span class="s">&#39;Date&#39;</span><span class="w"></span>
+<span class="w">      </span><span class="s">&#39;arrests_col&#39;</span><span class="w"> </span><span class="p p-Indicator">:</span><span class="w"> </span><span class="s">&#39;BIRTH_DATE&#39;</span><span class="w"></span>
+<span class="w">      </span><span class="s">&#39;victim_col&#39;</span><span class="w"> </span><span class="p p-Indicator">:</span><span class="w"> </span><span class="s">&#39;VDOB&#39;</span><span class="w"></span>
+<span class="w">      </span><span class="s">&#39;check&#39;</span><span class="w"> </span><span class="p p-Indicator">:</span><span class="w"> </span><span class="s">&#39;Date</span><span class="nv"> </span><span class="s">-</span><span class="nv"> </span><span class="s">%Y-%m-%d&#39;</span><span class="w"></span>
 
-    <span class="p p-Indicator">-</span> <span class="s">&#39;name&#39;</span> <span class="p p-Indicator">:</span> <span class="s">&#39;age&#39;</span>
-      <span class="s">&#39;compare_type&#39;</span> <span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">null</span>
-      <span class="s">&#39;arrests_col&#39;</span> <span class="p p-Indicator">:</span> <span class="s">&#39;AGE_IN_2025&#39;</span>
-      <span class="s">&#39;victim_col&#39;</span> <span class="p p-Indicator">:</span> <span class="s">&#39;age_2025&#39;</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&#39;name&#39;</span><span class="w"> </span><span class="p p-Indicator">:</span><span class="w"> </span><span class="s">&#39;age&#39;</span><span class="w"></span>
+<span class="w">      </span><span class="s">&#39;compare_type&#39;</span><span class="w"> </span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">null</span><span class="w"></span>
+<span class="w">      </span><span class="s">&#39;arrests_col&#39;</span><span class="w"> </span><span class="p p-Indicator">:</span><span class="w"> </span><span class="s">&#39;AGE_IN_2025&#39;</span><span class="w"></span>
+<span class="w">      </span><span class="s">&#39;victim_col&#39;</span><span class="w"> </span><span class="p p-Indicator">:</span><span class="w"> </span><span class="s">&#39;age_2025&#39;</span><span class="w"></span>
 
-    <span class="p p-Indicator">-</span> <span class="s">&#39;name&#39;</span> <span class="p p-Indicator">:</span> <span class="s">&#39;gender&#39;</span>
-      <span class="s">&#39;compare_type&#39;</span> <span class="p p-Indicator">:</span> <span class="s">&#39;Categorical&#39;</span>
-      <span class="s">&#39;check&#39;</span> <span class="p p-Indicator">:</span> <span class="s">&#39;M,F&#39;</span>
-      <span class="s">&#39;arrests_col&#39;</span> <span class="p p-Indicator">:</span> <span class="s">&#39;SEX_CODE_CD&#39;</span>
-      <span class="s">&#39;victim_col&#39;</span> <span class="p p-Indicator">:</span> <span class="s">&#39;VSEX&#39;</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&#39;name&#39;</span><span class="w"> </span><span class="p p-Indicator">:</span><span class="w"> </span><span class="s">&#39;gender&#39;</span><span class="w"></span>
+<span class="w">      </span><span class="s">&#39;compare_type&#39;</span><span class="w"> </span><span class="p p-Indicator">:</span><span class="w"> </span><span class="s">&#39;Categorical&#39;</span><span class="w"></span>
+<span class="w">      </span><span class="s">&#39;check&#39;</span><span class="w"> </span><span class="p p-Indicator">:</span><span class="w"> </span><span class="s">&#39;M,F&#39;</span><span class="w"></span>
+<span class="w">      </span><span class="s">&#39;arrests_col&#39;</span><span class="w"> </span><span class="p p-Indicator">:</span><span class="w"> </span><span class="s">&#39;SEX_CODE_CD&#39;</span><span class="w"></span>
+<span class="w">      </span><span class="s">&#39;victim_col&#39;</span><span class="w"> </span><span class="p p-Indicator">:</span><span class="w"> </span><span class="s">&#39;VSEX&#39;</span><span class="w"></span>
 
-    <span class="p p-Indicator">-</span> <span class="s">&#39;name&#39;</span> <span class="p p-Indicator">:</span> <span class="s">&#39;arrestee_id&#39;</span>
-      <span class="s">&#39;compare_type&#39;</span> <span class="p p-Indicator">:</span> <span class="s">&#39;UniqueID&#39;</span>
-      <span class="s">&#39;arrests_col&#39;</span> <span class="p p-Indicator">:</span> <span class="s">&#39;ARRESTEE_ID&#39;</span>
-      <span class="s">&#39;victim_col&#39;</span> <span class="p p-Indicator">:</span> <span class="s">&#39;&#39;</span>
-      <span class="s">&#39;set_missing&#39;</span> <span class="p p-Indicator">:</span> <span class="p p-Indicator">[</span><span class="s">&#39;&#39;</span><span class="p p-Indicator">,</span><span class="s">&#39;</span><span class="nv"> </span><span class="s">&#39;</span><span class="p p-Indicator">,</span><span class="s">&#39;NA&#39;</span><span class="p p-Indicator">,</span><span class="s">&#39;nan&#39;</span><span class="p p-Indicator">,</span><span class="s">&#39;REDACTED&#39;</span><span class="p p-Indicator">,</span><span class="s">&#39;SEALED&#39;</span><span class="p p-Indicator">]</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&#39;name&#39;</span><span class="w"> </span><span class="p p-Indicator">:</span><span class="w"> </span><span class="s">&#39;arrestee_id&#39;</span><span class="w"></span>
+<span class="w">      </span><span class="s">&#39;compare_type&#39;</span><span class="w"> </span><span class="p p-Indicator">:</span><span class="w"> </span><span class="s">&#39;UniqueID&#39;</span><span class="w"></span>
+<span class="w">      </span><span class="s">&#39;arrests_col&#39;</span><span class="w"> </span><span class="p p-Indicator">:</span><span class="w"> </span><span class="s">&#39;ARRESTEE_ID&#39;</span><span class="w"></span>
+<span class="w">      </span><span class="s">&#39;victim_col&#39;</span><span class="w"> </span><span class="p p-Indicator">:</span><span class="w"> </span><span class="s">&#39;&#39;</span><span class="w"></span>
+<span class="w">      </span><span class="s">&#39;set_missing&#39;</span><span class="w"> </span><span class="p p-Indicator">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="s">&#39;&#39;</span><span class="p p-Indicator">,</span><span class="s">&#39;</span><span class="nv"> </span><span class="s">&#39;</span><span class="p p-Indicator">,</span><span class="s">&#39;NA&#39;</span><span class="p p-Indicator">,</span><span class="s">&#39;nan&#39;</span><span class="p p-Indicator">,</span><span class="s">&#39;REDACTED&#39;</span><span class="p p-Indicator">,</span><span class="s">&#39;SEALED&#39;</span><span class="p p-Indicator">]</span><span class="w"></span>
 
-<span class="c1"># general parameters</span>
-<span class="nt">num_workers </span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">6</span>
-<span class="nt">allow_clusters_w_multiple_unique_ids </span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">False</span>
-<span class="nt">pct_train </span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">0.9</span>
+<span class="c1"># general parameters</span><span class="w"></span>
+<span class="nt">num_workers </span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">6</span><span class="w"></span>
+<span class="nt">allow_clusters_w_multiple_unique_ids </span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">False</span><span class="w"></span>
+<span class="nt">pct_train </span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.9</span><span class="w"></span>
 </pre></div>
 </div>
 <p>Below is an overview of each section of the config, and the parameters that can be used throughout.</p>
 <section id="input-data-files">
-<h3>Input data files<a class="headerlink" href="#input-data-files" title="Permalink to this headline"></a></h3>
+<h3>Input data files<a class="headerlink" href="#input-data-files" title="Permalink to this heading"></a></h3>
 <p>Each input CSV should have a short descriptive nickname, like <code class="docutils literal notranslate"><span class="pre">victim</span></code> or <code class="docutils literal notranslate"><span class="pre">arrests</span></code>. These nicknames serves as the keys in a dictionary of information about each input file. The following information is needed for each input data file:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">filepath</span></code>: <em>(str)</em> Path to where the CSV is stored</p></li>
@@ -198,7 +200,7 @@
 </ul>
 </section>
 <section id="variable-structure">
-<h3>Variable structure<a class="headerlink" href="#variable-structure" title="Permalink to this headline"></a></h3>
+<h3>Variable structure<a class="headerlink" href="#variable-structure" title="Permalink to this heading"></a></h3>
 <p>Name Match needs to know which fields in the input data files contain information that is relevant to matching. In this section, you must define the fields you want Name Match to have access to, how to use them, and what they’re called in each of the input data files.</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">name</span></code>: <em>(str)</em> Short descriptive name describing the field, e.g. first_name.</p></li>
@@ -213,8 +215,8 @@
 <p>Note, first and last name fields will be cleaned automatically (e.g. non-letter characters removed).  All string comparisons are case-insensitive, so it does not matter if input data is all caps, all lowercase, or a mix.</p>
 </section>
 <section id="general-parameters">
-<h3>General parameters<a class="headerlink" href="#general-parameters" title="Permalink to this headline"></a></h3>
-<p>There are a number of different parameters that can be set to configure exactly how Name Match runs. The full list of parameters – and their default values –  can be found <a class="reference external" href="https://urbangitlab.uchicago.edu/namematch/name_match/-/blob/master/namematch/default_parameters.yaml">here</a>. There are only a few parameters, however, that are somewhat common to adjust from the default values – these parameters are defined below. To change a parameter from the default value, include the parameter and its desired value as a key-value pair in the config.</p>
+<h3>General parameters<a class="headerlink" href="#general-parameters" title="Permalink to this heading"></a></h3>
+<p>There are a number of different parameters that can be set to configure exactly how Name Match runs. The full list of parameters – and their default values –  can be found <a class="reference external" href="https://github.com/urban-labs/namematch/-/blob/master/namematch/default_parameters.yaml">here</a>. There are only a few parameters, however, that are somewhat common to adjust from the default values – these parameters are defined below. To change a parameter from the default value, include the parameter and its desired value as a key-value pair in the config.</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">num_workers</span></code>: <em>(int, default=1)</em> The number of workers that should be used to parallelize various Name Match steps</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">allow_clusters_w_multiple_unique_ids</span></code>: <em>(bool, default=False)</em> Determines if the final groupings of records into people, or clusters, can contain more than one unique value for a given <code class="docutils literal notranslate"><span class="pre">UniqueID</span></code> field. If you trust that your Unique ID data is highly accurate, you’d set this to False. However, if you think it’s possible for some people to have multiple values (for example, a student moves schools and is accidentally assigned a new student_id), then you can set this to True.</p></li>
@@ -227,7 +229,7 @@
 </section>
 </section>
 <section id="pre-processing-making-sure-your-data-is-ready-for-name-match">
-<h2>Pre-processing: making sure your data is ready for Name Match<a class="headerlink" href="#pre-processing-making-sure-your-data-is-ready-for-name-match" title="Permalink to this headline"></a></h2>
+<h2>Pre-processing: making sure your data is ready for Name Match<a class="headerlink" href="#pre-processing-making-sure-your-data-is-ready-for-name-match" title="Permalink to this heading"></a></h2>
 <p>The following important steps need to be taken before inputting CSVs to Name Match:</p>
 <blockquote>
 <div><ul class="simple">
@@ -248,14 +250,14 @@
 </div></blockquote>
 </section>
 <section id="creating-user-defined-constraint-functions">
-<h2>Creating user defined constraint functions<a class="headerlink" href="#creating-user-defined-constraint-functions" title="Permalink to this headline"></a></h2>
+<h2>Creating user defined constraint functions<a class="headerlink" href="#creating-user-defined-constraint-functions" title="Permalink to this heading"></a></h2>
 <p>Because Name Match is an imperfect and probabilistic tool, there may be times when two records that do not refer to the same person get linked together and placed in the same cluster. Sometimes these “false positive” links are very easy for a human to identify because they defy some real-world logic or violate rules that the user wishes to enforce based on their knowledge of the dataset or domain.</p>
 <p>For example, say you are linking school enrollment records from a given year to identify students who have transfered – and one of the data fields available is number of days the student attended classes at that school. If a link between two records implies that a student attended school for more than 365 days in a given year, a human would immediately know that that link should not be allowed.</p>
 <p>To solve this problem, we provide the ability for the user to write custom, problem-specific constraints (logic that determines if a final link/cluster is valid or invalid). The user defines these constraints by writing python functions called``is_valid_link()`` and <code class="docutils literal notranslate"><span class="pre">is_valid_cluster()</span></code>.</p>
 <p>There are two options for how the user can pass these custom constraint functions to the NameMatcher object’s <code class="docutils literal notranslate"><span class="pre">cluster_constraints</span></code> argument. Option 1: Pass the path to a standalone python script that contains these two functions. Option 2: Pass a <code class="docutils literal notranslate"><span class="pre">ClusterConstraints</span></code> object that defines these functions (see the very end of the <a class="reference external" href="https://github.com/urban-labs/namematch/blob/master/examples/end_to_end_tutorial.ipynb">tutorial notebook</a> for an example of this option).</p>
 <p>Defining and using custom cluster constraints is <em>optional</em>. By default, the NameMatcher’s <code class="docutils literal notranslate"><span class="pre">cluster_constraints</span></code> argument is left empty and <a class="reference external" href="https://github.com/urban-labs/namematch/blob/master/namematch/default_constraints.py">default constraints</a> that classify all links and clusters as valid are applied.</p>
 <section id="is-valid-link">
-<h3><code class="docutils literal notranslate"><span class="pre">is_valid_link()</span></code><a class="headerlink" href="#is-valid-link" title="Permalink to this headline"></a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">is_valid_link()</span></code><a class="headerlink" href="#is-valid-link" title="Permalink to this heading"></a></h3>
 <p>This function takes in a <code class="docutils literal notranslate"><span class="pre">pandas</span> <span class="pre">DataFrame</span></code> of predicted links, or pairs of records that are predicted to match. It returns a boolean <code class="docutils literal notranslate"><span class="pre">pandas</span> <span class="pre">Series</span></code> indicating whether the predicted link is valid. The input dataframe has the following columns:</p>
 <blockquote>
 <div><ul class="simple">
@@ -279,7 +281,7 @@
 <p>If there is no special logic you wish to encode, this function should simply return True.</p>
 </section>
 <section id="is-valid-cluster">
-<h3><code class="docutils literal notranslate"><span class="pre">is_valid_cluster()</span></code><a class="headerlink" href="#is-valid-cluster" title="Permalink to this headline"></a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">is_valid_cluster()</span></code><a class="headerlink" href="#is-valid-cluster" title="Permalink to this heading"></a></h3>
 <p>This function takes in a <code class="docutils literal notranslate"><span class="pre">pandas</span> <span class="pre">DataFrame</span></code> with information about a single potential cluster, i.e. a group of records that all refer to the same person. It returns <code class="docutils literal notranslate"><span class="pre">True</span></code> if this cluster is valid and <code class="docutils literal notranslate"><span class="pre">False</span></code> otherwise. This function is run near the very end of the record linkage process during the clustering step, which determines which records will end up with the same person identifier in the final output. If a cluster is deemed valid, the records in that cluster will all have the same person id.</p>
 <p><strong>Example:</strong> Let’s again pretend that you are linking school enrollment records for a given year to identify transfer students. Equipped with domain knowledge about the school district you are linking, you may want to enforce a constraint that no student can attend more than 5 different schools in a single school year. You can use <code class="docutils literal notranslate"><span class="pre">is_valid_cluster</span></code> to prevent this from happening like so:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">is_valid_cluster</span><span class="p">(</span><span class="n">cluster</span><span class="p">,</span> <span class="n">phat</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
@@ -305,10 +307,10 @@
 </section>
 </section>
 <section id="additional-user-defined-functions">
-<h2>Additional user-defined functions<a class="headerlink" href="#additional-user-defined-functions" title="Permalink to this headline"></a></h2>
+<h2>Additional user-defined functions<a class="headerlink" href="#additional-user-defined-functions" title="Permalink to this heading"></a></h2>
 <p>There are two additional user-defined functions that can be altered to customize how Name Match clusters potential links.</p>
 <section id="apply-link-priority">
-<h3><code class="docutils literal notranslate"><span class="pre">apply_link_priority()</span></code><a class="headerlink" href="#apply-link-priority" title="Permalink to this headline"></a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">apply_link_priority()</span></code><a class="headerlink" href="#apply-link-priority" title="Permalink to this heading"></a></h3>
 <p>The <code class="docutils literal notranslate"><span class="pre">apply_link_priority()</span></code> function allows the user to change the order in which potential links are considered during the clustering step. By default, potential links are considered in descending order of <code class="docutils literal notranslate"><span class="pre">phat</span></code> – that is, the links we consider first are those that have the greatest likelihood of being a match. In <strong>very rare</strong> cases, however, the user may wish to alter the <code class="docutils literal notranslate"><span class="pre">phat</span></code> values for certain potential links before sorting or to sort by something else entirely.</p>
 <p>This function takes in a <code class="docutils literal notranslate"><span class="pre">pandas</span> <span class="pre">DataFrame</span></code> of valid predicted links, or pairs of records that are predicted to match and passed the <code class="docutils literal notranslate"><span class="pre">is_valid_link()</span></code> criteria. During clustering, Name Match iterates through this list and approves or disapproves each link one by one according to the <code class="docutils literal notranslate"><span class="pre">is_valid_cluster()</span></code> function.</p>
 <p>To see an example of how this function might be used, imagine the user wants to manually deprioritize predicted links that were missing DOB values. That could be done as follows:</p>
@@ -326,7 +328,7 @@
 <p>Another possible use case for this function is if the user wishes to consider potential links in chronological order rather than in order of descending confidence (which can be useful when linking data for RCTs or in other research settings).</p>
 </section>
 <section id="get-columns-used">
-<h3><code class="docutils literal notranslate"><span class="pre">get_columns_used()</span></code><a class="headerlink" href="#get-columns-used" title="Permalink to this headline"></a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">get_columns_used()</span></code><a class="headerlink" href="#get-columns-used" title="Permalink to this heading"></a></h3>
 <p>This optional function tells Name Match which data fields are needed by the constraint functions (and what data type to read them in as). By default, all data fiels are read in. This function can be useful for limiting the memory usage of the clustering step. If for example, RAM is an issue and the only data field referenced in the user’s custom constraint functions is “dob”, the user an define this function to return {“dob”:”date”} to limit the fields that are loaded to just dob.</p>
 <p>The ability to control the data type a field is read in as can be useful as the user writes their custom constraint functions. For example, if the <code class="docutils literal notranslate"><span class="pre">is_valid_cluster()</span></code> function contains logic related to the dob field, here the user can specify if they want this column to be represented as a string or a date object. By default, all columns are read in as strings. Type options are <code class="docutils literal notranslate"><span class="pre">object</span></code> (string), <code class="docutils literal notranslate"><span class="pre">int</span></code>, <code class="docutils literal notranslate"><span class="pre">float</span></code>, or <code class="docutils literal notranslate"><span class="pre">date</span></code>.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">get_columns_used</span><span class="p">():</span>
@@ -341,9 +343,9 @@
 </section>
 </section>
 <section id="special-cases">
-<h2>Special cases<a class="headerlink" href="#special-cases" title="Permalink to this headline"></a></h2>
+<h2>Special cases<a class="headerlink" href="#special-cases" title="Permalink to this heading"></a></h2>
 <section id="incremental-runs">
-<h3>Incremental runs<a class="headerlink" href="#incremental-runs" title="Permalink to this headline"></a></h3>
+<h3>Incremental runs<a class="headerlink" href="#incremental-runs" title="Permalink to this heading"></a></h3>
 <dl class="simple">
 <dt>An “incremental” run of Name Match is where you have some data that has already been matched (assigned person ids, or “clusters”) and you want to match more data to these same ids. There are two reasons you may want to do an incremental run of Name Match:</dt><dd><ol class="arabic simple">
 <li><p>Speed: If you’ve already linked 1 million records and need to link 1,000 more, it will be faster to incrementally add the 1,000 records to the pre-matched 1 million records than it would be to run Name Match from scrath on 1,001,00 records.</p></li>

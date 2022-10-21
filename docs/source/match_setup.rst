@@ -132,7 +132,7 @@ Note, first and last name fields will be cleaned automatically (e.g. non-letter 
 General parameters
 ******************
 
-There are a number of different parameters that can be set to configure exactly how Name Match runs. The full list of parameters -- and their default values --  can be found `here <https://urbangitlab.uchicago.edu/namematch/name_match/-/blob/master/namematch/default_parameters.yaml>`_. There are only a few parameters, however, that are somewhat common to adjust from the default values -- these parameters are defined below. To change a parameter from the default value, include the parameter and its desired value as a key-value pair in the config. 
+There are a number of different parameters that can be set to configure exactly how Name Match runs. The full list of parameters -- and their default values --  can be found `here <https://github.com/urban-labs/namematch/-/blob/master/namematch/default_parameters.yaml>`_. There are only a few parameters, however, that are somewhat common to adjust from the default values -- these parameters are defined below. To change a parameter from the default value, include the parameter and its desired value as a key-value pair in the config. 
 
 * ``num_workers``: *(int, default=1)* The number of workers that should be used to parallelize various Name Match steps
 

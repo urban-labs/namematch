@@ -6,23 +6,22 @@ Tool for probabilistically linking the records of individual entities (e.g. peop
 
 The code was originally developed for linking records in criminal justice-related datasets (arrests, victimizations, city programs, school records, etc.) using at least first name, last name, date of birth, and age (some missingness in DOB and age is tolerated). If available, other data fields like middle initial, race, gender, address, and zipcode can be included to strengthen the quality of the match.
 
-Project Link: https://urbangitlab.uchicago.edu/namematch/name_match
+Project Link: https://urban-labs.github.io/namematch/
 
 ## Getting Started
 
 ### Installation
-
 ```
-pip install git+ssh://git@urbangitlab.uchicago.edu/namematch/name_match.git
+pip install namematch 
 ```
 
 ### Reference
 
 * [Examples](examples/)
 * [End-to-end tutorial](examples/end_to_end_tutorial.ipynb)
-* [Overview + usage docs](https://namematch.ulpages.uchicago.edu/name_match/about.html)
-* [Algorithm docs](https://namematch.ulpages.uchicago.edu/name_match/algorithm.html)
-* [Developer docs](https://namematch.ulpages.uchicago.edu/name_match/api.html)
+* [Overview + usage docs](https://urban-labs.github.io/namematch/about.html)
+* [Algorithm docs](https://urban-labs.github.io/namematch/algorithm.html)
+* [Developer docs](https://urban-labs.github.io/namematch/namematch/api.html)
 
 
 ### Requirements of the input data
@@ -99,7 +98,7 @@ For more details, please checkout [`examples/command_line_usage/README.md`](exam
 
 ## Roadmap
 
-See the [open issues](https://urbangitlab.uchicago.edu/namematch/name_match/-/issues) for a list of proposed features (and known issues).
+See the [open issues](https://github.com/urban-labs/namematch/issues) for a list of proposed features (and known issues).
 
 ## Contributing
 
