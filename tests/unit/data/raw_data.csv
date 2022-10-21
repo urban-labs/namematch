@@ -1,24 +1,32 @@
-row_id,firstname,lastname,birthdate,address,gender,lat/lon,lat,lon,uid
-1,peter,hicks,07/09/1953,1665 Poplar Street,m,"2131,1322",2131,1322,1
-2,peter,hicks,07/09/1953,1865 Poplar Street,m,"2131,1322",2131,1322,1
-3,peter,hacks,08/10/1930,4000 Forbes Ave,m,"2131,1322",2131,1322,
-4,peter,hacks,07/09/1953,1665 Poplar Street,m,"2131,1322",2131,1322,
-5,vito,amendola,11/01/1985,2813 Joes Road,m,"8990,2321",8990,2321,2
-6,victor,amendola,11/01/1985,2813 Joes Road,m,"8990,2321",8990,2321,
-7,vito,amendo,12/02/1965,555 Jones St,m,"2131,1322",2131,1322,
-8,vito,amandola,11/10/1985,2813 Joes Road,m,"8990,2321",8990,2321,
-9,vito,amendola,11/01/1985,2813 Joes Road,m,"8990,2321",8990,2321,
-10,janice,davies,09/01/1981,2269 Bungalow Rd,f,"2231,1565",2231,1565,
-11,janet,davis,25/03/1970,39 Classon Ave,f,"0181,1322",0181,1322,
-12,janice,davis,09/01/1981,226 Bungalow Rd,f,"2231,1565",2231,1565,
-13,janice,davis,09/01/1981,2269 Bungalow Rd,f,"2231,1565",2231,1565,
-14marcus,wilcox,28/06/1970,1048 Carson St.,m,"7893,1543",7893,1543,
-15,marcos,wilcox,28/06/1970,1048 Carson St.,m,"7893,1543",7893,1543,3
-16,marcos,wilson,28/06/1970,1048 Carson St.,m,"7893,1543",7893,1543,3
-17,marcos,wilcox,28/06/1970,1048 Carson St.,m,"7893,1543",7893,1543,
-19,marcus,wilson,19/08/1950,35 Bloom St.,m,"2100,1300",2100,1300,
-20,mark,wilcox,30/10/1975,455 Winthrop St,m,"0031,1022",0031,1022,
-21,macro,wilcox,10/01/2000,100 5th Ave,f,"2781,1329",2781,1329,
-22,ben,smith,11/3/2004,456 Warren Ave,m,254254,2542,54,5
-23,ben,smith leffingwell,11/3/2004,456 Warren Ave,m,254153,2541,53,
-24,bern,smith,10/4/2004,123 Main St,m,7567234,7567,234,
+row_id,firstname,lastname,birthdate,address,gender,age_2021,lat/lon,lat,lon,uid
+1,peter,hicks,07/09/1953,1665 Poplar Street,m,68,"2131,1322",2131,1322,1
+2,peter,hicks,07/09/1953,1865 Poplar Street,m,68,"2131,1322",2131,1322,1
+3,peter,hacks,08/10/1930,4000 Forbes Ave,m,91,"2131,1322",2131,1322,2
+4,peter,hacks,07/09/1953,1665 Poplar Street,m,68,"2131,1322",2131,1322,2
+5,vito,amendola,11/01/1985,2813 Joes Road,m,36,"8990,2321",8990,2321,4
+6,victor,amendola,11/01/1985,2813 Joes Road,m,36,"8990,2321",8990,2321,4
+7,vito,amendo,12/02/1965,555 Jones St,m,56,"2131,1322",2131,1322,3
+8,vito,amandola,11/10/1985,2813 Joes Road,m,36,"8990,2321",8990,2321,4
+9,vito,amendola,11/01/1985,2813 Joes Road,m,36,"8990,2321",8990,2321,
+10,janice,davies,09/01/1981,2269 Bungalow Rd,f,40,"2231,1565",2231,1565,5
+11,janet,davis,03/25/1970,39 Classon Ave,f,51,"0181,1322",0181,1322,6
+12,janice,davis,09/01/1981,226 Bungalow Rd,f,40,"2231,1565",2231,1565,5
+13,janice,davis,09/01/1981,2269 Bungalow Rd,f,40,"2231,1565",2231,1565,5
+14,marcus,wilcox,06/28/1970,1048 Carson St.,m,52,"7893,1543",7893,1543,
+15,marcos,wilcox,06/28/1970,1048 Carson St.,m,51,"7893,1543",7893,1543,7
+16,marcos,wilson,28/06/1970,1048 Carson St.,m,51,"7893,1543",7893,1543,7
+17,marcos,wilcox,28/06/1970,1048 Carson St.,m,51,"7893,1543",7893,1543,
+18,marcus,wilson,19/08/1950,35 Bloom St.,m,71,"2100,1300",2100,1300,15
+19,mark,wilcox,30/10/1975,455 Winthrop St,m,46,"0031,1022",0031,1022,8
+20,macro,wilcox,10/01/2000,100 5th Ave,f,21,"2781,1329",2781,1329,9
+21,ben,smith,11/3/2004,456 Warren Ave,m,17,254254,2542,54,
+22,ben,smith leffingwell,11/3/2004,456 Warren Ave,m,17,254153,2541,53,
+23,bern,smith,10/4/2004,123 Main St,m,17,7567234,7567,234,
+24,john,davis,11/3/2004,456 Warren Ave,m,17,254254,2542,54,10
+25,john,davis,11/3/2004,456 Warren Ave,m,17,254153,2541,53,
+26,jon,davis,10/4/2004,123 Main St,m,17,7567234,7567,234,
+27,joe,davis,11/3/2001,456 Warren Ave,m,20,254254,2542,54,13
+28,joe,davis,11/3/2002,456 Warren Ave,m,19,254153,2541,53,13
+29,joe,davis,10/4/2005,123 Main St,m,16,7567234,7567,234,
+30,vic,amendola,11/01/1975,2811 Joes Road,m,46,"8990,2321",8990,2321,14
+31,vic,amendola,11/01/1975,2811 Joes Road,m,46,"8990,2321",8990,2321,

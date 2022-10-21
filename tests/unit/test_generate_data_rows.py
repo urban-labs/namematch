@@ -14,7 +14,6 @@ def test_generate_name_probabilities_object(params_and_schema, an_df, logger_for
             schema,
             all_names_file=an_df,
             candidate_pairs_file=None,
-            batch_size=500,
             output_dir=None,
         )
 

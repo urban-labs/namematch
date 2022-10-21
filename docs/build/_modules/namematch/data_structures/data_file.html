@@ -1,148 +1,72 @@
-
-
 <!DOCTYPE html>
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8">
-  
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>namematch.data_structures.data_file &mdash; namematch 0.0.1 documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
-
-  
-  
-  
-  
-
-  
-
-  
-  
-    
-
-  
-
-  <link rel="stylesheet" href="../../../_static/css/theme.min.css" type="text/css" />
-  <link rel="stylesheet" href="../../../_static/css/custom.css" type="text/css" />
-  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
     <link rel="author" title="About these documents" href="../../../about.html" />
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" /> 
-
 </head>
 
-<body>
-    <header>
-        <div class="container">
-            <a class="site-nav-toggle hidden-lg-up"><i class="icon-menu"></i></a>
-            <a class="site-title" href="../../../index.html">
-                namematch
-            </a>
-        </div>
-    </header>
-
-
-<div class="breadcrumbs-outer hidden-xs-down">
-    <div class="container">
-        
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div role="navigation" aria-label="breadcrumbs navigation">
-
-  <ul class="breadcrumbs">
-    
-      <li><a href="../../../index.html">Docs</a></li>
-        
-          <li><a href="../../index.html">Module code</a></li>
-        
-      <li>namematch.data_structures.data_file</li>
-    
-    
-      <li class="breadcrumbs-aside">
-        
-      </li>
-    
-  </ul>
-</div>
-    </div>
-</div>
-    <div class="main-outer">
-        <div class="container">
-            <div class="row">
-                <div class="col-12 col-lg-3 site-nav">
-                    
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../index.html" class="icon icon-home"> namematch
+          </a>
 <div role="search">
-    <form class="search" action="../../../search.html" method="get">
-        <div class="icon-input">
-            <input type="text" name="q" placeholder="Search" />
-            <span class="icon-search"></span>
-        </div>
-        <input type="submit" value="Go" class="d-hidden" />
-        <input type="hidden" name="check_keywords" value="yes" />
-        <input type="hidden" name="area" value="default" />
-    </form>
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
 </div>
-                    <div class="site-nav-tree">
-                        
-                            
-                            
-                                <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../../about.html">About Name Match</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../../about.html#what-is-name-match-doing">What is Name Match doing?</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../about.html#inputs-and-outputs">Inputs and outputs</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="../../../match_setup.html">Setting Up a Match</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../../match_setup.html#preparing-the-data-for-name-match">Preparing the data for Name Match</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../match_setup.html#creating-the-configuration-file">Creating the configuration file</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../match_setup.html#creating-user-defined-clustering-functions">Creating user defined clustering functions</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../match_setup.html#running-the-code">Running the code</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../match_setup.html#special-cases">Special cases</a></li>
-</ul>
-</li>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../about.html">About Name Match</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../match_setup.html">Setting Up a Match</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../understanding_results.html">Understanding Results</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../algorithm.html">Algorithm Documentation</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../../algorithm.html#why-is-name-match-necessary">Why is Name Match necessary</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../algorithm.html#how-it-works">How it works</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../algorithm.html#things-to-consider">Things to consider</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="../../../api.html">API Reference</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../../api.html#module-namematch.process_config"><code class="xref py py-mod docutils literal notranslate"><span class="pre">namematch.process_config</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../api.html#module-namematch.process_input_data"><code class="xref py py-mod docutils literal notranslate"><span class="pre">namematch.process_input_data</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../api.html#module-namematch.generate_must_links"><code class="xref py py-mod docutils literal notranslate"><span class="pre">namematch.generate_must_links</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../api.html#module-namematch.block"><code class="xref py py-mod docutils literal notranslate"><span class="pre">namematch.block</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../api.html#module-namematch.generate_data_rows"><code class="xref py py-mod docutils literal notranslate"><span class="pre">namematch.generate_data_rows</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../api.html#module-namematch.fit_model"><code class="xref py py-mod docutils literal notranslate"><span class="pre">namematch.fit_model</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../api.html#module-namematch.predict"><code class="xref py py-mod docutils literal notranslate"><span class="pre">namematch.predict</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../api.html#module-namematch.cluster"><code class="xref py py-mod docutils literal notranslate"><span class="pre">namematch.cluster</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../api.html#module-namematch.generate_output"><code class="xref py py-mod docutils literal notranslate"><span class="pre">namematch.generate_output</span></code></a></li>
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../algorithm.html">Detailed Algorithm Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../api.html">API Reference</a></li>
 </ul>
 
-                            
-                        
-                    </div>
-                </div>
-                <div class="col-12 col-lg-9">
-                    <div class="document">
-                        
-                            
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">namematch</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+      <li>namematch.data_structures.data_file</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
   <h1>Source code for namematch.data_structures.data_file</h1><div class="highlight"><pre>
 <span></span>
 <span class="kn">import</span> <span class="nn">logging</span>
@@ -153,8 +77,8 @@
 <span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">()</span>
 
 
-<div class="viewcode-block" id="DataFile"><a class="viewcode-back" href="../../../namematch.data_structures.html#namematch.data_structures.data_file.DataFile">[docs]</a><span class="k">class</span> <span class="nc">DataFile</span><span class="p">():</span>
-    <span class="sd">&#39;&#39;&#39;Parent class for NewDataFile and ExistingDateFile, which house details about the </span>
+<div class="viewcode-block" id="DataFile"><a class="viewcode-back" href="../../../api.html#namematch.data_structures.data_file.DataFile">[docs]</a><span class="k">class</span> <span class="nc">DataFile</span><span class="p">():</span>
+    <span class="sd">&#39;&#39;&#39;Parent class for NewDataFile and ExistingDateFile, which house details about the</span>
 <span class="sd">    data files input for matching.&#39;&#39;&#39;</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">validated_data_file_dict</span><span class="p">):</span>
@@ -162,20 +86,20 @@
         <span class="k">for</span> <span class="n">attribute</span><span class="p">,</span> <span class="n">attribute_value</span> <span class="ow">in</span> <span class="n">validated_data_file_dict</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
             <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attribute</span><span class="p">,</span> <span class="n">attribute_value</span><span class="p">)</span>
 
-<div class="viewcode-block" id="DataFile.load"><a class="viewcode-back" href="../../../namematch.data_structures.html#namematch.data_structures.data_file.DataFile.load">[docs]</a>    <span class="nd">@classmethod</span>
+<div class="viewcode-block" id="DataFile.load"><a class="viewcode-back" href="../../../api.html#namematch.data_structures.data_file.DataFile.load">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">load</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">data_file_dict</span><span class="p">):</span>
-        <span class="sd">&#39;&#39;&#39;Load a DataFile instance (either a NewDataFile or an ExistingDataFile). </span>
+        <span class="sd">&#39;&#39;&#39;Load a DataFile instance (either a NewDataFile or an ExistingDataFile).</span>
 
-<span class="sd">        Args: </span>
+<span class="sd">        Args:</span>
 <span class="sd">            data_file_dict (dict): dictionary-version of a DataFile object</span>
 
-<span class="sd">        Returns: </span>
+<span class="sd">        Returns:</span>
 <span class="sd">            instance of the DataFile class</span>
 <span class="sd">        &#39;&#39;&#39;</span>
 
         <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="n">data_file_dict</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="DataFile.validate_existance"><a class="viewcode-back" href="../../../namematch.data_structures.html#namematch.data_structures.data_file.DataFile.validate_existance">[docs]</a>    <span class="k">def</span> <span class="nf">validate_existance</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="DataFile.validate_existance"><a class="viewcode-back" href="../../../api.html#namematch.data_structures.data_file.DataFile.validate_existance">[docs]</a>    <span class="k">def</span> <span class="nf">validate_existance</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&#39;&#39;&#39;Validate that an input file path exists.&#39;&#39;&#39;</span>
 
         <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">filepath</span><span class="p">):</span>
@@ -183,7 +107,7 @@
                          <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">filepath</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
             <span class="k">raise</span></div>
 
-<div class="viewcode-block" id="DataFile.validate_record_id_col"><a class="viewcode-back" href="../../../namematch.data_structures.html#namematch.data_structures.data_file.DataFile.validate_record_id_col">[docs]</a>    <span class="k">def</span> <span class="nf">validate_record_id_col</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="DataFile.validate_record_id_col"><a class="viewcode-back" href="../../../api.html#namematch.data_structures.data_file.DataFile.validate_record_id_col">[docs]</a>    <span class="k">def</span> <span class="nf">validate_record_id_col</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&#39;&#39;&#39;Validate that the record_id column exists and meets uniqueness criteria.&#39;&#39;&#39;</span>
 
         <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">filepath</span><span class="p">,</span> <span class="n">nrows</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
@@ -200,7 +124,7 @@
         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">)</span> <span class="o">!=</span> <span class="n">df</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">record_id_col</span><span class="p">]</span><span class="o">.</span><span class="n">nunique</span><span class="p">():</span>
             <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The record_id_col specified for the </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">nickname</span><span class="si">}</span><span class="s2"> &quot;</span>
                            <span class="sa">f</span><span class="s2">&quot;file is not unique: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">record_id_col</span><span class="si">}</span><span class="s2">.&quot;</span><span class="p">)</span>
-        <span class="k">if</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">file_type</span> <span class="o">==</span> <span class="s1">&#39;existing&#39;</span><span class="p">)</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">use_record_id_as_is</span><span class="p">:</span> 
+        <span class="k">if</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">file_type</span> <span class="o">==</span> <span class="s1">&#39;existing&#39;</span><span class="p">)</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">use_record_id_as_is</span><span class="p">:</span>
             <span class="n">split_recids</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">record_id_col</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;__&quot;</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">expand</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
             <span class="k">if</span> <span class="p">(</span><span class="n">split_recids</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span> <span class="ow">or</span> <span class="n">split_recids</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">any</span><span class="p">():</span>
                 <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The use_record_id_as_is parameter is set to True for the </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">nickname</span><span class="si">}</span><span class="s2"> file, &quot;</span>
@@ -210,25 +134,25 @@
             <span class="n">prefixes</span> <span class="o">=</span> <span class="n">split_recids</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
             <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The use_record_id_as_is parameter is set to True for the </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">nickname</span><span class="si">}</span><span class="s2"> file. &quot;</span>
                         <span class="sa">f</span><span class="s2">&quot;The ids are prefixed by the following nicknames: </span><span class="si">{</span><span class="s1">&#39;, &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">prefixes</span><span class="p">)</span><span class="si">}</span><span class="s2">.&quot;</span><span class="p">)</span></div>
-            
 
-<div class="viewcode-block" id="DataFile.copy"><a class="viewcode-back" href="../../../namematch.data_structures.html#namematch.data_structures.data_file.DataFile.copy">[docs]</a>    <span class="k">def</span> <span class="nf">copy</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+<div class="viewcode-block" id="DataFile.copy"><a class="viewcode-back" href="../../../api.html#namematch.data_structures.data_file.DataFile.copy">[docs]</a>    <span class="k">def</span> <span class="nf">copy</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&#39;&#39;&#39;Create a deep copy of a DataFile object.&#39;&#39;&#39;</span>
         <span class="k">return</span> <span class="n">deepcopy</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span></div></div>
 
 
-<div class="viewcode-block" id="NewDataFile"><a class="viewcode-back" href="../../../namematch.data_structures.html#namematch.data_structures.data_file.NewDataFile">[docs]</a><span class="k">class</span> <span class="nc">NewDataFile</span><span class="p">(</span><span class="n">DataFile</span><span class="p">):</span>
+<div class="viewcode-block" id="NewDataFile"><a class="viewcode-back" href="../../../api.html#namematch.data_structures.data_file.NewDataFile">[docs]</a><span class="k">class</span> <span class="nc">NewDataFile</span><span class="p">(</span><span class="n">DataFile</span><span class="p">):</span>
 
-<div class="viewcode-block" id="NewDataFile.build"><a class="viewcode-back" href="../../../namematch.data_structures.html#namematch.data_structures.data_file.NewDataFile.build">[docs]</a>    <span class="nd">@classmethod</span>
+<div class="viewcode-block" id="NewDataFile.build"><a class="viewcode-back" href="../../../api.html#namematch.data_structures.data_file.NewDataFile.build">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">build</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">nickname</span><span class="p">,</span> <span class="n">info</span><span class="p">):</span>
-        <span class="sd">&#39;&#39;&#39;Create a NewDataFile instance. </span>
+        <span class="sd">&#39;&#39;&#39;Create a NewDataFile instance.</span>
 
-<span class="sd">        Args: </span>
+<span class="sd">        Args:</span>
 <span class="sd">            nickname (str): the data file&#39;s nickname</span>
 <span class="sd">            info (dict): info about a data file definition from user-input config</span>
 
-<span class="sd">        Returns: </span>
-<span class="sd">            instance of the NewDataFile class</span>
+<span class="sd">        Returns:</span>
+<span class="sd">           :mod:`namematch.data_structures.data_file.NewDataFile`: instance of the NewDataFile class</span>
 <span class="sd">        &#39;&#39;&#39;</span>
 
         <span class="n">params_required</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;filepath&#39;</span><span class="p">,</span> <span class="s1">&#39;record_id_col&#39;</span><span class="p">]</span>
@@ -247,22 +171,22 @@
         <span class="n">data_file_dict</span><span class="p">[</span><span class="s1">&#39;use_record_id_as_is&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">False</span>
         <span class="n">data_file_dict</span><span class="p">[</span><span class="s1">&#39;cluster_type&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">info</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;cluster_type&#39;</span><span class="p">,</span> <span class="s1">&#39;cluster&#39;</span><span class="p">)</span>
         <span class="n">data_file_dict</span><span class="p">[</span><span class="s1">&#39;output_file_stem&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">info</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;output_file_stem&#39;</span><span class="p">,</span> <span class="n">nickname</span><span class="p">)</span>
-        
+
         <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="n">data_file_dict</span><span class="p">)</span></div></div>
 
 
-<div class="viewcode-block" id="ExistingDataFile"><a class="viewcode-back" href="../../../namematch.data_structures.html#namematch.data_structures.data_file.ExistingDataFile">[docs]</a><span class="k">class</span> <span class="nc">ExistingDataFile</span><span class="p">(</span><span class="n">DataFile</span><span class="p">):</span>
+<div class="viewcode-block" id="ExistingDataFile"><a class="viewcode-back" href="../../../api.html#namematch.data_structures.data_file.ExistingDataFile">[docs]</a><span class="k">class</span> <span class="nc">ExistingDataFile</span><span class="p">(</span><span class="n">DataFile</span><span class="p">):</span>
 
-<div class="viewcode-block" id="ExistingDataFile.build"><a class="viewcode-back" href="../../../namematch.data_structures.html#namematch.data_structures.data_file.ExistingDataFile.build">[docs]</a>    <span class="nd">@classmethod</span>
+<div class="viewcode-block" id="ExistingDataFile.build"><a class="viewcode-back" href="../../../api.html#namematch.data_structures.data_file.ExistingDataFile.build">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">build</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">nickname</span><span class="p">,</span> <span class="n">info</span><span class="p">):</span>
-        <span class="sd">&#39;&#39;&#39;Create a ExistingDataFile instance. </span>
+        <span class="sd">&#39;&#39;&#39;Create a ExistingDataFile instance.</span>
 
-<span class="sd">        Args: </span>
+<span class="sd">        Args:</span>
 <span class="sd">            nickname (str): the data file&#39;s nickname</span>
 <span class="sd">            info (dict): info about a data file definition from user-input config</span>
 
-<span class="sd">        Returns: </span>
-<span class="sd">            instance of the ExistingDataFile class</span>
+<span class="sd">        Returns:</span>
+<span class="sd">            :mod:`namematch.data_structures.data_file.ExistingDataFile`: instance of the ExistingDataFile class</span>
 <span class="sd">        &#39;&#39;&#39;</span>
 
         <span class="n">params_required</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;filepath&#39;</span><span class="p">,</span> <span class="s1">&#39;record_id_col&#39;</span><span class="p">]</span>
@@ -282,7 +206,7 @@
         <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="n">data_file_dict</span><span class="p">)</span></div></div>
 
 
-<div class="viewcode-block" id="DataFileList"><a class="viewcode-back" href="../../../namematch.data_structures.html#namematch.data_structures.data_file.DataFileList">[docs]</a><span class="k">class</span> <span class="nc">DataFileList</span><span class="p">():</span>
+<div class="viewcode-block" id="DataFileList"><a class="viewcode-back" href="../../../api.html#namematch.data_structures.data_file.DataFileList">[docs]</a><span class="k">class</span> <span class="nc">DataFileList</span><span class="p">():</span>
     <span class="sd">&#39;&#39;&#39;Class that houses a list of DataFile objects (either NewDataFiles or ExistingDateFiles.&#39;&#39;&#39;</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data_files_dict</span><span class="p">):</span>
@@ -292,16 +216,16 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">validate_names</span><span class="p">()</span>
 
 
-<div class="viewcode-block" id="DataFileList.build"><a class="viewcode-back" href="../../../namematch.data_structures.html#namematch.data_structures.data_file.DataFileList.build">[docs]</a>    <span class="nd">@classmethod</span>
+<div class="viewcode-block" id="DataFileList.build"><a class="viewcode-back" href="../../../api.html#namematch.data_structures.data_file.DataFileList.build">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">build</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">data_files_dict</span><span class="p">,</span> <span class="n">existing_data_files_dict</span><span class="p">):</span>
-        <span class="sd">&#39;&#39;&#39;Create a DataFileList instance. </span>
+        <span class="sd">&#39;&#39;&#39;Create a DataFileList instance.</span>
 
-<span class="sd">        Args: </span>
+<span class="sd">        Args:</span>
 <span class="sd">            data_files_dict (dict): dictionary with &quot;new data file&quot; info from user-input config</span>
 <span class="sd">            existing_data_files_dict (dict): dictionary with &quot;existing data file&quot; info from user-input config</span>
 
-<span class="sd">        Returns: </span>
-<span class="sd">            instance of the DataFileList class</span>
+<span class="sd">        Returns:</span>
+<span class="sd">            :mod:`namematch.data_structures.data_file.DataFileList`: instance of the DataFileList class</span>
 <span class="sd">        &#39;&#39;&#39;</span>
 
         <span class="n">validated_data_files_dict</span> <span class="o">=</span> <span class="p">{</span>
@@ -318,15 +242,15 @@
         <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="n">validated_data_files_dict</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="DataFileList.load"><a class="viewcode-back" href="../../../namematch.data_structures.html#namematch.data_structures.data_file.DataFileList.load">[docs]</a>    <span class="nd">@classmethod</span>
+<div class="viewcode-block" id="DataFileList.load"><a class="viewcode-back" href="../../../api.html#namematch.data_structures.data_file.DataFileList.load">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">load</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">data_files_list_dict</span><span class="p">):</span>
-        <span class="sd">&#39;&#39;&#39;Load a DataFileList instance. </span>
+        <span class="sd">&#39;&#39;&#39;Load a DataFileList instance.</span>
 
-<span class="sd">        Args: </span>
+<span class="sd">        Args:</span>
 <span class="sd">            data_files_list_dict (dict): dictionary-version of a DataFileList object</span>
 
-<span class="sd">        Returns: </span>
-<span class="sd">            instance of the DataFileList class</span>
+<span class="sd">        Returns:</span>
+<span class="sd">            :mod:`namematch.data_structures.data_file.DataFileList`: instance of the DataFileList class</span>
 <span class="sd">        &#39;&#39;&#39;</span>
 
         <span class="n">data_files</span> <span class="o">=</span> <span class="p">[</span>
@@ -347,10 +271,10 @@
         <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="n">data_files_dict</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="DataFileList.get_all_nicknames"><a class="viewcode-back" href="../../../namematch.data_structures.html#namematch.data_structures.data_file.DataFileList.get_all_nicknames">[docs]</a>    <span class="k">def</span> <span class="nf">get_all_nicknames</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="DataFileList.get_all_nicknames"><a class="viewcode-back" href="../../../api.html#namematch.data_structures.data_file.DataFileList.get_all_nicknames">[docs]</a>    <span class="k">def</span> <span class="nf">get_all_nicknames</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&#39;&#39;&#39;Return a list of all of the DataFile nicknames in the DataFileList.</span>
-<span class="sd">        </span>
-<span class="sd">        Return: </span>
+
+<span class="sd">        Return:</span>
 <span class="sd">            list of strings</span>
 <span class="sd">        &#39;&#39;&#39;</span>
 
@@ -362,7 +286,7 @@
         <span class="k">return</span> <span class="n">data_file_name_list</span></div>
 
 
-<div class="viewcode-block" id="DataFileList.validate"><a class="viewcode-back" href="../../../namematch.data_structures.html#namematch.data_structures.data_file.DataFileList.validate">[docs]</a>    <span class="k">def</span> <span class="nf">validate</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="DataFileList.validate"><a class="viewcode-back" href="../../../api.html#namematch.data_structures.data_file.DataFileList.validate">[docs]</a>    <span class="k">def</span> <span class="nf">validate</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&#39;&#39;&#39;Validate the DataFileList by validating the list overall and then validating</span>
 <span class="sd">        each individual DataFile.&#39;&#39;&#39;</span>
 
@@ -372,8 +296,8 @@
             <span class="n">data_file</span><span class="o">.</span><span class="n">validate_record_id_col</span><span class="p">()</span></div>
 
 
-<div class="viewcode-block" id="DataFileList.validate_names"><a class="viewcode-back" href="../../../namematch.data_structures.html#namematch.data_structures.data_file.DataFileList.validate_names">[docs]</a>    <span class="k">def</span> <span class="nf">validate_names</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&#39;&#39;&#39;Validate that the DataFiles in the DataFileList all have unique nicknames </span>
+<div class="viewcode-block" id="DataFileList.validate_names"><a class="viewcode-back" href="../../../api.html#namematch.data_structures.data_file.DataFileList.validate_names">[docs]</a>    <span class="k">def</span> <span class="nf">validate_names</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;Validate that the DataFiles in the DataFileList all have unique nicknames</span>
 <span class="sd">        and that the output file stems have unique cluster types.&#39;&#39;&#39;</span>
 
         <span class="c1"># check for unique nicknames</span>
@@ -397,26 +321,26 @@
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">()</span></div>
 
 
-<div class="viewcode-block" id="DataFileList.write"><a class="viewcode-back" href="../../../namematch.data_structures.html#namematch.data_structures.data_file.DataFileList.write">[docs]</a>    <span class="k">def</span> <span class="nf">write</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">output_file</span><span class="p">):</span>
+<div class="viewcode-block" id="DataFileList.write"><a class="viewcode-back" href="../../../api.html#namematch.data_structures.data_file.DataFileList.write">[docs]</a>    <span class="k">def</span> <span class="nf">write</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">output_file</span><span class="p">):</span>
         <span class="sd">&#39;&#39;&#39;Write the DataFileList to a yaml file.</span>
-<span class="sd">        </span>
-<span class="sd">        Args: </span>
+
+<span class="sd">        Args:</span>
 <span class="sd">            output_file (str): path to write data file list dictionary</span>
 <span class="sd">        &#39;&#39;&#39;</span>
 
         <span class="n">dump_yaml</span><span class="p">(</span><span class="n">to_dict</span><span class="p">(</span><span class="bp">self</span><span class="p">),</span> <span class="n">output_file</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="DataFileList.copy"><a class="viewcode-back" href="../../../namematch.data_structures.html#namematch.data_structures.data_file.DataFileList.copy">[docs]</a>    <span class="k">def</span> <span class="nf">copy</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="DataFileList.copy"><a class="viewcode-back" href="../../../api.html#namematch.data_structures.data_file.DataFileList.copy">[docs]</a>    <span class="k">def</span> <span class="nf">copy</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&#39;&#39;&#39;Create a deep copy of a DataFileList object.&#39;&#39;&#39;</span>
 
         <span class="k">return</span> <span class="n">deepcopy</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="DataFileList.get_all_data_files"><a class="viewcode-back" href="../../../namematch.data_structures.html#namematch.data_structures.data_file.DataFileList.get_all_data_files">[docs]</a>    <span class="k">def</span> <span class="nf">get_all_data_files</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="DataFileList.get_all_data_files"><a class="viewcode-back" href="../../../api.html#namematch.data_structures.data_file.DataFileList.get_all_data_files">[docs]</a>    <span class="k">def</span> <span class="nf">get_all_data_files</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&#39;&#39;&#39;Retrieve list of all DataFile objects, regardless of New or Existing.</span>
-<span class="sd">        </span>
-<span class="sd">        Return: </span>
+
+<span class="sd">        Return:</span>
 <span class="sd">            list of DataFile objects</span>
 <span class="sd">        &#39;&#39;&#39;</span>
 
@@ -429,39 +353,31 @@
 
 </pre></div>
 
-                        
-                    </div>
-                </div>
-            </div>
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, Melissa McNeill, Eddie Lin, Zubin Jelveh.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
         </div>
-    </div>    
-
-
-  
-
-    <script type="text/javascript">
-        var DOCUMENTATION_OPTIONS = {
-            URL_ROOT:'../../../',
-            VERSION:'0.0.1',
-            LANGUAGE:'None',
-            COLLAPSE_INDEX:false,
-            FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true,
-            SOURCELINK_SUFFIX: '.txt'
-        };
-    </script>
-    <script type="text/javascript" src="../../../_static/jquery.js"></script>
-    <script type="text/javascript" src="../../../_static/underscore.js"></script>
-    <script type="text/javascript" src="../../../_static/doctools.js"></script>
-    <script type="text/javascript" src="../../../_static/language_data.js"></script>
-    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
-  
-    <div class="footer" role="contentinfo">
-        <div class="container">
-            &#169; Copyright 2021, Melissa McNeill, Eddie Lin, Zubin Jelveh.
-        Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.1.1.
-        </div>
-    </div>  
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
 
 </body>
 </html>

@@ -100,7 +100,7 @@ variables :
 
 
 verbose : 50000
-num_threads : 6
+num_workers : 6
 
 leven_thresh : null
 allow_clusters_w_multiple_unique_ids : False

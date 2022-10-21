@@ -17,7 +17,7 @@ from namematch.utils import utils
 
 
 class Schema():
-    '''Class that houses the most essential instructions for how to complete the match: what 
+    '''Class that houses the most essential instructions for how to complete the match: what
     data files to match, and which variables to use to do so.'''
 
     def __init__(self, data_files, variables):
@@ -28,14 +28,14 @@ class Schema():
 
     @classmethod
     def init(cls, config, params):
-        '''Create and validate a DataFileList instance and a VariableList instance. 
+        '''Create and validate a DataFileList instance and a VariableList instance.
 
-        Args: 
+        Args:
             config (dict): dictionary with match parameter values
             params (dict): dictionary with processed match parameter values
 
-        Returns: 
-            instance of the Schema class 
+        Returns:
+            :mod:`namematch.data_structures.schema.Schema`: instance of the Schema class
         '''
 
         data_files = DataFileList.build(
@@ -51,13 +51,13 @@ class Schema():
 
     @classmethod
     def load(cls, filepath):
-        '''Load a Schema instance. 
+        '''Load a Schema instance.
 
-        Args: 
+        Args:
             filepath (str): path to a yaml version of a Schema instance
 
-        Returns: 
-            instance of the Schema class
+        Returns:
+            :mod:`namematch.data_structures.schema.Schema`: instance of the Schema class
         '''
 
         schema_dict = utils.load_yaml(filepath)
@@ -77,8 +77,8 @@ class Schema():
 
     def write(self, output_file):
         '''Write the Schema to a yaml file.
-        
-        Args: 
+
+        Args:
             output_file (str): path to write schema dictionary
         '''
 
@@ -87,7 +87,7 @@ class Schema():
 
     # def copy(self):
     #     '''Create a deep copy of a Schema object.'''
-    
+
     #     return Schema(
     #         self.data_files.copy(),
     #         self.variables.copy())

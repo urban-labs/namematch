@@ -1,4 +1,3 @@
-import argparse
 import logging
 import os
 
@@ -18,12 +17,10 @@ from namematch.comparison_functions import *
 from namematch.data_structures.schema import Schema
 from namematch.data_structures.parameters import Parameters
 from namematch.base import NamematchBase
+from namematch.utils.profiler import Profiler
 
-try:
-    profile
-except:
-    from line_profiler import LineProfiler
-    profile = LineProfiler()
+profile = Profiler()
+logger = logging.getLogger()
 
 
 class GenerateDataRows(NamematchBase):
@@ -34,23 +31,21 @@ class GenerateDataRows(NamematchBase):
         output_dir,
         all_names_file,
         candidate_pairs_file,
-        batch_size=500,
-        output_file=None,
-        logger_id=None,
         *args,
         **kwargs
     ):
-        super(GenerateDataRows, self).__init__(params, schema, output_file, logger_id, *args, **kwargs)
+        super(GenerateDataRows, self).__init__(params, schema, *args, **kwargs)
 
         self.all_names_file = all_names_file
         self.candidate_pairs_file = candidate_pairs_file
         self.output_dir = output_dir
-        self.output_file = []
-        self.batch_size = batch_size
 
-    @equip_logger_id
+    @property
+    def output_files(self):
+        return [os.path.join(self.output_dir, f'data_rows_{i}.parquet') for i in range(self.params.num_workers)]
+
     @log_runtime_and_memory
-    def main__generate_data_rows(self, **kw):
+    def main(self, **kw):
         '''Take candidate pairs and merge on the all-names records (twice) to get a dataset at the
         record pair level. Compute distance metrics between the records in the pair -- these are the
         features for modeling.
@@ -58,22 +53,13 @@ class GenerateDataRows(NamematchBase):
         Args:
             params (Parameters object): contains parameter values
             schema (Schema object): contains match schema info (files to match, variables to use, etc.)
-            all_names_file (str): path to output_temp's all-names file
-            candidate_pairs_file (str): path to output_temp's candidate-pairs file
-            output_dir (str): path to output_temp's data-rows dir
+            all_names_file (str): path to the all-names file
+            candidate_pairs_file (str): path to the candidate-pairs file
+            output_dir (str): path to the data-rows dir
         '''
 
         if not os.path.exists(self.output_dir):
             os.mkdir(self.output_dir)
-
-        global logger
-
-        logger_id = kw.get('logger_id')
-        if logger_id:
-            logger = logging.getLogger(f'namematch_{str(logger_id)}')
-
-        else:
-            logger = self.logger
 
         an_columns = ['blockstring'] + self.schema.variables.get_an_column_names()
         table = pq.read_table(self.all_names_file)
@@ -96,7 +82,7 @@ class GenerateDataRows(NamematchBase):
         cp_df = table.to_pandas()[['blockstring_1', 'blockstring_2', 'covered_pair']]
 
         # get data rows
-        end_points = get_endpoints(len(cp_df), self.params.num_threads)
+        end_points = get_endpoints(len(cp_df), self.params.num_workers)
         if self.params.parallelize:
             jobs = [mp.Process(
                         target=self.generate_data_row_files,
@@ -128,7 +114,9 @@ class GenerateDataRows(NamematchBase):
                         end_point[0], end_point[1],
                         os.path.join(self.output_dir, f'data_rows_{i}.parquet'))
 
-    @equip_logger_id
+        if self.enable_lprof:
+            self.write_line_profile_stats(profile.line_profiler)
+
     @log_runtime_and_memory
     def generate_name_probabilities_object(self, an, fn_col=None, ln_col=None, **kw):
         '''The generate_name_probabilites function uses a list of names (from all_names
@@ -152,11 +140,13 @@ class GenerateDataRows(NamematchBase):
         an['name_prob_str'] = '*' + an['fn'] + ' ' + an['ln'] + '*'
 
         np_object = nm_prob.NameMatcher(name_list=an.name_prob_str.tolist())
-        np_object.n_name_appearances_dict = an.groupby('name_prob_str').size().rank(pct=True).to_dict()
+
+        np_object.n_name_appearances_dict = an.groupby('name_prob_str').size().rank(pct=True, method='min').round(2).to_dict()
+        np_object.n_firstname_appearances_dict = an.groupby('fn').size().rank(pct=True, method='min').round(2).to_dict()
+        np_object.n_lastname_appearances_dict = an.groupby('ln').size().rank(pct=True, method='min').round(2).to_dict()
 
         return np_object
 
-    @equip_logger_id
     @log_runtime_and_memory
     def find_valid_training_records(self, an, an_match_criteria, **kw):
 
@@ -169,9 +159,8 @@ class GenerateDataRows(NamematchBase):
 
         return an['meets_match_criteria']
 
-
     @profile
-    def generate_actual_data_rows(self, params, schema, sbs_df, np_object):
+    def generate_actual_data_rows(self, params, schema, sbs_df, np_object, first_iter):
         '''Create modeling dataframe by comparing each variable (via numerous distance metrics).
 
         Args:
@@ -202,6 +191,8 @@ class GenerateDataRows(NamematchBase):
 
         sbs_df = sbs_df.copy()
 
+        uid_cols = schema.variables.get_variables_where(attr='compare_type', attr_value='UniqueID')
+
         # don't compare a record to itself
         sbs_df = sbs_df[sbs_df.record_id_1 != sbs_df.record_id_2]
 
@@ -218,10 +209,14 @@ class GenerateDataRows(NamematchBase):
                     (sbs_df.file_type_1 == 'new') |
                     (sbs_df.file_type_2 == 'new')]
 
+        if params.drop_mixed_label_pairs:
+            for uid_col in uid_cols:
+                sbs_df = sbs_df[(sbs_df[f"{uid_col}_1"] == '') == (sbs_df[f"{uid_col}_2"] == '')]
+
         if len(sbs_df) == 0:
             return None
 
-        non_feature_cols = ['candidate_pair_ix', 'record_id_1', 'record_id_2','covered_pair']
+        non_feature_cols = ['candidate_pair_ix', 'record_id_1', 'record_id_2', 'covered_pair']
 
         data_rows_df = sbs_df[non_feature_cols].copy()
 
@@ -245,19 +240,27 @@ class GenerateDataRows(NamematchBase):
 
         # add name probability columns to data_rows_df
         try:
-            data_rows_df['prob_name1'] = sbs_df['prob_name_1']
-            data_rows_df.loc[(sbs_df.switched_name == 1), 'prob_name1'] = sbs_df.prob_rev_name_1
-            data_rows_df['prob_name2'] = sbs_df['prob_name_2']
-            data_rows_df.loc[(sbs_df.switched_name == 2), 'prob_name2'] = sbs_df['prob_rev_name_2']
-            data_rows_df['prob_same_name'] = sbs_df['prob_same_name']
-            data_rows_df.loc[sbs_df.switched_name == 1, 'prob_same_name'] = sbs_df['prob_same_name_rev_1']
-            data_rows_df.loc[sbs_df.switched_name == 2, 'prob_same_name'] = sbs_df['prob_same_name_rev_2']
-            data_rows_df['max_prob_name'] = data_rows_df[['prob_name1', 'prob_name2']].max(axis=1)
-            data_rows_df['count_pctl_name_1'] = sbs_df['count_pctl_name_1']
-            data_rows_df['count_pctl_name_2'] = sbs_df['count_pctl_name_2']
-            data_rows_df['max_count_pctl_name'] = data_rows_df[['count_pctl_name_1', 'count_pctl_name_2']].max(axis=1)
+            #data_rows_df['prob_name1'] = sbs_df['prob_name_1']
+            #data_rows_df.loc[(sbs_df.switched_name == 1), 'prob_name1'] = sbs_df.prob_rev_name_1
+            #data_rows_df['prob_name2'] = sbs_df['prob_name_2']
+            #data_rows_df.loc[(sbs_df.switched_name == 2), 'prob_name2'] = sbs_df['prob_rev_name_2']
+            #data_rows_df['prob_same_name'] = sbs_df['prob_same_name']
+            #data_rows_df.loc[sbs_df.switched_name == 1, 'prob_same_name'] = sbs_df['prob_same_name_rev_1']
+            #data_rows_df.loc[sbs_df.switched_name == 2, 'prob_same_name'] = sbs_df['prob_same_name_rev_2']
+            #data_rows_df['max_prob_name'] = data_rows_df[['prob_name1', 'prob_name2']].max(axis=1)
+            #data_rows_df['count_pctl_name_1'] = sbs_df['count_pctl_name_1']
+            #data_rows_df['count_pctl_name_2'] = sbs_df['count_pctl_name_2']
+            #data_rows_df['max_count_pctl_name'] = data_rows_df[['count_pctl_name_1', 'count_pctl_name_2']].max(axis=1)
+            data_rows_df['diff_count_pctl_name'] = (sbs_df['count_pctl_name_1'] - sbs_df['count_pctl_name_2']).abs()
+            data_rows_df['max_count_pctl_name'] = sbs_df[['count_pctl_name_1', 'count_pctl_name_2']].max(axis=1)
+            data_rows_df['diff_count_pctl_fn'] = (sbs_df['count_pctl_fn_1'] - sbs_df['count_pctl_fn_2']).abs()
+            data_rows_df['max_count_pctl_fn'] = sbs_df[['count_pctl_fn_1', 'count_pctl_fn_2']].max(axis=1)
+            data_rows_df['diff_count_pctl_ln'] = (sbs_df['count_pctl_ln_1'] - sbs_df['count_pctl_ln_2']).abs()
+            data_rows_df['max_count_pctl_ln'] = sbs_df[['count_pctl_ln_1', 'count_pctl_ln_2']].max(axis=1)
+
         except:
-            logger.info('No name probability features generated.')
+            if first_iter:
+                logger.info('No name probability features generated.')
 
         for variable in schema.variables.varlist:
 
@@ -308,9 +311,8 @@ class GenerateDataRows(NamematchBase):
 
         data_rows_df['label'] = generate_label(
                 sbs_df,
-                schema.variables.get_variables_where(attr='compare_type', attr_value='UniqueID'),
+                uid_cols,
                 params.leven_thresh)
-
 
         if data_rows_df is not None and len(data_rows_df) > 0:
             data_rows_df['dr_id'] = data_rows_df.record_id_1 + '__' + data_rows_df.record_id_2
@@ -318,9 +320,8 @@ class GenerateDataRows(NamematchBase):
 
         return data_rows_df
 
-    @profile
-    @equip_logger_id
     @log_runtime_and_memory
+    @profile
     def generate_data_row_files(
                 self, params, schema, an, cp_df, name_probs,
                 start_ix_worker, end_ix_worker, dr_file, **kw):
@@ -370,14 +371,14 @@ class GenerateDataRows(NamematchBase):
 
             cp_df['candidate_pair_ix'] = cp_df.index
 
-            self.num_batches = ceil(len(cp_df) / self.batch_size)
+            self.num_batches = ceil(len(cp_df) / self.params.data_rows_batch_size)
             start_ix_cp = 0
             while start_ix_cp < len(cp_df):
                 if (start_ix_worker == 0) and (params.verbose is not None) and (start_ix_cp % params.verbose == 0):
-                    logger.info(f"   Generated features for {start_ix_cp * params.num_threads} "
-                                f"of ~{len(cp_df) * params.num_threads} pairs of blockstrings.")
+                    logger.info(f"   Generated features for {start_ix_cp * params.num_workers} "
+                                f"of ~{len(cp_df) * params.num_workers} pairs of blockstrings.")
 
-                end_ix_cp = min(start_ix_cp + self.batch_size, len(cp_df))
+                end_ix_cp = min(start_ix_cp + self.params.data_rows_batch_size, len(cp_df))
 
                 relevant_cp = cp_df.iloc[start_ix_cp : end_ix_cp].copy()
                 relevant_blockstrings = pd.concat([relevant_cp.blockstring_1,
@@ -400,10 +401,10 @@ class GenerateDataRows(NamematchBase):
                     left_on='blockstring_2', right_index=True, suffixes=['_1', '_2'])
 
                 data_rows_df = self.generate_actual_data_rows(
-                        params, schema, side_by_side_df, name_probs)
+                        params, schema, side_by_side_df, name_probs, first_iter=(start_ix_cp == 0))
 
                 if data_rows_df is None:
-                    start_ix_cp += self.batch_size
+                    start_ix_cp += self.params.data_rows_batch_size
                     continue
 
                 # outcome for selection model
@@ -412,11 +413,10 @@ class GenerateDataRows(NamematchBase):
                 table = pa.Table.from_pandas(data_rows_df)
                 if start_ix_cp == 0:
                     pqwriter = pq.ParquetWriter(dr_file, table.schema)
-                    self.output_file.append(dr_file)
 
                 pqwriter.write_table(table)
 
-                start_ix_cp += self.batch_size
+                start_ix_cp += self.params.data_rows_batch_size
 
             if pqwriter:
                 pqwriter.close()

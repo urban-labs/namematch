@@ -5,8 +5,11 @@ disable_existing_loggers : False
 formatters : 
     simple : 
         format : "%(levelname)-8s %(message)s"
+    colored_console:
+        (): 'coloredlogs.ColoredFormatter'
+        format: "%(asctime)s - %(levelname)-8s %(message)s"
     detailed : 
-        format: "%(asctime)s %(levelname)-8s %(message)s"
+        format: "%(asctime)s - %(levelname)-8s %(message)s"
         datefmt : '%m/%d/%Y %H:%M:%S'
     message : 
         format : "%(message)s"
@@ -19,23 +22,15 @@ handlers :
     console : 
         class : logging.StreamHandler
         level : INFO
-        formatter : simple
-        filters : [stat_filter]
+        formatter : colored_console
         stream : ext://sys.stdout    
     
     file_handler : 
         class : logging.handlers.WatchedFileHandler
         level : DEBUG
         formatter : detailed
-        filters : [stat_filter]
         encoding : utf8
 
-    file_handler_stat : 
-        class : logging.handlers.WatchedFileHandler
-        level : STAT
-        formatter : message
-        encoding : utf8
-    
     file_handler_stat_memory : 
         class: logging.StreamHandler
         level : STAT
@@ -43,5 +38,9 @@ handlers :
 
 root : 
     level : DEBUG
-    handlers : [console, file_handler, file_handler_stat]
+    handlers : [
+        console, 
+        file_handler, 
+    ]
+
 

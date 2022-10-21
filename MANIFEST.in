@@ -1,4 +1,5 @@
 include LICENSE
+include namematch/matching_report.ipynb
 
 recursive-include requirement *.txt
 recursive-include namematch/utils/*.yaml

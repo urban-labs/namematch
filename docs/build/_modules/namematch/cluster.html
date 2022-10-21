@@ -1,151 +1,74 @@
-
-
 <!DOCTYPE html>
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8">
-  
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>namematch.cluster &mdash; namematch 0.0.1 documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
-
-  
-  
-  
-  
-
-  
-
-  
-  
-    
-
-  
-
-  <link rel="stylesheet" href="../../_static/css/theme.min.css" type="text/css" />
-  <link rel="stylesheet" href="../../_static/css/custom.css" type="text/css" />
-  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/js/theme.js"></script>
     <link rel="author" title="About these documents" href="../../about.html" />
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" /> 
-
 </head>
 
-<body>
-    <header>
-        <div class="container">
-            <a class="site-nav-toggle hidden-lg-up"><i class="icon-menu"></i></a>
-            <a class="site-title" href="../../index.html">
-                namematch
-            </a>
-        </div>
-    </header>
-
-
-<div class="breadcrumbs-outer hidden-xs-down">
-    <div class="container">
-        
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div role="navigation" aria-label="breadcrumbs navigation">
-
-  <ul class="breadcrumbs">
-    
-      <li><a href="../../index.html">Docs</a></li>
-        
-          <li><a href="../index.html">Module code</a></li>
-        
-      <li>namematch.cluster</li>
-    
-    
-      <li class="breadcrumbs-aside">
-        
-      </li>
-    
-  </ul>
-</div>
-    </div>
-</div>
-    <div class="main-outer">
-        <div class="container">
-            <div class="row">
-                <div class="col-12 col-lg-3 site-nav">
-                    
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html" class="icon icon-home"> namematch
+          </a>
 <div role="search">
-    <form class="search" action="../../search.html" method="get">
-        <div class="icon-input">
-            <input type="text" name="q" placeholder="Search" />
-            <span class="icon-search"></span>
-        </div>
-        <input type="submit" value="Go" class="d-hidden" />
-        <input type="hidden" name="check_keywords" value="yes" />
-        <input type="hidden" name="area" value="default" />
-    </form>
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
 </div>
-                    <div class="site-nav-tree">
-                        
-                            
-                            
-                                <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../about.html">About Name Match</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../about.html#what-is-name-match-doing">What is Name Match doing?</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../about.html#inputs-and-outputs">Inputs and outputs</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="../../match_setup.html">Setting Up a Match</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../match_setup.html#preparing-the-data-for-name-match">Preparing the data for Name Match</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../match_setup.html#creating-the-configuration-file">Creating the configuration file</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../match_setup.html#creating-user-defined-clustering-functions">Creating user defined clustering functions</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../match_setup.html#running-the-code">Running the code</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../match_setup.html#special-cases">Special cases</a></li>
-</ul>
-</li>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../about.html">About Name Match</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../match_setup.html">Setting Up a Match</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../understanding_results.html">Understanding Results</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../algorithm.html">Algorithm Documentation</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../algorithm.html#why-is-name-match-necessary">Why is Name Match necessary</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../algorithm.html#how-it-works">How it works</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../algorithm.html#things-to-consider">Things to consider</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="../../api.html">API Reference</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../api.html#module-namematch.process_config"><code class="xref py py-mod docutils literal notranslate"><span class="pre">namematch.process_config</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../api.html#module-namematch.process_input_data"><code class="xref py py-mod docutils literal notranslate"><span class="pre">namematch.process_input_data</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../api.html#module-namematch.generate_must_links"><code class="xref py py-mod docutils literal notranslate"><span class="pre">namematch.generate_must_links</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../api.html#module-namematch.block"><code class="xref py py-mod docutils literal notranslate"><span class="pre">namematch.block</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../api.html#module-namematch.generate_data_rows"><code class="xref py py-mod docutils literal notranslate"><span class="pre">namematch.generate_data_rows</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../api.html#module-namematch.fit_model"><code class="xref py py-mod docutils literal notranslate"><span class="pre">namematch.fit_model</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../api.html#module-namematch.predict"><code class="xref py py-mod docutils literal notranslate"><span class="pre">namematch.predict</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../api.html#module-namematch.cluster"><code class="xref py py-mod docutils literal notranslate"><span class="pre">namematch.cluster</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../api.html#module-namematch.generate_output"><code class="xref py py-mod docutils literal notranslate"><span class="pre">namematch.generate_output</span></code></a></li>
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="../../algorithm.html">Detailed Algorithm Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../api.html">API Reference</a></li>
 </ul>
 
-                            
-                        
-                    </div>
-                </div>
-                <div class="col-12 col-lg-9">
-                    <div class="document">
-                        
-                            
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">namematch</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../index.html">Module code</a> &raquo;</li>
+      <li>namematch.cluster</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
   <h1>Source code for namematch.cluster</h1><div class="highlight"><pre>
-<span></span><span class="kn">import</span> <span class="nn">argparse</span>
-<span class="kn">import</span> <span class="nn">editdistance</span>
+<span></span><span class="kn">import</span> <span class="nn">editdistance</span>
 <span class="kn">import</span> <span class="nn">importlib.util</span>
 <span class="kn">import</span> <span class="nn">logging</span>
 <span class="kn">import</span> <span class="nn">networkx</span> <span class="k">as</span> <span class="nn">nx</span>
@@ -153,9 +76,11 @@
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="kn">import</span> <span class="nn">pickle</span>
 <span class="kn">import</span> <span class="nn">os</span>
-<span class="kn">import</span> <span class="nn">sqlite3</span>
 <span class="kn">import</span> <span class="nn">time</span>
-<span class="kn">import</span> <span class="nn">yaml</span>
+<span class="kn">import</span> <span class="nn">gc</span>
+
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Union</span>
+<span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">deque</span>
 
 <span class="kn">import</span> <span class="nn">pyarrow</span> <span class="k">as</span> <span class="nn">pa</span>
 <span class="kn">import</span> <span class="nn">pyarrow.parquet</span> <span class="k">as</span> <span class="nn">pq</span>
@@ -163,27 +88,24 @@
 <span class="kn">from</span> <span class="nn">namematch.base</span> <span class="kn">import</span> <span class="n">NamematchBase</span>
 <span class="kn">from</span> <span class="nn">namematch.data_structures.parameters</span> <span class="kn">import</span> <span class="n">Parameters</span>
 <span class="kn">from</span> <span class="nn">namematch.data_structures.schema</span> <span class="kn">import</span> <span class="n">Schema</span>
-<span class="kn">from</span> <span class="nn">namematch.utils.utils</span> <span class="kn">import</span> <span class="n">setup_logging</span><span class="p">,</span> <span class="n">equip_logger_id</span><span class="p">,</span> <span class="n">log_runtime_and_memory</span><span class="p">,</span> <span class="n">load_parquet_list</span><span class="p">,</span> <span class="n">load_yaml</span>
-<span class="kn">from</span> <span class="nn">namematch.default_cluster_constraints</span> <span class="kn">import</span> <span class="n">get_columns_used</span><span class="p">,</span> <span class="n">is_valid_edge</span><span class="p">,</span> <span class="n">is_valid_cluster</span><span class="p">,</span> <span class="n">apply_edge_priority</span>
+<span class="kn">from</span> <span class="nn">namematch.utils.utils</span> <span class="kn">import</span> <span class="n">log_runtime_and_memory</span><span class="p">,</span> <span class="n">load_parquet</span>
+<span class="kn">from</span> <span class="nn">namematch.default_constraints</span> <span class="kn">import</span> <span class="n">get_columns_used</span><span class="p">,</span> <span class="n">is_valid_link</span><span class="p">,</span> <span class="n">is_valid_cluster</span><span class="p">,</span> <span class="n">apply_link_priority</span>
+<span class="kn">from</span> <span class="nn">namematch.utils.profiler</span> <span class="kn">import</span> <span class="n">Profiler</span>
 
 
-<span class="k">try</span><span class="p">:</span>
-    <span class="n">profile</span>
-<span class="k">except</span><span class="p">:</span>
-    <span class="kn">from</span> <span class="nn">line_profiler</span> <span class="kn">import</span> <span class="n">LineProfiler</span>
-    <span class="n">profile</span> <span class="o">=</span> <span class="n">LineProfiler</span><span class="p">()</span>
+<span class="n">profile</span> <span class="o">=</span> <span class="n">Profiler</span><span class="p">()</span>
 
+<span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">()</span>
 
-<div class="viewcode-block" id="ClusterConstraints"><a class="viewcode-back" href="../../namematch.html#namematch.cluster.ClusterConstraints">[docs]</a><span class="k">class</span> <span class="nc">ClusterConstraints</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<div class="viewcode-block" id="Constraints"><a class="viewcode-back" href="../../api.html#namematch.cluster.Constraints">[docs]</a><span class="k">class</span> <span class="nc">Constraints</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
 
     <span class="nd">@property</span>
-    <span class="nd">@profile</span>
     <span class="k">def</span> <span class="nf">get_columns_used</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_columns_used</span>
 
         <span class="k">except</span> <span class="ne">AttributeError</span><span class="p">:</span>
-            <span class="n">logging</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;ClusterConstraints.get_columns_used wasn&#39;t set. Use default function from </span><span class="si">{</span><span class="n">get_columns_used</span><span class="o">.</span><span class="vm">__module__</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="n">logging</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Constraints.get_columns_used wasn&#39;t set. Use default function from </span><span class="si">{</span><span class="n">get_columns_used</span><span class="o">.</span><span class="vm">__module__</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
             <span class="k">return</span> <span class="n">get_columns_used</span>
 
     <span class="nd">@get_columns_used</span><span class="o">.</span><span class="n">setter</span>
@@ -191,27 +113,25 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">_get_columns_used</span> <span class="o">=</span> <span class="n">func</span>
 
     <span class="nd">@property</span>
-    <span class="nd">@profile</span>
-    <span class="k">def</span> <span class="nf">is_valid_edge</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">is_valid_link</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">try</span><span class="p">:</span>
-            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_is_valid_edge</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_is_valid_link</span>
 
         <span class="k">except</span> <span class="ne">AttributeError</span><span class="p">:</span>
-            <span class="n">logging</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;ClusterConstraints.is_valid_edge wasn&#39;t set. Use default function from </span><span class="si">{</span><span class="n">is_valid_edge</span><span class="o">.</span><span class="vm">__module__</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-            <span class="k">return</span> <span class="n">is_valid_edge</span>
+            <span class="n">logging</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Constraints.is_valid_link wasn&#39;t set. Use default function from </span><span class="si">{</span><span class="n">is_valid_link</span><span class="o">.</span><span class="vm">__module__</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">is_valid_link</span>
 
-    <span class="nd">@is_valid_edge</span><span class="o">.</span><span class="n">setter</span>
-    <span class="k">def</span> <span class="nf">is_valid_edge</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">func</span><span class="p">:</span> <span class="n">callable</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_is_valid_edge</span> <span class="o">=</span> <span class="n">func</span>
+    <span class="nd">@is_valid_link</span><span class="o">.</span><span class="n">setter</span>
+    <span class="k">def</span> <span class="nf">is_valid_link</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">func</span><span class="p">:</span> <span class="n">callable</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_is_valid_link</span> <span class="o">=</span> <span class="n">func</span>
 
     <span class="nd">@property</span>
-    <span class="nd">@profile</span>
     <span class="k">def</span> <span class="nf">is_valid_cluster</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_is_valid_cluster</span>
 
         <span class="k">except</span> <span class="ne">AttributeError</span><span class="p">:</span>
-            <span class="n">logging</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;ClusterConstraints.is_valid_cluster wasn&#39;t set. Use default function from </span><span class="si">{</span><span class="n">is_valid_cluster</span><span class="o">.</span><span class="vm">__module__</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="n">logging</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Constraints.is_valid_cluster wasn&#39;t set. Use default function from </span><span class="si">{</span><span class="n">is_valid_cluster</span><span class="o">.</span><span class="vm">__module__</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
             <span class="k">return</span> <span class="n">is_valid_cluster</span>
 
     <span class="nd">@is_valid_cluster</span><span class="o">.</span><span class="n">setter</span>
@@ -219,86 +139,70 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">_is_valid_cluster</span> <span class="o">=</span> <span class="n">func</span>
 
     <span class="nd">@property</span>
-    <span class="nd">@profile</span>
-    <span class="k">def</span> <span class="nf">apply_edge_priority</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">apply_link_priority</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">try</span><span class="p">:</span>
-            <span class="n">logging</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;ClusterConstraints.apply_edge_priority wasn&#39;t set. Use default function from  </span><span class="si">{</span><span class="n">apply_edge_priority</span><span class="o">.</span><span class="vm">__module__</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_apply_edge_priority</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_apply_link_priority</span>
 
         <span class="k">except</span> <span class="ne">AttributeError</span><span class="p">:</span>
-            <span class="k">return</span> <span class="n">apply_edge_priority</span>
+            <span class="n">logging</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Constraints.apply_link_priority wasn&#39;t set. Use default function from  </span><span class="si">{</span><span class="n">apply_link_priority</span><span class="o">.</span><span class="vm">__module__</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">apply_link_priority</span>
 
-    <span class="nd">@apply_edge_priority</span><span class="o">.</span><span class="n">setter</span>
-    <span class="k">def</span> <span class="nf">apply_edge_priority</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">func</span><span class="p">:</span> <span class="n">callable</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_apply_edge_priority</span> <span class="o">=</span> <span class="n">func</span></div>
+    <span class="nd">@apply_link_priority</span><span class="o">.</span><span class="n">setter</span>
+    <span class="k">def</span> <span class="nf">apply_link_priority</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">func</span><span class="p">:</span> <span class="n">callable</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_apply_link_priority</span> <span class="o">=</span> <span class="n">func</span></div>
 
 
-<div class="viewcode-block" id="Cluster"><a class="viewcode-back" href="../../namematch.html#namematch.cluster.Cluster">[docs]</a><span class="k">class</span> <span class="nc">Cluster</span><span class="p">(</span><span class="n">NamematchBase</span><span class="p">):</span>
+<div class="viewcode-block" id="Cluster"><a class="viewcode-back" href="../../api.html#namematch.cluster.Cluster">[docs]</a><span class="k">class</span> <span class="nc">Cluster</span><span class="p">(</span><span class="n">NamematchBase</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Args:</span>
+<span class="sd">        params (Parameters object): contains parameter values</span>
+<span class="sd">        schema (Schema object): contains match schema info (files to match, variables to use, etc.)</span>
+<span class="sd">        constraints (str or Constrants object): either a path to python script defining constraint functions or a Constraints object</span>
+<span class="sd">        must_links_file (str): path to the must-links file</span>
+<span class="sd">        potential_edges_dir (str): path to the potential-links dir in the output/details folder</span>
+<span class="sd">        flipped0_edges_file (str): path to the flipped-links file</span>
+<span class="sd">        all_names_file (str): path to the all-names file</span>
+<span class="sd">        cluster_assignments(str): path to the cluster-assignments file</span>
+<span class="sd">    &#39;&#39;&#39;</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">params</span><span class="p">,</span>
         <span class="n">schema</span><span class="p">,</span>
-        <span class="n">constraints_file</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-        <span class="n">must_links_file</span><span class="o">=</span><span class="s1">&#39;output_temp/must_links.csv&#39;</span><span class="p">,</span>
-        <span class="n">potential_edges_dir</span><span class="o">=</span><span class="s1">&#39;output_temp/potential_edges&#39;</span><span class="p">,</span>
-        <span class="n">flipped0_edges_file</span><span class="o">=</span><span class="s1">&#39;flipped0_potential_edges.csv&#39;</span><span class="p">,</span>
-        <span class="n">all_names_file</span><span class="o">=</span><span class="s1">&#39;output_temp/all_names.parquet&#39;</span><span class="p">,</span>
-        <span class="n">output_file</span><span class="o">=</span><span class="s1">&#39;output_temp/cluster_assignments.pkl&#39;</span><span class="p">,</span>
-        <span class="n">logger_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">must_links_file</span><span class="o">=</span><span class="s2">&quot;must_links.csv&quot;</span><span class="p">,</span>
+        <span class="n">potential_edges_dir</span><span class="o">=</span><span class="s2">&quot;potential_links&quot;</span><span class="p">,</span>
+        <span class="n">flipped0_edges_file</span><span class="o">=</span><span class="s2">&quot;flipped0_potential_links.csv&quot;</span><span class="p">,</span>
+        <span class="n">all_names_file</span><span class="o">=</span><span class="s2">&quot;all_names.parquet&quot;</span><span class="p">,</span>
+        <span class="n">cluster_assignments</span><span class="o">=</span><span class="s2">&quot;cluster_assignments.pkl&quot;</span><span class="p">,</span>
+        <span class="n">edges_to_cluster</span><span class="o">=</span><span class="s2">&quot;edges_to_cluster.parquet&quot;</span><span class="p">,</span>
+        <span class="n">constraints</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Constraints</span><span class="p">]</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
         <span class="o">*</span><span class="n">args</span><span class="p">,</span>
         <span class="o">**</span><span class="n">kwargs</span>
     <span class="p">):</span>
-        <span class="nb">super</span><span class="p">(</span><span class="n">Cluster</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">params</span><span class="p">,</span> <span class="n">schema</span><span class="p">,</span> <span class="n">output_file</span><span class="p">,</span> <span class="n">logger_id</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">Cluster</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">params</span><span class="p">,</span> <span class="n">schema</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">constraints_file</span> <span class="o">=</span> <span class="n">constraints_file</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">constraints</span> <span class="o">=</span> <span class="n">constraints</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">must_links_file</span> <span class="o">=</span> <span class="n">must_links_file</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">potential_edges_dir</span> <span class="o">=</span> <span class="n">potential_edges_dir</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">flipped0_edges_file</span> <span class="o">=</span> <span class="n">flipped0_edges_file</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">all_names_file</span> <span class="o">=</span> <span class="n">all_names_file</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">cluster_assignments</span> <span class="o">=</span> <span class="n">cluster_assignments</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">edges</span> <span class="o">=</span> <span class="n">edges_to_cluster</span>
 
-    <span class="nd">@equip_logger_id</span>
-    <span class="nd">@log_runtime_and_memory</span>
-    <span class="k">def</span> <span class="nf">main__cluster</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">):</span>
-        <span class="sd">&#39;&#39;&#39;Read the record pairs with high probability of matching and connect them in a way </span>
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">output_files</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">cluster_assignments</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">edges</span><span class="p">]</span>
+
+<div class="viewcode-block" id="Cluster.main"><a class="viewcode-back" href="../../api.html#namematch.cluster.Cluster.main">[docs]</a>    <span class="nd">@log_runtime_and_memory</span>
+    <span class="nd">@profile</span>
+    <span class="k">def</span> <span class="nf">main</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;Read the record pairs with high probability of matching and connect them in a way</span>
 <span class="sd">        that doesn&#39;t violate any logic constraints to form clusters.</span>
-
-<span class="sd">        Args:</span>
-<span class="sd">            params (Parameters object): contains parameter values</span>
-<span class="sd">            schema (Schema object): contains match schema info (files to match, variables to use, etc.)</span>
-<span class="sd">            constraints_file (str): path to python file with the three required cluster constraint functions</span>
-<span class="sd">            must_links_file (str): path to output_temp&#39;s must-links file</span>
-<span class="sd">            potential_edges_dir (str): path to output_temp&#39;s potential-edges file</span>
-<span class="sd">            flipped0_edges_file (str): path to output_temp&#39;s flipped-edges file</span>
-<span class="sd">            all_names_file (str): path to output_temp&#39;s all-names file</span>
-<span class="sd">            output_file (str): path to output_temp&#39;s cluster-assignments file</span>
 <span class="sd">        &#39;&#39;&#39;</span>
-
-        <span class="k">global</span> <span class="n">logger</span>
-
-        <span class="n">logger_id</span> <span class="o">=</span> <span class="n">kw</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;logger_id&#39;</span><span class="p">)</span>
-        <span class="k">if</span> <span class="n">logger_id</span><span class="p">:</span>
-            <span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;namematch_</span><span class="si">{</span><span class="nb">str</span><span class="p">(</span><span class="n">logger_id</span><span class="p">)</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
-
-        <span class="k">else</span><span class="p">:</span>
-            <span class="n">logger</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">logger</span>
-
         <span class="c1"># loading cluster_logic functions</span>
-        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">constraints_file</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
-            <span class="n">spec</span> <span class="o">=</span> <span class="n">importlib</span><span class="o">.</span><span class="n">util</span><span class="o">.</span><span class="n">spec_from_file_location</span><span class="p">(</span><span class="s2">&quot;module.name&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">constraints_file</span><span class="p">)</span>
-            <span class="n">cluster_logic</span> <span class="o">=</span> <span class="n">importlib</span><span class="o">.</span><span class="n">util</span><span class="o">.</span><span class="n">module_from_spec</span><span class="p">(</span><span class="n">spec</span><span class="p">)</span>
-            <span class="n">spec</span><span class="o">.</span><span class="n">loader</span><span class="o">.</span><span class="n">exec_module</span><span class="p">(</span><span class="n">cluster_logic</span><span class="p">)</span>
-            <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Set up cluster constraints </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">constraints_file</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-
-        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">constraints_file</span><span class="p">,</span> <span class="n">ClusterConstraints</span><span class="p">):</span>
-            <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Set up cluster constraints </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">constraints_file</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-            <span class="n">cluster_logic</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">constraints_file</span>
-
-        <span class="k">else</span><span class="p">:</span>
-            <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;&#39;constraints_file&#39; </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">constraints_file</span><span class="si">}</span><span class="s2"> is not recognized! Use default cluster constraints&quot;</span><span class="p">)</span>
-            <span class="kn">import</span> <span class="nn">namematch.default_cluster_constraints</span> <span class="k">as</span> <span class="nn">cluster_logic</span>
+        <span class="n">cluster_logic</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_cluster_logic</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">constraints</span><span class="p">)</span>
 
         <span class="c1"># loading must links</span>
-        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Loading must-link edges.&quot;</span><span class="p">)</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Loading must-link links.&quot;</span><span class="p">)</span>
         <span class="n">must_links_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">must_links_file</span><span class="p">,</span> <span class="n">low_memory</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
         <span class="c1"># get uid and eid cols</span>
         <span class="n">uid_cols</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">schema</span><span class="o">.</span><span class="n">variables</span><span class="o">.</span><span class="n">get_variables_where</span><span class="p">(</span>
@@ -313,10 +217,6 @@
         <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Creating dictionary of cluster information.&quot;</span><span class="p">)</span>
         <span class="n">cluster_info</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">load_cluster_info</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">all_names_file</span><span class="p">,</span> <span class="n">uid_cols</span><span class="p">,</span> <span class="n">eid_col</span><span class="p">,</span> <span class="n">cluster_logic</span><span class="p">)</span>
 
-        <span class="c1"># Replace empty string with NaN</span>
-        <span class="k">for</span> <span class="n">uid</span> <span class="ow">in</span> <span class="n">uid_cols</span><span class="p">:</span>
-            <span class="n">cluster_info</span><span class="p">[</span><span class="n">uid</span><span class="p">]</span> <span class="o">=</span> <span class="n">cluster_info</span><span class="p">[</span><span class="n">uid</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">)</span>
-
         <span class="c1"># separate must-links if we can&#39;t initialize new 1s</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">params</span><span class="o">.</span><span class="n">initialize_from_ground_truth_1s</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">params</span><span class="o">.</span><span class="n">incremental</span><span class="p">:</span>
             <span class="n">gt_1s_df</span> <span class="o">=</span> <span class="n">must_links_df</span><span class="p">[</span><span class="n">must_links_df</span><span class="o">.</span><span class="n">existing</span> <span class="o">==</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
@@ -328,85 +228,117 @@
         <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Initializing initial clusters.&quot;</span><span class="p">)</span>
         <span class="n">clusters</span><span class="p">,</span> <span class="n">cluster_assignments</span><span class="p">,</span> <span class="n">original_cluster_ids</span> <span class="o">=</span> \
                 <span class="bp">self</span><span class="o">.</span><span class="n">get_initial_clusters</span><span class="p">(</span><span class="n">must_links_df</span><span class="p">,</span> <span class="n">cluster_info</span><span class="p">,</span> <span class="n">eid_col</span><span class="p">)</span>
-
         <span class="c1"># potential_edges is sorted (decreasing) by phat</span>
-        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Loading potential edges.&quot;</span><span class="p">)</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Loading potential links.&quot;</span><span class="p">)</span>
         <span class="n">potential_edges_files</span> <span class="o">=</span> <span class="p">[</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">potential_edges_dir</span><span class="p">,</span> <span class="n">pe_file</span><span class="p">)</span>
                                  <span class="k">for</span> <span class="n">pe_file</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">potential_edges_dir</span><span class="p">)]</span>
-        <span class="n">potential_edges</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_potential_edges</span><span class="p">(</span>
-                <span class="n">potential_edges_files</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">flipped0_edges_file</span><span class="p">,</span> <span class="n">gt_1s_df</span><span class="p">,</span> <span class="n">cluster_logic</span><span class="p">,</span> <span class="n">cluster_info</span><span class="p">)</span>
-        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Clustering potential edges.&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">get_potential_edges</span><span class="p">(</span>
+                <span class="n">potential_edges_files</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">flipped0_edges_file</span><span class="p">,</span> <span class="n">gt_1s_df</span><span class="p">,</span> <span class="n">cluster_logic</span><span class="p">,</span>
+                <span class="n">cluster_info</span><span class="p">,</span> <span class="n">uid_cols</span><span class="p">,</span> <span class="n">eid_col</span><span class="p">)</span>
 
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Clustering potential links.&quot;</span><span class="p">)</span>
         <span class="n">cluster_assignments</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">cluster_potential_edges</span><span class="p">(</span>
                 <span class="n">clusters</span><span class="p">,</span> <span class="n">cluster_assignments</span><span class="p">,</span> <span class="n">original_cluster_ids</span><span class="p">,</span> <span class="n">cluster_info</span><span class="p">,</span>
-                <span class="n">potential_edges</span><span class="p">,</span> <span class="n">cluster_logic</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">params</span><span class="p">,</span> <span class="n">uid_cols</span><span class="p">,</span> <span class="n">eid_col</span><span class="p">)</span>
+                <span class="n">cluster_logic</span><span class="p">,</span> <span class="n">uid_cols</span><span class="p">,</span> <span class="n">eid_col</span><span class="p">)</span>
 
-        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">output_file</span><span class="p">,</span> <span class="s2">&quot;wb&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cluster_assignments</span><span class="p">,</span> <span class="s2">&quot;wb&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
             <span class="n">pickle</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">cluster_assignments</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span>
 
-<div class="viewcode-block" id="Cluster.auto_is_valid_edge"><a class="viewcode-back" href="../../namematch.html#namematch.cluster.Cluster.auto_is_valid_edge">[docs]</a>    <span class="nd">@profile</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">enable_lprof</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">write_line_profile_stats</span><span class="p">(</span><span class="n">profile</span><span class="o">.</span><span class="n">line_profiler</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Cluster.get_cluster_logic"><a class="viewcode-back" href="../../api.html#namematch.cluster.Cluster.get_cluster_logic">[docs]</a>    <span class="k">def</span> <span class="nf">get_cluster_logic</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">constraints</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">constraints</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+            <span class="n">spec</span> <span class="o">=</span> <span class="n">importlib</span><span class="o">.</span><span class="n">util</span><span class="o">.</span><span class="n">spec_from_file_location</span><span class="p">(</span><span class="s2">&quot;module.name&quot;</span><span class="p">,</span> <span class="n">constraints</span><span class="p">)</span>
+            <span class="n">constraints</span> <span class="o">=</span> <span class="n">importlib</span><span class="o">.</span><span class="n">util</span><span class="o">.</span><span class="n">module_from_spec</span><span class="p">(</span><span class="n">spec</span><span class="p">)</span>
+            <span class="n">spec</span><span class="o">.</span><span class="n">loader</span><span class="o">.</span><span class="n">exec_module</span><span class="p">(</span><span class="n">constraints</span><span class="p">)</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Set up cluster constraints </span><span class="si">{</span><span class="n">constraints</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">constraints</span><span class="p">,</span> <span class="n">Constraints</span><span class="p">):</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Set up cluster constraints </span><span class="si">{</span><span class="n">constraints</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="n">constraints</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">constraints</span>
+
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">constraints</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;&#39;constraints&#39; </span><span class="si">{</span><span class="n">constraints</span><span class="si">}</span><span class="s2"> is not recognized! Using the default link and cluster constraints.&quot;</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;No &#39;constraints&#39; provided: using the default link constraints, cluster constraints, and edge priority.&quot;</span><span class="p">)</span>
+            <span class="kn">import</span> <span class="nn">namematch.default_constraints</span> <span class="k">as</span> <span class="nn">constraints</span>
+
+        <span class="n">cluster_logic</span> <span class="o">=</span> <span class="n">Constraints</span><span class="p">()</span>
+        <span class="n">cluster_logic</span><span class="o">.</span><span class="n">get_columns_used</span> <span class="o">=</span> <span class="n">constraints</span><span class="o">.</span><span class="n">get_columns_used</span>
+        <span class="n">cluster_logic</span><span class="o">.</span><span class="n">is_valid_link</span> <span class="o">=</span> <span class="n">constraints</span><span class="o">.</span><span class="n">is_valid_link</span>
+        <span class="n">cluster_logic</span><span class="o">.</span><span class="n">is_valid_cluster</span> <span class="o">=</span> <span class="n">constraints</span><span class="o">.</span><span class="n">is_valid_cluster</span>
+        <span class="n">cluster_logic</span><span class="o">.</span><span class="n">apply_link_priority</span> <span class="o">=</span> <span class="n">constraints</span><span class="o">.</span><span class="n">apply_link_priority</span>
+        <span class="n">cluster_logic</span><span class="o">.</span><span class="n">enable_lprof</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">enable_lprof</span>
+
+        <span class="k">return</span> <span class="n">cluster_logic</span></div>
+
+<div class="viewcode-block" id="Cluster.auto_is_valid_edge"><a class="viewcode-back" href="../../api.html#namematch.cluster.Cluster.auto_is_valid_edge">[docs]</a>    <span class="nd">@profile</span>
     <span class="k">def</span> <span class="nf">auto_is_valid_edge</span><span class="p">(</span>
                 <span class="bp">self</span><span class="p">,</span>
-                <span class="n">record1</span><span class="p">,</span> <span class="n">record2</span><span class="p">,</span>
+                <span class="n">edges_df</span><span class="p">,</span>
                 <span class="n">uid_cols</span><span class="p">,</span> <span class="n">allow_clusters_w_multiple_unique_ids</span><span class="p">,</span> <span class="n">leven_thresh</span><span class="p">,</span>
                 <span class="n">eid_col</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&#39;&#39;&#39;Check if two records would violate a unique id or existing id constraint.</span>
 
-<span class="sd">        Args: </span>
-<span class="sd">            record1 (pd.Series): one row of the all-names file (relevant columns only)</span>
-<span class="sd">            record2 (pd.Series): one row of the all-names file (relevant columns only)</span>
-<span class="sd">            uid_cols (list): all-names column(s) with compare_type UniqueID </span>
+<span class="sd">        Args:</span>
+<span class="sd">            edges_df (pd.DataFrame): potential edges information</span>
+
+<span class="sd">                ================      =======================================================</span>
+<span class="sd">                record_id_1           unique record identifier (for first in pair)</span>
+<span class="sd">                record_id_2           unique record identifier (for second in pair)</span>
+<span class="sd">                phat                  predicted probability of a record pair being a match</span>
+<span class="sd">                original_order        original ordering 1-N (useful so gt is always on top of phat=1 cases)</span>
+<span class="sd">                ================      =======================================================</span>
+
+<span class="sd">            uid_cols (list): all-names column(s) with compare_type UniqueID</span>
 <span class="sd">            allow_clusters_w_multiple_unique_ids (bool): True if a cluster can have multiple uid values</span>
-<span class="sd">            leven_thresh (int): n character edits to allow between uids before they&#39;re considered different </span>
+<span class="sd">            leven_thresh (int): n character edits to allow between uids before they&#39;re considered different</span>
 <span class="sd">            eid_col (str): all-names column with compare_type ExistingID (None for non-incremental runs)</span>
 
-<span class="sd">        Returns: </span>
-<span class="sd">            bool: False if an automated constraint is violated</span>
+<span class="sd">        Returns:</span>
+<span class="sd">            valid_edges_df: potential edges information, but limited to rows that pass the automated validity check</span>
 <span class="sd">        &#39;&#39;&#39;</span>
-        
-        <span class="c1"># NOTE: isinstance(v, float) is a hacky way of checking if null here, since</span>
-        <span class="c1">#       we force the input of these cols to be strings</span>
+
+        <span class="n">edges_df</span><span class="p">[</span><span class="s1">&#39;valid&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
 
         <span class="k">if</span> <span class="n">eid_col</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="c1"># if both existing ids are known, they cannot be different</span>
-            <span class="k">if</span> <span class="p">((</span><span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">record1</span><span class="p">[</span><span class="n">eid_col</span><span class="p">],</span> <span class="nb">float</span><span class="p">))</span> <span class="ow">and</span> \
-                <span class="p">(</span><span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">record2</span><span class="p">[</span><span class="n">eid_col</span><span class="p">],</span> <span class="nb">float</span><span class="p">))</span> <span class="ow">and</span> \
-                <span class="p">(</span><span class="n">record1</span><span class="p">[</span><span class="n">eid_col</span><span class="p">]</span> <span class="o">!=</span> <span class="n">record2</span><span class="p">[</span><span class="n">eid_col</span><span class="p">])):</span>
-                <span class="k">return</span> <span class="kc">False</span>
+            <span class="n">both_eids_known_ix</span> <span class="o">=</span> <span class="p">(</span><span class="n">edges_df</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">eid_col</span><span class="si">}</span><span class="s2">_1&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">notnull</span><span class="p">())</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">edges_df</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">eid_col</span><span class="si">}</span><span class="s2">_2&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">notnull</span><span class="p">())</span>
+            <span class="n">edges_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">both_eids_known_ix</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">edges_df</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">eid_col</span><span class="si">}</span><span class="s2">_1&quot;</span><span class="p">]</span> <span class="o">!=</span> <span class="n">edges_df</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">eid_col</span><span class="si">}</span><span class="s2">_2&quot;</span><span class="p">]),</span> <span class="s1">&#39;valid&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">False</span>
 
         <span class="k">if</span> <span class="n">allow_clusters_w_multiple_unique_ids</span><span class="p">:</span>
-            <span class="k">return</span> <span class="kc">True</span>
+            <span class="k">return</span> <span class="n">edges_df</span><span class="p">[</span><span class="n">edges_df</span><span class="o">.</span><span class="n">valid</span> <span class="o">==</span> <span class="kc">True</span><span class="p">]</span>
 
         <span class="c1"># NOTE if you&#39;ve made it here, allow_clusters_w_multiple_unique_ids is False</span>
-
         <span class="c1"># if both unique ids are known, they cannot be different</span>
-        <span class="n">violations</span> <span class="o">=</span> <span class="mi">0</span>
-        <span class="n">attempts</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">edges_df</span><span class="p">[</span><span class="s1">&#39;violations&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">edges_df</span><span class="p">[</span><span class="s1">&#39;attempts&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
         <span class="k">for</span> <span class="n">uid_col</span> <span class="ow">in</span> <span class="n">uid_cols</span><span class="p">:</span>
-            
-            <span class="k">if</span> <span class="p">((</span><span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">record1</span><span class="p">[</span><span class="n">uid_col</span><span class="p">],</span> <span class="nb">float</span><span class="p">))</span> <span class="ow">and</span> \
-                <span class="p">(</span><span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">record2</span><span class="p">[</span><span class="n">uid_col</span><span class="p">],</span> <span class="nb">float</span><span class="p">))):</span>
 
-                <span class="n">attempts</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="n">both_uids_known_ix</span> <span class="o">=</span> <span class="p">(</span><span class="n">edges_df</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">uid_col</span><span class="si">}</span><span class="s2">_1&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">notnull</span><span class="p">())</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">edges_df</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">uid_col</span><span class="si">}</span><span class="s2">_2&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">notnull</span><span class="p">())</span>
+            <span class="n">edges_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">both_uids_known_ix</span><span class="p">,</span> <span class="s1">&#39;attempts&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">edges_df</span><span class="p">[</span><span class="n">both_uids_known_ix</span><span class="p">]</span><span class="o">.</span><span class="n">attempts</span> <span class="o">+</span> <span class="mi">1</span>
 
-                <span class="k">if</span> <span class="p">(</span><span class="n">record1</span><span class="p">[</span><span class="n">uid_col</span><span class="p">]</span> <span class="o">!=</span> <span class="n">record2</span><span class="p">[</span><span class="n">uid_col</span><span class="p">]):</span>
+            <span class="n">uids_different_ix</span> <span class="o">=</span> <span class="n">edges_df</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">uid_col</span><span class="si">}</span><span class="s2">_1&quot;</span><span class="p">]</span> <span class="o">!=</span> <span class="n">edges_df</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">uid_col</span><span class="si">}</span><span class="s2">_2&quot;</span><span class="p">]</span>
 
-                    <span class="k">if</span> <span class="n">leven_thresh</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-                        <span class="n">violations</span> <span class="o">+=</span> <span class="mi">1</span>
-                        <span class="k">continue</span>
-                    <span class="k">else</span><span class="p">:</span>
-                        <span class="n">uid_editdist</span> <span class="o">=</span> <span class="n">editdistance</span><span class="o">.</span><span class="n">eval</span><span class="p">(</span><span class="n">record1</span><span class="p">[</span><span class="n">uid_col</span><span class="p">],</span> <span class="n">record2</span><span class="p">[</span><span class="n">uid_col</span><span class="p">])</span>
-                        <span class="k">if</span> <span class="n">uid_editdist</span> <span class="o">&gt;</span> <span class="n">leven_thresh</span><span class="p">:</span>
-                            <span class="n">violations</span> <span class="o">+=</span> <span class="mi">1</span>
-                            <span class="k">continue</span>
-        
-        <span class="k">if</span> <span class="p">(</span><span class="n">attempts</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="ow">and</span>  <span class="p">(</span><span class="n">violations</span> <span class="o">==</span> <span class="n">attempts</span><span class="p">):</span>
-            <span class="k">return</span> <span class="kc">False</span>
+            <span class="k">if</span> <span class="n">leven_thresh</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">edges_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">both_uids_known_ix</span> <span class="o">&amp;</span> <span class="n">uids_different_ix</span><span class="p">,</span> <span class="s1">&#39;violations&#39;</span><span class="p">]</span> <span class="o">=</span> \
+                    <span class="n">edges_df</span><span class="p">[</span><span class="n">both_uids_known_ix</span> <span class="o">&amp;</span> <span class="n">uids_different_ix</span><span class="p">]</span><span class="o">.</span><span class="n">violations</span> <span class="o">+</span> <span class="mi">1</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">edges_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">both_uids_known_ix</span> <span class="o">&amp;</span> <span class="n">uids_different_ix</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">uid_col</span><span class="si">}</span><span class="s1">_edit_dist&#39;</span><span class="p">]</span> <span class="o">=</span> \
+                    <span class="n">np</span><span class="o">.</span><span class="n">vectorize</span><span class="p">(</span><span class="n">editdistance</span><span class="o">.</span><span class="n">eval</span><span class="p">,</span> <span class="n">otypes</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;float&#39;</span><span class="p">])(</span>
+                        <span class="n">edges_df</span><span class="p">[</span><span class="n">both_uids_known_ix</span> <span class="o">&amp;</span> <span class="n">uids_different_ix</span><span class="p">][</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">uid_col</span><span class="si">}</span><span class="s2">_1&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">,</span>
+                        <span class="n">edges_df</span><span class="p">[</span><span class="n">both_uids_known_ix</span> <span class="o">&amp;</span> <span class="n">uids_different_ix</span><span class="p">][</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">uid_col</span><span class="si">}</span><span class="s2">_2&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
+                <span class="n">leven_violated</span> <span class="o">=</span> <span class="n">edges_df</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">uid_col</span><span class="si">}</span><span class="s1">_edit_dist&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">leven_thresh</span>
+                <span class="n">edges_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">both_uids_known_ix</span> <span class="o">&amp;</span> <span class="n">uids_different_ix</span> <span class="o">&amp;</span> <span class="n">leven_violated</span><span class="p">,</span> <span class="s1">&#39;violations&#39;</span><span class="p">]</span> <span class="o">=</span> \
+                    <span class="n">edges_df</span><span class="p">[</span><span class="n">both_uids_known_ix</span> <span class="o">&amp;</span> <span class="n">uids_different_ix</span> <span class="o">&amp;</span> <span class="n">leven_violated</span><span class="p">]</span><span class="o">.</span><span class="n">violations</span> <span class="o">+</span> <span class="mi">1</span>
 
-        <span class="k">return</span> <span class="kc">True</span></div>
+        <span class="n">edges_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[(</span><span class="n">edges_df</span><span class="o">.</span><span class="n">attempts</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">edges_df</span><span class="o">.</span><span class="n">attempts</span> <span class="o">==</span> <span class="n">edges_df</span><span class="o">.</span><span class="n">violations</span><span class="p">),</span> <span class="s1">&#39;valid&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">False</span>
 
+        <span class="k">return</span> <span class="n">edges_df</span><span class="p">[</span><span class="n">edges_df</span><span class="o">.</span><span class="n">valid</span> <span class="o">==</span> <span class="kc">True</span><span class="p">]</span></div>
 
-<div class="viewcode-block" id="Cluster.auto_is_valid_cluster"><a class="viewcode-back" href="../../namematch.html#namematch.cluster.Cluster.auto_is_valid_cluster">[docs]</a>    <span class="nd">@profile</span>
+<div class="viewcode-block" id="Cluster.auto_is_valid_cluster"><a class="viewcode-back" href="../../api.html#namematch.cluster.Cluster.auto_is_valid_cluster">[docs]</a>    <span class="nd">@profile</span>
     <span class="k">def</span> <span class="nf">auto_is_valid_cluster</span><span class="p">(</span>
                 <span class="bp">self</span><span class="p">,</span>
                 <span class="n">cluster</span><span class="p">,</span>
@@ -414,14 +346,14 @@
                 <span class="n">eid_col</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&#39;&#39;&#39;Check if a proposed cluster would violate a unique id or existing id constraint.</span>
 
-<span class="sd">        Args: </span>
+<span class="sd">        Args:</span>
 <span class="sd">            cluster (pd.DataFrame): all-names file (relevant columns only) records for the proposed cluster</span>
-<span class="sd">            uid_cols (list): all-names column(s) with compare_type UniqueID </span>
+<span class="sd">            uid_cols (list): all-names column(s) with compare_type UniqueID</span>
 <span class="sd">            allow_clusters_w_multiple_unique_ids (bool): True if a cluster can have multiple uid values</span>
-<span class="sd">            leven_thresh (int): n character edits to allow between uids before they&#39;re considered different </span>
+<span class="sd">            leven_thresh (int): n character edits to allow between uids before they&#39;re considered different</span>
 <span class="sd">            eid_col (str): all-names column with compare_type ExistingID (None for non-incremental runs)</span>
 
-<span class="sd">        Returns: </span>
+<span class="sd">        Returns:</span>
 <span class="sd">            bool: False if an automated constraint is violated</span>
 <span class="sd">        &#39;&#39;&#39;</span>
 
@@ -460,38 +392,39 @@
 
         <span class="k">return</span> <span class="kc">True</span></div>
 
+<div class="viewcode-block" id="Cluster.get_initial_clusters"><a class="viewcode-back" href="../../api.html#namematch.cluster.Cluster.get_initial_clusters">[docs]</a>    <span class="nd">@log_runtime_and_memory</span>
     <span class="nd">@profile</span>
-    <span class="nd">@equip_logger_id</span>
-    <span class="nd">@log_runtime_and_memory</span>
     <span class="k">def</span> <span class="nf">get_initial_clusters</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">must_links_df</span><span class="p">,</span> <span class="n">an_df</span><span class="p">,</span> <span class="n">eid_col</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">):</span>
         <span class="sd">&#39;&#39;&#39;Use must links (ground truth and/or a previous run) to create the</span>
 <span class="sd">        starting clusters.</span>
 
-<span class="sd">        Args: </span>
+<span class="sd">        Args:</span>
 <span class="sd">            must_links_df (pd.DataFrame): record pairs that must be linked together no matter what</span>
-<span class="sd">                ===================   =======================================================</span>
-<span class="sd">                record_id_1           unique identifier for the first record in the pair</span>
-<span class="sd">                record_id_2           unique identifier for the second record in the pair</span>
-<span class="sd">                blockstring_1         blockstring for the first record in the pair</span>
-<span class="sd">                blockstring_2         blockstring for the second record in the pair</span>
-<span class="sd">                drop_from_nm_1        flag, 1 if the first record in the pair was not eligible for matching</span>
-<span class="sd">                drop_from_nm_2        flag, 1 if the second record in the pair was not eligible for matching</span>
-<span class="sd">                existing              flag, 1 if the pair is must-link because of ExistingID</span>
-<span class="sd">                ===================   =======================================================  </span>
+
+<span class="sd">                ==============  ======================================================================</span>
+<span class="sd">                record_id_1     unique identifier for the first record in the pair</span>
+<span class="sd">                record_id_2     unique identifier for the second record in the pair</span>
+<span class="sd">                blockstring_1   blockstring for the first record in the pair</span>
+<span class="sd">                blockstring_2   blockstring for the second record in the pair</span>
+<span class="sd">                drop_from_nm_1  flag, 1 if the first record in the pair was not eligible for matching</span>
+<span class="sd">                drop_from_nm_2  flag, 1 if the second record in the pair was not eligible for matching</span>
+<span class="sd">                existing        flag, 1 if the pair is must-link because of ExistingID</span>
+<span class="sd">                ==============  ======================================================================</span>
 
 <span class="sd">            an_df (pd.DataFrame): all-names file, with only the columns relevant for clustering</span>
-<span class="sd">                ========================     =======================================================</span>
-<span class="sd">                record_id                    unique record identifier </span>
+
+<span class="sd">                ===========================  =======================================================</span>
+<span class="sd">                record_id                    unique record identifier</span>
 <span class="sd">                &lt;uid column(s)&gt;              columns with compare_type UniqueID</span>
 <span class="sd">                &lt;eid column(s)&gt;              columns with compare_type ExistingID</span>
 <span class="sd">                &lt;user-constraint column(s)&gt;  (optional) columns mentioned in `get_columns_used()`</span>
-<span class="sd">                ========================     =======================================================   </span>
+<span class="sd">                ===========================  =======================================================</span>
 
 <span class="sd">            eid_col (str): all-names column with compare_type ExistingID, or None</span>
 
-<span class="sd">        Returns: </span>
+<span class="sd">        Returns:</span>
 <span class="sd">            dict: clusters maps a cluster id to a list of record ids</span>
-<span class="sd">            dict: cluster_assignments maps a record_id to a cluster_id </span>
+<span class="sd">            dict: cluster_assignments maps a record_id to a cluster_id</span>
 <span class="sd">            set: cluster ids that are already in use (only for incremental)</span>
 <span class="sd">        &#39;&#39;&#39;</span>
 
@@ -500,7 +433,7 @@
         <span class="k">if</span> <span class="n">eid_col</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span> <span class="c1"># incremental</span>
 
             <span class="c1"># make dictionary mapping cluster id to a list of records in that cluster</span>
-            <span class="n">eid_df</span> <span class="o">=</span> <span class="n">an_df</span><span class="p">[</span><span class="o">~</span><span class="n">an_df</span><span class="p">[</span><span class="n">eid_col</span><span class="p">]</span><span class="o">.</span><span class="n">isna</span><span class="p">()]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+            <span class="n">eid_df</span> <span class="o">=</span> <span class="n">an_df</span><span class="p">[</span><span class="n">an_df</span><span class="p">[</span><span class="n">eid_col</span><span class="p">]</span><span class="o">.</span><span class="n">notnull</span><span class="p">()</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">an_df</span><span class="p">[</span><span class="n">eid_col</span><span class="p">]</span> <span class="o">!=</span> <span class="s1">&#39;&#39;</span><span class="p">)]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
             <span class="n">eid_df</span><span class="p">[</span><span class="n">eid_col</span><span class="p">]</span> <span class="o">=</span> <span class="n">eid_df</span><span class="p">[</span><span class="n">eid_col</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
             <span class="n">cluster_assignments</span> <span class="o">=</span> <span class="n">eid_df</span><span class="p">[[</span><span class="n">eid_col</span><span class="p">]]</span><span class="o">.</span><span class="n">to_dict</span><span class="p">()[</span><span class="n">eid_col</span><span class="p">]</span>
             <span class="n">clusters</span> <span class="o">=</span> <span class="p">{}</span>
@@ -512,8 +445,11 @@
 
             <span class="n">original_cluster_ids</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">clusters</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
 
-        <span class="k">else</span><span class="p">:</span> <span class="c1"># from scratch</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">clusters</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="c1"># for later assign the cluster_id</span>
+                <span class="n">i</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">clusters</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
 
+        <span class="k">else</span><span class="p">:</span> <span class="c1"># from scratch</span>
             <span class="n">clusters</span> <span class="o">=</span> <span class="p">{}</span>
 
             <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">must_links_df</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
@@ -528,7 +464,6 @@
                         <span class="n">must_links_df</span><span class="p">,</span>
                         <span class="n">source</span><span class="o">=</span><span class="s2">&quot;record_id_1&quot;</span><span class="p">,</span>
                         <span class="n">target</span><span class="o">=</span><span class="s2">&quot;record_id_2&quot;</span><span class="p">)</span>
-
                 <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">comp</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">nx</span><span class="o">.</span><span class="n">connected_components</span><span class="p">(</span><span class="n">g</span><span class="p">)):</span>
                     <span class="n">clusters</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">comp</span><span class="p">)</span>
 
@@ -541,14 +476,14 @@
             <span class="n">original_cluster_ids</span> <span class="o">=</span> <span class="kc">None</span>
 
         <span class="c1"># add in the singletons</span>
-        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">clusters</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
-            <span class="n">cluster_id</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">clusters</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span> <span class="o">+</span> <span class="mi">1</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="n">cluster_id</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">clusters</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">i</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+
+        <span class="n">cluster_id</span> <span class="o">=</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span>
+        <span class="n">logging</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;new cluster_id for singletons starts from: </span><span class="si">{</span><span class="n">cluster_id</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 
         <span class="n">an_df</span> <span class="o">=</span> <span class="n">an_df</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
-        <span class="n">an_df</span> <span class="o">=</span> <span class="n">an_df</span><span class="p">[</span><span class="n">an_df</span><span class="o">.</span><span class="n">record_id</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">cluster_assignments</span><span class="p">)</span> <span class="o">==</span> <span class="kc">False</span><span class="p">]</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-
+        <span class="n">an_df</span> <span class="o">=</span> <span class="n">an_df</span><span class="p">[</span><span class="n">an_df</span><span class="o">.</span><span class="n">record_id</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">cluster_assignments</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span> <span class="o">==</span> <span class="kc">False</span><span class="p">]</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
         <span class="n">an_df</span><span class="p">[</span><span class="s1">&#39;cluster_id&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">an_df</span><span class="o">.</span><span class="n">index</span> <span class="o">+</span> <span class="n">cluster_id</span>
         <span class="c1"># NOTE: next 4 lines are for a 1000x speedup over pandas groupby</span>
         <span class="n">keys</span><span class="p">,</span> <span class="n">values</span> <span class="o">=</span> <span class="n">an_df</span><span class="p">[[</span><span class="s1">&#39;cluster_id&#39;</span><span class="p">,</span> <span class="s1">&#39;record_id&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">T</span>
@@ -557,213 +492,258 @@
         <span class="n">singleton_clusters</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">ukeys</span><span class="p">,</span> <span class="p">[</span><span class="nb">list</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">arrays</span><span class="p">]))</span>
         <span class="n">clusters</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">singleton_clusters</span><span class="p">)</span>
         <span class="n">cluster_assignments</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">an_df</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;record_id&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">to_dict</span><span class="p">()[</span><span class="s1">&#39;cluster_id&#39;</span><span class="p">])</span>
-        <span class="n">logger</span><span class="o">.</span><span class="n">stat</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;n_initial_clusters: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">clusters</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">clusters</span><span class="p">,</span> <span class="n">cluster_assignments</span><span class="p">,</span> <span class="n">original_cluster_ids</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">stats_dict</span><span class="p">[</span><span class="s1">&#39;n_initial_clusters&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">clusters</span><span class="p">)</span>
+        <span class="k">del</span> <span class="n">must_links_df</span>
+        <span class="n">gc</span><span class="o">.</span><span class="n">collect</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">clusters</span><span class="p">,</span> <span class="n">cluster_assignments</span><span class="p">,</span> <span class="n">original_cluster_ids</span></div>
 
+<div class="viewcode-block" id="Cluster.save_df_to_disk"><a class="viewcode-back" href="../../api.html#namematch.cluster.Cluster.save_df_to_disk">[docs]</a>    <span class="nd">@log_runtime_and_memory</span>
+    <span class="k">def</span> <span class="nf">save_df_to_disk</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">df</span><span class="p">):</span>
+        <span class="n">table</span> <span class="o">=</span> <span class="n">pa</span><span class="o">.</span><span class="n">Table</span><span class="o">.</span><span class="n">from_pandas</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+        <span class="n">pq</span><span class="o">.</span><span class="n">write_table</span><span class="p">(</span><span class="n">table</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">edges</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Cluster.get_potential_edges"><a class="viewcode-back" href="../../api.html#namematch.cluster.Cluster.get_potential_edges">[docs]</a>    <span class="nd">@log_runtime_and_memory</span>
     <span class="nd">@profile</span>
-    <span class="nd">@equip_logger_id</span>
-    <span class="nd">@log_runtime_and_memory</span>
-    <span class="k">def</span> <span class="nf">get_potential_edges</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">potential_edges_files</span><span class="p">,</span> <span class="n">flipped0_edges_file</span><span class="p">,</span> <span class="n">gt_1s_df</span><span class="p">,</span> <span class="n">cluster_logic</span><span class="p">,</span> <span class="n">cluster_info</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">get_potential_edges</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">potential_edges_files</span><span class="p">,</span> <span class="n">flipped0_edges_file</span><span class="p">,</span> <span class="n">gt_1s_df</span><span class="p">,</span> <span class="n">cluster_logic</span><span class="p">,</span> <span class="n">cluster_info</span><span class="p">,</span> <span class="n">uid_cols</span><span class="p">,</span> <span class="n">eid_col</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">):</span>
         <span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">        Use all predictions file to make a list of edges that the constrained</span>
 <span class="sd">        clustering algorithm should try to add.</span>
 
-<span class="sd">        Args: </span>
-<span class="sd">            potential_edges_files (list): paths to output_temp&#39;s potential edges files </span>
-<span class="sd">            flipped0_edges_file (str): path to output_temp&#39;s flipped0-edges file</span>
+<span class="sd">        Args:</span>
+<span class="sd">            potential_edges_files (list): paths to the potential links files</span>
+<span class="sd">            flipped0_edges_file (str): path to the flipped0-links file</span>
 <span class="sd">            gt_1s_df (pd.DataFrame): for incremental runs, subset of the must-link df that are &quot;new&quot; 1s</span>
 <span class="sd">            cluster_logic (module): user-defined constraint functions</span>
 <span class="sd">            cluster_info (pd.DataFrame): all-names file, with only the columns relevant for clustering</span>
+<span class="sd">            uid_cols (list): all-name columns with compare_type UniqueID</span>
+<span class="sd">            eid_col (str): all-name column with compare_type ExistingID</span>
 
-<span class="sd">        Returns:</span>
-<span class="sd">            list: each element is a dict version of a potential edge&#39;s record</span>
 <span class="sd">        &#39;&#39;&#39;</span>
+        <span class="n">total_auto_invalid_edges</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">total_invalid_edges</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">potential_edges_file</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">potential_edges_files</span><span class="p">):</span>
 
-        <span class="n">potential_edges_df</span> <span class="o">=</span> <span class="n">load_parquet_list</span><span class="p">(</span><span class="n">potential_edges_files</span><span class="p">,</span> <span class="n">conditions_dict</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;potential_edge&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">})</span>
-        <span class="n">potential_edges_df</span><span class="p">[</span><span class="s1">&#39;gt&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="n">potential_edges_df</span> <span class="o">=</span> <span class="n">load_parquet</span><span class="p">(</span><span class="n">potential_edges_file</span><span class="p">,</span> <span class="n">conditions_dict</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;potential_edge&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">})</span>
+            <span class="n">potential_edges_df</span><span class="p">[</span><span class="s1">&#39;gt&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
 
-        <span class="k">if</span> <span class="p">(</span><span class="n">gt_1s_df</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">):</span>
-            <span class="n">flipped0_edges_file</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">flipped0_edges_file</span><span class="p">,</span> <span class="n">low_memory</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-            <span class="n">flipped0_edges_file</span><span class="p">[</span><span class="s1">&#39;gt&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
-            <span class="n">potential_edges_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">potential_edges_df</span><span class="p">,</span> <span class="n">flipped0_edges_file</span><span class="p">],</span> <span class="n">join</span><span class="o">=</span><span class="s1">&#39;inner&#39;</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span> <span class="c1"># for first iteration only</span>
+                <span class="k">if</span> <span class="p">(</span><span class="n">gt_1s_df</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">flipped0_edges_file</span><span class="p">)):</span>
+                    <span class="n">flipped0_edges_file</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">flipped0_edges_file</span><span class="p">,</span> <span class="n">low_memory</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+                    <span class="n">flipped0_edges_file</span><span class="p">[</span><span class="s1">&#39;gt&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+                    <span class="n">potential_edges_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">potential_edges_df</span><span class="p">,</span> <span class="n">flipped0_edges_file</span><span class="p">],</span> <span class="n">join</span><span class="o">=</span><span class="s1">&#39;inner&#39;</span><span class="p">)</span>
+                    <span class="n">potential_edges_df</span> <span class="o">=</span> <span class="n">potential_edges_df</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+            <span class="c1"># get clustering_phat</span>
+            <span class="n">potential_edges_df</span><span class="p">[</span><span class="s1">&#39;phat&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+            <span class="k">for</span> <span class="n">model_name</span> <span class="ow">in</span> <span class="n">potential_edges_df</span><span class="o">.</span><span class="n">model_to_use</span><span class="o">.</span><span class="n">unique</span><span class="p">():</span>
+                <span class="n">potential_edges_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">potential_edges_df</span><span class="o">.</span><span class="n">model_to_use</span> <span class="o">==</span> <span class="n">model_name</span><span class="p">,</span> <span class="s1">&#39;phat&#39;</span><span class="p">]</span> <span class="o">=</span> \
+                        <span class="n">potential_edges_df</span><span class="p">[</span><span class="s1">&#39;</span><span class="si">%s</span><span class="s1">_match_phat&#39;</span> <span class="o">%</span> <span class="n">model_name</span><span class="p">]</span>
+
+            <span class="n">cols</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;record_id_1&#39;</span><span class="p">,</span> <span class="s1">&#39;record_id_2&#39;</span><span class="p">,</span> <span class="s1">&#39;gt&#39;</span><span class="p">,</span> <span class="s1">&#39;phat&#39;</span><span class="p">]</span>
+            <span class="n">potential_edges_df</span> <span class="o">=</span> <span class="n">potential_edges_df</span><span class="p">[</span><span class="n">cols</span><span class="p">]</span>
+
+            <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span> <span class="c1"># for first iteration only</span>
+                <span class="k">if</span> <span class="n">gt_1s_df</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                    <span class="n">gt_1s_df</span><span class="p">[</span><span class="s1">&#39;gt&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+                    <span class="n">gt_1s_df</span><span class="p">[</span><span class="s1">&#39;phat&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+                    <span class="n">potential_edges_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">potential_edges_df</span><span class="p">,</span> <span class="n">gt_1s_df</span><span class="p">[</span><span class="n">cols</span><span class="p">]])</span>
+
             <span class="n">potential_edges_df</span> <span class="o">=</span> <span class="n">potential_edges_df</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
-        <span class="c1"># get clustering_phat</span>
-        <span class="n">potential_edges_df</span><span class="p">[</span><span class="s1">&#39;phat&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
-        <span class="k">for</span> <span class="n">model_name</span> <span class="ow">in</span> <span class="n">potential_edges_df</span><span class="o">.</span><span class="n">model_to_use</span><span class="o">.</span><span class="n">unique</span><span class="p">():</span>
-            <span class="n">potential_edges_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">potential_edges_df</span><span class="o">.</span><span class="n">model_to_use</span> <span class="o">==</span> <span class="n">model_name</span><span class="p">,</span> <span class="s1">&#39;phat&#39;</span><span class="p">]</span> <span class="o">=</span> \
-                    <span class="n">potential_edges_df</span><span class="p">[</span><span class="s1">&#39;</span><span class="si">%s</span><span class="s1">_match_phat&#39;</span> <span class="o">%</span> <span class="n">model_name</span><span class="p">]</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">trace</span><span class="p">(</span><span class="s1">&#39;Dropping invalid edges&#39;</span><span class="p">)</span>
+            <span class="n">potential_edges_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">potential_edges_df</span><span class="p">,</span> <span class="n">cluster_info</span><span class="p">,</span> <span class="n">left_on</span><span class="o">=</span><span class="s1">&#39;record_id_1&#39;</span><span class="p">,</span> <span class="n">right_index</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+            <span class="n">potential_edges_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">potential_edges_df</span><span class="p">,</span> <span class="n">cluster_info</span><span class="p">,</span> <span class="n">left_on</span><span class="o">=</span><span class="s1">&#39;record_id_2&#39;</span><span class="p">,</span> <span class="n">right_index</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">suffixes</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;_1&#39;</span><span class="p">,</span> <span class="s1">&#39;_2&#39;</span><span class="p">])</span>
+            <span class="n">potential_edges_df</span> <span class="o">=</span> <span class="n">potential_edges_df</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
-        <span class="n">cols</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;record_id_1&#39;</span><span class="p">,</span> <span class="s1">&#39;record_id_2&#39;</span><span class="p">,</span> <span class="s1">&#39;gt&#39;</span><span class="p">,</span> <span class="s1">&#39;phat&#39;</span><span class="p">]</span>
-        <span class="n">potential_edges_df</span> <span class="o">=</span> <span class="n">potential_edges_df</span><span class="p">[</span><span class="n">cols</span><span class="p">]</span>
+            <span class="n">starting_cols</span> <span class="o">=</span> <span class="n">potential_edges_df</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+            <span class="n">n_before_drop_auto_invalid_edges</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">potential_edges_df</span><span class="p">)</span>
+            <span class="n">potential_edges_df</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">auto_is_valid_edge</span><span class="p">(</span>
+                    <span class="n">potential_edges_df</span><span class="p">,</span> <span class="n">uid_cols</span><span class="p">,</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">params</span><span class="o">.</span><span class="n">allow_clusters_w_multiple_unique_ids</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">params</span><span class="o">.</span><span class="n">leven_thresh</span><span class="p">,</span> <span class="n">eid_col</span><span class="p">)</span>
+            <span class="n">potential_edges_df</span> <span class="o">=</span> <span class="n">potential_edges_df</span><span class="p">[</span><span class="n">starting_cols</span><span class="p">]</span>
+            <span class="n">n_before_drop_invalid_edges</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">potential_edges_df</span><span class="p">)</span>
+            <span class="n">potential_edges_df</span><span class="p">[</span><span class="s1">&#39;valid&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">cluster_logic</span><span class="o">.</span><span class="n">is_valid_link</span><span class="p">(</span><span class="n">potential_edges_df</span><span class="p">)</span>
+            <span class="n">potential_edges_df</span> <span class="o">=</span> <span class="n">potential_edges_df</span><span class="p">[</span>
+                <span class="p">(</span><span class="n">potential_edges_df</span><span class="o">.</span><span class="n">gt</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span> <span class="o">|</span> <span class="p">(</span><span class="n">potential_edges_df</span><span class="o">.</span><span class="n">valid</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)]</span>
+            <span class="n">potential_edges_df</span> <span class="o">=</span> <span class="n">potential_edges_df</span><span class="p">[</span><span class="n">starting_cols</span><span class="p">]</span>
+            <span class="n">auto_invalid_edges</span> <span class="o">=</span> <span class="n">n_before_drop_auto_invalid_edges</span> <span class="o">-</span> <span class="n">n_before_drop_invalid_edges</span>
+            <span class="n">invalid_edges</span> <span class="o">=</span> <span class="n">n_before_drop_invalid_edges</span> <span class="o">-</span> <span class="nb">len</span><span class="p">(</span><span class="n">potential_edges_df</span><span class="p">)</span>
 
-        <span class="k">if</span> <span class="n">gt_1s_df</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="n">gt_1s_df</span><span class="p">[</span><span class="s1">&#39;gt&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
-            <span class="n">gt_1s_df</span><span class="p">[</span><span class="s1">&#39;phat&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
-            <span class="n">potential_edges_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">potential_edges_df</span><span class="p">,</span> <span class="n">gt_1s_df</span><span class="p">[</span><span class="n">cols</span><span class="p">]])</span>
+            <span class="n">total_auto_invalid_edges</span> <span class="o">+=</span> <span class="n">auto_invalid_edges</span>
+            <span class="n">total_invalid_edges</span> <span class="o">+=</span> <span class="n">invalid_edges</span>
 
-        <span class="n">potential_edges_df</span> <span class="o">=</span> <span class="n">potential_edges_df</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span>
+            <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="n">valid_potential_edges_df</span> <span class="o">=</span> <span class="n">potential_edges_df</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">valid_potential_edges_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">valid_potential_edges_df</span><span class="p">,</span> <span class="n">potential_edges_df</span><span class="p">])</span>
+
+            <span class="k">del</span> <span class="n">potential_edges_df</span>
+            <span class="n">gc</span><span class="o">.</span><span class="n">collect</span><span class="p">()</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Auto-invalid links: </span><span class="si">{</span><span class="n">total_auto_invalid_edges</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Invalid links: </span><span class="si">{</span><span class="n">total_invalid_edges</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">stats_dict</span><span class="p">[</span><span class="s1">&#39;n_invalid_links&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">total_invalid_edges</span>
+
+        <span class="n">valid_potential_edges_df</span> <span class="o">=</span> <span class="n">valid_potential_edges_df</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="n">valid_potential_edges_df</span> <span class="o">=</span> <span class="n">valid_potential_edges_df</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span>
                 <span class="p">[</span><span class="s1">&#39;gt&#39;</span><span class="p">,</span> <span class="s1">&#39;phat&#39;</span><span class="p">],</span> <span class="n">ascending</span><span class="o">=</span><span class="p">[</span><span class="kc">False</span><span class="p">,</span> <span class="kc">False</span><span class="p">])</span>
 
-        <span class="n">potential_edges_df</span> <span class="o">=</span> <span class="n">potential_edges_df</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">trace</span><span class="p">(</span><span class="s1">&#39;Applying link priority.&#39;</span><span class="p">)</span>
+        <span class="n">valid_potential_edges_df</span><span class="p">[</span><span class="s1">&#39;original_order&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">valid_potential_edges_df</span><span class="o">.</span><span class="n">index</span>
+        <span class="n">valid_potential_edges_df</span> <span class="o">=</span> <span class="n">cluster_logic</span><span class="o">.</span><span class="n">apply_link_priority</span><span class="p">(</span><span class="n">valid_potential_edges_df</span><span class="p">)</span>
 
-        <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;Applying edge priority.&#39;</span><span class="p">)</span>
-        <span class="n">potential_edges_df</span><span class="p">[</span><span class="s1">&#39;original_order&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">potential_edges_df</span><span class="o">.</span><span class="n">index</span>
-        <span class="n">potential_edges_df</span> <span class="o">=</span> <span class="n">cluster_logic</span><span class="o">.</span><span class="n">apply_edge_priority</span><span class="p">(</span><span class="n">potential_edges_df</span><span class="p">,</span> <span class="n">cluster_info</span><span class="p">)</span>
-
-        <span class="n">logger</span><span class="o">.</span><span class="n">stat</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;n_potential_edges: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">potential_edges_df</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-
+        <span class="bp">self</span><span class="o">.</span><span class="n">stats_dict</span><span class="p">[</span><span class="s1">&#39;n_potential_edges&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">valid_potential_edges_df</span><span class="p">)</span>
         <span class="c1"># NOTE: takes a little while, but worth it later to avoid iterrows</span>
-        <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;Converting potential_edges_df to dict.&#39;</span><span class="p">)</span>
-        <span class="n">potential_edges</span> <span class="o">=</span> <span class="n">potential_edges_df</span><span class="o">.</span><span class="n">to_dict</span><span class="p">(</span><span class="s1">&#39;records&#39;</span><span class="p">)</span>
-        <span class="k">del</span> <span class="n">potential_edges_df</span>
 
-        <span class="k">return</span> <span class="n">potential_edges</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">trace</span><span class="p">(</span><span class="s1">&#39;Saving valid_links_df to disk as parquet file&#39;</span><span class="p">)</span>
 
+        <span class="bp">self</span><span class="o">.</span><span class="n">save_df_to_disk</span><span class="p">(</span><span class="n">valid_potential_edges_df</span><span class="p">)</span>
+        <span class="k">del</span> <span class="n">valid_potential_edges_df</span>
+        <span class="n">gc</span><span class="o">.</span><span class="n">collect</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="Cluster.load_cluster_info"><a class="viewcode-back" href="../../api.html#namematch.cluster.Cluster.load_cluster_info">[docs]</a>    <span class="nd">@log_runtime_and_memory</span>
     <span class="nd">@profile</span>
-    <span class="nd">@equip_logger_id</span>
-    <span class="nd">@log_runtime_and_memory</span>
     <span class="k">def</span> <span class="nf">load_cluster_info</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">all_names_file</span><span class="p">,</span> <span class="n">uid_cols</span><span class="p">,</span> <span class="n">eid_col</span><span class="p">,</span> <span class="n">cluster_logic</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">):</span>
-        <span class="sd">&#39;&#39;&#39;Read in the all_names information needed for cluster constraint checking.</span>
+        <span class="sd">&#39;&#39;&#39;Read in the all_names information needed for cluster constraint checking. Columns</span>
+<span class="sd">        defined in the config as compare type UniqueID or ExistingID will automatically be loaded</span>
+<span class="sd">        (as strings, with missing values represented as NA). Other columns you wish to be loaded</span>
+<span class="sd">        should be defined in the user-defined `get_columns_used()` function.</span>
 
-<span class="sd">        Args: </span>
-<span class="sd">            all_names_file (str): path to output_temp&#39;s all-names file</span>
+<span class="sd">        Args:</span>
+<span class="sd">            all_names_file (str): path to the all-names file</span>
 <span class="sd">            uid_cols (list): all-name columns with compare_type UniqueID</span>
-<span class="sd">            eid_col (list): all-name columns with compare_type ExistingID</span>
+<span class="sd">            eid_col (str): all-name column with compare_type ExistingID</span>
 <span class="sd">            cluster_logic (module): user-defined constraint functions</span>
 
-<span class="sd">        Returns: </span>
+<span class="sd">        Returns:</span>
 <span class="sd">            pd.DataFrame: all-names file, with only the columns relevant for clustering</span>
-<span class="sd">                ========================     =======================================================</span>
-<span class="sd">                record_id                    unique record identifier </span>
-<span class="sd">                &lt;uid column(s)&gt;              columns with compare_type UniqueID</span>
-<span class="sd">                &lt;eid column(s)&gt;              columns with compare_type ExistingID</span>
-<span class="sd">                &lt;user-constraint column(s)&gt;  (optional) columns mentioned in `get_columns_used()`</span>
-<span class="sd">                ========================     =======================================================   </span>
+
+<span class="sd">            ===========================  =======================================================</span>
+<span class="sd">            record_id                    unique record identifier</span>
+<span class="sd">            &lt;uid column(s)&gt;              columns with compare_type UniqueID</span>
+<span class="sd">            &lt;eid column(s)&gt;              columns with compare_type ExistingID</span>
+<span class="sd">            &lt;user-constraint column(s)&gt;  (optional) columns mentioned in `get_columns_used()`</span>
+<span class="sd">            ===========================  =======================================================</span>
 <span class="sd">        &#39;&#39;&#39;</span>
 
         <span class="c1"># add things that are missing from get_columns_used</span>
 
-        <span class="n">column_dtypes</span> <span class="o">=</span> <span class="n">cluster_logic</span><span class="o">.</span><span class="n">get_columns_used</span><span class="p">()</span>
-        <span class="k">if</span> <span class="p">(</span><span class="s2">&quot;record_id&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">column_dtypes</span><span class="p">):</span>
-            <span class="n">column_dtypes</span><span class="p">[</span><span class="s2">&quot;record_id&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;object&#39;</span>
-        <span class="k">if</span> <span class="p">(</span><span class="s2">&quot;dataset&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">column_dtypes</span><span class="p">):</span>
-            <span class="n">column_dtypes</span><span class="p">[</span><span class="s2">&quot;dataset&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;object&#39;</span>
+        <span class="n">cols_needed</span> <span class="o">=</span> <span class="n">cluster_logic</span><span class="o">.</span><span class="n">get_columns_used</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">cols_needed</span> <span class="o">==</span> <span class="s1">&#39;all&#39;</span><span class="p">:</span>
+            <span class="n">column_dtypes</span> <span class="o">=</span> <span class="p">{</span><span class="n">field</span><span class="p">:</span><span class="s1">&#39;object&#39;</span> <span class="k">for</span> <span class="n">field</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">schema</span><span class="o">.</span><span class="n">variables</span><span class="o">.</span><span class="n">get_an_column_names</span><span class="p">()}</span>
+        <span class="k">else</span><span class="p">:</span> 
+            <span class="n">column_dtypes</span> <span class="o">=</span> <span class="n">cols_needed</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+            <span class="k">if</span> <span class="p">(</span><span class="s2">&quot;record_id&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">column_dtypes</span><span class="p">):</span>
+                <span class="n">column_dtypes</span><span class="p">[</span><span class="s2">&quot;record_id&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;object&#39;</span>
+            <span class="k">if</span> <span class="p">(</span><span class="s2">&quot;dataset&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">column_dtypes</span><span class="p">):</span>
+                <span class="n">column_dtypes</span><span class="p">[</span><span class="s2">&quot;dataset&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;object&#39;</span>
 
-        <span class="n">cols_to_load_as_obj</span> <span class="o">=</span> <span class="n">uid_cols</span>
+        <span class="n">id_cols_to_load_as_obj</span> <span class="o">=</span> <span class="n">uid_cols</span>
         <span class="k">if</span> <span class="n">eid_col</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="n">cols_to_load_as_obj</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">eid_col</span><span class="p">)</span>
+            <span class="n">id_cols_to_load_as_obj</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">eid_col</span><span class="p">)</span>
 
-        <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">cols_to_load_as_obj</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">id_cols_to_load_as_obj</span><span class="p">:</span>
             <span class="k">if</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">column_dtypes</span><span class="p">:</span>
                 <span class="k">if</span> <span class="n">column_dtypes</span><span class="p">[</span><span class="n">col</span><span class="p">]</span> <span class="o">!=</span> <span class="s1">&#39;object&#39;</span><span class="p">:</span>
                     <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Changing dtype for </span><span class="si">{</span><span class="n">col</span><span class="si">}</span><span class="s2"> field to object.&quot;</span><span class="p">)</span>
                     <span class="n">column_dtypes</span><span class="p">[</span><span class="n">col</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;object&#39;</span>
-                <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Note, missing values in </span><span class="si">{</span><span class="n">col</span><span class="si">}</span><span class="s2"> field are not getting &quot;</span>
-                           <span class="sa">f</span><span class="s2">&quot;filled with &#39;&#39;, since this is an ID field.&quot;</span><span class="p">)</span>
+                <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Note, missing values in </span><span class="si">{</span><span class="n">col</span><span class="si">}</span><span class="s2"> field will not be &quot;</span>
+                               <span class="sa">f</span><span class="s2">&quot;filled with &#39;&#39;, since this is an ID field.&quot;</span><span class="p">)</span>
             <span class="k">else</span><span class="p">:</span>
                 <span class="n">column_dtypes</span><span class="p">[</span><span class="n">col</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;object&#39;</span>
 
         <span class="n">table</span> <span class="o">=</span> <span class="n">pq</span><span class="o">.</span><span class="n">read_table</span><span class="p">(</span><span class="n">all_names_file</span><span class="p">)</span>
         <span class="n">cluster_info</span> <span class="o">=</span>  <span class="n">table</span><span class="o">.</span><span class="n">to_pandas</span><span class="p">()</span>
         <span class="n">cluster_info</span> <span class="o">=</span> <span class="n">cluster_info</span><span class="p">[</span><span class="nb">list</span><span class="p">(</span><span class="n">column_dtypes</span><span class="o">.</span><span class="n">keys</span><span class="p">())]</span>
-        <span class="n">cluster_info</span> <span class="o">=</span> <span class="n">cluster_info</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;record_id&#39;</span><span class="p">)</span>
         <span class="k">del</span> <span class="n">column_dtypes</span><span class="p">[</span><span class="s1">&#39;record_id&#39;</span><span class="p">]</span>
-        <span class="n">date_cols</span> <span class="o">=</span> <span class="p">[]</span>
-        <span class="c1"># change the dtypes in all_names based on user-defined dtypes in cluster_constraints</span>
+        <span class="n">cluster_info</span> <span class="o">=</span> <span class="n">cluster_info</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;record_id&#39;</span><span class="p">)</span>
+        <span class="c1"># change the dtypes in all_names based on user-defined dtypes in constraints</span>
         <span class="k">for</span> <span class="n">col</span><span class="p">,</span> <span class="n">col_dtype</span> <span class="ow">in</span> <span class="n">column_dtypes</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
             <span class="k">if</span> <span class="n">col_dtype</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;int&#39;</span><span class="p">,</span> <span class="s1">&#39;float&#39;</span><span class="p">]:</span>
                 <span class="n">cluster_info</span><span class="p">[</span><span class="n">col</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_numeric</span><span class="p">(</span><span class="n">cluster_info</span><span class="p">[</span><span class="n">col</span><span class="p">])</span>
             <span class="k">elif</span> <span class="n">col_dtype</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;date&#39;</span><span class="p">]:</span>
                 <span class="n">cluster_info</span><span class="p">[</span><span class="n">col</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">cluster_info</span><span class="p">[</span><span class="n">col</span><span class="p">])</span>
-                <span class="n">date_cols</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">col</span><span class="p">)</span>
             <span class="k">elif</span> <span class="n">col_dtype</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;str&#39;</span><span class="p">,</span> <span class="s1">&#39;string&#39;</span><span class="p">,</span> <span class="s1">&#39;object&#39;</span><span class="p">]:</span>
                 <span class="n">cluster_info</span><span class="p">[</span><span class="n">col</span><span class="p">]</span> <span class="o">=</span> <span class="n">cluster_info</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
                 <span class="n">cluster_info</span><span class="p">[</span><span class="n">col</span><span class="p">]</span> <span class="o">=</span> <span class="n">cluster_info</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span>
 
-        <span class="c1"># fillna with &#39;&#39; for columns of dtype object</span>
-        <span class="n">obj_cols</span> <span class="o">=</span> <span class="p">[</span><span class="n">col</span> <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span>
-                    <span class="n">cluster_info</span><span class="o">.</span><span class="n">select_dtypes</span><span class="p">(</span><span class="n">include</span><span class="o">=</span><span class="s1">&#39;object&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
-                    <span class="k">if</span> <span class="n">col</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">(</span><span class="n">date_cols</span> <span class="o">+</span> <span class="n">cols_to_load_as_obj</span><span class="p">)]</span>
-        <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">obj_cols</span><span class="p">:</span>
-            <span class="n">cluster_info</span><span class="p">[</span><span class="n">col</span><span class="p">]</span> <span class="o">=</span> <span class="n">cluster_info</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+        <span class="c1"># replace empty string with NaN for uids and eid</span>
+        <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">id_cols_to_load_as_obj</span><span class="p">:</span>
+            <span class="n">cluster_info</span><span class="p">[</span><span class="n">col</span><span class="p">]</span> <span class="o">=</span> <span class="n">cluster_info</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">cluster_info</span></div>
 
-        <span class="k">return</span> <span class="n">cluster_info</span>
+<div class="viewcode-block" id="Cluster.get_ci_ix_map"><a class="viewcode-back" href="../../api.html#namematch.cluster.Cluster.get_ci_ix_map">[docs]</a>    <span class="nd">@log_runtime_and_memory</span>
+    <span class="k">def</span> <span class="nf">get_ci_ix_map</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cluster_info</span><span class="p">):</span>
+        <span class="n">ci_ix_map</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">cluster_info</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">tolist</span><span class="p">(),</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">cluster_info</span><span class="p">))))</span>
+        <span class="k">return</span> <span class="n">ci_ix_map</span></div>
 
+<div class="viewcode-block" id="Cluster.cluster_potential_edges"><a class="viewcode-back" href="../../api.html#namematch.cluster.Cluster.cluster_potential_edges">[docs]</a>    <span class="nd">@log_runtime_and_memory</span>
     <span class="nd">@profile</span>
-    <span class="nd">@equip_logger_id</span>
-    <span class="nd">@log_runtime_and_memory</span>
     <span class="k">def</span> <span class="nf">cluster_potential_edges</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">clusters</span><span class="p">,</span> <span class="n">cluster_assignments</span><span class="p">,</span> <span class="n">original_cluster_ids</span><span class="p">,</span>
-                <span class="n">cluster_info</span><span class="p">,</span> <span class="n">potential_edges</span><span class="p">,</span> <span class="n">cluster_logic</span><span class="p">,</span> <span class="n">params</span><span class="p">,</span> <span class="n">uid_cols</span><span class="p">,</span> <span class="n">eid_col</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">):</span>
+                <span class="n">cluster_info</span><span class="p">,</span> <span class="n">cluster_logic</span><span class="p">,</span> <span class="n">uid_cols</span><span class="p">,</span> <span class="n">eid_col</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">):</span>
         <span class="sd">&#39;&#39;&#39;For clusters by add potential edges to the cluster graph in order of importance, skipping those</span>
 <span class="sd">        that cause violations.</span>
 
-<span class="sd">        Args: </span>
+<span class="sd">        Args:</span>
 <span class="sd">            clusters (dict): maps a cluster id to a list of record ids -- post initialization</span>
 <span class="sd">            cluster_assignments (dict): maps a record_id to a cluster_id -- post initialization</span>
 <span class="sd">            original_cluster_ids (set): set: cluster ids that are already in use (only for incremental)</span>
 <span class="sd">            cluster_info (pd.DataFrame): all-names file, with only the columns relevant for clustering</span>
-<span class="sd">                ========================     =======================================================</span>
-<span class="sd">                record_id                    unique record identifier </span>
+
+<span class="sd">                ===========================  =======================================================</span>
+<span class="sd">                record_id                    unique record identifier</span>
 <span class="sd">                &lt;uid column(s)&gt;              columns with compare_type UniqueID</span>
 <span class="sd">                &lt;eid column(s)&gt;              columns with compare_type ExistingID</span>
 <span class="sd">                &lt;user-constraint column(s)&gt;  (optional) columns mentioned in `get_columns_used()`</span>
-<span class="sd">                ========================     =======================================================  </span>
+<span class="sd">                ===========================  =======================================================</span>
 
-<span class="sd">            potential_edges (list): each element is a dict version of a potential edge&#39;s record</span>
+<span class="sd">            potential_edges (deque): each element is a dict version of a potential edge&#39;s record</span>
 <span class="sd">            cluster_logic (module): user-defined constraint functions</span>
-<span class="sd">            params (Parameters object): contains parameter values</span>
 <span class="sd">            uid_cols (list): all-name columns with compare_type UniqueID</span>
-<span class="sd">            eid_col (list): all-name columns with compare_type ExistingID</span>
+<span class="sd">            eid_col (str): all-name column with compare_type ExistingID</span>
 
 <span class="sd">        Returns:</span>
 <span class="sd">            dict: maps record_id to cluster_id</span>
 <span class="sd">        &#39;&#39;&#39;</span>
-
         <span class="c1"># track things</span>
         <span class="n">invalid_edges</span> <span class="o">=</span> <span class="mi">0</span>
         <span class="n">invalid_clusters</span> <span class="o">=</span> <span class="mi">0</span>
         <span class="n">merges</span> <span class="o">=</span> <span class="mi">0</span>
-        <span class="n">nrows</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">potential_edges</span><span class="p">)</span>
+        <span class="n">pf</span> <span class="o">=</span> <span class="n">pq</span><span class="o">.</span><span class="n">ParquetFile</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">edges</span><span class="p">)</span>
+        <span class="n">nrows</span> <span class="o">=</span> <span class="n">pf</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">num_rows</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;total number of edges: </span><span class="si">{</span><span class="n">nrows</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 
         <span class="c1"># create ix map so can use faster iloc as opposed to loc</span>
-        <span class="n">ci_ix_map</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">cluster_info</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">tolist</span><span class="p">(),</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">cluster_info</span><span class="p">))))</span>
+        <span class="n">ci_ix_map</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_ci_ix_map</span><span class="p">(</span><span class="n">cluster_info</span><span class="p">)</span>
+        <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;batch size: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">params</span><span class="o">.</span><span class="n">cluster_batch_size</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">edge_pf</span> <span class="ow">in</span> <span class="n">pf</span><span class="o">.</span><span class="n">iter_batches</span><span class="p">(</span><span class="n">batch_size</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">params</span><span class="o">.</span><span class="n">cluster_batch_size</span><span class="p">,</span> <span class="n">use_threads</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+            <span class="k">for</span> <span class="n">edge</span> <span class="ow">in</span> <span class="n">edge_pf</span><span class="o">.</span><span class="n">to_pylist</span><span class="p">():</span>
+                <span class="k">if</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">params</span><span class="o">.</span><span class="n">verbose</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">i</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">params</span><span class="o">.</span><span class="n">verbose</span> <span class="o">==</span> <span class="mi">0</span><span class="p">):</span>
+                    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Checked </span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2"> of </span><span class="si">{</span><span class="n">nrows</span><span class="si">}</span><span class="s2"> edges: </span><span class="si">{</span><span class="n">invalid_clusters</span><span class="si">}</span><span class="s2"> invalid clusters, </span><span class="si">{</span><span class="n">merges</span><span class="si">}</span><span class="s2"> merges.&quot;</span><span class="p">)</span>
 
-        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Checking potential edges:&quot;</span><span class="p">)</span>
-        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">edge</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">potential_edges</span><span class="p">):</span>
+                <span class="n">record_id_1</span> <span class="o">=</span> <span class="n">edge</span><span class="p">[</span><span class="s2">&quot;record_id_1&quot;</span><span class="p">]</span>
+                <span class="n">record_id_2</span> <span class="o">=</span> <span class="n">edge</span><span class="p">[</span><span class="s2">&quot;record_id_2&quot;</span><span class="p">]</span>
 
-            <span class="k">if</span> <span class="p">(</span><span class="n">params</span><span class="o">.</span><span class="n">verbose</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">i</span> <span class="o">%</span> <span class="n">params</span><span class="o">.</span><span class="n">verbose</span> <span class="o">==</span> <span class="mi">0</span><span class="p">):</span>
-                <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Checked </span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2"> of </span><span class="si">{</span><span class="n">nrows</span><span class="si">}</span><span class="s2"> edges: </span><span class="si">{</span><span class="n">invalid_edges</span><span class="si">}</span><span class="s2"> invalid edges, &quot;</span>
-                            <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">invalid_clusters</span><span class="si">}</span><span class="s2"> invalid clusters, </span><span class="si">{</span><span class="n">merges</span><span class="si">}</span><span class="s2"> merges.&quot;</span><span class="p">)</span>
-
-            <span class="n">record_id_1</span> <span class="o">=</span> <span class="n">edge</span><span class="p">[</span><span class="s2">&quot;record_id_1&quot;</span><span class="p">]</span>
-            <span class="n">record_1</span> <span class="o">=</span> <span class="n">cluster_info</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">ci_ix_map</span><span class="p">[</span><span class="n">record_id_1</span><span class="p">]]</span>
-            <span class="n">record_id_2</span> <span class="o">=</span> <span class="n">edge</span><span class="p">[</span><span class="s2">&quot;record_id_2&quot;</span><span class="p">]</span>
-            <span class="n">record_2</span> <span class="o">=</span> <span class="n">cluster_info</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">ci_ix_map</span><span class="p">[</span><span class="n">record_id_2</span><span class="p">]]</span>
-
-            <span class="n">edge_is_gt</span> <span class="o">=</span> <span class="p">(</span><span class="n">edge</span><span class="p">[</span><span class="s2">&quot;gt&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span>
-
-            <span class="n">edge_auto_valid</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">auto_is_valid_edge</span><span class="p">(</span>
-                    <span class="n">record_1</span><span class="p">,</span> <span class="n">record_2</span><span class="p">,</span> <span class="n">uid_cols</span><span class="p">,</span>
-                    <span class="n">params</span><span class="o">.</span><span class="n">allow_clusters_w_multiple_unique_ids</span><span class="p">,</span> <span class="n">params</span><span class="o">.</span><span class="n">leven_thresh</span><span class="p">,</span> <span class="n">eid_col</span><span class="p">)</span>
-
-            <span class="k">if</span>  <span class="p">(</span><span class="n">edge_auto_valid</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">edge_is_gt</span> <span class="ow">or</span> <span class="p">(</span><span class="n">cluster_logic</span><span class="o">.</span><span class="n">is_valid_edge</span><span class="p">(</span><span class="n">record_1</span><span class="p">,</span> <span class="n">record_2</span><span class="p">,</span> <span class="n">edge</span><span class="p">[</span><span class="s1">&#39;phat&#39;</span><span class="p">]))):</span>
+                <span class="n">edge_is_gt</span> <span class="o">=</span> <span class="p">(</span><span class="n">edge</span><span class="p">[</span><span class="s2">&quot;gt&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span>
 
                 <span class="n">cluster_id_1</span> <span class="o">=</span> <span class="n">cluster_assignments</span><span class="p">[</span><span class="n">record_id_1</span><span class="p">]</span>
                 <span class="n">cluster_id_2</span> <span class="o">=</span> <span class="n">cluster_assignments</span><span class="p">[</span><span class="n">record_id_2</span><span class="p">]</span>
 
-                <span class="k">if</span> <span class="p">(</span><span class="n">cluster_id_1</span> <span class="o">!=</span> <span class="n">cluster_id_2</span><span class="p">):</span>
 
+                <span class="k">if</span> <span class="p">(</span><span class="n">cluster_id_1</span> <span class="o">!=</span> <span class="n">cluster_id_2</span><span class="p">):</span>
                     <span class="n">cluster_1</span> <span class="o">=</span> <span class="n">clusters</span><span class="p">[</span><span class="n">cluster_id_1</span><span class="p">]</span>
                     <span class="n">cluster_2</span> <span class="o">=</span> <span class="n">clusters</span><span class="p">[</span><span class="n">cluster_id_2</span><span class="p">]</span>
                     <span class="n">new_cluster</span> <span class="o">=</span> <span class="n">cluster_1</span> <span class="o">+</span> <span class="n">cluster_2</span>
 
                     <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">new_cluster</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">2</span><span class="p">:</span>
                         <span class="n">new_cluster_info</span> <span class="o">=</span> <span class="n">cluster_info</span><span class="o">.</span><span class="n">iloc</span><span class="p">[[</span><span class="n">ci_ix_map</span><span class="p">[</span><span class="n">ncr</span><span class="p">]</span> <span class="k">for</span> <span class="n">ncr</span> <span class="ow">in</span> <span class="n">new_cluster</span><span class="p">]]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+
                         <span class="n">new_cluster_info</span><span class="p">[</span><span class="s1">&#39;cluster&#39;</span><span class="p">]</span> <span class="o">=</span> \
                                 <span class="n">new_cluster_info</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">cluster_1</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span> <span class="c1"># differentiate</span>
+
                         <span class="n">new_cluster_info</span><span class="p">[</span><span class="s1">&#39;new_edge&#39;</span><span class="p">]</span> <span class="o">=</span> \
-                                <span class="n">new_cluster_info</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">isin</span><span class="p">([</span><span class="n">record_id_1</span><span class="p">,</span> <span class="n">record_id_2</span><span class="p">])</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+                                <span class="n">new_cluster_info</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">isin</span><span class="p">([</span><span class="n">record_id_1</span><span class="p">,</span> <span class="n">record_id_2</span><span class="p">])</span>
+
                         <span class="c1"># NOTE: new_edge is a way of checking an edge constraint within</span>
                         <span class="c1">#       is_valid_cluster (in case you want to enforce an edge</span>
                         <span class="c1">#       constraint, but only for clusters that meet some criteria)</span>
@@ -774,12 +754,13 @@
                     <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">new_cluster</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">2</span><span class="p">:</span>
                         <span class="n">cluster_auto_valid</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">auto_is_valid_cluster</span><span class="p">(</span>
                             <span class="n">new_cluster_info</span><span class="p">,</span> <span class="n">uid_cols</span><span class="p">,</span>
-                            <span class="n">params</span><span class="o">.</span><span class="n">allow_clusters_w_multiple_unique_ids</span><span class="p">,</span> <span class="n">params</span><span class="o">.</span><span class="n">leven_thresh</span><span class="p">,</span> <span class="n">eid_col</span><span class="p">)</span>
+                            <span class="bp">self</span><span class="o">.</span><span class="n">params</span><span class="o">.</span><span class="n">allow_clusters_w_multiple_unique_ids</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">params</span><span class="o">.</span><span class="n">leven_thresh</span><span class="p">,</span> <span class="n">eid_col</span><span class="p">)</span>
 
                     <span class="k">if</span>  <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">new_cluster</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span><span class="p">)</span> <span class="ow">or</span> \
                         <span class="p">(</span><span class="n">cluster_auto_valid</span> <span class="ow">and</span> <span class="p">(</span><span class="n">edge_is_gt</span> <span class="ow">or</span> <span class="n">cluster_logic</span><span class="o">.</span><span class="n">is_valid_cluster</span><span class="p">(</span><span class="n">new_cluster_info</span><span class="p">,</span> <span class="n">edge</span><span class="p">[</span><span class="s1">&#39;phat&#39;</span><span class="p">]))):</span>
 
                         <span class="n">new_cluster_id</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">cluster_id_1</span><span class="p">,</span> <span class="n">cluster_id_2</span><span class="p">)</span>
+
                         <span class="k">if</span> <span class="n">original_cluster_ids</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
                             <span class="k">if</span> <span class="n">cluster_id_1</span> <span class="ow">in</span> <span class="n">original_cluster_ids</span><span class="p">:</span>
                                 <span class="n">new_cluster_id</span> <span class="o">=</span> <span class="n">cluster_id_1</span>
@@ -798,102 +779,48 @@
                     <span class="k">else</span><span class="p">:</span>
                         <span class="n">invalid_clusters</span> <span class="o">+=</span> <span class="mi">1</span>
 
-            <span class="k">else</span><span class="p">:</span>
-                <span class="n">invalid_edges</span> <span class="o">+=</span> <span class="mi">1</span>
+                <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
 
-        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Invalid edges: </span><span class="si">{</span><span class="n">invalid_edges</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-        <span class="n">logger</span><span class="o">.</span><span class="n">stat</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;n_invalid_edges: </span><span class="si">{</span><span class="n">invalid_edges</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-        <span class="c1"># log_stat(&quot;Invalid edges&quot;, &quot;n_invalid_edges&quot;, invalid_edges)</span>
         <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Invalid clusters: </span><span class="si">{</span><span class="n">invalid_clusters</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-        <span class="n">logger</span><span class="o">.</span><span class="n">stat</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;n_invalid_clusters: </span><span class="si">{</span><span class="n">invalid_clusters</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-        <span class="c1"># log_stat(&quot;Invalid clusters&quot;, &quot;n_invalid_clusters&quot;, invalid_clusters)</span>
-        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Merges: </span><span class="si">{</span><span class="n">merges</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">stats_dict</span><span class="p">[</span><span class="s1">&#39;n_invalid_clusters&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">invalid_clusters</span>
         <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;n_merges: </span><span class="si">{</span><span class="n">merges</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-        <span class="c1"># log_stat(&quot;Merges&quot;, &quot;n_merges&quot;, merges)</span>
-        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Number of clusters total: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">clusters</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-        <span class="n">logger</span><span class="o">.</span><span class="n">stat</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;n_clusters: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">clusters</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-        <span class="c1"># log_stat(&quot;Number of clusters total&quot;, &#39;n_clusters&#39;, len(clusters))</span>
-        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Number of singleton clusters: </span><span class="si">{</span><span class="nb">len</span><span class="p">([</span><span class="n">recs</span> <span class="k">for</span> <span class="n">c_id</span><span class="p">,</span> <span class="n">recs</span> <span class="ow">in</span> <span class="n">clusters</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">recs</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)])</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-        <span class="n">logger</span><span class="o">.</span><span class="n">stat</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;n_singleton_clusters: </span><span class="si">{</span><span class="nb">len</span><span class="p">([</span><span class="n">recs</span> <span class="k">for</span> <span class="n">c_id</span><span class="p">,</span> <span class="n">recs</span> <span class="ow">in</span> <span class="n">clusters</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">recs</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)])</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-        <span class="c1"># log_stat(&quot;Number of singleton clusters&quot;, &#39;n_singleton_clusters&#39;,</span>
-                <span class="c1"># len([recs for c_id, recs in clusters.items() if (len(recs) == 1)]))</span>
+        <span class="n">n_clusters</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">clusters</span><span class="p">)</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Number of clusters total: </span><span class="si">{</span><span class="n">n_clusters</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">stats_dict</span><span class="p">[</span><span class="s1">&#39;n_clusters&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">n_clusters</span>
+        <span class="n">n_singleton_clusters</span> <span class="o">=</span> <span class="nb">len</span><span class="p">([</span><span class="n">recs</span> <span class="k">for</span> <span class="n">c_id</span><span class="p">,</span> <span class="n">recs</span> <span class="ow">in</span> <span class="n">clusters</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">recs</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)])</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Number of singleton clusters: </span><span class="si">{</span><span class="n">n_singleton_clusters</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">stats_dict</span><span class="p">[</span><span class="s1">&#39;n_singleton_clusters&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">n_singleton_clusters</span>
 
-        <span class="c1"># make cluster_id a string</span>
         <span class="n">cluster_assignments</span> <span class="o">=</span> <span class="p">{</span><span class="n">k</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">v</span><span class="p">)</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">cluster_assignments</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span>
+        <span class="k">return</span> <span class="n">cluster_assignments</span></div></div>
 
-        <span class="k">return</span> <span class="n">cluster_assignments</span></div>
-
-
-<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
-
-    <span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="o">.</span><span class="n">ArgumentParser</span><span class="p">()</span>
-    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;--params_file&#39;</span><span class="p">)</span>
-    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;--schema_file&#39;</span><span class="p">)</span>
-    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;--constraints_file&#39;</span><span class="p">)</span>
-    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;--must_links_file&#39;</span><span class="p">)</span>
-    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;--potential_edges_dir&#39;</span><span class="p">)</span>
-    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;--flipped0_edges_file&#39;</span><span class="p">)</span>
-    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;--all_names_file&#39;</span><span class="p">)</span>
-    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;--output_file&#39;</span><span class="p">)</span>
-    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;--log_file&#39;</span><span class="p">)</span>
-    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;--nm_code_dir&#39;</span><span class="p">)</span>
-    <span class="n">args</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse_args</span><span class="p">()</span>
-
-    <span class="n">params</span> <span class="o">=</span> <span class="n">Parameters</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">params_file</span><span class="p">)</span>
-    <span class="n">schema</span> <span class="o">=</span> <span class="n">Schema</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">schema_file</span><span class="p">)</span>
-
-    <span class="n">logging_params</span> <span class="o">=</span> <span class="n">load_yaml</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">nm_code_dir</span><span class="p">,</span> <span class="s1">&#39;utils/logging_config.yaml&#39;</span><span class="p">))</span>
-
-    <span class="n">flipped0_edges_file</span> <span class="o">=</span> <span class="n">args</span><span class="o">.</span><span class="n">flipped0_edges_file</span>
-    <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">flipped0_edges_file</span> <span class="o">==</span> <span class="s2">&quot;None&quot;</span><span class="p">:</span>
-        <span class="n">flipped0_edges_file</span> <span class="o">=</span> <span class="kc">None</span>
-
-    <span class="n">cluster</span> <span class="o">=</span> <span class="n">Cluster</span><span class="p">(</span>
-        <span class="n">params</span><span class="p">,</span>
-        <span class="n">schema</span><span class="p">,</span>
-        <span class="n">constraints_file</span><span class="o">=</span><span class="n">args</span><span class="o">.</span><span class="n">constraints_file</span><span class="p">,</span>
-        <span class="n">must_links_file</span><span class="o">=</span><span class="n">args</span><span class="o">.</span><span class="n">must_links_file</span><span class="p">,</span>
-        <span class="n">potential_edges_dir</span><span class="o">=</span><span class="n">args</span><span class="o">.</span><span class="n">potential_edges_dir</span><span class="p">,</span>
-        <span class="n">flipped0_edges_file</span><span class="o">=</span><span class="n">flipped0_edges_file</span><span class="p">,</span>
-        <span class="n">all_names_file</span><span class="o">=</span><span class="n">args</span><span class="o">.</span><span class="n">all_names_file</span><span class="p">,</span>
-        <span class="n">output_file</span><span class="o">=</span><span class="n">args</span><span class="o">.</span><span class="n">output_file</span><span class="p">)</span>
-    <span class="n">cluster</span><span class="o">.</span><span class="n">logger_init</span><span class="p">(</span><span class="n">logging_params</span><span class="p">,</span> <span class="n">args</span><span class="o">.</span><span class="n">log_file</span><span class="p">)</span>
-    <span class="n">cluster</span><span class="o">.</span><span class="n">main__cluster</span><span class="p">()</span>
 </pre></div>
 
-                        
-                    </div>
-                </div>
-            </div>
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, Melissa McNeill, Eddie Lin, Zubin Jelveh.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
         </div>
-    </div>    
-
-
-  
-
-    <script type="text/javascript">
-        var DOCUMENTATION_OPTIONS = {
-            URL_ROOT:'../../',
-            VERSION:'0.0.1',
-            LANGUAGE:'None',
-            COLLAPSE_INDEX:false,
-            FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true,
-            SOURCELINK_SUFFIX: '.txt'
-        };
-    </script>
-    <script type="text/javascript" src="../../_static/jquery.js"></script>
-    <script type="text/javascript" src="../../_static/underscore.js"></script>
-    <script type="text/javascript" src="../../_static/doctools.js"></script>
-    <script type="text/javascript" src="../../_static/language_data.js"></script>
-    <script type="text/javascript" src="../../_static/js/theme.js"></script>
-  
-    <div class="footer" role="contentinfo">
-        <div class="container">
-            &#169; Copyright 2021, Melissa McNeill, Eddie Lin, Zubin Jelveh.
-        Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.1.1.
-        </div>
-    </div>  
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
 
 </body>
 </html>

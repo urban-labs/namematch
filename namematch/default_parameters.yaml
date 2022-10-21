@@ -1,0 +1,80 @@
+
+# basic
+verbose : 'None'
+num_workers : 1
+parallelize : False
+
+# read-in rate (memory tradeoff)
+input_data_batch_size: 50000
+data_rows_batch_size: 500
+block_batch_size: 10000
+predict_batch_size: 15000
+cluster_batch_size: 100000
+
+# variables
+required_variables : ['first_name', 'last_name', 'dob'] # plus any others used in blocking
+first_name_column : 'first_name'
+last_name_column : 'last_name'
+exact_match_variables : ['first_name', 'last_name', 'dob']
+negate_exact_match_variables : ['middle_initial']
+
+# data 
+split_names : True
+auto_drop_logic : 
+  - 'first_name' : 'JOHN'
+    'last_name' : 'DOE'
+  - 'first_name' : 'JANE'
+    'last_name' : 'DOE'
+
+# blocking 
+blocking_scheme : 
+  'cosine_distance' :
+    'variables' : ['first_name', 'last_name']
+  'edit_distance' : 
+    'variable' : 'dob'
+  'absvalue_distance' : # serves as a backup second filter (e.g. if no dob)
+    'variable' : 'age'
+  'alpha' : 1.4  # relative weight of the second cosine variable relative to the first
+  'power' : 0.1  # controls the impact of name length on cosine distance
+blocking_thresholds : 
+  'common_name_max_penalty' : 0.1
+  'nodob_cosine_bar' :  0.26
+  'high_cosine_bar' : 0.3
+  'low_cosine_bar' : 0.4
+  'high_editdist_bar' : 1
+  'low_editdist_bar' : 2
+  'absvalue_bar' : 3
+index: 
+  'rebuild_main_index' : 'if_secondary_index_exceeds_limit'
+  'secondary_index_limit' : 500000
+nmslib : 
+  'M' : 100
+  'efC' : 1000
+  'post' : 0
+  'efS' : 750
+  'k' : 500
+
+# modeling
+drop_mixed_label_pairs: False
+pct_train : 0.9
+match_train_criteria : {}
+leven_thresh : None
+use_uncovered_phats : False
+missingness_model : 'dob'
+max_match_train_n : 3000000
+max_selection_train_eval_n : 1000000
+weight_using_selection_model : False
+
+# phats
+default_threshold : 0.7
+missingness_model_threshold_boost : 0.2
+optimize_threshold : True
+
+match_train_criteria : 
+  'data_rows' : {} # note, covered_pairs == 0 are already never trained on
+  'all_names' : {}
+
+# clustering
+initialize_from_ground_truth_1s : True # param needed for edge priority
+fscore_beta : 0.5
+allow_clusters_w_multiple_unique_ids : False

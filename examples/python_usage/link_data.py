@@ -50,6 +50,12 @@ config_dict = {
                                         # are in this format; otherwise, set to missing
         },
         {
+            'name' : 'age',
+            'compare_type' : 'Number',
+            'potential_candidates_col' : 'age_in_2025',
+            'past_candidates_col' : 'age_in_2025',
+        },
+        {
             'name' : 'middle_name',
             'compare_type' : 'String',
             'potential_candidates_col' : 'middle_name',
@@ -89,7 +95,7 @@ config_dict = {
     # set parameter values (optional -- defaults work for most basic matching tasks)
     # ------------------------------------------------------------------------------
 
-    'num_threads': 8,
+    'num_workers': 8,
     'pct_train': .9,
     'allow_clusters_w_multiple_unique_ids': False,
     'missingness_model': None,

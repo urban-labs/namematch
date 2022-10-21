@@ -4,7 +4,7 @@ from copy import deepcopy
 
 from namematch.utils.utils import dump_yaml, to_dict, load_yaml
 
-logger = logging.getLogger('luigi-interface')
+logger = logging.getLogger()
 
 params_lookup = {
     'process_input_data': [
@@ -13,6 +13,7 @@ params_lookup = {
         'last_name_column',
         'verbose',
         'incremental',
+        'input_data_batch_size'
         ],
     'generate_must_links': [],
     'block': [
@@ -22,14 +23,15 @@ params_lookup = {
         'blocking_thresholds',
         'incremental',
         'index',
-        'num_threads',
+        'num_workers',
         'nmslib',
         'verbose',
         'parallelize'
         ],
     'generate_data_rows': [
         'verbose',
-        'num_threads',
+        'data_rows_batch_size',
+        'num_workers',
         'match_train_criteria',
         'first_name_column',
         'last_name_column',
@@ -77,17 +79,17 @@ class Parameters():
     @staticmethod
     def check_integrity(defaults, param, param_value):
         '''Ensure that parameters are of the appropriate type.
-        
-        Args: 
-            param (str): parameter name (key) 
+
+        Args:
+            param (str): parameter name (key)
             param_value: value of the given key  (parameter name)
         '''
 
         params__start_with_alpha = []
         params__numeric = []
         params__positive_numeric = [
-                'fscore_beta', 'leven_thresh', 'num_threads', 'pct_train',
-                'secondary_index_limit', 'verbose']
+                'fscore_beta', 'leven_thresh', 'num_workers', 'pct_train',
+                'secondary_index_limit', 'verbose', 'input_data_batch_size', 'data_rows_batch_size']
         params__boolean = [
                 'use_uncovered_phats', 'allow_clusters_w_multiple_unique_ids']
         params__specific_value = {
@@ -124,31 +126,18 @@ class Parameters():
         return valid
 
     @classmethod
-    def init(cls, config: dict, private_config: dict):
-        '''Create a Parameters instance. 
+    def init(cls, config: dict, defaults: dict):
+        '''Create a Parameters instance.
 
-        Args: 
+        Args:
             config (dict): dictionary with match parameter values
-            private_config_file (str): path to the private config file
-            logging_params (dict); dictionary with logging parameter values
+            defaults (dict): dictionary with default params
 
-        Returns: 
-            instance of the Parameters class
+        Returns:
+            :mod:`namematch.data_structures.parameters.Parameters`: instance of the Parameters class
         '''
 
-        param_dict = {
-            'verbose' : None,
-            'num_threads' : 1,
-            'parallelize' : False,
-            'leven_thresh' : None,
-            'pct_train' : 0.9,
-            'match_train_criteria' : {},
-            'fscore_beta' : 0.5,
-            'allow_clusters_w_multiple_unique_ids' : False
-        }
-
-        defaults = param_dict.copy()
-        defaults.update(private_config)
+        param_dict = {}
 
         # issue warning if user specifies param not understood by code
         params_default = list(defaults.keys())[:]
@@ -171,7 +160,7 @@ class Parameters():
                                f"ignored): {param}")
 
         # add private params based on input params
-        param_dict.update(private_config)
+        param_dict.update(defaults)
 
         # overwrite defaults and private config values with values defined in config
         for param, param_value in config.items():
@@ -187,20 +176,20 @@ class Parameters():
                     param_dict[param] = param_value
         param_dict['incremental'] = (len(config.get('existing_data_files', {})) > 0)
 
-        if param_dict['num_threads'] > 1:
+        if param_dict['num_workers'] > 1:
             param_dict['parallelize'] = True
 
         return cls(param_dict)
 
     @classmethod
     def load(cls, filepath):
-        '''Load a Parameters instance. 
+        '''Load a Parameters instance.
 
-        Args: 
+        Args:
             filepath (str): path to a yaml version of a Parameters instance
 
-        Returns: 
-            instance of the Parameters class
+        Returns:
+            :mod:`namematch.data_structures.parameters.Parameters`: instance of the Parameters class
         '''
 
         param_dict = load_yaml(filepath)
@@ -290,8 +279,8 @@ class Parameters():
 
     def get_blocking_variables(self):
         '''Get list of blocking variable nicknames.
-        
-        Return: 
+
+        Return:
             list of variable nicknames (all-names columns) to use for blocking
         '''
 
@@ -311,8 +300,8 @@ class Parameters():
 
     def write(self, output_file):
         '''Write the Parameters to a yaml file.
-        
-        Args: 
+
+        Args:
             output_file (str): path to write parameter dictionary
         '''
 

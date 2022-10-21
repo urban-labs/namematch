@@ -31,7 +31,6 @@ def test_get_name_probabilities(an_df, side_by_side_df, params_and_schema, logge
             schema,
             all_names_file=an_df,
             candidate_pairs_file=None,
-            batch_size=500,
             output_dir=None,
         )
 
@@ -41,7 +40,6 @@ def test_get_name_probabilities(an_df, side_by_side_df, params_and_schema, logge
     probs = get_name_probabilities(side_by_side_df, np_object, first_name_col, last_name_col)
 
     # test
-
     expected = [
         "prob_name_1",
         "prob_name_2",
@@ -49,6 +47,10 @@ def test_get_name_probabilities(an_df, side_by_side_df, params_and_schema, logge
         "prob_rev_name_2",
         "count_pctl_name_1",
         "count_pctl_name_2",
+        "count_pctl_fn_1",
+        "count_pctl_fn_2",
+        "count_pctl_ln_1",
+        "count_pctl_ln_2",
         "prob_same_name",
         "prob_same_name_rev_1",
         "prob_same_name_rev_2"

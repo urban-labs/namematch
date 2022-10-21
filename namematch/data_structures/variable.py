@@ -18,14 +18,14 @@ class Variable():
 
     @classmethod
     def build(cls, variable_dict, params):
-        '''Create a Variable instance. 
+        '''Create a Variable instance.
 
-        Args: 
+        Args:
             variable_dict (dict): info about a variable definition from user-input config
             params (dict): dictionary with processed match parameter values
 
-        Returns: 
-            instance of the Variable class
+        Returns:
+            :mod:`namematch.data_structures.variable.Variable`: instance of the Variable class
         '''
 
         validated_variable_dict = dict()
@@ -83,11 +83,11 @@ class Variable():
 
 
     def validate_col_parameters(self, data_files):
-        '''Validate that each data file has a corresponding "_col" parameter in each 
+        '''Validate that each data file has a corresponding "_col" parameter in each
         variable defintion.
-        
-        Args: 
-            data_files (DataFileList object): info about what input files are being matched    
+
+        Args:
+            data_files (:mod:`namematch.data_structures.data_file.DataFileList`): info about what input files are being matched
         '''
 
         col_var_name_list = list(self.colname_dict.keys())
@@ -106,15 +106,15 @@ class Variable():
             raise ValueError
 
         if len(col_var_name_list) > len(data_file_name_list):
-            logger.warning((f'There are more column definitions in the {self.name} variable ',
+            logger.warning(f'There are more column definitions in the {self.name} variable ',
                             f'than data files. Column definitions that do not correspond to '
-                            f'a data file will be ignored.'))
+                            f'a data file will be ignored.')
 
 
     def get_columns_to_read(self, file_nickname):
-        '''Get the name(s) of the column(s) from the input file that need to be read in order to 
+        '''Get the name(s) of the column(s) from the input file that need to be read in order to
         create the current all-names column.
-        
+
         Args:
             file_nickname (str): nickname of input file being searched
 
@@ -137,8 +137,8 @@ class Variable():
 
     def get_an_columns(self):
         '''Get the name(s) of the current all-names column(s).
-        
-        Return: 
+
+        Return:
             list of column names
         '''
 
@@ -163,14 +163,14 @@ class VariableList():
 
     @classmethod
     def build(cls, variable_dict_list, params):
-        '''Create a VariableList instance. 
+        '''Create a VariableList instance.
 
-        Args: 
+        Args:
             variable_dict_list (dict): dictionary with variable info from user-input config
             params (dict): dictionary with processed match parameter values
 
-        Returns: 
-            instance of the VariableList class
+        Returns:
+            :mod:`namematch.data_structures.variable.VariableList`: instance of the VariableList class
         '''
 
         validated_variable_list = []
@@ -182,13 +182,13 @@ class VariableList():
 
     @classmethod
     def load(cls, variables_list_dict):
-        '''Load a VariableList instance. 
+        '''Load a VariableList instance.
 
-        Args: 
+        Args:
             variables_list_dict (dict): dictionary version of a VariableList instance
 
-        Returns: 
-            instance of the VariableList class
+        Returns:
+            :mod:`namematch.data_structures.variable.VariableList`: instance of the VariableList class
         '''
 
         variable_list = [
@@ -204,8 +204,8 @@ class VariableList():
         '''Validate that the "_col" variables referenced in the config's variable definitions
         actually exist in the input datasets.
 
-        Args: 
-            data_files (DataFileList object): info about what input files are being matched    
+        Args:
+            data_files (:mod:`namematch.data_structures.data_file.DataFileList`): info about what input files are being matched
         '''
 
         for variable in self.varlist:
@@ -246,9 +246,9 @@ class VariableList():
                 raise ValueError
 
     def validate_type_counts(self, incremental):
-        '''Validate that there is exactly one variable with compare type UniqueID. If 
+        '''Validate that there is exactly one variable with compare type UniqueID. If
         incremental, validate that there is exactly one variable with compare type ExistingID.
-        
+
         Args:
             incremental (bool): True if the config file provides "existing" data files
         '''
@@ -274,9 +274,9 @@ class VariableList():
 
     def validate(self, data_files):
         '''Validate several components of the variables defined in the config.
-        
-        Args: 
-            data_files (DataFileList object): info about what input files are being matched
+
+        Args:
+            data_files (:mod:`namematch.data_structures.data_file.DataFileList`): info about what input files are being matched
         '''
 
         self.validate_col_parameters(data_files)
@@ -292,7 +292,7 @@ class VariableList():
             equality_type (str): check conditions using either "equals" or "in"
             return_type (str): either "name" or "ix", determining what return type to use
 
-        Return: 
+        Return:
             list of variable nicknames (all-names columns) or corresponding all-names column indices
         '''
 
@@ -322,8 +322,8 @@ class VariableList():
 
     def get_names(self):
         '''Get list of variable nicknames.
-        
-        Returns: 
+
+        Returns:
             list of variable nicknames
         '''
 
@@ -332,9 +332,9 @@ class VariableList():
         return variable_names
 
     def get_columns_to_read(self, data_file):
-        '''Get the name(s) of the column(s) from the input file that need to be read in order to 
+        '''Get the name(s) of the column(s) from the input file that need to be read in order to
         create the all-names file.
-        
+
         Args:
             data_file (DataFile object): contains info about a given input file
 
@@ -350,10 +350,10 @@ class VariableList():
         return list(set(all_column_names))
 
     def get_an_column_names(self):
-        '''Get the final list of all-names columns, including internally created columns 
-        like `file_type` and `drop_from_nm`. 
+        '''Get the final list of all-names columns, including internally created columns
+        like `file_type` and `drop_from_nm`.
 
-        Return: 
+        Return:
             list of all-names columns
         '''
 
@@ -373,8 +373,8 @@ class VariableList():
 
     def write(self, output_file):
         '''Write the VariableList to a yaml file.
-        
-        Args: 
+
+        Args:
             output_file (str): path to write variable list dictionary
         '''
 

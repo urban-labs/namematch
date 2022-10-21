@@ -20,7 +20,7 @@ def get_requirements(requirements_file='requirements.txt'):
 
 setup(
     name='Name Match',
-    version='0.0.1',
+    version='1.2.0',
     description='Tool for probabilistically linking the records of individual entities (e.g. people) within and across datasets',
     author="University of Chicago Crime Lab",
     author_email='mmcneill@uchicago.edu;tlin2@uchicago.edu;zjelveh@umd.edu',
@@ -28,7 +28,7 @@ setup(
     packages=find_packages(),
     include_package_data=True,
     install_requires=get_requirements('requirement/main.txt'),
-    package_data={'': ['utils/*.yaml']},
+    package_data={'': ['*.yaml']},
     entry_points={
         'console_scripts': [
             'namematch = namematch.cli:execute']},

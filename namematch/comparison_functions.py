@@ -56,6 +56,12 @@ def get_name_probabilities(df, np_object, first_name_col, last_name_col):
     df['count_pctl_name_1'] = df.fn_ln_1.map(np_object.n_name_appearances_dict)
     df['count_pctl_name_2'] = df.fn_ln_2.map(np_object.n_name_appearances_dict)
 
+    df['count_pctl_fn_1'] = df.fn1.map(np_object.n_firstname_appearances_dict)
+    df['count_pctl_fn_2'] = df.fn2.map(np_object.n_firstname_appearances_dict)
+
+    df['count_pctl_ln_1'] = df.ln1.map(np_object.n_lastname_appearances_dict)
+    df['count_pctl_ln_2'] = df.ln2.map(np_object.n_lastname_appearances_dict)
+
     df['prob_same_name'] = np.vectorize(np_object.probSamePerson, otypes=['float'])(
             df.fn_ln_1.values, df.fn_ln_2.values)
     df['prob_same_name_rev_1'] = np.vectorize(np_object.probSamePerson, otypes=['float'])(
@@ -169,7 +175,7 @@ def compare_strings(df, varname):
     col2 = varname + '_2'
 
     df['msng'] = ((df[col1] == '') | (df[col2] == '')).astype(int)
-    df['valid_nysiis'] = ((df.msng == 0) & (df[col1].str.contains('\d') == False) & (df[col2].str.contains('\d') == False)).astype(int)
+    df['valid_nysiis'] = ((df.msng == 0) & (df[col1].str.contains(r'\d') == False) & (df[col2].str.contains(r'\d') == False)).astype(int)
     features_df[varname + '_missing'] = df.msng
 
     features_df.loc[df.msng == 0, varname + '_edit_dist'] = \
@@ -327,8 +333,8 @@ def compare_geographies(df, varname):
     col1 = varname + '_1'
     col2 = varname + '_2'
 
-    df['x1'], df['y1'] = df[col1].str.split(',', 1).str
-    df['x2'], df['y2'] = df[col2].str.split(',', 1).str
+    df[['x1', 'y1']] = df[col1].str.split(',', n=1, expand=True)
+    df[['x2', 'y2']] = df[col2].str.split(',', n=1, expand=True)
     df[['x1', 'y1', 'x2', 'y2']] = df[['x1', 'y1', 'x2', 'y2']].replace('', np.NaN)
     df['x1_minus_x2_squared'] = np.square(df.x1.astype(float) - df.x2.astype(float))
     df['y1_minus_y2_squared'] = np.square(df.y1.astype(float) - df.y2.astype(float))

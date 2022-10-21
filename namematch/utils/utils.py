@@ -13,19 +13,13 @@ import yaml
 import io
 
 from collections.abc import Mapping
-from functools import wraps
+from functools import partial, wraps, update_wrapper
 
 import pyarrow as pa
 import pyarrow.parquet as pq
 
-
+from ruamel.yaml.scalarstring import DoubleQuotedScalarString
 from memory_profiler import memory_usage
-
-try:
-    profile
-except:
-    from line_profiler import LineProfiler
-    profile = LineProfiler()
 
 
 class StatLogFilter():
@@ -36,7 +30,7 @@ class StatLogFilter():
         return logRecord.levelno < self.__level
 
 
-def setup_logging(log_params, log_filepath, output_temp_dir, logger_ids=None):
+def setup_logging(log_params, log_filepath, output_temp_dir, filter_stats=False, logging_level='INFO'):
     """Setup logging configuration.
 
     Args:
@@ -46,43 +40,51 @@ def setup_logging(log_params, log_filepath, output_temp_dir, logger_ids=None):
 
     if log_filepath is not None:
         log_params['handlers']['file_handler']['filename'] = log_filepath
-        log_params['handlers']['file_handler_stat']['filename'] = log_filepath + '.yaml'
 
     if not os.path.exists(os.path.dirname(log_filepath)):
         os.makedirs(os.path.dirname(log_filepath))
 
     # mappingproxy type is not hashable!
-    log_params['filters']['stat_filter']['()'] = eval(log_params['filters']['stat_filter']['()'])
+    log_params['filters']['stat_filter']['()'] = StatLogFilter
 
-    runtime_num = 15
+    if filter_stats:
+        log_params['handlers']['file_handler']['filters'] = ['stat_filter']
+        log_params['handlers']['console']['filters'] = ['stat_filter']
+
+    runtime_num = 8
     logging.addLevelName(runtime_num, "RUNTIME")
+
     def runtime(self, message, *args, **kws):
-        self.log(runtime_num, message, *args, **kws)
+        self._log(runtime_num, message, args, **kws)
     logging.Logger.runtime = runtime
 
-    memory_num = 16
+    memory_num = 7
     logging.addLevelName(memory_num, "MEMORY")
+
     def memory(self, message, *args, **kws):
-        self.log(memory_num, message, *args, **kws)
+        self._log(memory_num, message, args, **kws)
     logging.Logger.memory = memory
 
-    stat_num = 100
+    stat_num = 6
     logging.addLevelName(stat_num, "STAT")
+
     def stat(self, message, *args, **kws):
-        self.log(stat_num, message)
+        self._log(stat_num, message, args, **kws)
+
     def stat_dict(self, message, *args, **kws):
-        self.log(stat_num, yaml.dump(message, default_flow_style=False))
+        self._log(stat_num, yaml.dump(message, default_flow_style=False), args, **kws)
     logging.Logger.stat = stat
     logging.Logger.stat_dict = stat_dict
 
-    log_params['loggers'] = {}
+    trace_num = 5
+    logging.addLevelName(trace_num, "TRACE")
 
-    if logger_ids:
-        for n in logger_ids:
-            log_params['handlers'][f'file_handler_stat{str(n)}'] =  log_params['handlers']['file_handler_stat'].copy()
-            log_params['handlers'][f'file_handler_stat{str(n)}']['filename'] = f'{output_temp_dir}/name_match_{str(n)}.log.yaml'
-            log_params['loggers'][f'namematch_{str(n)}'] = {'handlers': ['console', 'file_handler', f'file_handler_stat{str(n)}', 'file_handler_stat_memory']}
+    def trace(self, message, *args, **kws):
+        self._log(trace_num, message, args, **kws)
+    logging.Logger.trace = trace
 
+    log_params['handlers']['console']['level'] = logging_level.upper()
+    log_params['handlers']['file_handler']['level'] = logging_level.upper()
     logging.config.dictConfig(log_params)
 
 
@@ -97,14 +99,6 @@ def log_stat(human_desc, yaml_desc, value):
 
     logger = logging.getLogger()
     logger.info(f'{human_desc}: {value}')
-    logger.stat(f'{yaml_desc}: {value}')
-
-
-def equip_logger_id(func):
-    def wrapper(*args, **kw):
-        kw['logger_id'] = args[0].logger_id
-        return func(*args, **kw)
-    return wrapper
 
 
 def log_runtime_and_memory(method):
@@ -116,18 +110,11 @@ def log_runtime_and_memory(method):
     Returns:
         value returned by the function being decorated
     '''
-
+    @wraps(method)
     def inner_log_runtime_and_memory(*args, **kw):
 
         from datetime import timedelta
-        logger_id = kw.get('logger_id')
-
-        if logger_id:
-            logger = logging.getLogger(f'namematch_{str(logger_id)}')
-        else:
-            # import ipdb
-            # ipdb.set_trace()
-            logger = logging.getLogger()
+        logger = logging.getLogger()
 
         ts = time.time()
         memory_val, result = memory_usage(proc=(method, args, kw),
@@ -136,19 +123,30 @@ def log_runtime_and_memory(method):
 
         elapsed_time = round(te - ts)
         elapsed_time_str = str(timedelta(seconds = elapsed_time))
-        logger.runtime('%s: %s', method.__name__, elapsed_time_str)
-        if type(memory_val) == list:
-            memory_val = memory_val[0]
-        logger.memory('%s: %s GB', method.__name__, round(memory_val/1000., 2))
 
         try:
-            if "main__" in method.__name__:
-                logger.stat(f'runtime__{method.__name__}: "{elapsed_time_str}"')
-                logger.stat(f'ram__{method.__name__}: "{round(memory_val/1000., 2)} GB"')
+            # for class method
+            task = args[0]
+            task_name = task.__module__.split('.')[1]
         except:
-            pass
+            # for normal function
+            task_name = method.__module__
+
+        if "main" in method.__name__:
+            try:
+                task.stats_dict[f"runtime__main__{task_name}"] = elapsed_time_str
+                task.stats_dict[f"ram__main__{task_name}"] = f"{round(memory_val/1000., 2)} GB"
+
+            except:
+                raise Exception("Stats failed to record!")
+
+        logger.runtime('%s: %s', f"runtime__{task_name}_{method.__name__}", elapsed_time_str)
+        if type(memory_val) == list:
+            memory_val = memory_val[0]
+        logger.memory('%s: %s GB', f"memory__{task_name}_{method.__name__}", round(memory_val/1000., 2))
 
         return result
+
     return inner_log_runtime_and_memory
 
 
@@ -187,9 +185,10 @@ def to_dict(obj):
     Args:
         obj (object): class instance to convert to dict
     '''
+    if obj:
+        return json.loads(json.dumps(obj, default=lambda o: o.__dict__))
 
-    return json.loads(json.dumps(obj, default=lambda o: o.__dict__))
-
+    return {}
 
 def create_nm_record_id(nickname, record_id_series):
 
@@ -291,12 +290,12 @@ def get_ed_string_from_blockstring(blockstring):
     return re.sub('[A-Z ]*::[A-Z ]*::', '', blockstring)
 
 
-def get_endpoints(n, num_threads):
+def get_endpoints(n, num_chunks):
     '''Divide a number into some number of chunks/intervals.
 
     Args:
         n (int): number to divide into chunks/intervals
-        num_threads (int): number of chunks/intervals to create
+        num_chunks(int): number of chunks/intervals to create
 
 
     Returns:
@@ -304,11 +303,11 @@ def get_endpoints(n, num_threads):
     '''
 
     end_points = []
-    factor = int(n / num_threads)
-    for i in range(num_threads):
+    factor = int(n / num_chunks)
+    for i in range(num_chunks):
         start_ix_worker = i * factor # create chunks for parallelization
         end_ix_worker = start_ix_worker + factor
-        if i == num_threads - 1:
+        if i == num_chunks - 1:
             end_points.append([start_ix_worker, n])
         else:
             end_points.append([start_ix_worker, end_ix_worker])
@@ -364,6 +363,29 @@ def load_csv_list(df_file_list, cols=None, conditions_dict={}, sample=1):
 
     return all_df
 
+def load_parquet(df_file, cols=None, conditions_dict={}):
+    '''Read a .parquet file into a pd.DataFrame.
+
+    Args:
+        df_file (str): .parquet file to read
+        cols (list): columns to keep in the dataframe
+        conditions_dict (dict): conditions for row filtering
+
+    Return:
+        pd.DataFrame: filtered dataframe read in from the .parquet file
+    '''
+    filters = []
+
+    if conditions_dict:
+        for col, acceptable_value in conditions_dict.items():
+            filters.append((col, '==', acceptable_value))
+    else:
+        filters = None
+
+    pf = pq.read_table(df_file, columns=cols, filters=filters, use_threads=True)
+
+    return pf.to_pandas()
+
 
 def load_parquet_list(df_file_list, cols=None, conditions_dict={}, sample=1):
     '''Read a list of .parquet files into a single pd.DataFrame.
@@ -380,11 +402,7 @@ def load_parquet_list(df_file_list, cols=None, conditions_dict={}, sample=1):
 
     all_df = pd.DataFrame()
     for df_file in df_file_list:
-        df = pd.read_parquet(df_file, engine='pyarrow', columns=cols)
-
-        for col, acceptable_value in conditions_dict.items():
-            df = df[df[col] == acceptable_value]
-
+        df = load_parquet(df_file, cols, conditions_dict)
         all_df = pd.concat([all_df, df])
 
     if sample == 1:
@@ -393,7 +411,6 @@ def load_parquet_list(df_file_list, cols=None, conditions_dict={}, sample=1):
         return all_df.sample(frac=sample).reset_index(drop=True)
 
 
-@profile
 def determine_model_to_use(dr_df, model_info, verbose=False):
     '''Assign a model to each data row based on which fields are available.
 
@@ -408,7 +425,7 @@ def determine_model_to_use(dr_df, model_info, verbose=False):
             ========================   ===============================================================
 
         model_info (dict): information about models and their universes
-        verbose (bool): flag controlling print statement (set according to which function calls this one)
+        verbose (bool): flag controlling logging statement (set according to which function calls this one)
 
     Returns:
         pd.Series: string indicating which model to use for a given record pair
@@ -512,3 +529,16 @@ def load_logging_params(logging_params_file=None):
     logging_params_file = logging_params_file if logging_params_file else default_logging_params_file
     return yaml.load(open(logging_params_file, 'r'), Loader=yaml.FullLoader)
 
+
+def reformat_dict(d: dict):
+    '''make all the string values in the yaml file have double quotes'''
+    d = d.copy()
+    for k, v in d.items():
+        if isinstance(v, str):
+            d[k] = DoubleQuotedScalarString(v)
+    return d
+
+
+def camel_to_snake(name):
+    name = re.sub('(.)([A-Z][a-z]+)', r'\1_\2', name)
+    return re.sub('([a-z0-9])([A-Z])', r'\1_\2', name).lower()

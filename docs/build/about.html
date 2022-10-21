@@ -1,226 +1,151 @@
-
-
 <!DOCTYPE html>
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8">
-  
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>About Name Match &mdash; namematch 0.0.1 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
-
-  
-  
-  
-  
-
-  
-
-  
-  
-    
-
-  
-
-  <link rel="stylesheet" href="_static/css/theme.min.css" type="text/css" />
-  <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
-  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    <script src="_static/js/theme.js"></script>
     <link rel="author" title="About these documents" href="#" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Setting Up a Match" href="match_setup.html" />
     <link rel="prev" title="Name Match Documentation" href="index.html" /> 
-
 </head>
 
-<body>
-    <header>
-        <div class="container">
-            <a class="site-nav-toggle hidden-lg-up"><i class="icon-menu"></i></a>
-            <a class="site-title" href="index.html">
-                namematch
-            </a>
-        </div>
-    </header>
-
-
-<div class="breadcrumbs-outer hidden-xs-down">
-    <div class="container">
-        
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div role="navigation" aria-label="breadcrumbs navigation">
-
-  <ul class="breadcrumbs">
-    
-      <li><a href="index.html">Docs</a></li>
-        
-      <li>About Name Match</li>
-    
-    
-      <li class="breadcrumbs-aside">
-        
-            
-            <a href="_sources/about.rst.txt" rel="nofollow"> View page source</a>
-          
-        
-      </li>
-    
-  </ul>
-</div>
-    </div>
-</div>
-    <div class="main-outer">
-        <div class="container">
-            <div class="row">
-                <div class="col-12 col-lg-3 site-nav">
-                    
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> namematch
+          </a>
 <div role="search">
-    <form class="search" action="search.html" method="get">
-        <div class="icon-input">
-            <input type="text" name="q" placeholder="Search" />
-            <span class="icon-search"></span>
-        </div>
-        <input type="submit" value="Go" class="d-hidden" />
-        <input type="hidden" name="check_keywords" value="yes" />
-        <input type="hidden" name="area" value="default" />
-    </form>
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
 </div>
-                    <div class="site-nav-tree">
-                        
-                            
-                            
-                                <ul class="current">
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">About Name Match</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#what-is-name-match-doing">What is Name Match doing?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#requirements-for-using-name-match">Requirements for using Name Match</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#inputs-and-outputs">Inputs and outputs</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="match_setup.html">Setting Up a Match</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="match_setup.html#preparing-the-data-for-name-match">Preparing the data for Name Match</a></li>
-<li class="toctree-l2"><a class="reference internal" href="match_setup.html#creating-the-configuration-file">Creating the configuration file</a></li>
-<li class="toctree-l2"><a class="reference internal" href="match_setup.html#creating-user-defined-clustering-functions">Creating user defined clustering functions</a></li>
-<li class="toctree-l2"><a class="reference internal" href="match_setup.html#running-the-code">Running the code</a></li>
-<li class="toctree-l2"><a class="reference internal" href="match_setup.html#special-cases">Special cases</a></li>
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="match_setup.html">Setting Up a Match</a></li>
 <li class="toctree-l1"><a class="reference internal" href="understanding_results.html">Understanding Results</a></li>
-<li class="toctree-l1"><a class="reference internal" href="algorithm.html">Algorithm Documentation</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="algorithm.html#why-is-name-match-necessary">Why is Name Match necessary</a></li>
-<li class="toctree-l2"><a class="reference internal" href="algorithm.html#how-it-works">How it works</a></li>
-<li class="toctree-l2"><a class="reference internal" href="algorithm.html#things-to-consider">Things to consider</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="api.html">API Reference</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="api.html#module-namematch.process_config"><code class="xref py py-mod docutils literal notranslate"><span class="pre">namematch.process_config</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="api.html#module-namematch.process_input_data"><code class="xref py py-mod docutils literal notranslate"><span class="pre">namematch.process_input_data</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="api.html#module-namematch.generate_must_links"><code class="xref py py-mod docutils literal notranslate"><span class="pre">namematch.generate_must_links</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="api.html#module-namematch.block"><code class="xref py py-mod docutils literal notranslate"><span class="pre">namematch.block</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="api.html#module-namematch.generate_data_rows"><code class="xref py py-mod docutils literal notranslate"><span class="pre">namematch.generate_data_rows</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="api.html#module-namematch.fit_model"><code class="xref py py-mod docutils literal notranslate"><span class="pre">namematch.fit_model</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="api.html#module-namematch.predict"><code class="xref py py-mod docutils literal notranslate"><span class="pre">namematch.predict</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="api.html#module-namematch.cluster"><code class="xref py py-mod docutils literal notranslate"><span class="pre">namematch.cluster</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="api.html#module-namematch.generate_output"><code class="xref py py-mod docutils literal notranslate"><span class="pre">namematch.generate_output</span></code></a></li>
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="algorithm.html">Detailed Algorithm Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api.html">API Reference</a></li>
 </ul>
 
-                            
-                        
-                    </div>
-                </div>
-                <div class="col-12 col-lg-9">
-                    <div class="document">
-                        
-                            
-  <div class="section" id="about-name-match">
-<h1>About Name Match<a class="headerlink" href="#about-name-match" title="Permalink to this headline">¶</a></h1>
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">namematch</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>About Name Match</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/about.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="about-name-match">
+<h1>About Name Match<a class="headerlink" href="#about-name-match" title="Permalink to this headline"></a></h1>
 <p>Name Match is a tool for probabilistically linking the records of individual entities (e.g. people) within and across datasets.</p>
-<p>The code is optimized for linking people in criminal justice datasets (arrests, victimizations, city programs, etc.) using at least first name, last name, and date of birth (some dob-missingness is tolerated). Other data fields, such as race, gender, address, and zipcode, can be included to strengthen the match as available, especially when date of birth information is missing.</p>
-<div class="section" id="what-is-name-match-doing">
-<h2>What is Name Match doing?<a class="headerlink" href="#what-is-name-match-doing" title="Permalink to this headline">¶</a></h2>
-<p>The goal of Name Match is to group all records referring to the same person within and across datasets. To do so, it makes a prediction for whether pairs of records refer to the same person. The prediction is based on the similarity of demographic factors across the two records. The similarity of two fields is computed in different ways depending on the type of information in the field (i.e. string, date, categorical variable). Edit distance between first name fields, number of days between dob fields, and whether or not the zipcode fields exactly match are all examples of similarity metrics that might be generated. The prediction is supervised, meaning the model learns what a match looks like based on labeled examples of record pairs that do and do not refer to the same entity. High probability links are then chained together to form <em>clusters</em>, or groups of records that all refer to the same entity (e.g. if records A and B match, and records B and C match, then records A, B, and C all refer to the same entity).</p>
-<div class="section" id="no-really-what-is-name-match-specifically-doing-step-by-step">
-<h3>No really, what is Name Match specifically doing, step by step?<a class="headerlink" href="#no-really-what-is-name-match-specifically-doing-step-by-step" title="Permalink to this headline">¶</a></h3>
-<p>Here’s a brief outline of the process:</p>
-<ul class="spaced-list simple">
-<li><p><strong>Combine the data</strong>: First, all of the input CSVs are combined into a single file called the “all names” file</p></li>
-<li><p><strong>Blocking</strong>: If Name Match made comparisons between every record pair, the number of comparisons would run into the billions or trillions. We can drastically cut runtime by eliminating the long list of obvious “non-match” pairs. For example, a record with name “JOHN SMITH” does not need to be fully compared to a record with name “MARISSA LOPEZ.” Blocking identifies record pairs that have a reasonable chance of referring to the same entity based on <em>just</em> the first name, last name, and date of birth. To do this, it first uses <code class="docutils literal notranslate"><span class="pre">nmslib</span></code> to quickly identify a name’s “approximate nearest neighbors” based on cosine distance, and then filters out name pairs with very dissimilar dobs. For records with missing dob, this filtering step uses age. Only the pairs with reasonably similar name and dob (or age) move forward to the next step.</p></li>
-<li><p><strong>Modeling</strong>: Using the labeled data, we train a random forest model that predicts the probability that two records are a match. Then, we make a prediction for each one of the candidate pairs identified in the blocking step. While blocking just looked at the name and date of birth, this prediction will use every field available.</p></li>
-<li><p><strong>Clustering</strong>: Now that there is information about pairs of records and their likelihood of belonging to the same entity, we can group all of an entity’s records together. If you think of each record as a node in a network, this step identifies connected components (e.g. links A-B, B-C, and D-E produce two clusters: {A,B,C} and {D,E}). Clusters are created one link at a time. As each link is added, the validity of the link itself, and of the resulting cluster, is checked against constraints defined by the user. Once all the edges have been considered, each cluster gets a unique id.</p></li>
-<li><p><strong>Output</strong>: Lastly, Name Match will write a copy of each of the input files with an additional column indicating the entity to which each record belongs.</p></li>
-</ul>
-<p><strong>Incremental runs:</strong> There’s a special type of Name Match run called an “incremental” run. This is where you have some data that has already been matched (assigned person ids, or “clusters”) and you want to match more data to these same ids. See the “Incremental runs” section below if this is the type of match you are doing. However, keep in mind that first time use of Name Match will almost always be “from scratch” as opposed to incremental.</p>
-</div>
-<div class="section" id="where-do-the-labeled-examples-come-from">
-<h3>Where do the labeled examples come from?<a class="headerlink" href="#where-do-the-labeled-examples-come-from" title="Permalink to this headline">¶</a></h3>
-<p>In order to use Name Match, one of the input datasets must have multiple rows per entity, and contain an entity-level unique id (at least for a subset of rows). Within an entity, there also must be some discrepencies in demographic information between records (e.g. typos, nicknames, new addresses, etc.). In the criminal justice context, arrest data typically meets this requirement. Consider the example of linking arrest data to victimization data (crimes). When we compare an arrest record to a different arrest record, we know whether or not the records refer to the same person because each person who has been arrested has a unique “arrestee” id. For a given arrestee id, one record might say MIKE SMITH and another might say MICHAEL SMITH. We use these arrest/arrest pairs to train the model, and then we can predict the probability that a victim/victim pair or a victim/arrest pair is a match.</p>
-</div>
-</div>
-<div class="section" id="inputs-and-outputs">
-<h2>Inputs and outputs<a class="headerlink" href="#inputs-and-outputs" title="Permalink to this headline">¶</a></h2>
-<p>Inputs:</p>
+<p>The code is optimized for linking people in criminal justice datasets (arrests, victimizations, city programs, etc.) using at least first name, last name, date of birth, and age (some missingness in DOB and age is tolerated). If available, other data fields (like middle initial, race, gender, address, and zipcode) can be included to strengthen the quality of the match.</p>
+<section id="what-is-name-match-doing">
+<h2>What is Name Match doing?<a class="headerlink" href="#what-is-name-match-doing" title="Permalink to this headline"></a></h2>
+<p>The goal of Name Match is to add a universal person identifier column to the input dataset(s) so that it is possible to easily identify all records that refer to the same person. To do this, it uses training data to learn a model about what record pairs look like when they refer to the same person (or “match) vs. when they don’t refer to the same person. This model is then used to predict the likelihood that two records match. Once we know which pairs of records match, we can assign each record a unique person identifier that links it to all of its matches.</p>
+<p>Because Name Match’s primary output is a person identifier assigned to all input records, Name Match can be thought of as both a record <em>linkage</em> tool and a <em>deduplication</em> tool. That is, once each input dataset has a universal person identifier column, the datasets can be linked and/or collapsed to one row per person (deduplicated).</p>
+<p><strong>How are records compared to each other?</strong> Each record contains fields that help identify a person, such as name, date of birth, and gender. When two records are compared, we generate a series of similarity metrics by comparing each field from one record to the corresponding field in another record. Exactly what similarity metric is used to compare two fields depends on the type of information in the field (i.e. string, date, categorical variable). Edit distance between first name fields, number of days between dob fields, and whether or not the gender fields exactly match are all examples of similarity metrics that might be generated.</p>
+<img alt="comparing records" src="_images/comparing_records.png" />
+<p><strong>How does the model learn to distinguish matching records from non-matching records?</strong> The prediction model built by Name Match is a <em>[supervised](https://en.wikipedia.org/wiki/Supervised_learning)</em> learning model, meaning the learning process requires labeled training data, or a set of record pairs with ground-truth “match” or “non-match” labels. See the <a class="reference internal" href="#requirements-for-using-name-match"><span class="std std-ref">Requirements for using Name Match</span></a> section below for more information about where this labeled training data comes from and to determine if your input data meets the requirements. Once the model is learned, it is used to predict which record pairs are matches and which are not.</p>
+<img alt="ground truth training data" src="_images/ground_truth.png" />
+<p><strong>How does Name Match go from a list of predicted matches to a person identifier?</strong> Matching pairs, or <em>links</em>, are chained together to form <em>clusters</em>, which are groups of records that all refer to the same person. For example, if records A and B match and records B and C match, then records A, B, and C all refer to the same person and form a cluster. Each cluster is assigned a unique id, which becomes the universal person identifier assigned to each record in the cluster. Using your domain knoweldge or experties on a particular dataset, you can even create custom functions to discard predicted links that violate any constraints you define. For example, you could disallow links between two records from the same dataset or disallow clusters with more than three unique DOB values.</p>
+<img alt="clustering" src="_images/clustering.png" />
+</section>
+<section id="requirements-for-using-name-match">
+<span id="id1"></span><h2>Requirements for using Name Match<a class="headerlink" href="#requirements-for-using-name-match" title="Permalink to this headline"></a></h2>
+<p>In order to use Name Match to deduplicate or link data, <strong>a portion of the input data must meet the following criteria</strong>:</p>
+<ol class="arabic simple">
+<li><p>Already have a unique person or entity identifier that can be used to link records (e.g. Social Security Number or Fingerprint ID)</p></li>
+<li><p>Be granular enough that some people or entities appear multiple times (e.g. the same person being arrested two or three times)</p></li>
+<li><p>Contain inconsistencies in identifying fields like name and date of birth (e.g. a person is arrested once as John Browne and once as Jonathan Brown)</p></li>
+</ol>
+<p><strong>Why do these requirement exist?</strong> As mentioned above, Name Match requires training data in order to learn what distinguishes matching records (those that refer to the same person) from non-matching records. The portion of input data that meets the above requirements is <em>where this training data comes from!</em> To understand why this is the case, we turn to an example from the crimnal justice context.</p>
+<p>Say you are linking two datasets: a dataset of arrest records and a dataset of individauls that recently participated in a city program. The arrest data exhibits the three required characteristics above due to the fact that a person can be arrested more than once and each time they are linked via fingerprint to the same Personal Arrestee ID despite typos and nicknames causing discrepancies in personal information. If someone with Personal Arrestee ID 9914 is arrested twice, those two records are known to be a match. If someone else with Personal Arrestee ID 2913 is arrested, we know that that record is NOT a match with either of the records with Personal Arrestee ID 9914. With just three records, we are well on our way to the ground truth training data Name Match needs!</p>
+<img alt="where does the training data come from" src="_images/generating_ground_truth.png" />
+<p>Another requirement for record linkage, not specific to Name Match, is having common identifying information across the files that are being linked. First name, last name, dob, and are are required fields, but additional information like middle initial, race, gender, and address can improve the quality of the match. In order for these extra fields to be helpful, however, they have to be present in all input datasets. If one dataset has name, dob, age, and address and the other dataset has name, dob, age, and gender, only name, dob, and age can be used by the matching algorithm.</p>
+</section>
+<section id="inputs-and-outputs">
+<h2>Inputs and outputs<a class="headerlink" href="#inputs-and-outputs" title="Permalink to this headline"></a></h2>
+<p><strong>Inputs:</strong></p>
 <ul class="simple">
-<li><p>One or more CSV files to be deduplicated and/or linked</p></li>
-<li><p>Configuration file specifying which data fields to use (where to find them, what type they are, etc.)</p></li>
-<li><p>(Optional) Functions written in Python 3 that determine whether a grouping of records is valid or not</p></li>
+<li><p>One or more CSV files</p></li>
+<li><p>Configuration information specifying which data fields to use, where to find them, how to compare them, etc. (yaml file or python dictionary)</p></li>
+<li><p>(Optional) User-defined constraints, or specific rules about what would make a particular link or cluster invalid (python functions)</p></li>
 </ul>
-<p>Outputs:</p>
-<ul class="simple">
-<li><p>Copy of the CSV files used as input, now with an additional “cluster id” column. This id is a unique identifier linking records to entities within and between files.</p></li>
-</ul>
-<p>See “Setting up a match” for specific information about preparing the inputs.</p>
-</div>
-</div>
+<p><strong>Outputs:</strong></p>
+<p>A copy of the CSV files that were input into Name Match, now with an additional unique person identifier column (cluster id). This id is a unique identifier that links records  within and between files.</p>
+<p>See <a class="reference internal" href="match_setup.html#setting-up-a-match"><span class="std std-ref">Setting Up a Match</span></a> for specific information about preparing the inputs.</p>
+</section>
+</section>
 
 
-                        
-                    </div>
-                </div>
-            </div>
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="Name Match Documentation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="match_setup.html" class="btn btn-neutral float-right" title="Setting Up a Match" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, Melissa McNeill, Eddie Lin, Zubin Jelveh.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
         </div>
-    </div>    
-
-
-  
-
-    <script type="text/javascript">
-        var DOCUMENTATION_OPTIONS = {
-            URL_ROOT:'./',
-            VERSION:'0.0.1',
-            LANGUAGE:'None',
-            COLLAPSE_INDEX:false,
-            FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true,
-            SOURCELINK_SUFFIX: '.txt'
-        };
-    </script>
-    <script type="text/javascript" src="_static/jquery.js"></script>
-    <script type="text/javascript" src="_static/underscore.js"></script>
-    <script type="text/javascript" src="_static/doctools.js"></script>
-    <script type="text/javascript" src="_static/language_data.js"></script>
-    <script type="text/javascript" src="_static/js/theme.js"></script>
-  
-    <div class="footer" role="contentinfo">
-        <div class="container">
-            &#169; Copyright 2021, Melissa McNeill, Eddie Lin, Zubin Jelveh.
-        Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.1.1.
-        </div>
-    </div>  
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
 
 </body>
 </html>

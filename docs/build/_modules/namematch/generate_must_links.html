@@ -1,156 +1,77 @@
-
-
 <!DOCTYPE html>
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8">
-  
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>namematch.generate_must_links &mdash; namematch 0.0.1 documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
-
-  
-  
-  
-  
-
-  
-
-  
-  
-    
-
-  
-
-  <link rel="stylesheet" href="../../_static/css/theme.min.css" type="text/css" />
-  <link rel="stylesheet" href="../../_static/css/custom.css" type="text/css" />
-  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/js/theme.js"></script>
     <link rel="author" title="About these documents" href="../../about.html" />
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" /> 
-
 </head>
 
-<body>
-    <header>
-        <div class="container">
-            <a class="site-nav-toggle hidden-lg-up"><i class="icon-menu"></i></a>
-            <a class="site-title" href="../../index.html">
-                namematch
-            </a>
-        </div>
-    </header>
-
-
-<div class="breadcrumbs-outer hidden-xs-down">
-    <div class="container">
-        
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div role="navigation" aria-label="breadcrumbs navigation">
-
-  <ul class="breadcrumbs">
-    
-      <li><a href="../../index.html">Docs</a></li>
-        
-          <li><a href="../index.html">Module code</a></li>
-        
-      <li>namematch.generate_must_links</li>
-    
-    
-      <li class="breadcrumbs-aside">
-        
-      </li>
-    
-  </ul>
-</div>
-    </div>
-</div>
-    <div class="main-outer">
-        <div class="container">
-            <div class="row">
-                <div class="col-12 col-lg-3 site-nav">
-                    
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html" class="icon icon-home"> namematch
+          </a>
 <div role="search">
-    <form class="search" action="../../search.html" method="get">
-        <div class="icon-input">
-            <input type="text" name="q" placeholder="Search" />
-            <span class="icon-search"></span>
-        </div>
-        <input type="submit" value="Go" class="d-hidden" />
-        <input type="hidden" name="check_keywords" value="yes" />
-        <input type="hidden" name="area" value="default" />
-    </form>
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
 </div>
-                    <div class="site-nav-tree">
-                        
-                            
-                            
-                                <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../about.html">About Name Match</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../about.html#what-is-name-match-doing">What is Name Match doing?</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../about.html#inputs-and-outputs">Inputs and outputs</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="../../match_setup.html">Setting Up a Match</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../match_setup.html#preparing-the-data-for-name-match">Preparing the data for Name Match</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../match_setup.html#creating-the-configuration-file">Creating the configuration file</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../match_setup.html#creating-user-defined-clustering-functions">Creating user defined clustering functions</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../match_setup.html#running-the-code">Running the code</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../match_setup.html#special-cases">Special cases</a></li>
-</ul>
-</li>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../about.html">About Name Match</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../match_setup.html">Setting Up a Match</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../understanding_results.html">Understanding Results</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../algorithm.html">Algorithm Documentation</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../algorithm.html#why-is-name-match-necessary">Why is Name Match necessary</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../algorithm.html#how-it-works">How it works</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../algorithm.html#things-to-consider">Things to consider</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="../../api.html">API Reference</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../api.html#module-namematch.process_config"><code class="xref py py-mod docutils literal notranslate"><span class="pre">namematch.process_config</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../api.html#module-namematch.process_input_data"><code class="xref py py-mod docutils literal notranslate"><span class="pre">namematch.process_input_data</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../api.html#module-namematch.generate_must_links"><code class="xref py py-mod docutils literal notranslate"><span class="pre">namematch.generate_must_links</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../api.html#module-namematch.block"><code class="xref py py-mod docutils literal notranslate"><span class="pre">namematch.block</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../api.html#module-namematch.generate_data_rows"><code class="xref py py-mod docutils literal notranslate"><span class="pre">namematch.generate_data_rows</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../api.html#module-namematch.fit_model"><code class="xref py py-mod docutils literal notranslate"><span class="pre">namematch.fit_model</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../api.html#module-namematch.predict"><code class="xref py py-mod docutils literal notranslate"><span class="pre">namematch.predict</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../api.html#module-namematch.cluster"><code class="xref py py-mod docutils literal notranslate"><span class="pre">namematch.cluster</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../api.html#module-namematch.generate_output"><code class="xref py py-mod docutils literal notranslate"><span class="pre">namematch.generate_output</span></code></a></li>
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="../../algorithm.html">Detailed Algorithm Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../api.html">API Reference</a></li>
 </ul>
 
-                            
-                        
-                    </div>
-                </div>
-                <div class="col-12 col-lg-9">
-                    <div class="document">
-                        
-                            
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">namematch</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../index.html">Module code</a> &raquo;</li>
+      <li>namematch.generate_must_links</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
   <h1>Source code for namematch.generate_must_links</h1><div class="highlight"><pre>
-<span></span><span class="kn">import</span> <span class="nn">argparse</span>
-<span class="kn">import</span> <span class="nn">csv</span>
+<span></span><span class="kn">import</span> <span class="nn">csv</span>
 <span class="kn">import</span> <span class="nn">logging</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="kn">import</span> <span class="nn">sys</span>
 
 <span class="kn">import</span> <span class="nn">pyarrow</span> <span class="k">as</span> <span class="nn">pa</span>
 <span class="kn">import</span> <span class="nn">pyarrow.parquet</span> <span class="k">as</span> <span class="nn">pq</span>
@@ -158,53 +79,45 @@
 <span class="kn">from</span> <span class="nn">namematch.base</span> <span class="kn">import</span> <span class="n">NamematchBase</span>
 <span class="kn">from</span> <span class="nn">namematch.data_structures.schema</span> <span class="kn">import</span> <span class="n">Schema</span>
 <span class="kn">from</span> <span class="nn">namematch.data_structures.parameters</span> <span class="kn">import</span> <span class="n">Parameters</span>
-<span class="kn">from</span> <span class="nn">namematch.utils.utils</span> <span class="kn">import</span> <span class="n">equip_logger_id</span><span class="p">,</span> <span class="n">log_runtime_and_memory</span><span class="p">,</span> <span class="n">load_yaml</span><span class="p">,</span> <span class="n">setup_logging</span>
+<span class="kn">from</span> <span class="nn">namematch.utils.utils</span> <span class="kn">import</span> <span class="n">log_runtime_and_memory</span><span class="p">,</span> <span class="n">load_yaml</span>
+<span class="kn">from</span> <span class="nn">namematch.utils.profiler</span> <span class="kn">import</span> <span class="n">Profiler</span>
 
-<span class="k">try</span><span class="p">:</span>
-    <span class="n">profile</span>
-<span class="k">except</span><span class="p">:</span>
-    <span class="kn">from</span> <span class="nn">line_profiler</span> <span class="kn">import</span> <span class="n">LineProfiler</span>
-    <span class="n">profile</span> <span class="o">=</span> <span class="n">LineProfiler</span><span class="p">()</span>
+<span class="n">profile</span> <span class="o">=</span> <span class="n">Profiler</span><span class="p">()</span>
+<span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">()</span>
 
-<div class="viewcode-block" id="GenerateMustLinks"><a class="viewcode-back" href="../../namematch.html#namematch.generate_must_links.GenerateMustLinks">[docs]</a><span class="k">class</span> <span class="nc">GenerateMustLinks</span><span class="p">(</span><span class="n">NamematchBase</span><span class="p">):</span>
+
+<div class="viewcode-block" id="GenerateMustLinks"><a class="viewcode-back" href="../../api.html#namematch.generate_must_links.GenerateMustLinks">[docs]</a><span class="k">class</span> <span class="nc">GenerateMustLinks</span><span class="p">(</span><span class="n">NamematchBase</span><span class="p">):</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">params</span><span class="p">,</span>
         <span class="n">schema</span><span class="p">,</span>
         <span class="n">all_names_file</span><span class="p">,</span>
-        <span class="n">output_file</span><span class="o">=</span><span class="s1">&#39;output_temp/must_links.csv&#39;</span><span class="p">,</span>
-        <span class="n">logger_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">must_links</span><span class="p">,</span>
         <span class="o">*</span><span class="n">args</span><span class="p">,</span>
         <span class="o">**</span><span class="n">kwargs</span>
     <span class="p">):</span>
 
-        <span class="nb">super</span><span class="p">(</span><span class="n">GenerateMustLinks</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">params</span><span class="p">,</span> <span class="n">schema</span><span class="p">,</span> <span class="n">output_file</span><span class="p">,</span> <span class="n">logger_id</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-
+        <span class="nb">super</span><span class="p">(</span><span class="n">GenerateMustLinks</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">params</span><span class="p">,</span> <span class="n">schema</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">must_links</span> <span class="o">=</span> <span class="n">must_links</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">all_names_file</span> <span class="o">=</span> <span class="n">all_names_file</span>
 
-    <span class="nd">@equip_logger_id</span>
-    <span class="nd">@log_runtime_and_memory</span>
-    <span class="k">def</span> <span class="nf">main__generate_must_links</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">):</span>
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">output_files</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="p">[</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">must_links</span>
+        <span class="p">]</span>
+
+<div class="viewcode-block" id="GenerateMustLinks.main"><a class="viewcode-back" href="../../api.html#namematch.generate_must_links.GenerateMustLinks.main">[docs]</a>    <span class="nd">@log_runtime_and_memory</span>
+    <span class="k">def</span> <span class="nf">main</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">):</span>
         <span class="sd">&#39;&#39;&#39;Generate the list of must-link pairs using UniqueID and ExistingID info .</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            params (Parameters object): contains parameter values</span>
 <span class="sd">            schema (Schema object): contains match schema info (files to match, variables to use, etc.)</span>
-<span class="sd">            all_names_file (str): path to output_temp&#39;s all-names file</span>
-<span class="sd">            output_file (str): path to output_temp&#39;s must-links file</span>
+<span class="sd">            all_names_file (str): path to the all-names file</span>
+<span class="sd">            must_links (str): path to the must-links file</span>
 <span class="sd">        &#39;&#39;&#39;</span>
-
-        <span class="k">global</span> <span class="n">logger</span>
-
-        <span class="n">logger_id</span> <span class="o">=</span> <span class="n">kw</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;logger_id&#39;</span><span class="p">)</span>
-        <span class="k">if</span> <span class="n">logger_id</span><span class="p">:</span>
-            <span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;namematch_</span><span class="si">{</span><span class="nb">str</span><span class="p">(</span><span class="n">logger_id</span><span class="p">)</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
-
-        <span class="k">else</span><span class="p">:</span>
-            <span class="n">logger</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">logger</span>
-
         <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;Generating &quot;must-link&quot; record pairs.&#39;</span><span class="p">)</span>
-
         <span class="c1"># get UniqueID variables</span>
         <span class="n">uid_vars_list</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">schema</span><span class="o">.</span><span class="n">variables</span><span class="o">.</span><span class="n">get_variables_where</span><span class="p">(</span>
                 <span class="n">attr</span><span class="o">=</span><span class="s1">&#39;compare_type&#39;</span><span class="p">,</span> <span class="n">attr_value</span><span class="o">=</span><span class="s1">&#39;UniqueID&#39;</span><span class="p">)</span>
@@ -222,29 +135,36 @@
                 <span class="n">ml_var_df</span><span class="p">,</span> <span class="n">uid_vars_list</span><span class="p">,</span> <span class="n">eid_vars_list</span><span class="p">)</span>
 
         <span class="c1"># true record pairs</span>
-        <span class="n">must_links_df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">output_file</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-                <span class="n">quoting</span><span class="o">=</span><span class="n">csv</span><span class="o">.</span><span class="n">QUOTE_NONNUMERIC</span><span class="p">)</span>
+        <span class="n">must_links_df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">must_links</span><span class="p">,</span>
+            <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+            <span class="n">quoting</span><span class="o">=</span><span class="n">csv</span><span class="o">.</span><span class="n">QUOTE_NONNUMERIC</span>
+        <span class="p">)</span>
 
-<div class="viewcode-block" id="GenerateMustLinks.build_ml_var_df"><a class="viewcode-back" href="../../namematch.html#namematch.generate_must_links.GenerateMustLinks.build_ml_var_df">[docs]</a>    <span class="k">def</span> <span class="nf">build_ml_var_df</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">all_names_file</span><span class="p">,</span> <span class="n">uid_vars_list</span><span class="p">,</span> <span class="n">eid_vars_list</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">):</span>
-        <span class="sd">&#39;&#39;&#39;Load the all-names file and limit it to the rows that have either </span>
-<span class="sd">        a non-missing UniqueID or ExistingID value. </span>
-<span class="sd">        </span>
-<span class="sd">        Args: </span>
-<span class="sd">            all_names_file (str): path to output_temp&#39;s all-names file</span>
-<span class="sd">            uid_vars_list (list of strings): all-name columns with compare_type &quot;UniqueID&quot; </span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">enable_lprof</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">write_line_profile_stats</span><span class="p">(</span><span class="n">profile</span><span class="o">.</span><span class="n">line_profiler</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="GenerateMustLinks.build_ml_var_df"><a class="viewcode-back" href="../../api.html#namematch.generate_must_links.GenerateMustLinks.build_ml_var_df">[docs]</a>    <span class="k">def</span> <span class="nf">build_ml_var_df</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">all_names_file</span><span class="p">,</span> <span class="n">uid_vars_list</span><span class="p">,</span> <span class="n">eid_vars_list</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;Load the all-names file and limit it to the rows that have either</span>
+<span class="sd">        a non-missing UniqueID or ExistingID value.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            all_names_file (str): path to the all-names file</span>
+<span class="sd">            uid_vars_list (list of strings): all-name columns with compare_type &quot;UniqueID&quot;</span>
 <span class="sd">            eid_vars_list (list of strings): all-name columns with compare_type &quot;ExistingID&quot;</span>
 
-<span class="sd">        Returns: </span>
+<span class="sd">        Returns:</span>
 <span class="sd">            pd.DataFrame: a subset of the all-names file, relevant colums only</span>
-<span class="sd">                ======================   =======================================================</span>
-<span class="sd">                record_id                unique record identifier </span>
-<span class="sd">                blockstring              concatenation of all the blocking variables (sep by ::) </span>
-<span class="sd">                file_type                either &quot;new&quot; or &quot;existing&quot;</span>
-<span class="sd">                drop_from_nm             flag, 1 if met any &quot;to drop&quot; criteria 0 otherwise </span>
-<span class="sd">                &lt;UniqueID column(s)&gt;     variables of compare_type UniqueID</span>
-<span class="sd">                &lt;ExistingID column(s)&gt;   variables of compare_type ExistingID</span>
-<span class="sd">                has_ml_var               flag, always 1 in output (ml stands for must-link)</span>
-<span class="sd">                ======================   =======================================================    </span>
+
+<span class="sd">            ======================   =======================================================</span>
+<span class="sd">            record_id                unique record identifier</span>
+<span class="sd">            blockstring              concatenation of all the blocking variables (sep by ::)</span>
+<span class="sd">            file_type                either &quot;new&quot; or &quot;existing&quot;</span>
+<span class="sd">            drop_from_nm             flag, 1 if met any &quot;to drop&quot; criteria 0 otherwise</span>
+<span class="sd">            &lt;UniqueID column(s)&gt;     variables of compare_type UniqueID</span>
+<span class="sd">            &lt;ExistingID column(s)&gt;   variables of compare_type ExistingID</span>
+<span class="sd">            has_ml_var               flag, always 1 in output (ml stands for must-link)</span>
+<span class="sd">            ======================   =======================================================</span>
 <span class="sd">        &#39;&#39;&#39;</span>
 
         <span class="n">cols</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;record_id&#39;</span><span class="p">,</span> <span class="s1">&#39;blockstring&#39;</span><span class="p">,</span> <span class="s1">&#39;drop_from_nm&#39;</span><span class="p">,</span>
@@ -259,39 +179,39 @@
 
         <span class="k">return</span> <span class="n">an</span><span class="p">[</span><span class="n">an</span><span class="o">.</span><span class="n">has_ml_var</span> <span class="o">==</span> <span class="mi">1</span><span class="p">]</span></div>
 
+<div class="viewcode-block" id="GenerateMustLinks.get_must_links"><a class="viewcode-back" href="../../api.html#namematch.generate_must_links.GenerateMustLinks.get_must_links">[docs]</a>    <span class="nd">@log_runtime_and_memory</span>
     <span class="nd">@profile</span>
-    <span class="nd">@equip_logger_id</span>
-    <span class="nd">@log_runtime_and_memory</span>
     <span class="k">def</span> <span class="nf">get_must_links</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ml_var_df</span><span class="p">,</span> <span class="n">uid_vars_list</span><span class="p">,</span> <span class="n">eid_vars_list</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">):</span>
         <span class="sd">&#39;&#39;&#39;Expand the list of records with must-link information to pairs of records</span>
-<span class="sd">        that must be linked togehter in the final match. </span>
+<span class="sd">        that must be linked togehter in the final match.</span>
 
-<span class="sd">        Args: </span>
-<span class="sd">            ml_var_df (pd.DataFrame): </span>
+<span class="sd">        Args:</span>
+<span class="sd">            ml_var_df (pd.DataFrame):</span>
 <span class="sd">                ======================   =======================================================</span>
-<span class="sd">                record_id                unique record identifier </span>
-<span class="sd">                blockstring              concatenation of all the blocking variables (sep by ::) </span>
+<span class="sd">                record_id                unique record identifier</span>
+<span class="sd">                blockstring              concatenation of all the blocking variables (sep by ::)</span>
 <span class="sd">                file_type                either &quot;new&quot; or &quot;existing&quot;</span>
-<span class="sd">                drop_from_nm             flag, 1 if met any &quot;to drop&quot; criteria 0 otherwise </span>
+<span class="sd">                drop_from_nm             flag, 1 if met any &quot;to drop&quot; criteria 0 otherwise</span>
 <span class="sd">                &lt;UniqueID column(s)&gt;     variables of compare_type UniqueID</span>
 <span class="sd">                &lt;ExistingID column(s)&gt;   variables of compare_type ExistingID</span>
 <span class="sd">                has_ml_var               flag, always 1 in output (ml stands for must-link)</span>
-<span class="sd">                ======================   =======================================================    </span>
+<span class="sd">                ======================   =======================================================</span>
 
-<span class="sd">            uid_vars_list (list of strings): all-name columns with compare_type &quot;UniqueID&quot; </span>
+<span class="sd">            uid_vars_list (list of strings): all-name columns with compare_type &quot;UniqueID&quot;</span>
 <span class="sd">            eid_vars_list (list of strings): all-name columns with compare_type &quot;ExistingID&quot;</span>
 
-<span class="sd">        Returns: </span>
+<span class="sd">        Returns:</span>
 <span class="sd">            pd.DataFrame: list of must-link record pairs</span>
-<span class="sd">                ===================   =======================================================</span>
-<span class="sd">                record_id_1           unique identifier for the first record in the pair</span>
-<span class="sd">                record_id_2           unique identifier for the second record in the pair</span>
-<span class="sd">                blockstring_1         blockstring for the first record in the pair</span>
-<span class="sd">                blockstring_2         blockstring for the second record in the pair</span>
-<span class="sd">                drop_from_nm_1        flag, 1 if the first record in the pair was not eligible for matching</span>
-<span class="sd">                drop_from_nm_2        flag, 1 if the second record in the pair was not eligible for matching</span>
-<span class="sd">                existing              flag, 1 if the pair is must-link because of ExistingID</span>
-<span class="sd">                ===================   =======================================================  </span>
+
+<span class="sd">            ===================   =======================================================</span>
+<span class="sd">            record_id_1           unique identifier for the first record in the pair</span>
+<span class="sd">            record_id_2           unique identifier for the second record in the pair</span>
+<span class="sd">            blockstring_1         blockstring for the first record in the pair</span>
+<span class="sd">            blockstring_2         blockstring for the second record in the pair</span>
+<span class="sd">            drop_from_nm_1        flag, 1 if the first record in the pair was not eligible for matching</span>
+<span class="sd">            drop_from_nm_2        flag, 1 if the second record in the pair was not eligible for matching</span>
+<span class="sd">            existing              flag, 1 if the pair is must-link because of ExistingID</span>
+<span class="sd">            ===================   =======================================================</span>
 <span class="sd">        &#39;&#39;&#39;</span>
 
         <span class="n">ml_var_df</span> <span class="o">=</span> <span class="n">ml_var_df</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
@@ -348,71 +268,38 @@
         <span class="n">must_link_df</span> <span class="o">=</span> <span class="n">must_link_df</span><span class="o">.</span><span class="n">drop_duplicates</span><span class="p">(</span><span class="n">subset</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;record_id_1&#39;</span><span class="p">,</span> <span class="s1">&#39;record_id_2&#39;</span><span class="p">])</span>
         <span class="n">len_post_drop_duplicates</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">must_link_df</span><span class="p">)</span>
         <span class="k">if</span> <span class="p">(</span><span class="n">len_pre_drop_duplicates</span> <span class="o">&gt;</span> <span class="n">len_post_drop_duplicates</span><span class="p">):</span>
-            <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Dropped </span><span class="si">{</span><span class="n">len_pre_drop_duplicates</span> <span class="o">-</span> <span class="n">len_post_drop_duplicates</span><span class="si">}</span><span class="s1"> &#39;</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">trace</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Dropped </span><span class="si">{</span><span class="n">len_pre_drop_duplicates</span> <span class="o">-</span> <span class="n">len_post_drop_duplicates</span><span class="si">}</span><span class="s1"> &#39;</span>
                          <span class="sa">f</span><span class="s1">&#39;duplicate ground truth rows&#39;</span><span class="p">)</span>
 
-        <span class="k">return</span> <span class="n">must_link_df</span></div>
+        <span class="k">return</span> <span class="n">must_link_df</span></div></div>
 
-
-<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
-
-    <span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="o">.</span><span class="n">ArgumentParser</span><span class="p">()</span>
-    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;--params_file&#39;</span><span class="p">)</span>
-    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;--schema_file&#39;</span><span class="p">)</span>
-    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;--all_names_file&#39;</span><span class="p">)</span>
-    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;--output_file&#39;</span><span class="p">)</span>
-    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;--log_file&#39;</span><span class="p">)</span>
-    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;--nm_code_dir&#39;</span><span class="p">)</span>
-    <span class="n">args</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse_args</span><span class="p">()</span>
-
-    <span class="n">params</span> <span class="o">=</span> <span class="n">Parameters</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">params_file</span><span class="p">)</span>
-    <span class="n">schema</span> <span class="o">=</span> <span class="n">Schema</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">schema_file</span><span class="p">)</span>
-
-    <span class="n">logging_params</span> <span class="o">=</span> <span class="n">load_yaml</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">nm_code_dir</span><span class="p">,</span> <span class="s1">&#39;utils/logging_config.yaml&#39;</span><span class="p">))</span>
-
-    <span class="n">generate_must_links</span> <span class="o">=</span> <span class="n">GenerateMustLinks</span><span class="p">(</span>
-        <span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">,</span>
-        <span class="n">schema</span><span class="o">=</span><span class="n">schema</span><span class="p">,</span>
-        <span class="n">output_file</span><span class="o">=</span><span class="n">args</span><span class="o">.</span><span class="n">output_file</span><span class="p">,</span>
-        <span class="n">all_names_file</span><span class="o">=</span><span class="n">args</span><span class="o">.</span><span class="n">all_names_file</span><span class="p">,</span>
-    <span class="p">)</span>
-    <span class="n">generate_must_links</span><span class="o">.</span><span class="n">logger_init</span><span class="p">(</span><span class="n">logging_params</span><span class="p">,</span> <span class="n">args</span><span class="o">.</span><span class="n">log_file</span><span class="p">)</span>
-    <span class="n">generate_must_links</span><span class="o">.</span><span class="n">main__generate_must_links</span><span class="p">()</span>
 </pre></div>
 
-                        
-                    </div>
-                </div>
-            </div>
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, Melissa McNeill, Eddie Lin, Zubin Jelveh.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
         </div>
-    </div>    
-
-
-  
-
-    <script type="text/javascript">
-        var DOCUMENTATION_OPTIONS = {
-            URL_ROOT:'../../',
-            VERSION:'0.0.1',
-            LANGUAGE:'None',
-            COLLAPSE_INDEX:false,
-            FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true,
-            SOURCELINK_SUFFIX: '.txt'
-        };
-    </script>
-    <script type="text/javascript" src="../../_static/jquery.js"></script>
-    <script type="text/javascript" src="../../_static/underscore.js"></script>
-    <script type="text/javascript" src="../../_static/doctools.js"></script>
-    <script type="text/javascript" src="../../_static/language_data.js"></script>
-    <script type="text/javascript" src="../../_static/js/theme.js"></script>
-  
-    <div class="footer" role="contentinfo">
-        <div class="container">
-            &#169; Copyright 2021, Melissa McNeill, Eddie Lin, Zubin Jelveh.
-        Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.1.1.
-        </div>
-    </div>  
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
 
 </body>
 </html>

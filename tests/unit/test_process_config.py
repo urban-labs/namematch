@@ -2,11 +2,11 @@ from namematch.data_structures.schema import Schema
 from namematch.data_structures.parameters import Parameters
 
 
-def test_params_init(config_dict, private_config_dict):
+def test_params_init(config_dict, default_params_dict):
         # test passing
         params = Parameters.init(
             config_dict,
-            private_config_dict)
+            default_params_dict)
 
         schema = Schema.init(config_dict, params)
 
@@ -14,7 +14,7 @@ def test_params_init(config_dict, private_config_dict):
         config_dict['variables'][0]['drop'] = ','.join(config_dict['variables'][0]['drop'])
         params = Parameters.init(
                 config_dict,
-                private_config_dict)
+                default_params_dict)
         fine = 1
         try:
             schema = Schema.init(config_dict, params)

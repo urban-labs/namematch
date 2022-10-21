@@ -1,160 +1,77 @@
-
-
 <!DOCTYPE html>
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8">
-  
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>namematch.process_input_data &mdash; namematch 0.0.1 documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
-
-  
-  
-  
-  
-
-  
-
-  
-  
-    
-
-  
-
-  <link rel="stylesheet" href="../../_static/css/theme.min.css" type="text/css" />
-  <link rel="stylesheet" href="../../_static/css/custom.css" type="text/css" />
-  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/js/theme.js"></script>
     <link rel="author" title="About these documents" href="../../about.html" />
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" /> 
-
 </head>
 
-<body>
-    <header>
-        <div class="container">
-            <a class="site-nav-toggle hidden-lg-up"><i class="icon-menu"></i></a>
-            <a class="site-title" href="../../index.html">
-                namematch
-            </a>
-        </div>
-    </header>
-
-
-<div class="breadcrumbs-outer hidden-xs-down">
-    <div class="container">
-        
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div role="navigation" aria-label="breadcrumbs navigation">
-
-  <ul class="breadcrumbs">
-    
-      <li><a href="../../index.html">Docs</a></li>
-        
-          <li><a href="../index.html">Module code</a></li>
-        
-      <li>namematch.process_input_data</li>
-    
-    
-      <li class="breadcrumbs-aside">
-        
-      </li>
-    
-  </ul>
-</div>
-    </div>
-</div>
-    <div class="main-outer">
-        <div class="container">
-            <div class="row">
-                <div class="col-12 col-lg-3 site-nav">
-                    
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html" class="icon icon-home"> namematch
+          </a>
 <div role="search">
-    <form class="search" action="../../search.html" method="get">
-        <div class="icon-input">
-            <input type="text" name="q" placeholder="Search" />
-            <span class="icon-search"></span>
-        </div>
-        <input type="submit" value="Go" class="d-hidden" />
-        <input type="hidden" name="check_keywords" value="yes" />
-        <input type="hidden" name="area" value="default" />
-    </form>
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
 </div>
-                    <div class="site-nav-tree">
-                        
-                            
-                            
-                                <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../about.html">About Name Match</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../about.html#what-is-name-match-doing">What is Name Match doing?</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../about.html#inputs-and-outputs">Inputs and outputs</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="../../match_setup.html">Setting Up a Match</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../match_setup.html#preparing-the-data-for-name-match">Preparing the data for Name Match</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../match_setup.html#creating-the-configuration-file">Creating the configuration file</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../match_setup.html#creating-user-defined-clustering-functions">Creating user defined clustering functions</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../match_setup.html#running-the-code">Running the code</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../match_setup.html#special-cases">Special cases</a></li>
-</ul>
-</li>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../about.html">About Name Match</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../match_setup.html">Setting Up a Match</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../understanding_results.html">Understanding Results</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../algorithm.html">Algorithm Documentation</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../algorithm.html#why-is-name-match-necessary">Why is Name Match necessary</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../algorithm.html#how-it-works">How it works</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../algorithm.html#things-to-consider">Things to consider</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="../../api.html">API Reference</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../api.html#module-namematch.process_config"><code class="xref py py-mod docutils literal notranslate"><span class="pre">namematch.process_config</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../api.html#module-namematch.process_input_data"><code class="xref py py-mod docutils literal notranslate"><span class="pre">namematch.process_input_data</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../api.html#module-namematch.generate_must_links"><code class="xref py py-mod docutils literal notranslate"><span class="pre">namematch.generate_must_links</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../api.html#module-namematch.block"><code class="xref py py-mod docutils literal notranslate"><span class="pre">namematch.block</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../api.html#module-namematch.generate_data_rows"><code class="xref py py-mod docutils literal notranslate"><span class="pre">namematch.generate_data_rows</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../api.html#module-namematch.fit_model"><code class="xref py py-mod docutils literal notranslate"><span class="pre">namematch.fit_model</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../api.html#module-namematch.predict"><code class="xref py py-mod docutils literal notranslate"><span class="pre">namematch.predict</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../api.html#module-namematch.cluster"><code class="xref py py-mod docutils literal notranslate"><span class="pre">namematch.cluster</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../api.html#module-namematch.generate_output"><code class="xref py py-mod docutils literal notranslate"><span class="pre">namematch.generate_output</span></code></a></li>
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="../../algorithm.html">Detailed Algorithm Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../api.html">API Reference</a></li>
 </ul>
 
-                            
-                        
-                    </div>
-                </div>
-                <div class="col-12 col-lg-9">
-                    <div class="document">
-                        
-                            
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">namematch</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../index.html">Module code</a> &raquo;</li>
+      <li>namematch.process_input_data</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
   <h1>Source code for namematch.process_input_data</h1><div class="highlight"><pre>
-<span></span><span class="kn">import</span> <span class="nn">argparse</span>
-<span class="kn">import</span> <span class="nn">copy</span>
-<span class="kn">import</span> <span class="nn">csv</span>
-<span class="kn">import</span> <span class="nn">itertools</span>
-<span class="kn">import</span> <span class="nn">logging</span>
+<span></span><span class="kn">import</span> <span class="nn">logging</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="kn">import</span> <span class="nn">pickle</span>
-<span class="kn">import</span> <span class="nn">string</span>
-<span class="kn">import</span> <span class="nn">sys</span>
 <span class="kn">import</span> <span class="nn">yaml</span>
 
 <span class="kn">import</span> <span class="nn">pyarrow</span> <span class="k">as</span> <span class="nn">pa</span>
@@ -167,202 +84,422 @@
 <span class="kn">from</span> <span class="nn">namematch.base</span> <span class="kn">import</span> <span class="n">NamematchBase</span>
 <span class="kn">from</span> <span class="nn">namematch.data_structures.schema</span> <span class="kn">import</span> <span class="n">Schema</span>
 <span class="kn">from</span> <span class="nn">namematch.data_structures.parameters</span> <span class="kn">import</span> <span class="n">Parameters</span>
-<span class="kn">from</span> <span class="nn">namematch.utils.utils</span> <span class="kn">import</span> <span class="n">build_blockstring</span><span class="p">,</span> <span class="n">clean_nn_string</span><span class="p">,</span> <span class="n">create_nm_record_id</span><span class="p">,</span> <span class="n">setup_logging</span><span class="p">,</span> <span class="n">log_runtime_and_memory</span><span class="p">,</span> <span class="n">load_yaml</span><span class="p">,</span> <span class="n">log_stat</span><span class="p">,</span> <span class="n">equip_logger_id</span>
+<span class="kn">from</span> <span class="nn">namematch.utils.utils</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">build_blockstring</span><span class="p">,</span>
+    <span class="n">clean_nn_string</span><span class="p">,</span>
+    <span class="n">create_nm_record_id</span><span class="p">,</span>
+    <span class="n">log_runtime_and_memory</span><span class="p">,</span>
+    <span class="n">load_yaml</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="kn">from</span> <span class="nn">namematch.utils.profiler</span> <span class="kn">import</span> <span class="n">Profiler</span>
 
-<span class="k">try</span><span class="p">:</span>
-    <span class="n">profile</span>
-<span class="k">except</span><span class="p">:</span>
-    <span class="kn">from</span> <span class="nn">line_profiler</span> <span class="kn">import</span> <span class="n">LineProfiler</span>
-    <span class="n">profile</span> <span class="o">=</span> <span class="n">LineProfiler</span><span class="p">()</span>
+<span class="n">profile</span> <span class="o">=</span> <span class="n">Profiler</span><span class="p">()</span>
 
+<span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">()</span>
 
-<div class="viewcode-block" id="process_geo_column"><a class="viewcode-back" href="../../namematch.html#namematch.process_input_data.process_geo_column">[docs]</a><span class="nd">@profile</span>
-<span class="k">def</span> <span class="nf">process_geo_column</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">variable</span><span class="p">):</span>
-    <span class="sd">&#39;&#39;&#39;Take dataframe of geographic data (either in &quot;lat,lon&quot; format or in</span>
-<span class="sd">    &quot;lat&quot;, &quot;lon&quot; format) and ensure it has just one column.</span>
+<div class="viewcode-block" id="ProcessInputData"><a class="viewcode-back" href="../../api.html#namematch.process_input_data.ProcessInputData">[docs]</a><span class="k">class</span> <span class="nc">ProcessInputData</span><span class="p">(</span><span class="n">NamematchBase</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">params</span><span class="p">,</span>
+        <span class="n">schema</span><span class="p">,</span>
+        <span class="n">all_names_file</span><span class="o">=</span><span class="s2">&quot;all_names.parquet&quot;</span><span class="p">,</span>
+        <span class="o">*</span><span class="n">args</span><span class="p">,</span>
+        <span class="o">**</span><span class="n">kwargs</span>
+    <span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">ProcessInputData</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">params</span><span class="p">,</span> <span class="n">schema</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
-<span class="sd">    Args:</span>
-<span class="sd">        df (pd.DataFrame): df of address input data (columns are strings)</span>
-<span class="sd">        variable (Variable object): contains naming info for new geo column</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">all_names_file</span> <span class="o">=</span> <span class="n">all_names_file</span>
 
-<span class="sd">    Returns:</span>
-<span class="sd">        Dataframe of clean geographic information for all_names file</span>
-<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">output_files</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="p">[</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">all_names_file</span>
+        <span class="p">]</span>
 
-    <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
-    <span class="n">variable</span> <span class="o">=</span> <span class="n">variable</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<div class="viewcode-block" id="ProcessInputData.main"><a class="viewcode-back" href="../../api.html#namematch.process_input_data.ProcessInputData.main">[docs]</a>    <span class="nd">@log_runtime_and_memory</span>
+    <span class="k">def</span> <span class="nf">main</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;Follow the instructions in the schema and params objects to build the all-names file from</span>
+<span class="sd">        the raw input file(s).</span>
 
-    <span class="n">ncols</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
+<span class="sd">        Args:</span>
+<span class="sd">            params (Parameters object): contains parameter values</span>
+<span class="sd">            schema (Schema object): contains match schema info (files to match, variables to use, etc.)</span>
+<span class="sd">            all_names_file (str): path to the all-names file</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">stats_dict</span><span class="p">[</span><span class="s2">&quot;start&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s2">&quot;%m/</span><span class="si">%d</span><span class="s2">/%Y, %H:%M:%S&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">stats_dict</span><span class="o">.</span><span class="n">yaml_add_eol_comment</span><span class="p">(</span><span class="s2">&quot;process_input_data&quot;</span><span class="p">,</span> <span class="s2">&quot;start&quot;</span><span class="p">)</span>
 
-    <span class="k">if</span> <span class="n">ncols</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
-        <span class="c1"># concatenate two values (either x and y or lat and long)</span>
-        <span class="c1"># if either column is empty, set the new column to be empty</span>
-        <span class="n">col1</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">tolist</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span>
-        <span class="n">col2</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">tolist</span><span class="p">()[</span><span class="mi">1</span><span class="p">]</span>
-        <span class="n">df</span><span class="p">[</span><span class="n">variable</span><span class="o">.</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
-        <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[(</span><span class="n">df</span><span class="p">[</span><span class="n">col1</span><span class="p">]</span> <span class="o">!=</span> <span class="s1">&#39;&#39;</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">col2</span><span class="p">]</span> <span class="o">!=</span> <span class="s1">&#39;&#39;</span><span class="p">),</span> <span class="n">variable</span><span class="o">.</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> \
-                <span class="n">df</span><span class="p">[</span><span class="n">col1</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span> <span class="o">+</span> <span class="s1">&#39;,&#39;</span> <span class="o">+</span> <span class="n">df</span><span class="p">[</span><span class="n">col2</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">params</span><span class="o">.</span><span class="n">incremental</span><span class="p">:</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;This is an incremental run.&quot;</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">stats_dict</span><span class="p">[</span><span class="s2">&quot;run_type&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;incremental&quot;</span>
 
-    <span class="k">elif</span> <span class="n">ncols</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
-        <span class="c1"># must already have comma in row (e.g. &quot;12254231,95236928&quot;)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;This is not an incremental run.&quot;</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">stats_dict</span><span class="p">[</span><span class="s2">&quot;run_type&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;from scratch&quot;</span>
 
-        <span class="n">df</span><span class="p">[</span><span class="n">variable</span><span class="o">.</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">tolist</span><span class="p">()[</span><span class="mi">0</span><span class="p">]]</span>
-        <span class="n">df</span><span class="p">[</span><span class="s1">&#39;no_comma&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">((</span><span class="n">df</span><span class="p">[</span><span class="n">variable</span><span class="o">.</span><span class="n">name</span><span class="p">]</span> <span class="o">!=</span> <span class="s1">&#39;&#39;</span><span class="p">)</span> <span class="o">&amp;</span> \
-                <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">variable</span><span class="o">.</span><span class="n">name</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">contains</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">)</span> <span class="o">==</span> <span class="kc">False</span><span class="p">))</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
-        <span class="k">if</span> <span class="n">df</span><span class="o">.</span><span class="n">no_comma</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
-            <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Setting </span><span class="si">{</span><span class="n">variable</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s1"> variable to missing for &#39;</span>
-                         <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">df</span><span class="o">.</span><span class="n">no_comma</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="si">}</span><span class="s1"> rows (misspecified).&#39;</span><span class="p">)</span>
-        <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="o">.</span><span class="n">no_comma</span> <span class="o">==</span> <span class="mi">1</span><span class="p">,</span> <span class="n">variable</span><span class="o">.</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">trace</span><span class="p">(</span><span class="s2">&quot;Start: process_input_data&quot;</span><span class="p">)</span>
 
-    <span class="k">else</span><span class="p">:</span>
-        <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Variables of compare_type Geography take &quot;</span>
-                     <span class="sa">f</span><span class="s2">&quot;exactly 0, 1, or 2 column names.&quot;</span><span class="p">)</span>
-        <span class="k">raise</span> <span class="ne">ValueError</span>
+        <span class="n">data_file_list</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">schema</span><span class="o">.</span><span class="n">data_files</span><span class="o">.</span><span class="n">get_all_data_files</span><span class="p">()</span>
 
-    <span class="k">return</span> <span class="n">df</span><span class="p">[[</span><span class="n">variable</span><span class="o">.</span><span class="n">name</span><span class="p">]]</span></div>
+        <span class="c1"># store categorical variables for report</span>
+        <span class="n">cat_vars</span> <span class="o">=</span> <span class="p">[</span><span class="n">v</span><span class="o">.</span><span class="n">name</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">schema</span><span class="o">.</span><span class="n">variables</span><span class="o">.</span><span class="n">varlist</span> <span class="k">if</span> <span class="n">v</span><span class="o">.</span><span class="n">compare_type</span> <span class="o">==</span> <span class="s2">&quot;Categorical&quot;</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">stats_dict</span><span class="p">[</span><span class="s2">&quot;categorical_variables&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">cat_vars</span>
 
+        <span class="n">n_an_rows</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">n_valid_an_rows</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">for</span> <span class="n">j</span><span class="p">,</span> <span class="n">data_file</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">data_file_list</span><span class="p">):</span>
 
-<div class="viewcode-block" id="parse_address"><a class="viewcode-back" href="../../namematch.html#namematch.process_input_data.parse_address">[docs]</a><span class="nd">@profile</span>
-<span class="k">def</span> <span class="nf">parse_address</span><span class="p">(</span><span class="n">address</span><span class="p">):</span>
-    <span class="sd">&#39;&#39;&#39;Parse an address string into distinct parts.</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Reading </span><span class="si">{</span><span class="n">data_file</span><span class="o">.</span><span class="n">nickname</span><span class="si">}</span><span class="s1"> data.&#39;</span><span class="p">)</span>
 
-<span class="sd">    Args:</span>
-<span class="sd">        address (str): string of full address (e.g. 54 East 18th Rd.)</span>
+            <span class="n">raw_columns_data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">schema</span><span class="o">.</span><span class="n">variables</span><span class="o">.</span><span class="n">get_columns_to_read</span><span class="p">(</span><span class="n">data_file</span><span class="p">)</span>
 
-<span class="sd">    Returns:</span>
-<span class="sd">        tuple: (address number, street name, street suffix)</span>
-<span class="sd">    &#39;&#39;&#39;</span>
+            <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">df</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span>
+                    <span class="n">data_file</span><span class="o">.</span><span class="n">filepath</span><span class="p">,</span>
+                    <span class="n">chunksize</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">params</span><span class="o">.</span><span class="n">input_data_batch_size</span><span class="p">,</span>
+                    <span class="n">usecols</span><span class="o">=</span><span class="n">raw_columns_data</span><span class="p">,</span>
+                    <span class="n">dtype</span><span class="o">=</span><span class="nb">object</span><span class="p">,</span>
+                    <span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;ISO-8859-1&quot;</span><span class="p">,</span> 
+                    <span class="n">na_filter</span><span class="o">=</span><span class="kc">False</span><span class="p">)):</span>
 
-    <span class="n">add_map</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="p">{</span>
-        <span class="s2">&quot;ave&quot;</span><span class="p">:</span> <span class="s2">&quot;avenue&quot;</span><span class="p">,</span> <span class="s2">&quot;avenue&quot;</span><span class="p">:</span> <span class="s2">&quot;avenue&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;blvd&quot;</span><span class="p">:</span> <span class="s2">&quot;boulevard&quot;</span><span class="p">,</span> <span class="s2">&quot;boulevard&quot;</span><span class="p">:</span> <span class="s2">&quot;boulevard&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;ctr&quot;</span><span class="p">:</span> <span class="s2">&quot;center&quot;</span><span class="p">,</span> <span class="s2">&quot;center&quot;</span><span class="p">:</span> <span class="s2">&quot;center&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;cir&quot;</span><span class="p">:</span> <span class="s2">&quot;circle&quot;</span><span class="p">,</span> <span class="s2">&quot;circle&quot;</span><span class="p">:</span> <span class="s2">&quot;circle&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;ct&quot;</span><span class="p">:</span> <span class="s2">&quot;court&quot;</span><span class="p">,</span> <span class="s2">&quot;court&quot;</span><span class="p">:</span> <span class="s2">&quot;court&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;cv&quot;</span><span class="p">:</span> <span class="s2">&quot;cove&quot;</span><span class="p">,</span> <span class="s2">&quot;cove&quot;</span><span class="p">:</span> <span class="s2">&quot;cove&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;dr&quot;</span><span class="p">:</span> <span class="s2">&quot;drive&quot;</span><span class="p">,</span> <span class="s2">&quot;drive&quot;</span><span class="p">:</span> <span class="s2">&quot;drive&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;expy&quot;</span><span class="p">:</span> <span class="s2">&quot;expressway&quot;</span><span class="p">,</span> <span class="s2">&quot;expressway&quot;</span><span class="p">:</span> <span class="s2">&quot;expressway&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;hts&quot;</span><span class="p">:</span> <span class="s2">&quot;heights&quot;</span><span class="p">,</span> <span class="s2">&quot;heights&quot;</span><span class="p">:</span> <span class="s2">&quot;heights&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;hwy&quot;</span><span class="p">:</span> <span class="s2">&quot;highway&quot;</span><span class="p">,</span> <span class="s2">&quot;highway&quot;</span><span class="p">:</span> <span class="s2">&quot;highway&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;jct&quot;</span><span class="p">:</span> <span class="s2">&quot;junction&quot;</span><span class="p">,</span> <span class="s2">&quot;junction&quot;</span><span class="p">:</span> <span class="s2">&quot;junction&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;ln&quot;</span><span class="p">:</span> <span class="s2">&quot;lane&quot;</span><span class="p">,</span> <span class="s2">&quot;lane&quot;</span><span class="p">:</span> <span class="s2">&quot;lane&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;lp&quot;</span><span class="p">:</span> <span class="s2">&quot;loop&quot;</span><span class="p">,</span> <span class="s2">&quot;loop&quot;</span><span class="p">:</span> <span class="s2">&quot;loop&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;pkwy&quot;</span><span class="p">:</span> <span class="s2">&quot;parkway&quot;</span><span class="p">,</span> <span class="s2">&quot;parkway&quot;</span><span class="p">:</span> <span class="s2">&quot;parkway&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;pl&quot;</span><span class="p">:</span> <span class="s2">&quot;place&quot;</span><span class="p">,</span> <span class="s2">&quot;place&quot;</span><span class="p">:</span> <span class="s2">&quot;place&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;rd&quot;</span><span class="p">:</span> <span class="s2">&quot;road&quot;</span><span class="p">,</span> <span class="s2">&quot;road&quot;</span><span class="p">:</span> <span class="s2">&quot;road&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;sq&quot;</span><span class="p">:</span> <span class="s2">&quot;square&quot;</span><span class="p">,</span> <span class="s2">&quot;square&quot;</span><span class="p">:</span> <span class="s2">&quot;square&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;st&quot;</span><span class="p">:</span> <span class="s2">&quot;street&quot;</span><span class="p">,</span> <span class="s2">&quot;street&quot;</span><span class="p">:</span> <span class="s2">&quot;street&quot;</span>
-    <span class="p">})</span>
-    <span class="c1"># TODO need ter for terrace (but would have to change that in the street address parser...)</span>
-    <span class="c1"># TODO need park (but would have to change that in the street address parser...)</span>
-    <span class="c1"># TODO addresses with no street type (can lead to city name getting included in street name)</span>
-    <span class="c1"># TODO should I not include street suffix as feature? don&#39;t really want two things to get</span>
-    <span class="c1">#      &quot;points&quot; because both live on an avenue...</span>
+                <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                    <span class="k">break</span>
 
-    <span class="n">address_parser</span> <span class="o">=</span> <span class="n">StreetAddressParser</span><span class="p">()</span>
-    <span class="n">address</span> <span class="o">=</span> <span class="n">address</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
-    <span class="k">if</span> <span class="n">address</span> <span class="o">==</span> <span class="s1">&#39;redacted&#39;</span> <span class="ow">or</span> <span class="n">address</span> <span class="o">==</span> <span class="s1">&#39;redact&#39;</span><span class="p">:</span>
-        <span class="n">address</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
-    <span class="n">ap</span> <span class="o">=</span> <span class="n">address_parser</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">address</span><span class="p">)</span>
-    <span class="n">ap</span><span class="p">[</span><span class="s1">&#39;house&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">ap</span><span class="p">[</span><span class="s1">&#39;house&#39;</span><span class="p">]</span> <span class="k">else</span> <span class="n">ap</span><span class="p">[</span><span class="s1">&#39;house&#39;</span><span class="p">]</span>
-    <span class="n">ap</span><span class="p">[</span><span class="s1">&#39;street_name&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">ap</span><span class="p">[</span><span class="s1">&#39;street_name&#39;</span><span class="p">]</span> <span class="k">else</span> <span class="n">ap</span><span class="p">[</span><span class="s1">&#39;street_name&#39;</span><span class="p">]</span>
-    <span class="n">ap</span><span class="p">[</span><span class="s1">&#39;street_type&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">ap</span><span class="p">[</span><span class="s1">&#39;street_type&#39;</span><span class="p">]</span> <span class="k">else</span> <span class="n">add_map</span><span class="p">[</span><span class="n">ap</span><span class="p">[</span><span class="s1">&#39;street_type&#39;</span><span class="p">]]</span>
+                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">params</span><span class="o">.</span><span class="n">verbose</span> <span class="o">!=</span> <span class="kc">None</span><span class="p">:</span>
+                    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;  Processing: read </span><span class="si">{</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">params</span><span class="o">.</span><span class="n">input_data_batch_size</span><span class="si">}</span><span class="s1"> rows.&#39;</span><span class="p">)</span>
 
-    <span class="k">return</span> <span class="n">ap</span><span class="p">[</span><span class="s1">&#39;house&#39;</span><span class="p">],</span> <span class="n">ap</span><span class="p">[</span><span class="s1">&#39;street_name&#39;</span><span class="p">],</span> <span class="n">ap</span><span class="p">[</span><span class="s1">&#39;street_type&#39;</span><span class="p">]</span></div>
+                <span class="n">df</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">process_data</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">schema</span><span class="o">.</span><span class="n">variables</span><span class="p">,</span> <span class="n">data_file</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">params</span><span class="p">)</span>
 
+                <span class="n">first_iteration</span> <span class="o">=</span> <span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">all_names_file</span><span class="p">)</span> <span class="o">==</span> <span class="kc">False</span><span class="p">)</span>
+                <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+                    <span class="n">n_an_rows</span> <span class="o">+=</span> <span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+                    <span class="n">n_valid_an_rows</span> <span class="o">+=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">drop_from_nm</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
 
-<div class="viewcode-block" id="process_address_column"><a class="viewcode-back" href="../../namematch.html#namematch.process_input_data.process_address_column">[docs]</a><span class="nd">@profile</span>
-<span class="k">def</span> <span class="nf">process_address_column</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">logger</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-    <span class="sd">&#39;&#39;&#39;Take dataframe of address data (either in &quot;123 Main St.&quot; format or</span>
-<span class="sd">    &quot;123&quot;, &quot;Main&quot;, &quot;St.&quot; format, order matters) and parse as needed to produce</span>
-<span class="sd">    three clean columns: street number, street name, and street type.</span>
+                    <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">j</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                        <span class="n">table</span> <span class="o">=</span> <span class="n">pa</span><span class="o">.</span><span class="n">Table</span><span class="o">.</span><span class="n">from_pandas</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+                        <span class="n">pqwriter</span> <span class="o">=</span> <span class="n">pq</span><span class="o">.</span><span class="n">ParquetWriter</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">all_names_file</span><span class="p">,</span> <span class="n">table</span><span class="o">.</span><span class="n">schema</span><span class="p">)</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="n">table</span> <span class="o">=</span> <span class="n">pa</span><span class="o">.</span><span class="n">Table</span><span class="o">.</span><span class="n">from_pandas</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">schema</span><span class="o">=</span><span class="n">table</span><span class="o">.</span><span class="n">schema</span><span class="p">)</span>
 
-<span class="sd">    Args:</span>
-<span class="sd">        df (pd.DataFrame): df of address input data</span>
+                    <span class="n">pqwriter</span><span class="o">.</span><span class="n">write_table</span><span class="p">(</span><span class="n">table</span><span class="p">)</span>
 
-<span class="sd">    Returns:</span>
-<span class="sd">        Dataframe of clean address information for all_names file</span>
-<span class="sd">    &#39;&#39;&#39;</span>
+                    <span class="c1"># NOTE: append is okay even for first iteration because always</span>
+                    <span class="c1">#       deleting existing files above</span>
 
-    <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Done writing </span><span class="si">{</span><span class="n">data_file</span><span class="o">.</span><span class="n">nickname</span><span class="si">}</span><span class="s1"> data.&#39;</span><span class="p">)</span>
 
-    <span class="n">ncols</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
-    <span class="n">addr_cols</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;address_street_number&#39;</span><span class="p">,</span> <span class="s1">&#39;address_street_name&#39;</span><span class="p">,</span> <span class="s1">&#39;address_street_type&#39;</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">pqwriter</span><span class="p">:</span>
+            <span class="n">pqwriter</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
 
-    <span class="k">if</span> <span class="n">ncols</span> <span class="o">==</span> <span class="mi">3</span><span class="p">:</span>
-        <span class="c1"># simply rename columns</span>
-        <span class="n">df</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="n">addr_cols</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Number of input records: </span><span class="si">{</span><span class="n">n_an_rows</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Number of valid input records: </span><span class="si">{</span><span class="n">n_valid_an_rows</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">stats_dict</span><span class="p">[</span><span class="s2">&quot;n_an&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">n_an_rows</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">stats_dict</span><span class="p">[</span><span class="s2">&quot;n_valid_an&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">n_valid_an_rows</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">trace</span><span class="p">(</span><span class="s2">&quot;End: process_input_data&quot;</span><span class="p">)</span>
 
-    <span class="k">elif</span> <span class="n">ncols</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
-        <span class="c1"># parse address</span>
-        <span class="n">parsed_df</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vectorize</span><span class="p">(</span><span class="n">parse_address</span><span class="p">)(</span><span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">tolist</span><span class="p">()[</span><span class="mi">0</span><span class="p">]]</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
-        <span class="n">parsed_df</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="o">*</span><span class="n">parsed_df</span><span class="p">))</span>
-        <span class="n">df</span><span class="p">[</span><span class="n">addr_cols</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">parsed_df</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">enable_lprof</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">write_line_profile_stats</span><span class="p">(</span><span class="n">profile</span><span class="o">.</span><span class="n">line_profiler</span><span class="p">)</span></div>
 
-    <span class="k">else</span><span class="p">:</span>
-        <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;Variables of compare_type Address take exactly 0, 1, or 3 column names.&quot;</span><span class="p">)</span>
-        <span class="k">raise</span> <span class="ne">ValueError</span>
+<div class="viewcode-block" id="ProcessInputData.process_geo_column"><a class="viewcode-back" href="../../api.html#namematch.process_input_data.ProcessInputData.process_geo_column">[docs]</a>    <span class="nd">@profile</span>
+    <span class="k">def</span> <span class="nf">process_geo_column</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">df</span><span class="p">,</span> <span class="n">variable</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;Take dataframe of geographic data (either in &quot;lat,lon&quot; format or in</span>
+<span class="sd">        &quot;lat&quot;, &quot;lon&quot; format) and ensure it has just one column.</span>
 
-    <span class="k">return</span> <span class="n">df</span><span class="p">[</span><span class="n">addr_cols</span><span class="p">]</span></div>
+<span class="sd">        Args:</span>
+<span class="sd">            df (pd.DataFrame): df of address input data (columns are strings)</span>
+<span class="sd">            variable (Variable object): contains naming info for new geo column</span>
 
+<span class="sd">        Returns:</span>
+<span class="sd">            pd.Dataframe: DataFrame of clean geographic information for all_names file</span>
+<span class="sd">        &#39;&#39;&#39;</span>
 
-<div class="viewcode-block" id="process_check"><a class="viewcode-back" href="../../namematch.html#namematch.process_input_data.process_check">[docs]</a><span class="nd">@profile</span>
-<span class="k">def</span> <span class="nf">process_check</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">variable</span><span class="p">):</span>
-    <span class="sd">&#39;&#39;&#39;Check the validity of the values in a given all-names column (according to the data type</span>
-<span class="sd">    and config instructions) and set the series name correctly.</span>
+        <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+        <span class="n">variable</span> <span class="o">=</span> <span class="n">variable</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
 
-<span class="sd">     Args:</span>
-<span class="sd">        s (pd.Series): series to process (will be an all-names column)</span>
-<span class="sd">        variable (Variable object): contains info on how to validate data in series</span>
+        <span class="n">ncols</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
 
-<span class="sd">    Returns:</span>
-<span class="sd">        Processed series</span>
-<span class="sd">    &#39;&#39;&#39;</span>
+        <span class="k">if</span> <span class="n">ncols</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+            <span class="c1"># concatenate two values (either x and y or lat and long)</span>
+            <span class="c1"># if either column is empty, set the new column to be empty</span>
+            <span class="n">col1</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">tolist</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="n">col2</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">tolist</span><span class="p">()[</span><span class="mi">1</span><span class="p">]</span>
+            <span class="n">df</span><span class="p">[</span><span class="n">variable</span><span class="o">.</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+            <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[(</span><span class="n">df</span><span class="p">[</span><span class="n">col1</span><span class="p">]</span> <span class="o">!=</span> <span class="s1">&#39;&#39;</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">col2</span><span class="p">]</span> <span class="o">!=</span> <span class="s1">&#39;&#39;</span><span class="p">),</span> <span class="n">variable</span><span class="o">.</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> \
+                    <span class="n">df</span><span class="p">[</span><span class="n">col1</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span> <span class="o">+</span> <span class="s1">&#39;,&#39;</span> <span class="o">+</span> <span class="n">df</span><span class="p">[</span><span class="n">col2</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
 
-    <span class="n">s</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
-    <span class="n">variable</span> <span class="o">=</span> <span class="n">variable</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+        <span class="k">elif</span> <span class="n">ncols</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="c1"># must already have comma in row (e.g. &quot;12254231,95236928&quot;)</span>
 
-    <span class="k">if</span> <span class="n">variable</span><span class="o">.</span><span class="n">compare_type</span> <span class="o">!=</span> <span class="s1">&#39;Address&#39;</span><span class="p">:</span>
-        <span class="n">s</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">variable</span><span class="o">.</span><span class="n">name</span>
+            <span class="n">df</span><span class="p">[</span><span class="n">variable</span><span class="o">.</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">tolist</span><span class="p">()[</span><span class="mi">0</span><span class="p">]]</span>
+            <span class="n">df</span><span class="p">[</span><span class="s1">&#39;no_comma&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">((</span><span class="n">df</span><span class="p">[</span><span class="n">variable</span><span class="o">.</span><span class="n">name</span><span class="p">]</span> <span class="o">!=</span> <span class="s1">&#39;&#39;</span><span class="p">)</span> <span class="o">&amp;</span> \
+                    <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">variable</span><span class="o">.</span><span class="n">name</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">contains</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">)</span> <span class="o">==</span> <span class="kc">False</span><span class="p">))</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">df</span><span class="o">.</span><span class="n">no_comma</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="n">logger</span><span class="o">.</span><span class="n">trace</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Setting </span><span class="si">{</span><span class="n">variable</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s1"> variable to missing for &#39;</span>
+                             <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">df</span><span class="o">.</span><span class="n">no_comma</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="si">}</span><span class="s1"> rows (misspecified).&#39;</span><span class="p">)</span>
+            <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="o">.</span><span class="n">no_comma</span> <span class="o">==</span> <span class="mi">1</span><span class="p">,</span> <span class="n">variable</span><span class="o">.</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
 
-    <span class="k">if</span> <span class="n">variable</span><span class="o">.</span><span class="n">check</span> <span class="o">==</span> <span class="s1">&#39;Numeric&#39;</span><span class="p">:</span>
-        <span class="n">not_numeric</span> <span class="o">=</span> <span class="p">((</span><span class="n">s</span> <span class="o">!=</span> <span class="s1">&#39;&#39;</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">to_numeric</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">errors</span><span class="o">=</span><span class="s1">&#39;coerce&#39;</span><span class="p">))</span><span class="o">.</span><span class="n">isnull</span><span class="p">())</span>
-        <span class="k">if</span> <span class="n">not_numeric</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
-            <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Setting </span><span class="si">{</span><span class="n">s</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s1"> variable to missing for </span><span class="si">{</span><span class="n">not_numeric</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="si">}</span><span class="s1"> &#39;</span>
-                         <span class="sa">f</span><span class="s1">&#39;rows (fails check).&#39;</span><span class="p">)</span>
-        <span class="n">s</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">not_numeric</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Variables of compare_type Geography take &quot;</span>
+                         <span class="sa">f</span><span class="s2">&quot;exactly 0, 1, or 2 column names.&quot;</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span>
 
-    <span class="k">elif</span> <span class="n">variable</span><span class="o">.</span><span class="n">check</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;Date&#39;</span><span class="p">):</span>
-        <span class="n">before</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
-        <span class="n">date_format</span> <span class="o">=</span> <span class="n">variable</span><span class="o">.</span><span class="n">check</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
-        <span class="n">s</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="n">date_format</span><span class="p">,</span> <span class="n">errors</span><span class="o">=</span><span class="s2">&quot;coerce&quot;</span><span class="p">)</span>
-        <span class="n">after</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
-        <span class="k">if</span> <span class="p">(</span><span class="n">before</span> <span class="o">-</span> <span class="n">after</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
-            <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Setting </span><span class="si">{</span><span class="n">s</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s1"> variable to missing for &#39;</span>
-                         <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">before</span> <span class="o">-</span> <span class="n">after</span><span class="si">}</span><span class="s1"> rows (fails check).&#39;</span><span class="p">)</span>
-        <span class="c1"># convert to string in python date format: e.g. 2014-05-31</span>
-        <span class="n">s</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%Y-%m-</span><span class="si">%d</span><span class="s1">&#39;</span><span class="p">)</span>
-        <span class="n">s</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;NaT&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
-
-    <span class="k">elif</span> <span class="n">variable</span><span class="o">.</span><span class="n">compare_type</span> <span class="o">==</span> <span class="s1">&#39;Categorical&#39;</span> <span class="ow">and</span> <span class="n">variable</span><span class="o">.</span><span class="n">check</span> <span class="o">!=</span> <span class="s1">&#39;&#39;</span><span class="p">:</span>
-        <span class="n">options</span> <span class="o">=</span> <span class="n">variable</span><span class="o">.</span><span class="n">check</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">)</span>
-        <span class="n">not_in_options</span> <span class="o">=</span> <span class="n">s</span><span class="p">[</span><span class="n">s</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">options</span><span class="p">)</span> <span class="o">==</span> <span class="kc">False</span><span class="p">]</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
-        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">not_in_options</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
-            <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Setting </span><span class="si">{</span><span class="n">s</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s1"> variable to missing for &#39;</span>
-                         <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">not_in_options</span><span class="p">)</span><span class="si">}</span><span class="s1"> rows (fails check).&#39;</span><span class="p">)</span>
-        <span class="n">s</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">not_in_options</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
-
-    <span class="k">else</span><span class="p">:</span>
-        <span class="k">try</span><span class="p">:</span>
-            <span class="n">s</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
-            <span class="n">s</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span>
-        <span class="k">except</span><span class="p">:</span>
-            <span class="k">raise</span>
-
-    <span class="k">return</span> <span class="n">s</span></div>
+        <span class="k">return</span> <span class="n">df</span><span class="p">[[</span><span class="n">variable</span><span class="o">.</span><span class="n">name</span><span class="p">]]</span></div>
 
 
-<div class="viewcode-block" id="process_set_missing"><a class="viewcode-back" href="../../namematch.html#namematch.process_input_data.process_set_missing">[docs]</a><span class="k">def</span> <span class="nf">process_set_missing</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">set_missing_list</span><span class="p">):</span>
+<div class="viewcode-block" id="ProcessInputData.parse_address"><a class="viewcode-back" href="../../api.html#namematch.process_input_data.ProcessInputData.parse_address">[docs]</a>    <span class="nd">@profile</span>
+    <span class="k">def</span> <span class="nf">parse_address</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">address</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;Parse an address string into distinct parts.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            address (str): string of full address (e.g. 54 East 18th Rd.)</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            tuple: (address number, street name, street suffix)</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+
+        <span class="n">add_map</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="p">{</span>
+            <span class="s2">&quot;ave&quot;</span><span class="p">:</span> <span class="s2">&quot;avenue&quot;</span><span class="p">,</span> <span class="s2">&quot;avenue&quot;</span><span class="p">:</span> <span class="s2">&quot;avenue&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;blvd&quot;</span><span class="p">:</span> <span class="s2">&quot;boulevard&quot;</span><span class="p">,</span> <span class="s2">&quot;boulevard&quot;</span><span class="p">:</span> <span class="s2">&quot;boulevard&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;ctr&quot;</span><span class="p">:</span> <span class="s2">&quot;center&quot;</span><span class="p">,</span> <span class="s2">&quot;center&quot;</span><span class="p">:</span> <span class="s2">&quot;center&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;cir&quot;</span><span class="p">:</span> <span class="s2">&quot;circle&quot;</span><span class="p">,</span> <span class="s2">&quot;circle&quot;</span><span class="p">:</span> <span class="s2">&quot;circle&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;ct&quot;</span><span class="p">:</span> <span class="s2">&quot;court&quot;</span><span class="p">,</span> <span class="s2">&quot;court&quot;</span><span class="p">:</span> <span class="s2">&quot;court&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;cv&quot;</span><span class="p">:</span> <span class="s2">&quot;cove&quot;</span><span class="p">,</span> <span class="s2">&quot;cove&quot;</span><span class="p">:</span> <span class="s2">&quot;cove&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;dr&quot;</span><span class="p">:</span> <span class="s2">&quot;drive&quot;</span><span class="p">,</span> <span class="s2">&quot;drive&quot;</span><span class="p">:</span> <span class="s2">&quot;drive&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;expy&quot;</span><span class="p">:</span> <span class="s2">&quot;expressway&quot;</span><span class="p">,</span> <span class="s2">&quot;expressway&quot;</span><span class="p">:</span> <span class="s2">&quot;expressway&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;hts&quot;</span><span class="p">:</span> <span class="s2">&quot;heights&quot;</span><span class="p">,</span> <span class="s2">&quot;heights&quot;</span><span class="p">:</span> <span class="s2">&quot;heights&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;hwy&quot;</span><span class="p">:</span> <span class="s2">&quot;highway&quot;</span><span class="p">,</span> <span class="s2">&quot;highway&quot;</span><span class="p">:</span> <span class="s2">&quot;highway&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;jct&quot;</span><span class="p">:</span> <span class="s2">&quot;junction&quot;</span><span class="p">,</span> <span class="s2">&quot;junction&quot;</span><span class="p">:</span> <span class="s2">&quot;junction&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;ln&quot;</span><span class="p">:</span> <span class="s2">&quot;lane&quot;</span><span class="p">,</span> <span class="s2">&quot;lane&quot;</span><span class="p">:</span> <span class="s2">&quot;lane&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;lp&quot;</span><span class="p">:</span> <span class="s2">&quot;loop&quot;</span><span class="p">,</span> <span class="s2">&quot;loop&quot;</span><span class="p">:</span> <span class="s2">&quot;loop&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;pkwy&quot;</span><span class="p">:</span> <span class="s2">&quot;parkway&quot;</span><span class="p">,</span> <span class="s2">&quot;parkway&quot;</span><span class="p">:</span> <span class="s2">&quot;parkway&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;pl&quot;</span><span class="p">:</span> <span class="s2">&quot;place&quot;</span><span class="p">,</span> <span class="s2">&quot;place&quot;</span><span class="p">:</span> <span class="s2">&quot;place&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;rd&quot;</span><span class="p">:</span> <span class="s2">&quot;road&quot;</span><span class="p">,</span> <span class="s2">&quot;road&quot;</span><span class="p">:</span> <span class="s2">&quot;road&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;sq&quot;</span><span class="p">:</span> <span class="s2">&quot;square&quot;</span><span class="p">,</span> <span class="s2">&quot;square&quot;</span><span class="p">:</span> <span class="s2">&quot;square&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;st&quot;</span><span class="p">:</span> <span class="s2">&quot;street&quot;</span><span class="p">,</span> <span class="s2">&quot;street&quot;</span><span class="p">:</span> <span class="s2">&quot;street&quot;</span>
+        <span class="p">})</span>
+        <span class="c1"># TODO need ter for terrace (but would have to change that in the street address parser...)</span>
+        <span class="c1"># TODO need park (but would have to change that in the street address parser...)</span>
+        <span class="c1"># TODO addresses with no street type (can lead to city name getting included in street name)</span>
+        <span class="c1"># TODO should I not include street suffix as feature? don&#39;t really want two things to get</span>
+        <span class="c1">#      &quot;points&quot; because both live on an avenue...</span>
+
+        <span class="n">address_parser</span> <span class="o">=</span> <span class="n">StreetAddressParser</span><span class="p">()</span>
+        <span class="n">address</span> <span class="o">=</span> <span class="n">address</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">address</span> <span class="o">==</span> <span class="s1">&#39;redacted&#39;</span> <span class="ow">or</span> <span class="n">address</span> <span class="o">==</span> <span class="s1">&#39;redact&#39;</span><span class="p">:</span>
+            <span class="n">address</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+        <span class="n">ap</span> <span class="o">=</span> <span class="n">address_parser</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">address</span><span class="p">)</span>
+        <span class="n">ap</span><span class="p">[</span><span class="s1">&#39;house&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">ap</span><span class="p">[</span><span class="s1">&#39;house&#39;</span><span class="p">]</span> <span class="k">else</span> <span class="n">ap</span><span class="p">[</span><span class="s1">&#39;house&#39;</span><span class="p">]</span>
+        <span class="n">ap</span><span class="p">[</span><span class="s1">&#39;street_name&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">ap</span><span class="p">[</span><span class="s1">&#39;street_name&#39;</span><span class="p">]</span> <span class="k">else</span> <span class="n">ap</span><span class="p">[</span><span class="s1">&#39;street_name&#39;</span><span class="p">]</span>
+        <span class="n">ap</span><span class="p">[</span><span class="s1">&#39;street_type&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">ap</span><span class="p">[</span><span class="s1">&#39;street_type&#39;</span><span class="p">]</span> <span class="k">else</span> <span class="n">add_map</span><span class="p">[</span><span class="n">ap</span><span class="p">[</span><span class="s1">&#39;street_type&#39;</span><span class="p">]]</span>
+
+        <span class="k">return</span> <span class="n">ap</span><span class="p">[</span><span class="s1">&#39;house&#39;</span><span class="p">],</span> <span class="n">ap</span><span class="p">[</span><span class="s1">&#39;street_name&#39;</span><span class="p">],</span> <span class="n">ap</span><span class="p">[</span><span class="s1">&#39;street_type&#39;</span><span class="p">]</span></div>
+
+
+<div class="viewcode-block" id="ProcessInputData.process_address_column"><a class="viewcode-back" href="../../api.html#namematch.process_input_data.ProcessInputData.process_address_column">[docs]</a>    <span class="nd">@profile</span>
+    <span class="k">def</span> <span class="nf">process_address_column</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">df</span><span class="p">,</span> <span class="n">logger</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;Take dataframe of address data (either in &quot;123 Main St.&quot; format or</span>
+<span class="sd">        &quot;123&quot;, &quot;Main&quot;, &quot;St.&quot; format, order matters) and parse as needed to produce</span>
+<span class="sd">        three clean columns: street number, street name, and street type.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            df (pd.DataFrame): df of address input data</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            pd.DataFrame: Dataframe of clean address information for all_names file</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+
+        <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+
+        <span class="n">ncols</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
+        <span class="n">addr_cols</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;address_street_number&#39;</span><span class="p">,</span> <span class="s1">&#39;address_street_name&#39;</span><span class="p">,</span> <span class="s1">&#39;address_street_type&#39;</span><span class="p">]</span>
+
+        <span class="k">if</span> <span class="n">ncols</span> <span class="o">==</span> <span class="mi">3</span><span class="p">:</span>
+            <span class="c1"># simply rename columns</span>
+            <span class="n">df</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="n">addr_cols</span>
+
+        <span class="k">elif</span> <span class="n">ncols</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="c1"># parse address</span>
+            <span class="n">parsed_df</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vectorize</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">parse_address</span><span class="p">)(</span><span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">tolist</span><span class="p">()[</span><span class="mi">0</span><span class="p">]]</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
+            <span class="n">parsed_df</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="o">*</span><span class="n">parsed_df</span><span class="p">))</span>
+            <span class="n">df</span><span class="p">[</span><span class="n">addr_cols</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">parsed_df</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
+
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;Variables of compare_type Address take exactly 0, 1, or 3 column names.&quot;</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span>
+
+        <span class="k">return</span> <span class="n">df</span><span class="p">[</span><span class="n">addr_cols</span><span class="p">]</span></div>
+
+
+<div class="viewcode-block" id="ProcessInputData.process_check"><a class="viewcode-back" href="../../api.html#namematch.process_input_data.ProcessInputData.process_check">[docs]</a>    <span class="nd">@profile</span>
+    <span class="k">def</span> <span class="nf">process_check</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">s</span><span class="p">,</span> <span class="n">variable</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;Check the validity of the values in a given all-names column (according to the data type</span>
+<span class="sd">        and config instructions) and set the series name correctly.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            s (pd.Series): series to process (will be an all-names column)</span>
+<span class="sd">            variable (Variable object): contains info on how to validate data in series</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            pd.Series: Processed series</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+
+        <span class="n">s</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+        <span class="n">variable</span> <span class="o">=</span> <span class="n">variable</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+
+        <span class="k">if</span> <span class="n">variable</span><span class="o">.</span><span class="n">compare_type</span> <span class="o">!=</span> <span class="s1">&#39;Address&#39;</span><span class="p">:</span>
+            <span class="n">s</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">variable</span><span class="o">.</span><span class="n">name</span>
+
+        <span class="k">if</span> <span class="n">variable</span><span class="o">.</span><span class="n">check</span> <span class="o">==</span> <span class="s1">&#39;Numeric&#39;</span><span class="p">:</span>
+            <span class="n">not_numeric</span> <span class="o">=</span> <span class="p">((</span><span class="n">s</span> <span class="o">!=</span> <span class="s1">&#39;&#39;</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">to_numeric</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">errors</span><span class="o">=</span><span class="s1">&#39;coerce&#39;</span><span class="p">))</span><span class="o">.</span><span class="n">isnull</span><span class="p">())</span>
+            <span class="k">if</span> <span class="n">not_numeric</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="n">logger</span><span class="o">.</span><span class="n">trace</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Setting </span><span class="si">{</span><span class="n">s</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s1"> variable to missing for </span><span class="si">{</span><span class="n">not_numeric</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="si">}</span><span class="s1"> &#39;</span>
+                             <span class="sa">f</span><span class="s1">&#39;rows (fails check).&#39;</span><span class="p">)</span>
+            <span class="n">s</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">not_numeric</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+
+        <span class="k">elif</span> <span class="n">variable</span><span class="o">.</span><span class="n">check</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;Date&#39;</span><span class="p">):</span>
+            <span class="n">before</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+            <span class="n">date_format</span> <span class="o">=</span> <span class="n">variable</span><span class="o">.</span><span class="n">check</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+            <span class="n">s</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="n">date_format</span><span class="p">,</span> <span class="n">errors</span><span class="o">=</span><span class="s2">&quot;coerce&quot;</span><span class="p">)</span>
+            <span class="n">after</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">before</span> <span class="o">-</span> <span class="n">after</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="n">logger</span><span class="o">.</span><span class="n">trace</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Setting </span><span class="si">{</span><span class="n">s</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s1"> variable to missing for &#39;</span>
+                             <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">before</span> <span class="o">-</span> <span class="n">after</span><span class="si">}</span><span class="s1"> rows (fails check).&#39;</span><span class="p">)</span>
+            <span class="c1"># convert to string in python date format: e.g. 2014-05-31</span>
+            <span class="n">s</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%Y-%m-</span><span class="si">%d</span><span class="s1">&#39;</span><span class="p">)</span>
+            <span class="n">s</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;NaT&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
+            <span class="n">s</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">NaN</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
+
+        <span class="k">elif</span> <span class="n">variable</span><span class="o">.</span><span class="n">compare_type</span> <span class="o">==</span> <span class="s1">&#39;Categorical&#39;</span> <span class="ow">and</span> <span class="n">variable</span><span class="o">.</span><span class="n">check</span> <span class="o">!=</span> <span class="s1">&#39;&#39;</span><span class="p">:</span>
+            <span class="n">options</span> <span class="o">=</span> <span class="n">variable</span><span class="o">.</span><span class="n">check</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">)</span>
+            <span class="n">not_in_options</span> <span class="o">=</span> <span class="n">s</span><span class="p">[</span><span class="n">s</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">options</span><span class="p">)</span> <span class="o">==</span> <span class="kc">False</span><span class="p">]</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">not_in_options</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="n">logger</span><span class="o">.</span><span class="n">trace</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Setting </span><span class="si">{</span><span class="n">s</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s1"> variable to missing for &#39;</span>
+                             <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">not_in_options</span><span class="p">)</span><span class="si">}</span><span class="s1"> rows (fails check).&#39;</span><span class="p">)</span>
+            <span class="n">s</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">not_in_options</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">s</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+                <span class="n">s</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span>
+            <span class="k">except</span><span class="p">:</span>
+                <span class="k">raise</span>
+
+        <span class="k">return</span> <span class="n">s</span></div>
+
+<div class="viewcode-block" id="ProcessInputData.process_data"><a class="viewcode-back" href="../../api.html#namematch.process_input_data.ProcessInputData.process_data">[docs]</a>    <span class="nd">@profile</span>
+    <span class="k">def</span> <span class="nf">process_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">df</span><span class="p">,</span> <span class="n">variables</span><span class="p">,</span> <span class="n">data_file</span><span class="p">,</span> <span class="n">params</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;Read in part of an input file and process it according to the config in order</span>
+<span class="sd">        to create part of the all-names file.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            df (pd.DataFrame): chunk of an input data file</span>
+<span class="sd">            variables (VariableList object): contains info about the fields for matching (from config)</span>
+<span class="sd">            data_file (DataFile object): contains info about the input data set</span>
+<span class="sd">            params (dict): dictionary of param values</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            pd.DataFrame: a chunk of the all-names table (one row per input record)</span>
+
+<span class="sd">            =====================   =======================================================</span>
+<span class="sd">            record_id               unique record identifier</span>
+<span class="sd">            file_type               either &quot;new&quot; or &quot;existing&quot;</span>
+<span class="sd">            &lt;fields for matching&gt;   both for the matching model and for constraint checking</span>
+<span class="sd">            &lt;raw name fields&gt;       pre-cleaning version of first and last name</span>
+<span class="sd">            blockstring             concatenated version of blocking columns (sep by ::)</span>
+<span class="sd">            drop_from_nm            flag, 1 if met any &quot;to drop&quot; criteria 0 otherwise</span>
+<span class="sd">            =====================   =======================================================</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+
+        <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+        <span class="n">variables</span> <span class="o">=</span> <span class="n">variables</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+        <span class="n">data_file</span> <span class="o">=</span> <span class="n">data_file</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+        <span class="n">params</span> <span class="o">=</span> <span class="n">params</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+
+        <span class="k">if</span> <span class="n">data_file</span><span class="o">.</span><span class="n">use_record_id_as_is</span><span class="p">:</span>
+            <span class="n">df</span><span class="p">[</span><span class="s1">&#39;record_id&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">data_file</span><span class="o">.</span><span class="n">record_id_col</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">df</span><span class="p">[</span><span class="s1">&#39;record_id&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">create_nm_record_id</span><span class="p">(</span>
+                    <span class="n">data_file</span><span class="o">.</span><span class="n">nickname</span><span class="p">,</span>
+                    <span class="n">df</span><span class="p">[</span><span class="n">data_file</span><span class="o">.</span><span class="n">record_id_col</span><span class="p">])</span>
+        <span class="n">df</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;record_id&#39;</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+        <span class="c1"># create a new data frame to store all the processed variables</span>
+        <span class="n">an</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
+        <span class="n">an</span><span class="p">[</span><span class="s1">&#39;file_type&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data_file</span><span class="o">.</span><span class="n">file_type</span>
+        <span class="n">an</span><span class="p">[</span><span class="s1">&#39;dataset&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data_file</span><span class="o">.</span><span class="n">nickname</span>
+
+        <span class="c1"># track the records that will need to be dropped-- don&#39;t drop until the end</span>
+        <span class="n">all_records_to_drop</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="k">for</span> <span class="n">variable</span> <span class="ow">in</span> <span class="n">variables</span><span class="o">.</span><span class="n">varlist</span><span class="p">:</span>
+
+            <span class="n">relevant_columns</span> <span class="o">=</span> <span class="n">variable</span><span class="o">.</span><span class="n">get_columns_to_read</span><span class="p">(</span><span class="n">data_file</span><span class="o">.</span><span class="n">nickname</span><span class="p">)</span>
+
+            <span class="c1"># handle case where data file doesn&#39;t contain column</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">variable</span><span class="o">.</span><span class="n">colname_dict</span><span class="p">[</span><span class="n">data_file</span><span class="o">.</span><span class="n">nickname</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;&#39;</span><span class="p">):</span>
+                <span class="k">if</span> <span class="p">(</span><span class="n">variable</span><span class="o">.</span><span class="n">compare_type</span> <span class="o">==</span> <span class="s2">&quot;Address&quot;</span><span class="p">):</span>
+                    <span class="n">an</span><span class="p">[</span><span class="s2">&quot;address_street_number&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+                    <span class="n">an</span><span class="p">[</span><span class="s2">&quot;address_street_name&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+                    <span class="n">an</span><span class="p">[</span><span class="s2">&quot;address_street_type&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">an</span><span class="p">[</span><span class="n">variable</span><span class="o">.</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+                <span class="k">continue</span>
+
+            <span class="c1"># separate or combine columns as needed</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">variable</span><span class="o">.</span><span class="n">compare_type</span> <span class="o">==</span> <span class="s1">&#39;Geography&#39;</span><span class="p">):</span>
+                <span class="n">relevant_df</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">process_geo_column</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">relevant_columns</span><span class="p">],</span> <span class="n">variable</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="p">(</span><span class="n">variable</span><span class="o">.</span><span class="n">compare_type</span> <span class="o">==</span> <span class="s1">&#39;Address&#39;</span><span class="p">):</span>
+                <span class="n">relevant_df</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">process_address_column</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">relevant_columns</span><span class="p">])</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="c1"># if the compare_type isn&#39;t Geography or Address, there should only be one column</span>
+                <span class="k">if</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">relevant_columns</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">):</span>
+                    <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Only variables of compare_type &quot;Geography&quot; and &quot;Address&quot; &#39;</span>
+                                 <span class="sa">f</span><span class="s1">&#39;can take multiple column names.&#39;</span><span class="p">)</span>
+                    <span class="k">raise</span> <span class="ne">ValueError</span>
+                <span class="n">relevant_df</span> <span class="o">=</span> <span class="n">df</span><span class="p">[[</span><span class="n">relevant_columns</span><span class="p">[</span><span class="mi">0</span><span class="p">]]]</span>
+
+            <span class="c1"># NOTE: the only variable that should cause relevant_df to</span>
+            <span class="c1"># have more than one column is Address</span>
+            <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">relevant_df</span><span class="p">:</span>
+
+                <span class="n">s</span> <span class="o">=</span> <span class="n">relevant_df</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+                <span class="n">raw_s</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+
+                <span class="c1"># clean up last names</span>
+                <span class="k">if</span> <span class="n">variable</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="n">params</span><span class="o">.</span><span class="n">last_name_column</span><span class="p">:</span>
+                    <span class="n">s</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;MC &quot;</span><span class="p">,</span> <span class="s2">&quot;MC&quot;</span><span class="p">)</span>
+                    <span class="n">s</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;-&quot;</span><span class="p">,</span> <span class="s2">&quot; &quot;</span><span class="p">)</span>
+
+                <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">variable</span><span class="o">.</span><span class="n">set_missing_list</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+                    <span class="n">s</span> <span class="o">=</span> <span class="n">process_set_missing</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">variable</span><span class="o">.</span><span class="n">set_missing_list</span><span class="p">)</span>
+
+                <span class="n">s</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">process_check</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">variable</span><span class="p">)</span>
+
+                <span class="c1"># clean up strings for blocking</span>
+                <span class="k">if</span> <span class="n">variable</span><span class="o">.</span><span class="n">name</span> <span class="ow">in</span> <span class="n">params</span><span class="o">.</span><span class="n">blocking_scheme</span><span class="p">[</span><span class="s1">&#39;cosine_distance&#39;</span><span class="p">][</span><span class="s1">&#39;variables&#39;</span><span class="p">]:</span>
+                    <span class="n">an</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;tmp_raw__</span><span class="si">{</span><span class="n">s</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">raw_s</span>
+                    <span class="n">s</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">clean_nn_string</span><span class="p">)</span>
+
+                <span class="c1"># NOTE: always drop last (in case other processing causes</span>
+                <span class="c1"># value to go into the drop_list)</span>
+                <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">variable</span><span class="o">.</span><span class="n">drop_list</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+                    <span class="n">records_to_drop</span> <span class="o">=</span> <span class="n">process_drop</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">variable</span><span class="o">.</span><span class="n">drop_list</span><span class="p">)</span>
+                    <span class="n">all_records_to_drop</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">records_to_drop</span><span class="p">)</span>
+
+                <span class="n">an</span><span class="p">[</span><span class="n">s</span><span class="o">.</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">s</span>
+
+        <span class="c1"># clean up the index</span>
+        <span class="n">an</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+        <span class="c1"># process auto_drops</span>
+        <span class="n">auto_drop_records</span> <span class="o">=</span> <span class="n">process_auto_drops</span><span class="p">(</span><span class="n">an</span><span class="p">,</span> <span class="n">all_records_to_drop</span><span class="p">,</span> <span class="n">params</span><span class="o">.</span><span class="n">auto_drop_logic</span><span class="p">)</span>
+        <span class="n">all_records_to_drop</span> <span class="o">=</span> <span class="n">all_records_to_drop</span> <span class="o">+</span> <span class="n">auto_drop_records</span>
+
+        <span class="n">an</span><span class="p">[</span><span class="s1">&#39;drop_from_nm&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">an</span><span class="o">.</span><span class="n">record_id</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">all_records_to_drop</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+        <span class="n">an</span><span class="p">[</span><span class="s1">&#39;blockstring&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">build_blockstring</span><span class="p">(</span><span class="n">an</span><span class="p">,</span> <span class="n">params</span><span class="o">.</span><span class="n">blocking_scheme</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">an</span></div></div>
+
+<div class="viewcode-block" id="process_set_missing"><a class="viewcode-back" href="../../api.html#namematch.process_input_data.process_set_missing">[docs]</a><span class="k">def</span> <span class="nf">process_set_missing</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">set_missing_list</span><span class="p">):</span>
     <span class="sd">&#39;&#39;&#39;Set values in a series to missing as needed.</span>
 
 <span class="sd">    Args:</span>
@@ -370,20 +507,20 @@
 <span class="sd">        set_missing_list (list): list of strings that are disallowed</span>
 
 <span class="sd">    Returns:</span>
-<span class="sd">        Processed series</span>
+<span class="sd">        pd.Series: Processed series</span>
 <span class="sd">    &#39;&#39;&#39;</span>
 
     <span class="n">s</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
     <span class="n">missing</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">set_missing_list</span><span class="p">)</span>
     <span class="k">if</span> <span class="p">(</span><span class="n">missing</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">):</span>
-        <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Setting </span><span class="si">{</span><span class="n">s</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s1"> variable to missing for </span><span class="si">{</span><span class="n">missing</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="si">}</span><span class="s1"> &#39;</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">trace</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Setting </span><span class="si">{</span><span class="n">s</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s1"> variable to missing for </span><span class="si">{</span><span class="n">missing</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="si">}</span><span class="s1"> &#39;</span>
                      <span class="sa">f</span><span class="s1">&#39;rows (in set_missing).&#39;</span><span class="p">)</span>
     <span class="n">s</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">missing</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
 
     <span class="k">return</span> <span class="n">s</span></div>
 
 
-<div class="viewcode-block" id="process_drop"><a class="viewcode-back" href="../../namematch.html#namematch.process_input_data.process_drop">[docs]</a><span class="k">def</span> <span class="nf">process_drop</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">drop_list</span><span class="p">):</span>
+<div class="viewcode-block" id="process_drop"><a class="viewcode-back" href="../../api.html#namematch.process_input_data.process_drop">[docs]</a><span class="k">def</span> <span class="nf">process_drop</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">drop_list</span><span class="p">):</span>
     <span class="sd">&#39;&#39;&#39;Get the records in a series that have invalid values.</span>
 
 <span class="sd">    Args:</span>
@@ -391,29 +528,29 @@
 <span class="sd">        drop_list (list of str): invalid values</span>
 
 <span class="sd">    Returns:</span>
-<span class="sd">        Indices of records that are not valid</span>
+<span class="sd">        list: Indices of records that are not valid</span>
 <span class="sd">    &#39;&#39;&#39;</span>
 
     <span class="n">s</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
     <span class="n">records_to_drop</span> <span class="o">=</span> <span class="n">s</span><span class="p">[</span><span class="n">s</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">drop_list</span><span class="p">)]</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
     <span class="k">if</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">records_to_drop</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">):</span>
-        <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Adding </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">records_to_drop</span><span class="p">)</span><span class="si">}</span><span class="s1"> rows to drop list because &#39;</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">trace</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Adding </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">records_to_drop</span><span class="p">)</span><span class="si">}</span><span class="s1"> rows to drop list because &#39;</span>
                      <span class="sa">f</span><span class="s1">&#39;of the </span><span class="si">{</span><span class="n">s</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s1"> variable.&#39;</span><span class="p">)</span>
 
     <span class="k">return</span> <span class="n">records_to_drop</span></div>
 
 
-<div class="viewcode-block" id="process_auto_drops"><a class="viewcode-back" href="../../namematch.html#namematch.process_input_data.process_auto_drops">[docs]</a><span class="k">def</span> <span class="nf">process_auto_drops</span><span class="p">(</span><span class="n">an</span><span class="p">,</span> <span class="n">existing_drop_list</span><span class="p">,</span> <span class="n">drop_logic</span><span class="p">):</span>
+<div class="viewcode-block" id="process_auto_drops"><a class="viewcode-back" href="../../api.html#namematch.process_input_data.process_auto_drops">[docs]</a><span class="k">def</span> <span class="nf">process_auto_drops</span><span class="p">(</span><span class="n">an</span><span class="p">,</span> <span class="n">existing_drop_list</span><span class="p">,</span> <span class="n">drop_logic</span><span class="p">):</span>
     <span class="sd">&#39;&#39;&#39;Get the records in all-names that have invalid values due to combination</span>
 <span class="sd">    of multiple columns (based on logic in the private config).</span>
 
-<span class="sd">    ParaArgsmeters:</span>
+<span class="sd">    Args:</span>
 <span class="sd">        an (pd.DataFrame): all-names chunk being processed</span>
 <span class="sd">        existing_drop_list (list of str): records already known to be invalid</span>
 <span class="sd">        drop_logic (list of dicts): logic for what makes a record invalid</span>
 
 <span class="sd">    Returns:</span>
-<span class="sd">        Indices of records that are not valid</span>
+<span class="sd">        list: Indices of records that are not valid</span>
 <span class="sd">    &#39;&#39;&#39;</span>
 
     <span class="n">an</span> <span class="o">=</span> <span class="n">an</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
@@ -437,290 +574,34 @@
     <span class="k">return</span> <span class="n">auto_drop_records</span></div>
 
 
-<div class="viewcode-block" id="process_data"><a class="viewcode-back" href="../../namematch.html#namematch.process_input_data.process_data">[docs]</a><span class="nd">@profile</span>
-<span class="k">def</span> <span class="nf">process_data</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">variables</span><span class="p">,</span> <span class="n">data_file</span><span class="p">,</span> <span class="n">params</span><span class="p">):</span>
-    <span class="sd">&#39;&#39;&#39;Read in part of an input file and process it according to the config in order</span>
-<span class="sd">    to create part of the all-names file.</span>
 
-<span class="sd">    Args: </span>
-<span class="sd">        df (pd.DataFrame): chunk of an input data file</span>
-<span class="sd">        variables (VariableList object): contains info about the fields for matching (from config)</span>
-<span class="sd">        data_file (DataFile object): contains info about the input data set</span>
-<span class="sd">        params (dict): dictionary of param values</span>
-
-<span class="sd">    Returns: </span>
-<span class="sd">        pd.DataFrame: a chunk of the all-names table (one row per input record)</span>
-<span class="sd">            =====================   =======================================================</span>
-<span class="sd">            record_id               unique record identifier </span>
-<span class="sd">            file_type               either &quot;new&quot; or &quot;existing&quot;</span>
-<span class="sd">            &lt;fields for matching&gt;   both for the matching model and for constraint checking</span>
-<span class="sd">            &lt;raw name fields&gt;       pre-cleaning version of first and last name</span>
-<span class="sd">            blockstring             concatenated version of blocking columns (sep by ::)</span>
-<span class="sd">            drop_from_nm            flag, 1 if met any &quot;to drop&quot; criteria 0 otherwise </span>
-<span class="sd">            =====================   =======================================================</span>
-<span class="sd">    &#39;&#39;&#39;</span>
-
-    <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
-    <span class="n">variables</span> <span class="o">=</span> <span class="n">variables</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
-    <span class="n">data_file</span> <span class="o">=</span> <span class="n">data_file</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
-    <span class="n">params</span> <span class="o">=</span> <span class="n">params</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
-
-    <span class="k">if</span> <span class="n">data_file</span><span class="o">.</span><span class="n">use_record_id_as_is</span><span class="p">:</span>
-        <span class="n">df</span><span class="p">[</span><span class="s1">&#39;record_id&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">data_file</span><span class="o">.</span><span class="n">record_id_col</span><span class="p">]</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="n">df</span><span class="p">[</span><span class="s1">&#39;record_id&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">create_nm_record_id</span><span class="p">(</span>
-                <span class="n">data_file</span><span class="o">.</span><span class="n">nickname</span><span class="p">,</span>
-                <span class="n">df</span><span class="p">[</span><span class="n">data_file</span><span class="o">.</span><span class="n">record_id_col</span><span class="p">])</span>
-    <span class="n">df</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;record_id&#39;</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-
-    <span class="c1"># create a new data frame to store all the processed variables</span>
-    <span class="n">an</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
-    <span class="n">an</span><span class="p">[</span><span class="s1">&#39;file_type&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data_file</span><span class="o">.</span><span class="n">file_type</span>
-    <span class="n">an</span><span class="p">[</span><span class="s1">&#39;dataset&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data_file</span><span class="o">.</span><span class="n">nickname</span>
-
-    <span class="c1"># track the records that will need to be dropped-- don&#39;t drop until the end</span>
-    <span class="n">all_records_to_drop</span> <span class="o">=</span> <span class="p">[]</span>
-
-    <span class="k">for</span> <span class="n">variable</span> <span class="ow">in</span> <span class="n">variables</span><span class="o">.</span><span class="n">varlist</span><span class="p">:</span>
-
-        <span class="n">relevant_columns</span> <span class="o">=</span> <span class="n">variable</span><span class="o">.</span><span class="n">get_columns_to_read</span><span class="p">(</span><span class="n">data_file</span><span class="o">.</span><span class="n">nickname</span><span class="p">)</span>
-
-        <span class="c1"># handle case where data file doesn&#39;t contain column</span>
-        <span class="k">if</span> <span class="p">(</span><span class="n">variable</span><span class="o">.</span><span class="n">colname_dict</span><span class="p">[</span><span class="n">data_file</span><span class="o">.</span><span class="n">nickname</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;&#39;</span><span class="p">):</span>
-            <span class="k">if</span> <span class="p">(</span><span class="n">variable</span><span class="o">.</span><span class="n">compare_type</span> <span class="o">==</span> <span class="s2">&quot;Address&quot;</span><span class="p">):</span>
-                <span class="n">an</span><span class="p">[</span><span class="s2">&quot;address_street_number&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
-                <span class="n">an</span><span class="p">[</span><span class="s2">&quot;address_street_name&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
-                <span class="n">an</span><span class="p">[</span><span class="s2">&quot;address_street_type&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
-            <span class="k">else</span><span class="p">:</span>
-                <span class="n">an</span><span class="p">[</span><span class="n">variable</span><span class="o">.</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
-            <span class="k">continue</span>
-
-        <span class="c1"># separate or combine columns as needed</span>
-        <span class="k">if</span> <span class="p">(</span><span class="n">variable</span><span class="o">.</span><span class="n">compare_type</span> <span class="o">==</span> <span class="s1">&#39;Geography&#39;</span><span class="p">):</span>
-            <span class="n">relevant_df</span> <span class="o">=</span> <span class="n">process_geo_column</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">relevant_columns</span><span class="p">],</span> <span class="n">variable</span><span class="p">)</span>
-        <span class="k">elif</span> <span class="p">(</span><span class="n">variable</span><span class="o">.</span><span class="n">compare_type</span> <span class="o">==</span> <span class="s1">&#39;Address&#39;</span><span class="p">):</span>
-            <span class="n">relevant_df</span> <span class="o">=</span> <span class="n">process_address_column</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">relevant_columns</span><span class="p">])</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="c1"># if the compare_type isn&#39;t Geography or Address, there should only be one column</span>
-            <span class="k">if</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">relevant_columns</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">):</span>
-                <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Only variables of compare_type &quot;Geography&quot; and &quot;Address&quot; &#39;</span>
-                             <span class="sa">f</span><span class="s1">&#39;can take multiple column names.&#39;</span><span class="p">)</span>
-                <span class="k">raise</span> <span class="ne">ValueError</span>
-            <span class="n">relevant_df</span> <span class="o">=</span> <span class="n">df</span><span class="p">[[</span><span class="n">relevant_columns</span><span class="p">[</span><span class="mi">0</span><span class="p">]]]</span>
-
-        <span class="c1"># NOTE: the only variable that should cause relevant_df to</span>
-        <span class="c1"># have more than one column is Address</span>
-        <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">relevant_df</span><span class="p">:</span>
-
-            <span class="n">s</span> <span class="o">=</span> <span class="n">relevant_df</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
-            <span class="n">raw_s</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
-
-            <span class="c1"># clean up last names</span>
-            <span class="k">if</span> <span class="n">variable</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="n">params</span><span class="o">.</span><span class="n">last_name_column</span><span class="p">:</span>
-                <span class="n">s</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;MC &quot;</span><span class="p">,</span> <span class="s2">&quot;MC&quot;</span><span class="p">)</span>
-                <span class="n">s</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;-&quot;</span><span class="p">,</span> <span class="s2">&quot; &quot;</span><span class="p">)</span>
-
-            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">variable</span><span class="o">.</span><span class="n">set_missing_list</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
-                <span class="n">s</span> <span class="o">=</span> <span class="n">process_set_missing</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">variable</span><span class="o">.</span><span class="n">set_missing_list</span><span class="p">)</span>
-
-            <span class="n">s</span> <span class="o">=</span> <span class="n">process_check</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">variable</span><span class="p">)</span>
-
-            <span class="c1"># clean up strings for blocking</span>
-            <span class="k">if</span> <span class="n">variable</span><span class="o">.</span><span class="n">name</span> <span class="ow">in</span> <span class="n">params</span><span class="o">.</span><span class="n">blocking_scheme</span><span class="p">[</span><span class="s1">&#39;cosine_distance&#39;</span><span class="p">][</span><span class="s1">&#39;variables&#39;</span><span class="p">]:</span>
-                <span class="n">an</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;tmp_raw__</span><span class="si">{</span><span class="n">s</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">raw_s</span>
-                <span class="n">s</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">clean_nn_string</span><span class="p">)</span>
-
-            <span class="c1"># NOTE: always drop last (in case other processing causes</span>
-            <span class="c1"># value to go into the drop_list)</span>
-            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">variable</span><span class="o">.</span><span class="n">drop_list</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
-                <span class="n">records_to_drop</span> <span class="o">=</span> <span class="n">process_drop</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">variable</span><span class="o">.</span><span class="n">drop_list</span><span class="p">)</span>
-                <span class="n">all_records_to_drop</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">records_to_drop</span><span class="p">)</span>
-
-            <span class="n">an</span><span class="p">[</span><span class="n">s</span><span class="o">.</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">s</span>
-
-    <span class="c1"># clean up the index</span>
-    <span class="n">an</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-
-    <span class="c1"># process auto_drops</span>
-    <span class="n">auto_drop_records</span> <span class="o">=</span> <span class="n">process_auto_drops</span><span class="p">(</span><span class="n">an</span><span class="p">,</span> <span class="n">all_records_to_drop</span><span class="p">,</span> <span class="n">params</span><span class="o">.</span><span class="n">auto_drop_logic</span><span class="p">)</span>
-    <span class="n">all_records_to_drop</span> <span class="o">=</span> <span class="n">all_records_to_drop</span> <span class="o">+</span> <span class="n">auto_drop_records</span>
-
-    <span class="n">an</span><span class="p">[</span><span class="s1">&#39;drop_from_nm&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">an</span><span class="o">.</span><span class="n">record_id</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">all_records_to_drop</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
-    <span class="n">an</span><span class="p">[</span><span class="s1">&#39;blockstring&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">build_blockstring</span><span class="p">(</span><span class="n">an</span><span class="p">,</span> <span class="n">params</span><span class="o">.</span><span class="n">blocking_scheme</span><span class="p">)</span>
-
-    <span class="k">return</span> <span class="n">an</span></div>
-
-
-<div class="viewcode-block" id="ProcessInputData"><a class="viewcode-back" href="../../namematch.html#namematch.process_input_data.ProcessInputData">[docs]</a><span class="k">class</span> <span class="nc">ProcessInputData</span><span class="p">(</span><span class="n">NamematchBase</span><span class="p">):</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
-        <span class="bp">self</span><span class="p">,</span>
-        <span class="n">params</span><span class="p">,</span>
-        <span class="n">schema</span><span class="p">,</span>
-        <span class="n">output_file</span><span class="o">=</span><span class="s2">&quot;output_temp/all_names.parquet&quot;</span><span class="p">,</span>
-        <span class="n">logger_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-        <span class="n">input_data_batch_size</span><span class="o">=</span><span class="mi">50000</span><span class="p">,</span>
-        <span class="o">*</span><span class="n">args</span><span class="p">,</span>
-        <span class="o">**</span><span class="n">kwargs</span>
-    <span class="p">):</span>
-        <span class="nb">super</span><span class="p">(</span><span class="n">ProcessInputData</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">params</span><span class="p">,</span> <span class="n">schema</span><span class="p">,</span> <span class="n">output_file</span><span class="p">,</span> <span class="n">logger_id</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-
-        <span class="bp">self</span><span class="o">.</span><span class="n">input_data_batch_size</span> <span class="o">=</span> <span class="n">input_data_batch_size</span>
-
-    <span class="nd">@equip_logger_id</span>
-    <span class="nd">@log_runtime_and_memory</span>
-    <span class="k">def</span> <span class="nf">main__process_input_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">quick_test</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">):</span>
-        <span class="sd">&#39;&#39;&#39;Follow the instructions in the schema and params objects to build the all-names file from </span>
-<span class="sd">        the raw input file(s).</span>
-
-<span class="sd">        Args:</span>
-<span class="sd">            params (Parameters object): contains parameter values</span>
-<span class="sd">            schema (Schema object): contains match schema info (files to match, variables to use, etc.)</span>
-<span class="sd">            output_file (str): path to output_temp&#39;s all-names file</span>
-<span class="sd">            quick_test (bool): if True, only process one chunk of each input file</span>
-<span class="sd">        &#39;&#39;&#39;</span>
-
-        <span class="k">global</span> <span class="n">logger</span>
-
-        <span class="n">logger_id</span> <span class="o">=</span> <span class="n">kw</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;logger_id&#39;</span><span class="p">)</span>
-
-        <span class="k">if</span> <span class="n">logger_id</span><span class="p">:</span>
-            <span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;namematch_</span><span class="si">{</span><span class="nb">str</span><span class="p">(</span><span class="n">logger_id</span><span class="p">)</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
-
-        <span class="k">else</span><span class="p">:</span>
-            <span class="n">logger</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">logger</span>
-            <span class="n">logger</span><span class="o">.</span><span class="n">stat</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;start: &quot;</span><span class="si">{</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s2">&quot;%m/</span><span class="si">%d</span><span class="s2">/%Y, %H:%M:%S&quot;</span><span class="p">)</span><span class="si">}</span><span class="s1">&quot;&#39;</span><span class="p">)</span>
-
-
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">params</span><span class="o">.</span><span class="n">incremental</span><span class="p">:</span>
-            <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;This is an incremental run.&quot;</span><span class="p">)</span>
-            <span class="n">logger</span><span class="o">.</span><span class="n">stat</span><span class="p">(</span><span class="s1">&#39;run_type: incremental&#39;</span><span class="p">)</span>
-
-        <span class="k">else</span><span class="p">:</span>
-            <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;This is not an incremental run.&quot;</span><span class="p">)</span>
-            <span class="n">logger</span><span class="o">.</span><span class="n">stat</span><span class="p">(</span><span class="s1">&#39;run_type: &quot;from scratch&quot;&#39;</span><span class="p">)</span>
-
-        <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Start: process_input_data&quot;</span><span class="p">)</span>
-
-        <span class="n">data_file_list</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">schema</span><span class="o">.</span><span class="n">data_files</span><span class="o">.</span><span class="n">get_all_data_files</span><span class="p">()</span>
-
-        <span class="c1"># store categorical variables for report</span>
-        <span class="n">cat_vars</span> <span class="o">=</span> <span class="p">[</span><span class="n">v</span><span class="o">.</span><span class="n">name</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">schema</span><span class="o">.</span><span class="n">variables</span><span class="o">.</span><span class="n">varlist</span> <span class="k">if</span> <span class="n">v</span><span class="o">.</span><span class="n">compare_type</span> <span class="o">==</span> <span class="s2">&quot;Categorical&quot;</span><span class="p">]</span>
-        <span class="n">logger</span><span class="o">.</span><span class="n">stat_dict</span><span class="p">({</span><span class="s1">&#39;categorical_variables&#39;</span><span class="p">:</span> <span class="n">cat_vars</span><span class="p">})</span>
-
-        <span class="n">n_an_rows</span> <span class="o">=</span> <span class="mi">0</span>
-        <span class="n">n_valid_an_rows</span> <span class="o">=</span> <span class="mi">0</span>
-        <span class="k">for</span> <span class="n">j</span><span class="p">,</span> <span class="n">data_file</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">data_file_list</span><span class="p">):</span>
-
-            <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Reading </span><span class="si">{</span><span class="n">data_file</span><span class="o">.</span><span class="n">nickname</span><span class="si">}</span><span class="s1"> data.&#39;</span><span class="p">)</span>
-
-            <span class="n">raw_columns_data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">schema</span><span class="o">.</span><span class="n">variables</span><span class="o">.</span><span class="n">get_columns_to_read</span><span class="p">(</span><span class="n">data_file</span><span class="p">)</span>
-
-            <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">df</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span>
-                    <span class="n">data_file</span><span class="o">.</span><span class="n">filepath</span><span class="p">,</span>
-                    <span class="n">chunksize</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">input_data_batch_size</span><span class="p">,</span>
-                    <span class="n">usecols</span><span class="o">=</span><span class="n">raw_columns_data</span><span class="p">,</span>
-                    <span class="n">dtype</span><span class="o">=</span><span class="nb">object</span><span class="p">,</span>
-                    <span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;ISO-8859-1&quot;</span><span class="p">)):</span>
-
-                <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-                    <span class="k">break</span>
-                <span class="k">if</span> <span class="n">quick_test</span> <span class="ow">and</span> <span class="p">(</span><span class="n">data_file</span><span class="o">.</span><span class="n">file_type</span> <span class="o">==</span> <span class="s1">&#39;new&#39;</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">i</span> <span class="o">==</span> <span class="mi">1</span><span class="p">):</span>
-                    <span class="k">break</span>
-
-                <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
-
-                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">params</span><span class="o">.</span><span class="n">verbose</span> <span class="o">!=</span> <span class="kc">None</span><span class="p">:</span>
-                    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;  Processing: read </span><span class="si">{</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">input_data_batch_size</span><span class="si">}</span><span class="s1"> rows.&#39;</span><span class="p">)</span>
-
-                <span class="n">df</span> <span class="o">=</span> <span class="n">process_data</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">schema</span><span class="o">.</span><span class="n">variables</span><span class="p">,</span> <span class="n">data_file</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">params</span><span class="p">)</span>
-
-                <span class="n">first_iteration</span> <span class="o">=</span> <span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">output_file</span><span class="p">)</span> <span class="o">==</span> <span class="kc">False</span><span class="p">)</span>
-                <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
-                    <span class="n">n_an_rows</span> <span class="o">+=</span> <span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
-                    <span class="n">n_valid_an_rows</span> <span class="o">+=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">drop_from_nm</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
-
-                    <span class="n">table</span> <span class="o">=</span> <span class="n">pa</span><span class="o">.</span><span class="n">Table</span><span class="o">.</span><span class="n">from_pandas</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
-
-                    <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">j</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-                        <span class="n">pqwriter</span> <span class="o">=</span> <span class="n">pq</span><span class="o">.</span><span class="n">ParquetWriter</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">output_file</span><span class="p">,</span> <span class="n">table</span><span class="o">.</span><span class="n">schema</span><span class="p">)</span>
-
-                    <span class="n">pqwriter</span><span class="o">.</span><span class="n">write_table</span><span class="p">(</span><span class="n">table</span><span class="p">)</span>
-
-                    <span class="c1"># NOTE: append is okay even for first iteration because always</span>
-                    <span class="c1">#       deleting existing files above</span>
-
-            <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Done writing </span><span class="si">{</span><span class="n">data_file</span><span class="o">.</span><span class="n">nickname</span><span class="si">}</span><span class="s1"> data.&#39;</span><span class="p">)</span>
-
-        <span class="k">if</span> <span class="n">pqwriter</span><span class="p">:</span>
-            <span class="n">pqwriter</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
-
-        <span class="n">log_stat</span><span class="p">(</span><span class="s2">&quot;Number of input records&quot;</span><span class="p">,</span> <span class="s2">&quot;n_an&quot;</span><span class="p">,</span> <span class="n">n_an_rows</span><span class="p">)</span>
-        <span class="n">log_stat</span><span class="p">(</span><span class="s2">&quot;Number of valid input records&quot;</span><span class="p">,</span> <span class="s2">&quot;n_valid_an&quot;</span><span class="p">,</span> <span class="n">n_valid_an_rows</span><span class="p">)</span>
-
-        <span class="n">logger</span><span class="o">.</span><span class="n">stat</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;n_an: </span><span class="si">{</span><span class="n">n_an_rows</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-        <span class="n">logger</span><span class="o">.</span><span class="n">stat</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;n_valid_an: </span><span class="si">{</span><span class="n">n_valid_an_rows</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-        <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;End: process_input_data&quot;</span><span class="p">)</span></div>
-
-
-<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
-    <span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="o">.</span><span class="n">ArgumentParser</span><span class="p">()</span>
-    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;--params_file&#39;</span><span class="p">)</span>
-    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;--schema_file&#39;</span><span class="p">)</span>
-    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;--output_file&#39;</span><span class="p">)</span>
-    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;--log_file&#39;</span><span class="p">)</span>
-    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;--quick_test&#39;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;--nm_code_dir&#39;</span><span class="p">)</span>
-    <span class="n">args</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse_args</span><span class="p">()</span>
-
-    <span class="n">params</span> <span class="o">=</span> <span class="n">Parameters</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">params_file</span><span class="p">)</span>
-    <span class="n">schema</span> <span class="o">=</span> <span class="n">Schema</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">schema_file</span><span class="p">)</span>
-
-    <span class="n">logging_params</span> <span class="o">=</span> <span class="n">load_yaml</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">nm_code_dir</span><span class="p">,</span> <span class="s1">&#39;utils/logging_config.yaml&#39;</span><span class="p">))</span>
-
-    <span class="n">quick_test</span> <span class="o">=</span> <span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">quick_test</span> <span class="o">==</span> <span class="s1">&#39;True&#39;</span><span class="p">)</span>
-
-    <span class="n">process_input_data</span> <span class="o">=</span> <span class="n">ProcessInputData</span><span class="p">(</span>
-        <span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">,</span>
-        <span class="n">schema</span><span class="o">=</span><span class="n">schema</span><span class="p">,</span>
-        <span class="n">output_file</span><span class="o">=</span><span class="n">args</span><span class="o">.</span><span class="n">output_file</span>
-    <span class="p">)</span>
-    <span class="n">process_input_data</span><span class="o">.</span><span class="n">logger_init</span><span class="p">(</span><span class="n">logging_params</span><span class="p">,</span> <span class="n">args</span><span class="o">.</span><span class="n">log_file</span><span class="p">)</span>
-    <span class="n">process_input_data</span><span class="o">.</span><span class="n">main__process_input_data</span><span class="p">(</span><span class="n">quick_test</span><span class="p">)</span>
 </pre></div>
 
-                        
-                    </div>
-                </div>
-            </div>
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, Melissa McNeill, Eddie Lin, Zubin Jelveh.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
         </div>
-    </div>    
-
-
-  
-
-    <script type="text/javascript">
-        var DOCUMENTATION_OPTIONS = {
-            URL_ROOT:'../../',
-            VERSION:'0.0.1',
-            LANGUAGE:'None',
-            COLLAPSE_INDEX:false,
-            FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true,
-            SOURCELINK_SUFFIX: '.txt'
-        };
-    </script>
-    <script type="text/javascript" src="../../_static/jquery.js"></script>
-    <script type="text/javascript" src="../../_static/underscore.js"></script>
-    <script type="text/javascript" src="../../_static/doctools.js"></script>
-    <script type="text/javascript" src="../../_static/language_data.js"></script>
-    <script type="text/javascript" src="../../_static/js/theme.js"></script>
-  
-    <div class="footer" role="contentinfo">
-        <div class="container">
-            &#169; Copyright 2021, Melissa McNeill, Eddie Lin, Zubin Jelveh.
-        Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.1.1.
-        </div>
-    </div>  
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
 
 </body>
 </html>

@@ -8,7 +8,7 @@ logger = logging.getLogger()
 
 
 class DataFile():
-    '''Parent class for NewDataFile and ExistingDateFile, which house details about the 
+    '''Parent class for NewDataFile and ExistingDateFile, which house details about the
     data files input for matching.'''
 
     def __init__(self, validated_data_file_dict):
@@ -18,12 +18,12 @@ class DataFile():
 
     @classmethod
     def load(cls, data_file_dict):
-        '''Load a DataFile instance (either a NewDataFile or an ExistingDataFile). 
+        '''Load a DataFile instance (either a NewDataFile or an ExistingDataFile).
 
-        Args: 
+        Args:
             data_file_dict (dict): dictionary-version of a DataFile object
 
-        Returns: 
+        Returns:
             instance of the DataFile class
         '''
 
@@ -54,7 +54,7 @@ class DataFile():
         if len(df) != df[self.record_id_col].nunique():
             logger.warning(f"The record_id_col specified for the {self.nickname} "
                            f"file is not unique: {self.record_id_col}.")
-        if (self.file_type == 'existing') and self.use_record_id_as_is: 
+        if (self.file_type == 'existing') and self.use_record_id_as_is:
             split_recids = df[self.record_id_col].str.split("__", n=1, expand=True)
             if (split_recids.shape[1] == 1) or split_recids[1].isnull().any():
                 logger.error(f"The use_record_id_as_is parameter is set to True for the {self.nickname} file, "
@@ -64,7 +64,7 @@ class DataFile():
             prefixes = split_recids[0].unique().tolist()
             logger.info(f"The use_record_id_as_is parameter is set to True for the {self.nickname} file. "
                         f"The ids are prefixed by the following nicknames: {', '.join(prefixes)}.")
-            
+
 
     def copy(self):
         '''Create a deep copy of a DataFile object.'''
@@ -75,14 +75,14 @@ class NewDataFile(DataFile):
 
     @classmethod
     def build(cls, nickname, info):
-        '''Create a NewDataFile instance. 
+        '''Create a NewDataFile instance.
 
-        Args: 
+        Args:
             nickname (str): the data file's nickname
             info (dict): info about a data file definition from user-input config
 
-        Returns: 
-            instance of the NewDataFile class
+        Returns:
+           :mod:`namematch.data_structures.data_file.NewDataFile`: instance of the NewDataFile class
         '''
 
         params_required = ['filepath', 'record_id_col']
@@ -101,7 +101,7 @@ class NewDataFile(DataFile):
         data_file_dict['use_record_id_as_is'] = False
         data_file_dict['cluster_type'] = info.get('cluster_type', 'cluster')
         data_file_dict['output_file_stem'] = info.get('output_file_stem', nickname)
-        
+
         return cls(data_file_dict)
 
 
@@ -109,14 +109,14 @@ class ExistingDataFile(DataFile):
 
     @classmethod
     def build(cls, nickname, info):
-        '''Create a ExistingDataFile instance. 
+        '''Create a ExistingDataFile instance.
 
-        Args: 
+        Args:
             nickname (str): the data file's nickname
             info (dict): info about a data file definition from user-input config
 
-        Returns: 
-            instance of the ExistingDataFile class
+        Returns:
+            :mod:`namematch.data_structures.data_file.ExistingDataFile`: instance of the ExistingDataFile class
         '''
 
         params_required = ['filepath', 'record_id_col']
@@ -148,14 +148,14 @@ class DataFileList():
 
     @classmethod
     def build(cls, data_files_dict, existing_data_files_dict):
-        '''Create a DataFileList instance. 
+        '''Create a DataFileList instance.
 
-        Args: 
+        Args:
             data_files_dict (dict): dictionary with "new data file" info from user-input config
             existing_data_files_dict (dict): dictionary with "existing data file" info from user-input config
 
-        Returns: 
-            instance of the DataFileList class
+        Returns:
+            :mod:`namematch.data_structures.data_file.DataFileList`: instance of the DataFileList class
         '''
 
         validated_data_files_dict = {
@@ -174,13 +174,13 @@ class DataFileList():
 
     @classmethod
     def load(cls, data_files_list_dict):
-        '''Load a DataFileList instance. 
+        '''Load a DataFileList instance.
 
-        Args: 
+        Args:
             data_files_list_dict (dict): dictionary-version of a DataFileList object
 
-        Returns: 
-            instance of the DataFileList class
+        Returns:
+            :mod:`namematch.data_structures.data_file.DataFileList`: instance of the DataFileList class
         '''
 
         data_files = [
@@ -203,8 +203,8 @@ class DataFileList():
 
     def get_all_nicknames(self):
         '''Return a list of all of the DataFile nicknames in the DataFileList.
-        
-        Return: 
+
+        Return:
             list of strings
         '''
 
@@ -227,7 +227,7 @@ class DataFileList():
 
 
     def validate_names(self):
-        '''Validate that the DataFiles in the DataFileList all have unique nicknames 
+        '''Validate that the DataFiles in the DataFileList all have unique nicknames
         and that the output file stems have unique cluster types.'''
 
         # check for unique nicknames
@@ -253,8 +253,8 @@ class DataFileList():
 
     def write(self, output_file):
         '''Write the DataFileList to a yaml file.
-        
-        Args: 
+
+        Args:
             output_file (str): path to write data file list dictionary
         '''
 
@@ -269,8 +269,8 @@ class DataFileList():
 
     def get_all_data_files(self):
         '''Retrieve list of all DataFile objects, regardless of New or Existing.
-        
-        Return: 
+
+        Return:
             list of DataFile objects
         '''
 

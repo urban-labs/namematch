@@ -4,14 +4,14 @@
 
 data_files: 
     potential_candidates: 
-        filepath : 'examples/preprocessed_data/potential_candidates.csv'
+        filepath : '../preprocessed_data/potential_candidates.csv'
         record_id_col : 'record_id'
-    
+
     past_candidates: 
-        filepath : 'examples/preprocessed_data/past_candidates.csv'
+        filepath : '../preprocessed_data/past_candidates.csv'
         record_id_col : 'candidacy_id'
-        
-    
+
+
 
 # define the variables that should be used in the matching process
 # ----------------------------------------------------------------
@@ -36,6 +36,11 @@ variables:
   past_candidates_col : 'dob'
   check : 'Date - %Y-%m-%d' # optional check to make sure that all input values
                               # are in this format; otherwise set to missing
+
+- name : 'age'
+  compare_type : 'Number'
+  potential_candidates_col : 'age_in_2025'
+  past_candidates_col : 'age_in_2025'
 
 - name : 'middle_name'
   compare_type : 'String'
@@ -66,12 +71,11 @@ variables:
   potential_candidates_col : '' # the potential candidates dataset does not have this
                                     # column -- therefore the col value is empty ('')
   past_candidates_col : 'candidate_id'
-    
+
 
 # set parameter values (optional -- defaults work for most basic matching tasks)
 # ------------------------------------------------------------------------------
-
-num_threads: 8
+num_workers: 8
 pct_train: .9
 allow_clusters_w_multiple_unique_ids: False
 missingness_model: null

@@ -1,16 +1,6 @@
 import numpy as np
 import pandas as pd
 
-import logging
-logger = logging.getLogger()
-
-try:
-    profile
-except:
-    from line_profiler import LineProfiler
-    profile = LineProfiler()
-
-
 def get_columns_used():
 
     # NOTE: This is left as the default
@@ -18,13 +8,17 @@ def get_columns_used():
     return {}
 
 
-def is_valid_edge(record1, record2, phat):
+def is_valid_link(predicted_links_df):
+
+    predicted_links_df['valid'] = True
 
     # Add a constraint specific to our matching task
-    if (record1['dataset'] == 'potential_candidates') and (record2['dataset'] == 'potential_candidates'):
-        return False
-
-    return True
+    predicted_links_df.loc[
+        (predicted_links_df.dataset_1 == 'potential_candidates') & 
+        (predicted_links_df.dataset_2 == 'potential_candidates'), 
+        'valid'] = False
+    
+    return predicted_links_df['valid']
 
 
 def is_valid_cluster(cluster, phat):
@@ -36,12 +30,10 @@ def is_valid_cluster(cluster, phat):
     return True
 
 
-def apply_edge_priority(edges_df, records_df):
+def apply_link_priority(valid_links_df):
     
     # NOTE: This is left as the default
 
-    edges_df = edges_df.sort_values(by=['phat', 'original_order'], ascending=[False, True])
+    valid_links_df = valid_links_df.sort_values(by=['phat', 'original_order'], ascending=[False, True])
 
-    return edges_df
-
-
+    return valid_links_df

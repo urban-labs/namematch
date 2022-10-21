@@ -10,3 +10,5 @@ src/name-probability/
 *.RData
 tests/integration/test_output/
 *.pdf
+docs/build/.doctrees
+.vscode

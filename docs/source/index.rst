@@ -4,7 +4,7 @@
    contain the root `toctree` directive.
 
 Name Match Documentation
-=====================================
+========================
 
 .. toctree::
    :maxdepth: 2
@@ -14,4 +14,4 @@ Name Match Documentation
    understanding_results 
    algorithm  
    api
-    
+

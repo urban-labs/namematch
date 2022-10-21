@@ -11,9 +11,6 @@ from namematch.block import (
     get_common_name_penalties,
     read_an,
     get_second_index_nn_strings,
-    apply_blocking_filter,
-    get_actual_candidates,
-    get_near_neighbors_df
 )
 
 from namematch.data_structures.parameters import Parameters
@@ -44,7 +41,7 @@ def test_get_nn_string_counts():
     pass
 
 
-def test_get_common_name_penalties(an_df):
+def test_get_common_name_penalties(an_df, logger_for_testing):
 
     # load fake data
     last_names = an_df.last_name
@@ -52,7 +49,8 @@ def test_get_common_name_penalties(an_df):
     bins = 3
 
     # get the threshholds
-    common = get_common_name_penalties(last_names, max_penalty, bins)
+    with patch('namematch.block.logger', logger_for_testing) as mock_debug:
+        common = get_common_name_penalties(last_names, max_penalty, bins)
 
     # test
     assert last_names.nunique() == len(common)
@@ -77,7 +75,7 @@ def test_split_last_names(params_and_schema, all_names_parquet_file, logger_for_
             all_names_file=all_names_parquet_file,
             must_links_file=None,
             og_blocking_index_file=None,
-            output_file=None,
+            candidate_pairs_file=None,
         )
         an_split_ln = block.split_last_names(an, 'last_name', params.blocking_scheme)
 
@@ -105,7 +103,7 @@ def test_convert_all_names_to_blockstring_info(params_and_schema, all_names_parq
             all_names_file=all_names_parquet_file,
             must_links_file=None,
             og_blocking_index_file=None,
-            output_file=None,
+            candidate_pairs_file=None,
         )
 
         nn_string_info, nn_string_expanded_df = block.convert_all_names_to_blockstring_info(an, None, params)
@@ -131,7 +129,7 @@ def test_generate_shingles_matrix(params_and_schema, all_names_parquet_file, log
             all_names_file=all_names_parquet_file,
             must_links_file=None,
             og_blocking_index_file=None,
-            output_file=None,
+            candidate_pairs_file=None,
         )
 
         nn_strings = ['JOHN::SMITH', 'TAYLOR::JOHNSON', 'JAMES::JOHNS']
@@ -166,7 +164,7 @@ def test_load_main_index():
 
 def test_generate_index():
 
-    #generate_index(nn_strings, num_threads, M, efC, post, alpha, power, print_progress=True)
+    #generate_index(nn_strings, num_workers, M, efC, post, alpha, power, print_progress=True)
     pass
 
 
@@ -191,21 +189,23 @@ def test_get_indices():
     pass
 
 
-def test_apply_blocking_filter_exact(blocking_exact_df, nn_string_full_df, nn_string_ed_string_df, thresholds_dict):
+def test_apply_blocking_filter_exact(params_and_schema, blocking_exact_df, nn_string_full_df, nn_string_ed_string_df, thresholds_dict):
 
     expanded_info = nn_string_full_df.join(nn_string_ed_string_df) # TEMP
     # exact matches
-    out = apply_blocking_filter(blocking_exact_df, thresholds_dict, expanded_info, nns_match=True)
+    params, schema = params_and_schema
+    out = Block(params, schema).apply_blocking_filter(blocking_exact_df, thresholds_dict, expanded_info, nns_match=True)
     expected_names = ['blockstring_1', 'blockstring_2', 'cos_dist', 'edit_dist', 'covered_pair']
     assert expected_names == list(out)
     assert out.shape[0] == out.covered_pair.sum()
 
 
-def test_apply_blocking_filter_not_exact(blocking_notexact_df, nn_string_full_df, nn_string_ed_string_df, thresholds_dict):
+def test_apply_blocking_filter_not_exact(params_and_schema, blocking_notexact_df, nn_string_full_df, nn_string_ed_string_df, thresholds_dict):
     # not exact matches-- could be tested more exhaustively
     expanded_info = nn_string_full_df.join(nn_string_ed_string_df)
     expected_names = ['blockstring_1', 'blockstring_2', 'cos_dist', 'edit_dist', 'covered_pair']
-    out = apply_blocking_filter(blocking_notexact_df, thresholds_dict, expanded_info, nns_match=False)
+    params, schema = params_and_schema
+    out = Block(params, schema).apply_blocking_filter(blocking_notexact_df, thresholds_dict, expanded_info, nns_match=False)
     assert expected_names == list(out)
     assert blocking_notexact_df.shape[0] >= out.shape[0]
 
@@ -216,14 +216,15 @@ def test_disallow_switched_pairs():
     pass
 
 
-def test_get_actual_candidates(near_neighbors_df, nn_string_full_df, nn_string_ed_string_df, nn_strings_to_query, thresholds_dict):
+def test_get_actual_candidates(params_and_schema, near_neighbors_df, nn_string_full_df, nn_string_ed_string_df, nn_strings_to_query, thresholds_dict):
     expanded_info = nn_string_full_df.join(nn_string_ed_string_df) # TEMP
     start_ix_worker = 0
     end_ix_worker = near_neighbors_df.shape[0]
     incremental = False
 
     # get pairs
-    cand_pairs = get_actual_candidates(
+    params, schema = params_and_schema
+    cand_pairs = Block(params, schema).get_actual_candidates(
         near_neighbors_df.iloc[start_ix_worker : end_ix_worker],
         expanded_info,
         nn_strings_to_query,
@@ -234,7 +235,7 @@ def test_get_actual_candidates(near_neighbors_df, nn_string_full_df, nn_string_e
     assert cand_pairs.shape[0] <= near_neighbors_df.shape[0]
 
 
-def test_get_near_neighbors_df():
+def test_get_near_neighbors_df(params_and_schema):
     # changing this test involves re-calculating the near_neighbors_list using
     # functions like generate_indices and get_all_shingles and knnQueryBatch
     near_neighbors_list = [
@@ -259,7 +260,8 @@ def test_get_near_neighbors_df():
     nn_strings_queried_this_batch = nn_strings_this_index[start_ix_batch:end_ix_batch]
 
     # get the df
-    near_neighbors_df = get_near_neighbors_df(
+    params, schema = params_and_schema
+    near_neighbors_df = Block(params, schema).get_near_neighbors_df(
         near_neighbors_list,
         nn_string_info,
         nn_strings_this_index,

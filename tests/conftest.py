@@ -16,17 +16,25 @@ from tests.utils import make_temp_parquet_file
 PATH = "tests/unit/data/"
 
 @pytest.fixture
-def private_config_dict():
+def default_params_dict():
     return {
-        # set up
+        # basic
+        'verbose' : None,
+        'num_workers' : 1,
+        'parallelize' : False,
+        # read-in rate (memory tradeoff)
+        'input_data_batch_size': 50000,
+        'data_rows_batch_size': 500,
+        # variables
         'required_variables': ['first_name', 'last_name', 'dob'],
         'first_name_column': 'first_name',
         'last_name_column': 'last_name',
-        'split_names': True,
         'exact_match_variables': ['first_name', 'last_name', 'dob'],
+        'negate_exact_match_variables' : ['middle_initial'],
         # data
+        'split_names': True,
         'auto_drop_logic': [{'first_name': 'JOHN', 'last_name': 'DOE'},
-        {'first_name': 'JANE', 'last_name': 'DOE'}],
+                            {'first_name': 'JANE', 'last_name': 'DOE'}],
         # blocking
         'blocking_scheme': {'cosine_distance': {'variables': ['first_name','last_name']},
         'edit_distance': {'variable': 'dob'},
@@ -48,6 +56,7 @@ def private_config_dict():
         },
         'nmslib': {'M': 100, 'efC': 1000, 'post': 0, 'efS': 750, 'k': 500},
         # modeling
+        'pct_train' : 0.9,
         'use_uncovered_phats': False,
         'missingness_model': 'dob',
         'max_match_train_n': 3000000,
@@ -56,7 +65,9 @@ def private_config_dict():
         'default_threshold': 0.7,
         'optimize_threshold': True,
         'match_train_criteria': {'data_rows': {'covered_pair': 1}},
-        'initialize_from_ground_truth_1s': True
+        'initialize_from_ground_truth_1s': True,
+        'fscore_beta': 0.5,
+        'allow_clusters_w_multiple_unique_ids': False
     }
 
 
@@ -89,7 +100,12 @@ def config_dict():
                 'name': 'dob',
                 'compare_type': 'Date',
                 'raw_data_col': 'birthdate',
-                'check': 'Date - %Y-%m-%d'
+                'check': 'Date - %m/%d/%Y'
+            },
+            {
+                'name' : 'age',
+                'compare_type': 'Numeric',
+                'raw_data_col' : 'age_2021',
             },
             {
                 'name': 'gender',
@@ -108,11 +124,11 @@ def config_dict():
                 'raw_data_col': 'uid'}
         ],
         'verbose': 50000,
-        'num_threads': 10,
+        'num_workers': 10,
         'allow_clusters_w_multiple_unique_ids': False,
-        'leven_thresh': 1,
-        'pct_train': 0.9,
-        'fscore_beta': 0.5
+        'leven_thresh': None,
+        'pct_train': 0.6,
+        'missingness_model': None
     }
 
 @pytest.fixture
@@ -122,6 +138,10 @@ def logger_for_testing():
         'disable_existing_loggers': False,
         'formatters': {
             'simple': {'format': '%(levelname)-8s %(message)s'},
+            'colored_console': {
+                '()': 'coloredlogs.ColoredFormatter',
+                'format': "%(asctime)s - %(levelname)-8s %(message)s",
+            },
             'detailed': {
                 'format': '%(asctime)s %(levelname)-8s %(message)s',
                 'datefmt': '%m/%d/%Y %H:%M:%S'
@@ -135,21 +155,13 @@ def logger_for_testing():
             'console': {
                 'class': 'logging.StreamHandler',
                 'level': 'INFO',
-                'formatter': 'simple',
-                'filters': ['stat_filter'],
+                'formatter': 'colored_console',
             'stream': 'ext://sys.stdout'
             },
             'file_handler': {
                 'class': 'logging.handlers.WatchedFileHandler',
                 'level': 'DEBUG',
                 'formatter': 'detailed',
-                'filters': ['stat_filter'],
-                'encoding': 'utf8'
-            },
-            'file_handler_stat': {
-                'class': 'logging.handlers.WatchedFileHandler',
-                'level': 'STAT',
-                'formatter': 'message',
                 'encoding': 'utf8'
             },
             'file_handler_stat_memory': {
@@ -160,7 +172,7 @@ def logger_for_testing():
         },
         'root': {
             'level': 'DEBUG',
-            'handlers': ['console', 'file_handler', 'file_handler_stat']
+            'handlers': ['console', 'file_handler']
         }
     }
 
@@ -185,11 +197,11 @@ def an_df():
 
 
 @pytest.fixture
-def params_and_schema(config_dict, private_config_dict):
+def params_and_schema(config_dict, default_params_dict):
     # test passing
     params = Parameters.init(
         config_dict,
-        private_config_dict)
+        default_params_dict)
 
     schema = Schema.init(config_dict, params)
 

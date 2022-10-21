@@ -1,10 +1,7 @@
-import argparse
 import csv
 import logging
 import numpy as np
-import os
 import pandas as pd
-import sys
 
 import pyarrow as pa
 import pyarrow.parquet as pq
@@ -12,13 +9,12 @@ import pyarrow.parquet as pq
 from namematch.base import NamematchBase
 from namematch.data_structures.schema import Schema
 from namematch.data_structures.parameters import Parameters
-from namematch.utils.utils import equip_logger_id, log_runtime_and_memory, load_yaml
+from namematch.utils.utils import log_runtime_and_memory, load_yaml
+from namematch.utils.profiler import Profiler
 
-try:
-    profile
-except:
-    from line_profiler import LineProfiler
-    profile = LineProfiler()
+profile = Profiler()
+logger = logging.getLogger()
+
 
 class GenerateMustLinks(NamematchBase):
     def __init__(
@@ -26,39 +22,32 @@ class GenerateMustLinks(NamematchBase):
         params,
         schema,
         all_names_file,
-        output_file,
-        logger_id=None,
+        must_links,
         *args,
         **kwargs
     ):
 
-        super(GenerateMustLinks, self).__init__(params, schema, output_file, logger_id, *args, **kwargs)
-
+        super(GenerateMustLinks, self).__init__(params, schema, *args, **kwargs)
+        self.must_links = must_links
         self.all_names_file = all_names_file
 
-    @equip_logger_id
+    @property
+    def output_files(self):
+        return [
+            self.must_links
+        ]
+
     @log_runtime_and_memory
-    def main__generate_must_links(self, **kw):
+    def main(self, **kw):
         '''Generate the list of must-link pairs using UniqueID and ExistingID info .
 
         Args:
             params (Parameters object): contains parameter values
             schema (Schema object): contains match schema info (files to match, variables to use, etc.)
-            all_names_file (str): path to output_temp's all-names file
-            output_file (str): path to output_temp's must-links file
+            all_names_file (str): path to the all-names file
+            must_links (str): path to the must-links file
         '''
-
-        global logger
-
-        logger_id = kw.get('logger_id')
-        if logger_id:
-            logger = logging.getLogger(f'namematch_{str(logger_id)}')
-
-        else:
-            logger = self.logger
-
         logger.info('Generating "must-link" record pairs.')
-
         # get UniqueID variables
         uid_vars_list = self.schema.variables.get_variables_where(
                 attr='compare_type', attr_value='UniqueID')
@@ -76,29 +65,36 @@ class GenerateMustLinks(NamematchBase):
                 ml_var_df, uid_vars_list, eid_vars_list)
 
         # true record pairs
-        must_links_df.to_csv(self.output_file, index=False,
-                quoting=csv.QUOTE_NONNUMERIC)
+        must_links_df.to_csv(
+            self.must_links,
+            index=False,
+            quoting=csv.QUOTE_NONNUMERIC
+        )
+
+        if self.enable_lprof:
+            self.write_line_profile_stats(profile.line_profiler)
 
     def build_ml_var_df(self, all_names_file, uid_vars_list, eid_vars_list, **kw):
         '''Load the all-names file and limit it to the rows that have either
         a non-missing UniqueID or ExistingID value.
 
         Args:
-            all_names_file (str): path to output_temp's all-names file
+            all_names_file (str): path to the all-names file
             uid_vars_list (list of strings): all-name columns with compare_type "UniqueID"
             eid_vars_list (list of strings): all-name columns with compare_type "ExistingID"
 
         Returns:
             pd.DataFrame: a subset of the all-names file, relevant colums only
-                ======================   =======================================================
-                record_id                unique record identifier
-                blockstring              concatenation of all the blocking variables (sep by ::)
-                file_type                either "new" or "existing"
-                drop_from_nm             flag, 1 if met any "to drop" criteria 0 otherwise
-                <UniqueID column(s)>     variables of compare_type UniqueID
-                <ExistingID column(s)>   variables of compare_type ExistingID
-                has_ml_var               flag, always 1 in output (ml stands for must-link)
-                ======================   =======================================================
+
+            ======================   =======================================================
+            record_id                unique record identifier
+            blockstring              concatenation of all the blocking variables (sep by ::)
+            file_type                either "new" or "existing"
+            drop_from_nm             flag, 1 if met any "to drop" criteria 0 otherwise
+            <UniqueID column(s)>     variables of compare_type UniqueID
+            <ExistingID column(s)>   variables of compare_type ExistingID
+            has_ml_var               flag, always 1 in output (ml stands for must-link)
+            ======================   =======================================================
         '''
 
         cols = ['record_id', 'blockstring', 'drop_from_nm',
@@ -113,9 +109,8 @@ class GenerateMustLinks(NamematchBase):
 
         return an[an.has_ml_var == 1]
 
-    @profile
-    @equip_logger_id
     @log_runtime_and_memory
+    @profile
     def get_must_links(self, ml_var_df, uid_vars_list, eid_vars_list, **kw):
         '''Expand the list of records with must-link information to pairs of records
         that must be linked togehter in the final match.
@@ -137,15 +132,16 @@ class GenerateMustLinks(NamematchBase):
 
         Returns:
             pd.DataFrame: list of must-link record pairs
-                ===================   =======================================================
-                record_id_1           unique identifier for the first record in the pair
-                record_id_2           unique identifier for the second record in the pair
-                blockstring_1         blockstring for the first record in the pair
-                blockstring_2         blockstring for the second record in the pair
-                drop_from_nm_1        flag, 1 if the first record in the pair was not eligible for matching
-                drop_from_nm_2        flag, 1 if the second record in the pair was not eligible for matching
-                existing              flag, 1 if the pair is must-link because of ExistingID
-                ===================   =======================================================
+
+            ===================   =======================================================
+            record_id_1           unique identifier for the first record in the pair
+            record_id_2           unique identifier for the second record in the pair
+            blockstring_1         blockstring for the first record in the pair
+            blockstring_2         blockstring for the second record in the pair
+            drop_from_nm_1        flag, 1 if the first record in the pair was not eligible for matching
+            drop_from_nm_2        flag, 1 if the second record in the pair was not eligible for matching
+            existing              flag, 1 if the pair is must-link because of ExistingID
+            ===================   =======================================================
         '''
 
         ml_var_df = ml_var_df.copy()
@@ -202,7 +198,7 @@ class GenerateMustLinks(NamematchBase):
         must_link_df = must_link_df.drop_duplicates(subset=['record_id_1', 'record_id_2'])
         len_post_drop_duplicates = len(must_link_df)
         if (len_pre_drop_duplicates > len_post_drop_duplicates):
-            logger.debug(f'Dropped {len_pre_drop_duplicates - len_post_drop_duplicates} '
+            logger.trace(f'Dropped {len_pre_drop_duplicates - len_post_drop_duplicates} '
                          f'duplicate ground truth rows')
 
         return must_link_df
