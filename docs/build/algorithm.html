@@ -14,7 +14,9 @@
         <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
         <script src="_static/jquery.js"></script>
         <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="author" title="About these documents" href="about.html" />
     <link rel="index" title="Index" href="genindex.html" />
@@ -92,20 +94,20 @@
            <div itemprop="articleBody">
              
   <section id="detailed-algorithm-documentation">
-<span id="id1"></span><h1>Detailed Algorithm Documentation<a class="headerlink" href="#detailed-algorithm-documentation" title="Permalink to this headline"></a></h1>
+<span id="id1"></span><h1>Detailed Algorithm Documentation<a class="headerlink" href="#detailed-algorithm-documentation" title="Permalink to this heading"></a></h1>
 <section id="why-is-name-match-necessary">
-<h2>Why is Name Match necessary<a class="headerlink" href="#why-is-name-match-necessary" title="Permalink to this headline"></a></h2>
+<h2>Why is Name Match necessary<a class="headerlink" href="#why-is-name-match-necessary" title="Permalink to this heading"></a></h2>
 <p>A common task when working with administrative datasets is the need to identify which records belong to which people. In the best case, this is a non-problem because the administrative data already includes a unique identifier for individuals. However, in many instances a unique identifier does not exist for all records, or is not shared across the different datasets that need to be linked.</p>
 <p>Name Match is a probabilistic record linkage algorithm developed to address a specific form of this problem: when a unique identifier exists for some but not all records that need to be linked. By leveraging a supervised learning approach, Name Match is able to identify links – pairs of records that refer to the same person – both across  and within datasets. These links can then be chained together to represent individual people and all of their associated records.</p>
 <section id="conceptual-background">
-<h3>Conceptual background<a class="headerlink" href="#conceptual-background" title="Permalink to this headline"></a></h3>
+<h3>Conceptual background<a class="headerlink" href="#conceptual-background" title="Permalink to this heading"></a></h3>
 <p>Record linkage tasks can be characterized more generally as clustering problems, which is helpful for conceptualizing the goal of Name Match. There is a set of records that need to be grouped, or clustered, into people. The more similar two records are, the closer they are to each other or the stronger the link between them, and the more likely they are to get clustered into the same group. Conceptually, there is a similarity score <a class="footnote-reference brackets" href="#f1" id="id2">1</a> between each pair of records, and the goal of Name Match is to estimate these similarity scores to inform which records end up in the same group.</p>
 <p>For certain types of record pairs, the similarity score does not need to be estimated – it is known. The first type of known record pair is called a Must-Link and has a known similarity score of 1. The second type of known record pair is called a Can’t-Link, with a known similarity score of 0. The knowledge needed to identify these special types of links comes from two sources: 1) the subset of records that already have a unique identifier pre-Name Match or 2) task-specific rules about what types of links are allowed. If two records have the same unique identifier when input to Name Match, they are a Must-Link pair. Conversely, if two records have different unique identifiers, they are a Can’t-Link pair. If the user indicates that dataset C only has one record per person, then record 1 and record 2 from dataset C form a Can’t-Link pair. If a student must attend elementary school before they can attend high school, then all pairs where elementary enrollment date is later than high school enrollment date are Can’t-Link pairs.</p>
 <p>The vast majority of record pairs, however, begin with unknown similarity scores. Name Match estimates these values to fill in the complete picture of how each record relates to each other record. Once every record pair has a similarity score, the algorithm can determine where to draw the boundaries between records to form record groups, or people.</p>
 </section>
 </section>
 <section id="how-it-works">
-<h2>How it works<a class="headerlink" href="#how-it-works" title="Permalink to this headline"></a></h2>
+<h2>How it works<a class="headerlink" href="#how-it-works" title="Permalink to this heading"></a></h2>
 <p>While the dataset(s) output by the Name Match algorithm look very similar to the input dataset(s) – the only difference is a new unique person identifier – there is a lot happening under the hood during the matching process. Data is combined, filtered, merged, modeled, and otherwise transformed, all in an effort to create this new unique person identifier and measure its accuracy. The goal of this section is to walk through the algorithm step-by-step, providing a common terminology and conceptual understanding of Name Match for both users and developers. The next section discusses the important things to consider when evaluating match quality.</p>
 <p>There are five steps in the algorithm: setup, blocking, measuring differences, modeling, and clustering. As shown in the diagram below, each step produces one or two outputs that are critical for the match.</p>
 <p><strong>Name Match Process Map</strong>
@@ -114,7 +116,7 @@
 <img alt="data flow diagram" src="_images/flowchart.png" />
 <p><span class="raw-html"><br /></span></p>
 <section id="name-match-inputs-and-outputs">
-<h3>Name Match inputs and outputs<a class="headerlink" href="#name-match-inputs-and-outputs" title="Permalink to this headline"></a></h3>
+<h3>Name Match inputs and outputs<a class="headerlink" href="#name-match-inputs-and-outputs" title="Permalink to this heading"></a></h3>
 <p>The inputs to Name Match are:</p>
 <ol class="spaced-list arabic simple">
 <li><p><strong>Some number of data files to be deduped and linked.</strong> A set of CSV files with information about people, such as first name, last name, dob, gender, address, etc.</p></li>
@@ -124,7 +126,7 @@
 <p>The output is simply the data files you started with – now with a unique person id column – and a log file showing various performance statistics.</p>
 </section>
 <section id="requirements-for-using-name-match">
-<h3>Requirements for using Name Match<a class="headerlink" href="#requirements-for-using-name-match" title="Permalink to this headline"></a></h3>
+<h3>Requirements for using Name Match<a class="headerlink" href="#requirements-for-using-name-match" title="Permalink to this heading"></a></h3>
 <p>Name Match is a supervised algorithm, meaning it requires known examples of matching and non-matching record pairs to learn from. To get these known examples, at least one of the datasets (or part of one of the datasets) being included in the match must meet three requirements.</p>
 <ul class="simple">
 <li><p>People can show up multiple times</p></li>
@@ -135,7 +137,7 @@
 <p>Another requirement for matching, not specific to Name Match, is having common identifying information across the files that are being linked. First name, last name, and dob are required fields, but additional information like middle initial, race, gender, and address can improve the quality of the match. In order for these extra fields to be helpful, however, they have to be present in all input datasets. If one dataset has name, dob, and address and the other dataset has name, dob, and gender, then only name and dob can be used by the matching algorithm.</p>
 </section>
 <section id="step-1-setup">
-<h3>Step 1: Setup<a class="headerlink" href="#step-1-setup" title="Permalink to this headline"></a></h3>
+<h3>Step 1: Setup<a class="headerlink" href="#step-1-setup" title="Permalink to this heading"></a></h3>
 <p>First the input data is read in and organized into the set of records that will be matched. Name Match knows how to organize the data because of the instructions the user provides in the config file. The config file directs the code to know 1) what input data to read in, 2) which columns are going to be helpful for linking, 3) what records to exclude from the match, and 4) what settings and parameters to use for the match. There is only one tangible output of the setup step: the all names file.</p>
 <p><strong>All Names File</strong></p>
 <p>The all names file is basically just the person-specific information from all of your input data, stacked into one table. The rows in this table are all of the records that will be matched/deduped during Name Match.</p>
@@ -144,7 +146,7 @@
 <p>There are a few columns that are added automatically – record_id, dataset, file_type, blockstring, tmp_raw_first_name, tmp_raw_last_name, and drop_from_nm – but these can be ignored by the average user.</p>
 </section>
 <section id="step-2-blocking">
-<h3>Step 2: Blocking<a class="headerlink" href="#step-2-blocking" title="Permalink to this headline"></a></h3>
+<h3>Step 2: Blocking<a class="headerlink" href="#step-2-blocking" title="Permalink to this heading"></a></h3>
 <p>Name Match does not compare every record to every other record, because it would take too long and many of the comparisons would be a waste of time (e.g. a record with name Melissa McNeill is very unlikely to be a match to a record with name Zubin Jelveh). The goal of the blocking step is to identify record pairs that are similar enough to warrant a closer look. Name Match employs a two step blocking approach.</p>
 <ul class="spaced-list simple">
 <li><p>First, identify full-name pairs that are reasonably similar to each other (e.g. Melissa McNeill and Melinda McNeal). Name similarity is measured using cosine distance, and the definition of reasonable varies depending on how common the name is and what dob information is available. By default, these threshold values range between between 0.15 and 0.4; these values were found to yield good blocking performance across several large-scale data linking tasks we’ve completed using Name Match.</p></li>
@@ -160,7 +162,7 @@
 <p>All of the name/dob pairs that we <em>know</em> are matches because of ground truth data like SSN or fingerprint ID are automatically included in the candidate pairs list. If we trust our ground truth labels and therefore know certain pairs refer to the same person, this forces them to get past the blocking step and continue on in the matching process.</p>
 </section>
 <section id="step-3-measuring-differences">
-<h3>Step 3: Measuring differences<a class="headerlink" href="#step-3-measuring-differences" title="Permalink to this headline"></a></h3>
+<h3>Step 3: Measuring differences<a class="headerlink" href="#step-3-measuring-differences" title="Permalink to this heading"></a></h3>
 <p>Now that we have identified name/dob pairs that have passed the blocking step (i.e. are similar enough to warrant a full comparison), we need to build the dataset that will allow for that full comparison. Each row in that dataset will be associated with a record pair and the columns will contain information on the similarity between identifying fields (name, dob, address, race, gender, etc.) across the pairs of records. We refer to this dataset as the “data rows” file, and it is the main output of this step in the algorithm. One important intermediate output, however, is the name probability object. Both outputs are described below.</p>
 <p><strong>Name Probability Object</strong></p>
 <p>This object is used to obtain information about the uniqueness of a name, as well as the likelihood that two names refer to the same person. Name Match relies on the solution implemented <a class="reference external" href="https://github.com/zjelveh/name-probability">here</a>.</p>
@@ -220,7 +222,7 @@
 </ul>
 </section>
 <section id="step-4-modeling">
-<h3>Step 4: Modeling<a class="headerlink" href="#step-4-modeling" title="Permalink to this headline"></a></h3>
+<h3>Step 4: Modeling<a class="headerlink" href="#step-4-modeling" title="Permalink to this heading"></a></h3>
 <p>With this dataset of detailed features describing the candidate record pairs in hand, it’s time to build the probability model and predict which pairs are a match.</p>
 <p>The data rows table houses both the “known examples” needed to teach the model what matches look like and the “unknown examples” that require predictions. The “label” column is the outcome variable – it is simply a binary variable indicating whether or not the two records have the same Unique ID (e.g. fingerprint ID, SSN). The subset of rows with values in the “label” column will be the split into a training set and a labeled evaluation set, for estimating out-of-sample model performance. The rows with NA labels will get predictions.</p>
 <p><strong>Random Forest Model</strong></p>
@@ -231,7 +233,7 @@
 <p>The probability threshold is chosen to optimize the F Score, which is a weighting of false positives and false negatives. By default, this computation is weighted such that false positives are twice as costly as false negatives (i.e. the F <sub>0.5</sub> Score). The ideal cost ratio will depend on the matching use case; however, one reason why you might want to take special care to prevent false positive links is that matches that don’t pass the link threshold during modeling stage can always be recovered via other links during clustering (Step 5). To change the weighting used from the default of 0.5, you can specify <cite>fscore_beta</cite> in the config (e.g. <cite>fscore_beta : 0.75</cite>).</p>
 </section>
 <section id="step-5-clustering">
-<h3>Step 5: Clustering<a class="headerlink" href="#step-5-clustering" title="Permalink to this headline"></a></h3>
+<h3>Step 5: Clustering<a class="headerlink" href="#step-5-clustering" title="Permalink to this heading"></a></h3>
 <p>The record pairs in the potential links list enter the clustering phase, which forms links between records unless the link causes a constraint violation (e.g. an arrest record comes at a later date than a homicide victimization, or a cluster forms with multiple unique fingerprint IDs). Clusters are groups of records that all belong to the same person.</p>
 <p>The clustering process <a class="footnote-reference brackets" href="#f2" id="id3">2</a> is as follows:</p>
 <ol class="spaced-list arabic simple">
@@ -251,7 +253,7 @@
 </section>
 </section>
 <section id="things-to-consider">
-<h2>Things to consider<a class="headerlink" href="#things-to-consider" title="Permalink to this headline"></a></h2>
+<h2>Things to consider<a class="headerlink" href="#things-to-consider" title="Permalink to this heading"></a></h2>
 <p>These five steps show end-to-end how records and record pairs move through the Name Match algorithm in order to produce a unique person identifier, or cluster id. To summarize, a record pair will become a match if that record pair passes three filters:</p>
 <ol class="spaced-list arabic simple">
 <li><p><strong>Blocking.</strong> Are the names and dobs similar enough to take a closer look?</p></li>
@@ -260,7 +262,7 @@
 </ol>
 <p>When looking through the output of a match, it can be helpful to think about these three filtering steps – all of the matches you observe made it past all three, and all of the non-matches you observe failed at least one. The statistics provided in a Name Match run’s matching report can help the user understand the impact and accuracy of each filter, which is important for identifying and fixing problems with the match.</p>
 <section id="evaluating-performance-and-identifying-issues">
-<h3>Evaluating performance and identifying issues<a class="headerlink" href="#evaluating-performance-and-identifying-issues" title="Permalink to this headline"></a></h3>
+<h3>Evaluating performance and identifying issues<a class="headerlink" href="#evaluating-performance-and-identifying-issues" title="Permalink to this heading"></a></h3>
 <p>Name Match outputs a matching report (HTML file) with key performance metrics and information about the number of records linked and clusters formed. These performance metrics are described below, along with several other terms that may be useful when evaluating performance and investigating results.</p>
 <p>How do we know if too many record pairs are getting filtered out via blocking?</p>
 <p>The ratio share of ground truth matches that make it past the blocking step is known as the pair completeness. Specifically,</p>
@@ -286,7 +288,7 @@
 <p>In the final output of Name Match, all ground truth information will be encoded perfectly. Meaning, if the input data said two records belong to the same person, they will always be in the same cluster for the final output. If the input data says they are different people, they will always be in different clusters in the final output. This means that ground truth cannot be used to evaluate Name Match from end to end. The ground truth data is useful for evaluating individual steps in the matching algorithm, such as in the pair completeness and precision/recall metrics described above, but only because a portion is held out until the very end. If you want to use ground truth data to evaluate the entire algorithm  then you need to manually “erase” some of the ground truth data <a class="footnote-reference brackets" href="#f4" id="id5">4</a> before input the dataset into Name Match.</p>
 </section>
 <section id="when-to-be-wary-of-using-name-match">
-<span id="when-to-be-wary"></span><h3>When to be wary of using Name Match<a class="headerlink" href="#when-to-be-wary-of-using-name-match" title="Permalink to this headline"></a></h3>
+<span id="when-to-be-wary"></span><h3>When to be wary of using Name Match<a class="headerlink" href="#when-to-be-wary-of-using-name-match" title="Permalink to this heading"></a></h3>
 <p>Contrasting the Requirements for Name Match section, it’s worth calling out a few common situations where using Name Match is either not possible or should be done with caution.</p>
 <ul class="spaced-list simple">
 <li><p><strong>No ground truth data.</strong> It might be obvious by this point, but Name Match needs ground truth. An unsupervised matching approach like R’s <a class="reference external" href="https://github.com/kosukeimai/fastLink">fastlink</a>  or an active learning approach like <a class="reference external" href="https://github.com/dedupeio/dedupe">python dedupe</a> might be better suited for a scenario with no ground truth.</p></li>
