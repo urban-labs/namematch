@@ -21,7 +21,7 @@ pip install namematch
 * [End-to-end tutorial](examples/end_to_end_tutorial.ipynb)
 * [Overview + usage docs](https://urban-labs.github.io/namematch/about.html)
 * [Algorithm docs](https://urban-labs.github.io/namematch/algorithm.html)
-* [Developer docs](https://urban-labs.github.io/namematch/namematch/api.html)
+* [Developer docs](https://urban-labs.github.io/namematch/api.html)
 
 
 ### Requirements of the input data
