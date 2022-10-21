@@ -125,4 +125,4 @@ Zubin Jelveh, University of Maryland
 
 If you use Name Match in an academic work, please give this citation:
 
-Zubin Jelveh, Melissa McNeill and Tzu-Yun Lin. 2022. Name Match. https://github.com/urban-labs/namematch.
+Zubin Jelveh, Melissa McNeill, and Tzu-Yun Lin. 2022. Name Match. https://github.com/urban-labs/namematch.
