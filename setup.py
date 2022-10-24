@@ -23,7 +23,7 @@ setup(
     version='1.2.0',
     description='Tool for probabilistically linking the records of individual entities (e.g. people) within and across datasets',
     author="University of Chicago Crime Lab",
-    author_email='mmcneill@uchicago.edu;tlin2@uchicago.edu;zjelveh@umd.edu',
+    author_email='mmcneill@uchicago.edu, tlin2@uchicago.edu, zjelveh@umd.edu',
     url='https://github.com/urban-labs/namematch',
     packages=find_packages(),
     include_package_data=True,
