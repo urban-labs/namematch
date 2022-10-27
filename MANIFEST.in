@@ -1,5 +1,6 @@
 include LICENSE
 include namematch/matching_report.ipynb
+include namematch/name_probability/ss_data.pkl
 
 recursive-include requirement *.txt
 recursive-include namematch/utils/*.yaml

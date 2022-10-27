@@ -7,7 +7,7 @@ from math import ceil
 
 import numpy as np
 import pandas as pd
-import NameProbability as nm_prob
+from namematch.name_probability import nm_prob
 
 import pyarrow.parquet as pq
 import pyarrow as pa
@@ -139,7 +139,7 @@ class GenerateDataRows(NamematchBase):
         an['ln'] = an[ln_col].str.replace(' ', '')
         an['name_prob_str'] = '*' + an['fn'] + ' ' + an['ln'] + '*'
 
-        np_object = nm_prob.NameMatcher(name_list=an.name_prob_str.tolist())
+        np_object = nm_prob.NameProbability(name_list=an.name_prob_str.tolist())
 
         np_object.n_name_appearances_dict = an.groupby('name_prob_str').size().rank(pct=True, method='min').round(2).to_dict()
         np_object.n_firstname_appearances_dict = an.groupby('fn').size().rank(pct=True, method='min').round(2).to_dict()
@@ -176,7 +176,7 @@ class GenerateDataRows(NamematchBase):
                 covered_pair                     flag, 1 if blockstring pair passed blocking 0 otherwise
                 <fields for matching> (_1, _2)   both for the matching model and for constraint checking
                 ==============================   =======================================================
-            np_object (nm_prob.NameMatcher object): contains information about name probabilities
+            np_object (nm_prob.NameProbability object): contains information about name probabilities
 
         Returns:
             pd.DataFrame: chunk of the data-rows file
@@ -351,7 +351,7 @@ class GenerateDataRows(NamematchBase):
                 covered_pair             flag; 1 for pairs that made it through blocking, 0 otherwise; all 1s here
                 ======================   =======================================================
 
-            name_probs (nm_prob.NameMatcher object): contains information about name probabilities
+            name_probs (nm_prob.NameProbability object): contains information about name probabilities
             start_ix_worker (int): starting index of the candidate-pairs chunk to read in this thread
             end_ix_worker (int): end index of the candidate-pairs chunk to read in this thread
             dr_file (str): path to data-rows file to write (one for each worker thread)
