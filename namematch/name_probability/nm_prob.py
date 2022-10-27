@@ -22,7 +22,7 @@ class NameProbability():
         self.unique = unique
         self.last_comma_first = last_comma_first
         self.edit_count_max = edit_count_max
-        self.DATA_PATH = 1 #os.path.join(os.path.split(__file__)[0], "data")
+        self.DATA_PATH = 1
         self.memoize = defaultdict(float)
         self.cp_memoize = defaultdict(float)
         self.psp_memoize = defaultdict(float)
@@ -58,8 +58,6 @@ class NameProbability():
             raise Exception('No training data provided. Use either a custom name list or the Social Security data')
 
         if not name_list_provided and use_SS:
-            # import pkg_resources
-            # DATA_PATH = pkg_resources.resource_filename('NameProbability', 'data/ss_data.pkl')
             DATA_PATH = importlib.resources.read_binary(__file__, 'ss_daata.pkl')
             with open(DATA_PATH, 'r') as f:
                 ss_data = pickle.load(f)
