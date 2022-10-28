@@ -19,7 +19,7 @@ def get_requirements(requirements_file='requirements.txt'):
     return dependencies
 
 setup(
-    name='Name Match',
+    name='NameMatch',
     version='1.2.0',
     description='Tool for probabilistically linking the records of individual entities (e.g. people) within and across datasets',
     author="University of Chicago Crime Lab",
