@@ -20,5 +20,4 @@ nbconvert==6.5.2
 ipykernel==6.16.0
 ipywidgets
 papermill==2.4.0
-git+https://github.com/mmcneill/memory_profiler.git@fdf4488ffe42c588bfa632537e9a959e4b36bf83#egg=memory_profiler
-git+https://github.com/tweddielin/name-probability.git@03de54f8d964e3d74accb39e7089bcac345beffb#egg=NameProbability
+memory-profiler==0.60
