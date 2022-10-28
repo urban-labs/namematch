@@ -17,8 +17,8 @@ pip install namematch
 
 ### Reference
 
-* [Examples](examples/)
-* [End-to-end tutorial](examples/end_to_end_tutorial.ipynb)
+* [Examples](https://github.com/urban-labs/namematch/tree/main/examples)
+* [End-to-end tutorial](https://github.com/urban-labs/namematch/blob/main/examples/end_to_end_tutorial.ipynb)
 * [Overview + usage docs](https://urban-labs.github.io/namematch/about.html)
 * [Algorithm docs](https://urban-labs.github.io/namematch/algorithm.html)
 * [Developer docs](https://urban-labs.github.io/namematch/api.html)
