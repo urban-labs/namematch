@@ -105,7 +105,7 @@ class FitModel(NamematchBase):
             os.path.join(self.data_rows_dir, dr_file) for dr_file in os.listdir(self.data_rows_dir)
         ]
 
-    @log_runtime_and_memory
+    #@log_runtime_and_memory
     @profile
     def main(self, **kw):
         '''Train and evaluate random foreset model(s). Depending on the settings, this might involved
@@ -231,7 +231,7 @@ class FitModel(NamematchBase):
                 self.write_line_profile_stats(profile.line_profiler)
 
 
-    @log_runtime_and_memory
+    #@log_runtime_and_memory
     def fit_model(self, df, vars_to_exclude, outcome, weights=None, n_jobs=1, **kw):
         '''Fit random forest model.
 
@@ -460,7 +460,7 @@ class FitModel(NamematchBase):
         return train_df, eval_df, prob_match_train
 
 
-    @log_runtime_and_memory
+    #@log_runtime_and_memory
     def find_valid_training_records(self, an, an_match_criteria):
         '''Identify records that meet the all-names criteria for training data.
 
