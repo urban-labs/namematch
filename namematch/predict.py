@@ -80,8 +80,8 @@ class Predict(NamematchBase):
                 self.output_dir,
                 self.params)
 
-        # if self.enable_lprof:
-        #     self.write_line_profile_stats(profile.line_profiler)
+        if self.enable_lprof:
+            self.write_line_profile_stats(profile.line_profiler)
 
     #@log_runtime_and_memory
     @profile
