@@ -59,7 +59,7 @@ class Predict(NamematchBase):
             os.path.join(self.data_rows_dir, dr_file) for dr_file in os.listdir(self.data_rows_dir)
         ]
 
-    #@log_runtime_and_memory
+    # @log_runtime_and_memory
     def main(self, **kw):
         '''Read in data-rows and predict (in parallel) for each unlabeled pair. Output
         the pairs above the threshold.
@@ -83,7 +83,7 @@ class Predict(NamematchBase):
         if self.enable_lprof:
             self.write_line_profile_stats(profile.line_profiler)
 
-    #@log_runtime_and_memory
+    # @log_runtime_and_memory
     @profile
     def get_potential_edges(self, dr_file, match_models, model_info,
                 output_dir, params, **kw):
@@ -101,7 +101,7 @@ class Predict(NamematchBase):
             import pathlib
             p = pathlib.Path(dr_file)
             thread = p.parts[-1].replace('data_rows_', '').replace('.parquet', '')
-            #thread = dr_file.split('/').replace('data_rows_', '').replace('.parquet', '')
+            # thread = dr_file.split('/').replace('data_rows_', '').replace('.parquet', '')
             output_file = os.path.join(output_dir, f'potential_links_{thread}.parquet')
             
             pf = pq.ParquetFile(p)

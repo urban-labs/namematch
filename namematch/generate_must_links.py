@@ -37,7 +37,7 @@ class GenerateMustLinks(NamematchBase):
             self.must_links
         ]
 
-    #@log_runtime_and_memory
+    # @log_runtime_and_memory
     def main(self, **kw):
         '''Generate the list of must-link pairs using UniqueID and ExistingID info .
 
@@ -109,7 +109,7 @@ class GenerateMustLinks(NamematchBase):
 
         return an[an.has_ml_var == 1]
 
-    #@log_runtime_and_memory
+    # @log_runtime_and_memory
     @profile
     def get_must_links(self, ml_var_df, uid_vars_list, eid_vars_list, **kw):
         '''Expand the list of records with must-link information to pairs of records
