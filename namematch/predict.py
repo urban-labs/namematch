@@ -101,7 +101,6 @@ class Predict(NamematchBase):
             import pathlib
             p = pathlib.Path(dr_file)
             thread = p.parts[-1].replace('data_rows_', '').replace('.parquet', '')
-            # thread = dr_file.split('/').replace('data_rows_', '').replace('.parquet', '')
             output_file = os.path.join(output_dir, f'potential_links_{thread}.parquet')
             
             pf = pq.ParquetFile(p)
