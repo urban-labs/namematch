@@ -81,7 +81,7 @@ class GenerateOutput(NamematchBase):
 
         self.stats_dict['end'] = datetime.now().strftime("%m/%d/%Y, %H:%M:%S")
 
-    @log_runtime_and_memory
+    # @log_runtime_and_memory
     def create_allnames_clusterid_file(self, all_names_file, cluster_assignments, cleaned_col_names, **kw):
         '''Create all-names-with-clusterid dataframe.
 
@@ -114,7 +114,7 @@ class GenerateOutput(NamematchBase):
 
         return all_names
 
-    @log_runtime_and_memory
+    # @log_runtime_and_memory
     def output_clusterid_files(self, data_files, cluster_assignments, output_dir, output_file_uuid=None, **kw):
         '''For each input file, construct a matching output file that has the
         cluster_id column, and write it.

@@ -46,7 +46,7 @@ class ProcessInputData(NamematchBase):
             self.all_names_file
         ]
 
-    @log_runtime_and_memory
+    # @log_runtime_and_memory
     def main(self, **kw):
         '''Follow the instructions in the schema and params objects to build the all-names file from
         the raw input file(s).

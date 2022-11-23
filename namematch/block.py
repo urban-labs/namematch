@@ -81,7 +81,7 @@ class Block(NamematchBase):
             output_files.append(os.path.join(temp_dir, 'uncovered_pairs.csv'))
         return output_files
 
-    @log_runtime_and_memory
+    # @log_runtime_and_memory
     @profile
     def main(self, **kw):
         '''Generate the candidate-pairs list using the blocking scheme outlined in the config.'''
@@ -156,7 +156,7 @@ class Block(NamematchBase):
         if self.enable_lprof:
             self.write_line_profile_stats(profile.line_profiler)
 
-    @log_runtime_and_memory
+    # @log_runtime_and_memory
     @profile
     def split_last_names(self, df, last_name_column, blocking_scheme, **kw):
         '''Expand the processed all-names file to handle double last names (e.g. SAM SMITH-BROWN
@@ -215,7 +215,7 @@ class Block(NamematchBase):
 
         return df
 
-    @log_runtime_and_memory
+    # @log_runtime_and_memory
     @profile
     def convert_all_names_to_blockstring_info(self, an, absval_col, params, **kw):
         '''Create a table with information about blockstrings. If the split_names parameter is True,
@@ -348,7 +348,7 @@ class Block(NamematchBase):
 
         return nn_string_info_to_query, nn_strings_to_query, shingles_to_query
 
-    @log_runtime_and_memory
+    # @log_runtime_and_memory
     @profile
     def generate_shingles_matrix(
             self,
@@ -402,7 +402,7 @@ class Block(NamematchBase):
 
         return shingles_matrix
 
-    @log_runtime_and_memory
+    # @log_runtime_and_memory
     @profile
     def load_main_index(self, index_file, **kw):
         '''Load the main index, which is reusable over time as data is added incrementally.
@@ -419,7 +419,7 @@ class Block(NamematchBase):
 
         return ix
 
-    @log_runtime_and_memory
+    # @log_runtime_and_memory
     def generate_index(
             self,
             nn_strings,
@@ -462,7 +462,7 @@ class Block(NamematchBase):
 
         return ix
 
-    @log_runtime_and_memory
+    # @log_runtime_and_memory
     @profile
     def get_indices(self, params, all_nn_strings, og_blocking_index_file, **kw):
         '''Wrapper function coordinating the creation and/or loading of the nmslib indices.
@@ -531,7 +531,7 @@ class Block(NamematchBase):
 
         return main_index, main_index_nn_strings, second_index, second_index_nn_strings
 
-    @log_runtime_and_memory
+    # @log_runtime_and_memory
     @profile
     def generate_candidate_pairs(
         self,
@@ -685,7 +685,7 @@ class Block(NamematchBase):
 
         return cand_pair_df
 
-    @log_runtime_and_memory
+    # @log_runtime_and_memory
     def compute_cosine_sim(self, blockstrings_in_pairs, pairs_df, shingles_matrix, **kw):
         '''Fast cosine similarity computation using the shingles matrix.
 
@@ -736,7 +736,7 @@ class Block(NamematchBase):
 
         return pair_cos
 
-    @log_runtime_and_memory
+    # @log_runtime_and_memory
     @profile
     def evaluate_blocking(self, cp_df, tp_df, blocking_scheme, **kw):
         '''The evaluate_blocking function computes the pair completeness metrics to

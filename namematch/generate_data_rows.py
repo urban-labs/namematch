@@ -44,7 +44,7 @@ class GenerateDataRows(NamematchBase):
     def output_files(self):
         return [os.path.join(self.output_dir, f'data_rows_{i}.parquet') for i in range(self.params.num_workers)]
 
-    @log_runtime_and_memory
+    # @log_runtime_and_memory
     def main(self, **kw):
         '''Take candidate pairs and merge on the all-names records (twice) to get a dataset at the
         record pair level. Compute distance metrics between the records in the pair -- these are the
@@ -117,7 +117,7 @@ class GenerateDataRows(NamematchBase):
         if self.enable_lprof:
             self.write_line_profile_stats(profile.line_profiler)
 
-    @log_runtime_and_memory
+    # @log_runtime_and_memory
     def generate_name_probabilities_object(self, an, fn_col=None, ln_col=None, **kw):
         '''The generate_name_probabilites function uses a list of names (from all_names
         file) and creates an object containing queryable probability
@@ -147,7 +147,7 @@ class GenerateDataRows(NamematchBase):
 
         return np_object
 
-    @log_runtime_and_memory
+    # @log_runtime_and_memory
     def find_valid_training_records(self, an, an_match_criteria, **kw):
 
         an['meets_match_criteria'] = 1
@@ -320,7 +320,7 @@ class GenerateDataRows(NamematchBase):
 
         return data_rows_df
 
-    @log_runtime_and_memory
+    # @log_runtime_and_memory
     @profile
     def generate_data_row_files(
                 self, params, schema, an, cp_df, name_probs,
