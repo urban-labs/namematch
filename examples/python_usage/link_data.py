@@ -103,12 +103,15 @@ config_dict = {
 
 }
 
-# Instantiate NameMatcher objet
-nm = NameMatcher(
-    config=config_dict
-)
 
-# Run Name Match
-nm.run()
+if __name__ == "__main__":
 
-# Once the process completes, the output will be in the output/ directory
+    # Instantiate NameMatcher objet
+    nm = NameMatcher(
+        config=config_dict
+    )
+
+    # Run Name Match
+    nm.run()
+
+    # Once the process completes, the output will be in the output/ directory
