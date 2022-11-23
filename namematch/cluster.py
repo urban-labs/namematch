@@ -122,7 +122,7 @@ class Cluster(NamematchBase):
     def output_files(self):
         return [self.cluster_assignments, self.edges]
 
-    @log_runtime_and_memory
+    # @log_runtime_and_memory
     @profile
     def main(self, **kw):
         '''Read the record pairs with high probability of matching and connect them in a way
@@ -322,7 +322,7 @@ class Cluster(NamematchBase):
 
         return True
 
-    @log_runtime_and_memory
+    # @log_runtime_and_memory
     @profile
     def get_initial_clusters(self, must_links_df, an_df, eid_col, **kw):
         '''Use must links (ground truth and/or a previous run) to create the
@@ -427,12 +427,12 @@ class Cluster(NamematchBase):
         gc.collect()
         return clusters, cluster_assignments, original_cluster_ids
 
-    @log_runtime_and_memory
+    # @log_runtime_and_memory
     def save_df_to_disk(self, df):
         table = pa.Table.from_pandas(df)
         pq.write_table(table, self.edges)
 
-    @log_runtime_and_memory
+    # @log_runtime_and_memory
     @profile
     def get_potential_edges(self, potential_edges_files, flipped0_edges_file, gt_1s_df, cluster_logic, cluster_info, uid_cols, eid_col, **kw):
         '''
@@ -530,7 +530,7 @@ class Cluster(NamematchBase):
         del valid_potential_edges_df
         gc.collect()
 
-    @log_runtime_and_memory
+    # @log_runtime_and_memory
     @profile
     def load_cluster_info(self, all_names_file, uid_cols, eid_col, cluster_logic, **kw):
         '''Read in the all_names information needed for cluster constraint checking. Columns
@@ -601,12 +601,12 @@ class Cluster(NamematchBase):
             cluster_info[col] = cluster_info[col].replace('', np.nan)
         return cluster_info
 
-    @log_runtime_and_memory
+    # @log_runtime_and_memory
     def get_ci_ix_map(self, cluster_info):
         ci_ix_map = dict(zip(cluster_info.index.tolist(), range(len(cluster_info))))
         return ci_ix_map
 
-    @log_runtime_and_memory
+    # @log_runtime_and_memory
     @profile
     def cluster_potential_edges(self, clusters, cluster_assignments, original_cluster_ids,
                 cluster_info, cluster_logic, uid_cols, eid_col, **kw):

@@ -15,6 +15,9 @@ Project Link: https://urban-labs.github.io/namematch/
 pip install namematch 
 ```
 
+Name Match has been tested using Python 3.7 and 3.8, on both linux and Windows systems. Note, Name Match will not currently work using Python 3.9 on Windows because of the dependency on NMSLIB.
+
+
 ### Reference
 
 * [Examples](https://github.com/urban-labs/namematch/tree/main/examples)
