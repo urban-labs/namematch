@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>namematch.generate_output &mdash; namematch 0.0.1 documentation</title>
+  <title>namematch.generate_output &mdash; namematch 1.2.1 documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -13,9 +13,7 @@
         <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
         <script src="../../_static/jquery.js"></script>
         <script src="../../_static/underscore.js"></script>
-        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../../_static/doctools.js"></script>
-        <script src="../../_static/sphinx_highlight.js"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="author" title="About these documents" href="../../about.html" />
     <link rel="index" title="Index" href="../../genindex.html" />
@@ -153,8 +151,8 @@
 
         <span class="bp">self</span><span class="o">.</span><span class="n">stats_dict</span><span class="p">[</span><span class="s1">&#39;end&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s2">&quot;%m/</span><span class="si">%d</span><span class="s2">/%Y, %H:%M:%S&quot;</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="GenerateOutput.create_allnames_clusterid_file"><a class="viewcode-back" href="../../api.html#namematch.generate_output.GenerateOutput.create_allnames_clusterid_file">[docs]</a>    <span class="nd">@log_runtime_and_memory</span>
-    <span class="k">def</span> <span class="nf">create_allnames_clusterid_file</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">all_names_file</span><span class="p">,</span> <span class="n">cluster_assignments</span><span class="p">,</span> <span class="n">cleaned_col_names</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">):</span>
+    <span class="c1"># @log_runtime_and_memory</span>
+<div class="viewcode-block" id="GenerateOutput.create_allnames_clusterid_file"><a class="viewcode-back" href="../../api.html#namematch.generate_output.GenerateOutput.create_allnames_clusterid_file">[docs]</a>    <span class="k">def</span> <span class="nf">create_allnames_clusterid_file</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">all_names_file</span><span class="p">,</span> <span class="n">cluster_assignments</span><span class="p">,</span> <span class="n">cleaned_col_names</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">):</span>
         <span class="sd">&#39;&#39;&#39;Create all-names-with-clusterid dataframe.</span>
 
 <span class="sd">        Args:</span>
@@ -186,8 +184,8 @@
 
         <span class="k">return</span> <span class="n">all_names</span></div>
 
-<div class="viewcode-block" id="GenerateOutput.output_clusterid_files"><a class="viewcode-back" href="../../api.html#namematch.generate_output.GenerateOutput.output_clusterid_files">[docs]</a>    <span class="nd">@log_runtime_and_memory</span>
-    <span class="k">def</span> <span class="nf">output_clusterid_files</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data_files</span><span class="p">,</span> <span class="n">cluster_assignments</span><span class="p">,</span> <span class="n">output_dir</span><span class="p">,</span> <span class="n">output_file_uuid</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">):</span>
+    <span class="c1"># @log_runtime_and_memory</span>
+<div class="viewcode-block" id="GenerateOutput.output_clusterid_files"><a class="viewcode-back" href="../../api.html#namematch.generate_output.GenerateOutput.output_clusterid_files">[docs]</a>    <span class="k">def</span> <span class="nf">output_clusterid_files</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data_files</span><span class="p">,</span> <span class="n">cluster_assignments</span><span class="p">,</span> <span class="n">output_dir</span><span class="p">,</span> <span class="n">output_file_uuid</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">):</span>
         <span class="sd">&#39;&#39;&#39;For each input file, construct a matching output file that has the</span>
 <span class="sd">        cluster_id column, and write it.</span>
 
@@ -251,7 +249,7 @@
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2021, Melissa McNeill, Eddie Lin, Zubin Jelveh.</p>
+    <p>&#169; Copyright 2022, Melissa McNeill, Eddie Tzu-Yun Lin, Zubin Jelveh.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

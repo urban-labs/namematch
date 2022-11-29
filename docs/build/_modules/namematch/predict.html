@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>namematch.predict &mdash; namematch 0.0.1 documentation</title>
+  <title>namematch.predict &mdash; namematch 1.2.1 documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -13,9 +13,7 @@
         <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
         <script src="../../_static/jquery.js"></script>
         <script src="../../_static/underscore.js"></script>
-        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../../_static/doctools.js"></script>
-        <script src="../../_static/sphinx_highlight.js"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="author" title="About these documents" href="../../about.html" />
     <link rel="index" title="Index" href="../../genindex.html" />
@@ -131,8 +129,8 @@
             <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data_rows_dir</span><span class="p">,</span> <span class="n">dr_file</span><span class="p">)</span> <span class="k">for</span> <span class="n">dr_file</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data_rows_dir</span><span class="p">)</span>
         <span class="p">]</span>
 
-<div class="viewcode-block" id="Predict.main"><a class="viewcode-back" href="../../api.html#namematch.predict.Predict.main">[docs]</a>    <span class="nd">@log_runtime_and_memory</span>
-    <span class="k">def</span> <span class="nf">main</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">):</span>
+    <span class="c1"># @log_runtime_and_memory</span>
+<div class="viewcode-block" id="Predict.main"><a class="viewcode-back" href="../../api.html#namematch.predict.Predict.main">[docs]</a>    <span class="k">def</span> <span class="nf">main</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">):</span>
         <span class="sd">&#39;&#39;&#39;Read in data-rows and predict (in parallel) for each unlabeled pair. Output</span>
 <span class="sd">        the pairs above the threshold.</span>
 <span class="sd">        &#39;&#39;&#39;</span>
@@ -155,8 +153,8 @@
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">enable_lprof</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">write_line_profile_stats</span><span class="p">(</span><span class="n">profile</span><span class="o">.</span><span class="n">line_profiler</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="Predict.get_potential_edges"><a class="viewcode-back" href="../../api.html#namematch.predict.Predict.get_potential_edges">[docs]</a>    <span class="nd">@log_runtime_and_memory</span>
-    <span class="nd">@profile</span>
+    <span class="c1"># @log_runtime_and_memory</span>
+<div class="viewcode-block" id="Predict.get_potential_edges"><a class="viewcode-back" href="../../api.html#namematch.predict.Predict.get_potential_edges">[docs]</a>    <span class="nd">@profile</span>
     <span class="k">def</span> <span class="nf">get_potential_edges</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dr_file</span><span class="p">,</span> <span class="n">match_models</span><span class="p">,</span> <span class="n">model_info</span><span class="p">,</span>
                 <span class="n">output_dir</span><span class="p">,</span> <span class="n">params</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">):</span>
         <span class="sd">&#39;&#39;&#39;Read in data rows in chunks and predict as needed. Write (append)</span>
@@ -170,14 +168,15 @@
 <span class="sd">            params (Parameters obj):  contains parameter values (i.e. use_uncovered_phats)</span>
 <span class="sd">        &#39;&#39;&#39;</span>
         <span class="k">try</span><span class="p">:</span>
-            <span class="n">thread</span> <span class="o">=</span> <span class="n">dr_file</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;data_rows_&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;.parquet&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
+            <span class="kn">import</span> <span class="nn">pathlib</span>
+            <span class="n">p</span> <span class="o">=</span> <span class="n">pathlib</span><span class="o">.</span><span class="n">Path</span><span class="p">(</span><span class="n">dr_file</span><span class="p">)</span>
+            <span class="n">thread</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">parts</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;data_rows_&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;.parquet&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
             <span class="n">output_file</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">output_dir</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;potential_links_</span><span class="si">{</span><span class="n">thread</span><span class="si">}</span><span class="s1">.parquet&#39;</span><span class="p">)</span>
-
-            <span class="n">pf</span> <span class="o">=</span> <span class="n">pq</span><span class="o">.</span><span class="n">ParquetFile</span><span class="p">(</span><span class="n">dr_file</span><span class="p">)</span>
+            
+            <span class="n">pf</span> <span class="o">=</span> <span class="n">pq</span><span class="o">.</span><span class="n">ParquetFile</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
             <span class="n">batch_size</span> <span class="o">=</span> <span class="n">params</span><span class="o">.</span><span class="n">predict_batch_size</span>
             <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;batch size: </span><span class="si">{</span><span class="n">batch_size</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
             <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">pq_df</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">pf</span><span class="o">.</span><span class="n">iter_batches</span><span class="p">(</span><span class="n">batch_size</span><span class="o">=</span><span class="n">batch_size</span><span class="p">)):</span>
-
                 <span class="n">df</span> <span class="o">=</span> <span class="n">pq_df</span><span class="o">.</span><span class="n">to_pandas</span><span class="p">()</span>
                 <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="o">.</span><span class="n">labeled_data</span> <span class="o">==</span> <span class="mi">0</span><span class="p">]</span>
 
@@ -198,21 +197,18 @@
                     <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="o">.</span><span class="n">covered_pair</span> <span class="o">==</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;potential_edge&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
 
                 <span class="n">table</span> <span class="o">=</span> <span class="n">pa</span><span class="o">.</span><span class="n">Table</span><span class="o">.</span><span class="n">from_pandas</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
-
                 <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
                     <span class="n">pqwriter</span> <span class="o">=</span> <span class="n">pq</span><span class="o">.</span><span class="n">ParquetWriter</span><span class="p">(</span><span class="n">output_file</span><span class="p">,</span> <span class="n">table</span><span class="o">.</span><span class="n">schema</span><span class="p">)</span>
                     <span class="n">parquet_schema</span> <span class="o">=</span> <span class="n">table</span><span class="o">.</span><span class="n">schema</span>
-
                 <span class="k">if</span> <span class="ow">not</span> <span class="n">df</span><span class="o">.</span><span class="n">empty</span><span class="p">:</span>
                     <span class="n">pqwriter</span><span class="o">.</span><span class="n">write_table</span><span class="p">(</span><span class="n">table</span><span class="p">)</span>
-
             <span class="k">if</span> <span class="n">pqwriter</span><span class="p">:</span>
                 <span class="n">pqwriter</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
-
         <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-            <span class="n">os</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">dr_file</span><span class="p">)</span>
-            <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">dr_file</span><span class="si">}</span><span class="s2"> failed.&quot;</span><span class="p">)</span>
+            <span class="n">os</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">p</span><span class="si">}</span><span class="s2"> failed.&quot;</span><span class="p">)</span>
             <span class="k">raise</span> <span class="n">e</span></div>
+            
 
 <div class="viewcode-block" id="Predict.get_potential_edges_in_parallel"><a class="viewcode-back" href="../../api.html#namematch.predict.Predict.get_potential_edges_in_parallel">[docs]</a>    <span class="k">def</span> <span class="nf">get_potential_edges_in_parallel</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">match_models</span><span class="p">,</span> <span class="n">model_info</span><span class="p">,</span> <span class="n">output_dir</span><span class="p">,</span> <span class="n">params</span><span class="p">):</span>
         <span class="sd">&#39;&#39;&#39;Dispatch the worker threads that will predict for unlabeled pairs in paralle.</span>
@@ -223,7 +219,7 @@
 <span class="sd">            output_dir</span>
 <span class="sd">            params (Parameters object): contains parameter values</span>
 <span class="sd">        &#39;&#39;&#39;</span>
-
+        
         <span class="k">if</span> <span class="n">params</span><span class="o">.</span><span class="n">parallelize</span><span class="p">:</span>
 
             <span class="n">jobs</span> <span class="o">=</span> <span class="p">[</span>
@@ -317,7 +313,7 @@
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2021, Melissa McNeill, Eddie Lin, Zubin Jelveh.</p>
+    <p>&#169; Copyright 2022, Melissa McNeill, Eddie Tzu-Yun Lin, Zubin Jelveh.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
