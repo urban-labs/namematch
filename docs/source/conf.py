@@ -22,7 +22,7 @@ copyright = '2022, Melissa McNeill, Eddie Tzu-Yun Lin, Zubin Jelveh'
 author = 'Melissa McNeill, Eddie Tzu-Yun Lin, Zubin Jelveh'
 
 # The full version, including alpha/beta/rc tags
-release = '1.2.0'
+release = '1.2.1'
 
 # append the __init__ to class definitions
 autoclass_content = 'both'

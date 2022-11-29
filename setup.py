@@ -27,7 +27,7 @@ def get_requirements(requirements_file='requirements.txt'):
 
 setup(
     name='namematch',
-    version='1.2.0',
+    version='1.2.1',
     description='Tool for probabilistically linking the records of individual entities (e.g. people) within and across datasets',
     long_description=README_PATH.read_text(),
     long_description_content_type="text/markdown",
