@@ -58,23 +58,22 @@ class GenerateMustLinks(NamematchBase):
 
         # get records with non-missing unique identifiers
         ml_var_df = self.build_ml_var_df(
-                self.all_names_file, uid_vars_list, eid_vars_list)
+                self.all_names_file, uid_vars_list)
 
         # get the "must-link" record pairs
         must_links_df = self.get_must_links(
                 ml_var_df, uid_vars_list, eid_vars_list)
 
         # true record pairs
-        must_links_df.to_csv(
+        must_links_df.to_parquet(
             self.must_links,
-            index=False,
-            quoting=csv.QUOTE_NONNUMERIC
+            index=False
         )
 
         if self.enable_lprof:
             self.write_line_profile_stats(profile.line_profiler)
 
-    def build_ml_var_df(self, all_names_file, uid_vars_list, eid_vars_list, **kw):
+    def build_ml_var_df(self, all_names_file, uid_vars_list, **kw):
         '''Load the all-names file and limit it to the rows that have either
         a non-missing UniqueID or ExistingID value.
 
@@ -89,25 +88,28 @@ class GenerateMustLinks(NamematchBase):
             ======================   =======================================================
             record_id                unique record identifier
             blockstring              concatenation of all the blocking variables (sep by ::)
-            file_type                either "new" or "existing"
             drop_from_nm             flag, 1 if met any "to drop" criteria 0 otherwise
+            new_record               either True or False
             <UniqueID column(s)>     variables of compare_type UniqueID
             <ExistingID column(s)>   variables of compare_type ExistingID
             has_ml_var               flag, always 1 in output (ml stands for must-link)
             ======================   =======================================================
         '''
 
-        cols = ['record_id', 'blockstring', 'drop_from_nm',
-                'file_type'] + uid_vars_list + eid_vars_list
+        cols = ['record_id', 'blockstring',  'drop_from_nm', 'file_type'] + uid_vars_list
 
         table = pq.read_table(all_names_file)
         an = table.to_pandas()[cols]
 
-        an['has_ml_var'] = 0
-        for ml_var in (uid_vars_list + eid_vars_list):
-            an.loc[an[ml_var] != '', 'has_ml_var'] = 1
+        an['new_record'] = an.file_type == 'new'
 
-        return an[an.has_ml_var == 1]
+        an['has_ml_var'] = False
+        for ml_var in uid_vars_list:
+            an.loc[an[ml_var] != '', 'has_ml_var'] = True
+
+        an = an[an.has_ml_var == True].drop(columns=['has_ml_var', 'file_type'])
+
+        return an
 
     # @log_runtime_and_memory
     @profile
@@ -120,8 +122,8 @@ class GenerateMustLinks(NamematchBase):
                 ======================   =======================================================
                 record_id                unique record identifier
                 blockstring              concatenation of all the blocking variables (sep by ::)
-                file_type                either "new" or "existing"
                 drop_from_nm             flag, 1 if met any "to drop" criteria 0 otherwise
+                new_record               either True or False
                 <UniqueID column(s)>     variables of compare_type UniqueID
                 <ExistingID column(s)>   variables of compare_type ExistingID
                 has_ml_var               flag, always 1 in output (ml stands for must-link)
@@ -138,9 +140,8 @@ class GenerateMustLinks(NamematchBase):
             record_id_2           unique identifier for the second record in the pair
             blockstring_1         blockstring for the first record in the pair
             blockstring_2         blockstring for the second record in the pair
-            drop_from_nm_1        flag, 1 if the first record in the pair was not eligible for matching
-            drop_from_nm_2        flag, 1 if the second record in the pair was not eligible for matching
-            existing              flag, 1 if the pair is must-link because of ExistingID
+            drop_from_nm_1        flag, True if the first record in the pair was not eligible for matching
+            drop_from_nm_2        flag, True if the second record in the pair was not eligible for matching
             ===================   =======================================================
         '''
 
@@ -148,7 +149,9 @@ class GenerateMustLinks(NamematchBase):
 
         # for each UniqueID variable, merge the data frame on itself to get must-links
         must_link_df_list = []
-        for ml_var in (uid_vars_list + eid_vars_list):
+        for ml_var in uid_vars_list:
+
+            logger.info(f"Getting must-link pairs from {ml_var}...")
 
             # warn if any uids are used more than n times (might be
             # sign of misspecified missing uid)
@@ -161,10 +164,13 @@ class GenerateMustLinks(NamematchBase):
                                    f"getting coded as values.")
                     logger.info(uid_counts_high)
                 if uid_counts.max() > 1000:
+                    logger.error("There are uids with more than 1000 records")
                     raise()
 
+            ml_var_nonmissing_ix = ml_var_df[ml_var] != ''
             must_link_df = pd.merge(
-                    ml_var_df[ml_var_df[ml_var] != ''], ml_var_df,
+                    ml_var_df.loc[ml_var_nonmissing_ix],
+                    ml_var_df.loc[ml_var_nonmissing_ix],
                     on=ml_var, suffixes=['_1', '_2'])
 
             must_link_df = must_link_df[
@@ -172,26 +178,20 @@ class GenerateMustLinks(NamematchBase):
                     ((must_link_df.blockstring_1 == must_link_df.blockstring_2) &
                      (must_link_df.record_id_1 < must_link_df.record_id_2))]
 
-            must_link_df['existing'] = 0
-
             # tweak for incremental matching
             if len(eid_vars_list) > 0:
                 if ml_var in uid_vars_list:
                     must_link_df = must_link_df[
-                            (must_link_df.file_type_1 == 'new') |
-                            (must_link_df.file_type_2 == 'new')]
-                else:
-                    must_link_df['existing'] = 1
+                            (must_link_df.new_record_1 == 1) |
+                            (must_link_df.new_record_2 == 1)]
 
-            must_link_df = must_link_df[
-                    ['record_id_1', 'record_id_2', 'blockstring_1', 'blockstring_2',
-                    'drop_from_nm_1', 'drop_from_nm_2', 'existing']]
+            must_link_df = must_link_df[[
+                    'record_id_1', 'record_id_2', 'blockstring_1', 'blockstring_2',
+                    'drop_from_nm_1', 'drop_from_nm_2']]
 
             must_link_df_list.append(must_link_df.copy())
 
         must_link_df = pd.concat(must_link_df_list)
-        must_link_df = must_link_df.sort_values(['existing'], ascending=[False])
-        # NOTE: existing == 1 takes priority over existing == 0
 
         # remove duplicates (would occur if records match on multiple Unique IDs)
         len_pre_drop_duplicates = len(must_link_df)
@@ -202,4 +202,3 @@ class GenerateMustLinks(NamematchBase):
                          f'duplicate ground truth rows')
 
         return must_link_df
-
