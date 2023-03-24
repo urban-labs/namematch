@@ -49,7 +49,7 @@ class GenerateReport(NamematchBase):
             html_exporter.exclude_input_prompt = True
             html_exporter.exclude_output_prompt = True
             html_data, resources = html_exporter.from_filename(temp_output_notebook)
-            with open(self.report_file, 'w') as f:
+            with open(self.report_file, 'w', encoding='utf-8', errors='ignore') as f:
                 f.write(html_data)
 
             logger.info(f"The matching report is created at {self.report_file}")

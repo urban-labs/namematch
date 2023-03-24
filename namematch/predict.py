@@ -59,7 +59,7 @@ class Predict(NamematchBase):
             os.path.join(self.data_rows_dir, dr_file) for dr_file in os.listdir(self.data_rows_dir)
         ]
 
-    @log_runtime_and_memory
+    # @log_runtime_and_memory
     def main(self, **kw):
         '''Read in data-rows and predict (in parallel) for each unlabeled pair. Output
         the pairs above the threshold.
@@ -83,7 +83,7 @@ class Predict(NamematchBase):
         if self.enable_lprof:
             self.write_line_profile_stats(profile.line_profiler)
 
-    @log_runtime_and_memory
+    # @log_runtime_and_memory
     @profile
     def get_potential_edges(self, dr_file, match_models, model_info,
                 output_dir, params, **kw):
@@ -98,14 +98,15 @@ class Predict(NamematchBase):
             params (Parameters obj):  contains parameter values (i.e. use_uncovered_phats)
         '''
         try:
-            thread = dr_file.split('/')[-1].replace('data_rows_', '').replace('.parquet', '')
+            import pathlib
+            p = pathlib.Path(dr_file)
+            thread = p.parts[-1].replace('data_rows_', '').replace('.parquet', '')
             output_file = os.path.join(output_dir, f'potential_links_{thread}.parquet')
-
-            pf = pq.ParquetFile(dr_file)
+            
+            pf = pq.ParquetFile(p)
             batch_size = params.predict_batch_size
             logger.debug(f"batch size: {batch_size}")
             for i, pq_df in enumerate(pf.iter_batches(batch_size=batch_size)):
-
                 df = pq_df.to_pandas()
                 df = df[df.labeled_data == 0]
 
@@ -126,21 +127,18 @@ class Predict(NamematchBase):
                     df.loc[df.covered_pair == 0, 'potential_edge'] = 0
 
                 table = pa.Table.from_pandas(df)
-
                 if i == 0:
                     pqwriter = pq.ParquetWriter(output_file, table.schema)
                     parquet_schema = table.schema
-
                 if not df.empty:
                     pqwriter.write_table(table)
-
             if pqwriter:
                 pqwriter.close()
-
         except Exception as e:
-            os.remove(dr_file)
-            logger.error(f"{dr_file} failed.")
+            os.remove(p)
+            logger.error(f"{p} failed.")
             raise e
+            
 
     def get_potential_edges_in_parallel(self, match_models, model_info, output_dir, params):
         '''Dispatch the worker threads that will predict for unlabeled pairs in paralle.
@@ -151,7 +149,7 @@ class Predict(NamematchBase):
             output_dir
             params (Parameters object): contains parameter values
         '''
-
+        
         if params.parallelize:
 
             jobs = [

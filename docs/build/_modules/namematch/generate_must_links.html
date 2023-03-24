@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>namematch.generate_must_links &mdash; namematch 0.0.1 documentation</title>
+  <title>namematch.generate_must_links &mdash; namematch 1.2.1 documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -13,9 +13,7 @@
         <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
         <script src="../../_static/jquery.js"></script>
         <script src="../../_static/underscore.js"></script>
-        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../../_static/doctools.js"></script>
-        <script src="../../_static/sphinx_highlight.js"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="author" title="About these documents" href="../../about.html" />
     <link rel="index" title="Index" href="../../genindex.html" />
@@ -109,8 +107,8 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">must_links</span>
         <span class="p">]</span>
 
-<div class="viewcode-block" id="GenerateMustLinks.main"><a class="viewcode-back" href="../../api.html#namematch.generate_must_links.GenerateMustLinks.main">[docs]</a>    <span class="nd">@log_runtime_and_memory</span>
-    <span class="k">def</span> <span class="nf">main</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">):</span>
+    <span class="c1"># @log_runtime_and_memory</span>
+<div class="viewcode-block" id="GenerateMustLinks.main"><a class="viewcode-back" href="../../api.html#namematch.generate_must_links.GenerateMustLinks.main">[docs]</a>    <span class="k">def</span> <span class="nf">main</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">):</span>
         <span class="sd">&#39;&#39;&#39;Generate the list of must-link pairs using UniqueID and ExistingID info .</span>
 
 <span class="sd">        Args:</span>
@@ -181,8 +179,8 @@
 
         <span class="k">return</span> <span class="n">an</span><span class="p">[</span><span class="n">an</span><span class="o">.</span><span class="n">has_ml_var</span> <span class="o">==</span> <span class="mi">1</span><span class="p">]</span></div>
 
-<div class="viewcode-block" id="GenerateMustLinks.get_must_links"><a class="viewcode-back" href="../../api.html#namematch.generate_must_links.GenerateMustLinks.get_must_links">[docs]</a>    <span class="nd">@log_runtime_and_memory</span>
-    <span class="nd">@profile</span>
+    <span class="c1"># @log_runtime_and_memory</span>
+<div class="viewcode-block" id="GenerateMustLinks.get_must_links"><a class="viewcode-back" href="../../api.html#namematch.generate_must_links.GenerateMustLinks.get_must_links">[docs]</a>    <span class="nd">@profile</span>
     <span class="k">def</span> <span class="nf">get_must_links</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ml_var_df</span><span class="p">,</span> <span class="n">uid_vars_list</span><span class="p">,</span> <span class="n">eid_vars_list</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">):</span>
         <span class="sd">&#39;&#39;&#39;Expand the list of records with must-link information to pairs of records</span>
 <span class="sd">        that must be linked togehter in the final match.</span>
@@ -284,7 +282,7 @@
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2021, Melissa McNeill, Eddie Lin, Zubin Jelveh.</p>
+    <p>&#169; Copyright 2022, Melissa McNeill, Eddie Tzu-Yun Lin, Zubin Jelveh.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

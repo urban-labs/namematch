@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>namematch.cluster &mdash; namematch 0.0.1 documentation</title>
+  <title>namematch.cluster &mdash; namematch 1.2.1 documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -13,9 +13,7 @@
         <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
         <script src="../../_static/jquery.js"></script>
         <script src="../../_static/underscore.js"></script>
-        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../../_static/doctools.js"></script>
-        <script src="../../_static/sphinx_highlight.js"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="author" title="About these documents" href="../../about.html" />
     <link rel="index" title="Index" href="../../genindex.html" />
@@ -194,8 +192,8 @@
     <span class="k">def</span> <span class="nf">output_files</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">cluster_assignments</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">edges</span><span class="p">]</span>
 
-<div class="viewcode-block" id="Cluster.main"><a class="viewcode-back" href="../../api.html#namematch.cluster.Cluster.main">[docs]</a>    <span class="nd">@log_runtime_and_memory</span>
-    <span class="nd">@profile</span>
+    <span class="c1"># @log_runtime_and_memory</span>
+<div class="viewcode-block" id="Cluster.main"><a class="viewcode-back" href="../../api.html#namematch.cluster.Cluster.main">[docs]</a>    <span class="nd">@profile</span>
     <span class="k">def</span> <span class="nf">main</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">):</span>
         <span class="sd">&#39;&#39;&#39;Read the record pairs with high probability of matching and connect them in a way</span>
 <span class="sd">        that doesn&#39;t violate any logic constraints to form clusters.</span>
@@ -394,8 +392,8 @@
 
         <span class="k">return</span> <span class="kc">True</span></div>
 
-<div class="viewcode-block" id="Cluster.get_initial_clusters"><a class="viewcode-back" href="../../api.html#namematch.cluster.Cluster.get_initial_clusters">[docs]</a>    <span class="nd">@log_runtime_and_memory</span>
-    <span class="nd">@profile</span>
+    <span class="c1"># @log_runtime_and_memory</span>
+<div class="viewcode-block" id="Cluster.get_initial_clusters"><a class="viewcode-back" href="../../api.html#namematch.cluster.Cluster.get_initial_clusters">[docs]</a>    <span class="nd">@profile</span>
     <span class="k">def</span> <span class="nf">get_initial_clusters</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">must_links_df</span><span class="p">,</span> <span class="n">an_df</span><span class="p">,</span> <span class="n">eid_col</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">):</span>
         <span class="sd">&#39;&#39;&#39;Use must links (ground truth and/or a previous run) to create the</span>
 <span class="sd">        starting clusters.</span>
@@ -499,13 +497,13 @@
         <span class="n">gc</span><span class="o">.</span><span class="n">collect</span><span class="p">()</span>
         <span class="k">return</span> <span class="n">clusters</span><span class="p">,</span> <span class="n">cluster_assignments</span><span class="p">,</span> <span class="n">original_cluster_ids</span></div>
 
-<div class="viewcode-block" id="Cluster.save_df_to_disk"><a class="viewcode-back" href="../../api.html#namematch.cluster.Cluster.save_df_to_disk">[docs]</a>    <span class="nd">@log_runtime_and_memory</span>
-    <span class="k">def</span> <span class="nf">save_df_to_disk</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">df</span><span class="p">):</span>
+    <span class="c1"># @log_runtime_and_memory</span>
+<div class="viewcode-block" id="Cluster.save_df_to_disk"><a class="viewcode-back" href="../../api.html#namematch.cluster.Cluster.save_df_to_disk">[docs]</a>    <span class="k">def</span> <span class="nf">save_df_to_disk</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">df</span><span class="p">):</span>
         <span class="n">table</span> <span class="o">=</span> <span class="n">pa</span><span class="o">.</span><span class="n">Table</span><span class="o">.</span><span class="n">from_pandas</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
         <span class="n">pq</span><span class="o">.</span><span class="n">write_table</span><span class="p">(</span><span class="n">table</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">edges</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="Cluster.get_potential_edges"><a class="viewcode-back" href="../../api.html#namematch.cluster.Cluster.get_potential_edges">[docs]</a>    <span class="nd">@log_runtime_and_memory</span>
-    <span class="nd">@profile</span>
+    <span class="c1"># @log_runtime_and_memory</span>
+<div class="viewcode-block" id="Cluster.get_potential_edges"><a class="viewcode-back" href="../../api.html#namematch.cluster.Cluster.get_potential_edges">[docs]</a>    <span class="nd">@profile</span>
     <span class="k">def</span> <span class="nf">get_potential_edges</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">potential_edges_files</span><span class="p">,</span> <span class="n">flipped0_edges_file</span><span class="p">,</span> <span class="n">gt_1s_df</span><span class="p">,</span> <span class="n">cluster_logic</span><span class="p">,</span> <span class="n">cluster_info</span><span class="p">,</span> <span class="n">uid_cols</span><span class="p">,</span> <span class="n">eid_col</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">):</span>
         <span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">        Use all predictions file to make a list of edges that the constrained</span>
@@ -602,8 +600,8 @@
         <span class="k">del</span> <span class="n">valid_potential_edges_df</span>
         <span class="n">gc</span><span class="o">.</span><span class="n">collect</span><span class="p">()</span></div>
 
-<div class="viewcode-block" id="Cluster.load_cluster_info"><a class="viewcode-back" href="../../api.html#namematch.cluster.Cluster.load_cluster_info">[docs]</a>    <span class="nd">@log_runtime_and_memory</span>
-    <span class="nd">@profile</span>
+    <span class="c1"># @log_runtime_and_memory</span>
+<div class="viewcode-block" id="Cluster.load_cluster_info"><a class="viewcode-back" href="../../api.html#namematch.cluster.Cluster.load_cluster_info">[docs]</a>    <span class="nd">@profile</span>
     <span class="k">def</span> <span class="nf">load_cluster_info</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">all_names_file</span><span class="p">,</span> <span class="n">uid_cols</span><span class="p">,</span> <span class="n">eid_col</span><span class="p">,</span> <span class="n">cluster_logic</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">):</span>
         <span class="sd">&#39;&#39;&#39;Read in the all_names information needed for cluster constraint checking. Columns</span>
 <span class="sd">        defined in the config as compare type UniqueID or ExistingID will automatically be loaded</span>
@@ -673,13 +671,13 @@
             <span class="n">cluster_info</span><span class="p">[</span><span class="n">col</span><span class="p">]</span> <span class="o">=</span> <span class="n">cluster_info</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">cluster_info</span></div>
 
-<div class="viewcode-block" id="Cluster.get_ci_ix_map"><a class="viewcode-back" href="../../api.html#namematch.cluster.Cluster.get_ci_ix_map">[docs]</a>    <span class="nd">@log_runtime_and_memory</span>
-    <span class="k">def</span> <span class="nf">get_ci_ix_map</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cluster_info</span><span class="p">):</span>
+    <span class="c1"># @log_runtime_and_memory</span>
+<div class="viewcode-block" id="Cluster.get_ci_ix_map"><a class="viewcode-back" href="../../api.html#namematch.cluster.Cluster.get_ci_ix_map">[docs]</a>    <span class="k">def</span> <span class="nf">get_ci_ix_map</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cluster_info</span><span class="p">):</span>
         <span class="n">ci_ix_map</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">cluster_info</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">tolist</span><span class="p">(),</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">cluster_info</span><span class="p">))))</span>
         <span class="k">return</span> <span class="n">ci_ix_map</span></div>
 
-<div class="viewcode-block" id="Cluster.cluster_potential_edges"><a class="viewcode-back" href="../../api.html#namematch.cluster.Cluster.cluster_potential_edges">[docs]</a>    <span class="nd">@log_runtime_and_memory</span>
-    <span class="nd">@profile</span>
+    <span class="c1"># @log_runtime_and_memory</span>
+<div class="viewcode-block" id="Cluster.cluster_potential_edges"><a class="viewcode-back" href="../../api.html#namematch.cluster.Cluster.cluster_potential_edges">[docs]</a>    <span class="nd">@profile</span>
     <span class="k">def</span> <span class="nf">cluster_potential_edges</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">clusters</span><span class="p">,</span> <span class="n">cluster_assignments</span><span class="p">,</span> <span class="n">original_cluster_ids</span><span class="p">,</span>
                 <span class="n">cluster_info</span><span class="p">,</span> <span class="n">cluster_logic</span><span class="p">,</span> <span class="n">uid_cols</span><span class="p">,</span> <span class="n">eid_col</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">):</span>
         <span class="sd">&#39;&#39;&#39;For clusters by add potential edges to the cluster graph in order of importance, skipping those</span>
@@ -805,7 +803,7 @@
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2021, Melissa McNeill, Eddie Lin, Zubin Jelveh.</p>
+    <p>&#169; Copyright 2022, Melissa McNeill, Eddie Tzu-Yun Lin, Zubin Jelveh.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

@@ -1,6 +1,5 @@
 import editdistance
-import fuzzy
-import jellyfish._jellyfish as jf
+import jellyfish
 import logging
 import numpy as np
 import pandas as pd
@@ -192,15 +191,15 @@ def compare_strings(df, varname):
     features_df.loc[df.msng == 0, varname + '_exact_match_1st2nd3rd'] = \
             (df[col1].str.slice(0, 3) == df[col2].str.slice(0, 3)).astype(float)
 
-    df.loc[df.msng == 0, 'soundex_col_1'] = np.vectorize(jf.soundex, otypes=['str'])(
+    df.loc[df.msng == 0, 'soundex_col_1'] = np.vectorize(jellyfish.soundex, otypes=['str'])(
             df[df.msng == 0][col1])
-    df.loc[df.msng == 0, 'soundex_col_2'] = np.vectorize(jf.soundex, otypes=['str'])(
+    df.loc[df.msng == 0, 'soundex_col_2'] = np.vectorize(jellyfish.soundex, otypes=['str'])(
             df[df.msng == 0][col2])
     features_df[varname + '_soundex'] = (df.soundex_col_1 == df.soundex_col_2).astype(int)
 
-    df.loc[df.valid_nysiis == 1, 'nysiis_col_1'] = np.vectorize(fuzzy.nysiis, otypes=['str'])(
+    df.loc[df.valid_nysiis == 1, 'nysiis_col_1'] = np.vectorize(jellyfish.nysiis, otypes=['str'])(
             df[df.valid_nysiis == 1][col1].values)
-    df.loc[df.valid_nysiis == 1, 'nysiis_col_2'] = np.vectorize(fuzzy.nysiis, otypes=['str'])(
+    df.loc[df.valid_nysiis == 1, 'nysiis_col_2'] = np.vectorize(jellyfish.nysiis, otypes=['str'])(
             df[df.valid_nysiis == 1][col2].values)
     features_df[varname + '_nysiis'] = (df.nysiis_col_1 == df.nysiis_col_2).astype(int)
 
