@@ -91,7 +91,7 @@ class Block(NamematchBase):
 
         # check if the absval_col is needed -- if not, set to None
         temp = pd.read_parquet(self.all_names_file, columns=['drop_from_nm', ed_col])
-        if temp[temp.drop_from_nm == 0][[ed_col]].query(f"{ed_col} == '' or {ed_col}.isnull()").shape[0] == 0:
+        if temp[temp.drop_from_nm == 0][[ed_col]].query(f"{ed_col} == '' or {ed_col}.isnull()", engine="python").shape[0] == 0:
             absval_col = None
 
         an = read_an(self.all_names_file, nn_cols, ed_col, absval_col)
