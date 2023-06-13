@@ -1,0 +1,43 @@
+# This CITATION.cff file was generated with cffinit.
+# Visit https://bit.ly/cffinit to generate yours today!
+
+cff-version: 1.2.0
+title: Name Match
+message: >-
+  If you use Name Match in an academic work, please
+  give this citation:
+type: software
+authors:
+  - given-names: Zubin
+    family-names: Jelveh
+  - given-names: Melissa
+    family-names: McNeill
+  - given-names: Tzu-Yun
+    family-names: Lin
+identifiers:
+  - type: url
+    value: 'https://github.com/urban-labs/namematch'
+    description: Github Project URL
+repository-code: 'https://github.com/urban-labs/namematch'
+url: 'https://github.com/urban-labs/namematch'
+repository-artifact: 'https://pypi.org/project/namematch/'
+abstract: >-
+  Tool for probabilistically linking the records of
+  individual entities (e.g. people) within and across
+  datasets.
+
+
+  The code was originally developed for linking
+  records in criminal justice-related datasets
+  (arrests, victimizations, city programs, school
+  records, etc.) using at least first name, last
+  name, date of birth, and age (some missingness in
+  DOB and age is tolerated). If available, other data
+  fields like middle initial, race, gender, address,
+  and zipcode can be included to strengthen the
+  quality of the match.
+
+
+  Project Link:
+  https://urban-labs.github.io/namematch/
+license: AGPL-3.0-only
