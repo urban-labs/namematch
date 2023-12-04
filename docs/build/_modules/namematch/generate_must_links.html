@@ -1,19 +1,22 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>namematch.generate_must_links &mdash; namematch 1.2.1 documentation</title>
-      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=19f00094" />
+
+  
   <!--[if lt IE 9]>
     <script src="../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-        <script src="../../_static/jquery.js"></script>
-        <script src="../../_static/underscore.js"></script>
-        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js?v=e8fef1db"></script>
+        <script src="../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../_static/sphinx_highlight.js?v=4825356b"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="author" title="About these documents" href="../../about.html" />
     <link rel="index" title="Index" href="../../genindex.html" />
@@ -25,11 +28,18 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../../index.html" class="icon icon-home"> namematch
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            namematch
           </a>
+              <div class="version">
+                1.2.1
+              </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -56,9 +66,9 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="../index.html">Module code</a> &raquo;</li>
-      <li>namematch.generate_must_links</li>
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">namematch.generate_must_links</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -109,7 +119,7 @@
 
     <span class="c1"># @log_runtime_and_memory</span>
 <div class="viewcode-block" id="GenerateMustLinks.main"><a class="viewcode-back" href="../../api.html#namematch.generate_must_links.GenerateMustLinks.main">[docs]</a>    <span class="k">def</span> <span class="nf">main</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">):</span>
-        <span class="sd">&#39;&#39;&#39;Generate the list of must-link pairs using UniqueID and ExistingID info .</span>
+<span class="w">        </span><span class="sd">&#39;&#39;&#39;Generate the list of must-link pairs using UniqueID info .</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            params (Parameters object): contains parameter values</span>
@@ -122,36 +132,30 @@
         <span class="n">uid_vars_list</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">schema</span><span class="o">.</span><span class="n">variables</span><span class="o">.</span><span class="n">get_variables_where</span><span class="p">(</span>
                 <span class="n">attr</span><span class="o">=</span><span class="s1">&#39;compare_type&#39;</span><span class="p">,</span> <span class="n">attr_value</span><span class="o">=</span><span class="s1">&#39;UniqueID&#39;</span><span class="p">)</span>
 
-        <span class="c1"># get ExistingID variables (incremental)</span>
-        <span class="n">eid_vars_list</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">schema</span><span class="o">.</span><span class="n">variables</span><span class="o">.</span><span class="n">get_variables_where</span><span class="p">(</span>
-                <span class="n">attr</span><span class="o">=</span><span class="s1">&#39;compare_type&#39;</span><span class="p">,</span> <span class="n">attr_value</span><span class="o">=</span><span class="s1">&#39;ExistingID&#39;</span><span class="p">)</span>
-
         <span class="c1"># get records with non-missing unique identifiers</span>
         <span class="n">ml_var_df</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">build_ml_var_df</span><span class="p">(</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">all_names_file</span><span class="p">,</span> <span class="n">uid_vars_list</span><span class="p">,</span> <span class="n">eid_vars_list</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">all_names_file</span><span class="p">,</span> <span class="n">uid_vars_list</span><span class="p">)</span>
 
         <span class="c1"># get the &quot;must-link&quot; record pairs</span>
         <span class="n">must_links_df</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_must_links</span><span class="p">(</span>
-                <span class="n">ml_var_df</span><span class="p">,</span> <span class="n">uid_vars_list</span><span class="p">,</span> <span class="n">eid_vars_list</span><span class="p">)</span>
+                <span class="n">ml_var_df</span><span class="p">,</span> <span class="n">uid_vars_list</span><span class="p">)</span>
 
         <span class="c1"># true record pairs</span>
-        <span class="n">must_links_df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span>
+        <span class="n">must_links_df</span><span class="o">.</span><span class="n">to_parquet</span><span class="p">(</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">must_links</span><span class="p">,</span>
-            <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-            <span class="n">quoting</span><span class="o">=</span><span class="n">csv</span><span class="o">.</span><span class="n">QUOTE_NONNUMERIC</span>
+            <span class="n">index</span><span class="o">=</span><span class="kc">False</span>
         <span class="p">)</span>
 
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">enable_lprof</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">write_line_profile_stats</span><span class="p">(</span><span class="n">profile</span><span class="o">.</span><span class="n">line_profiler</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="GenerateMustLinks.build_ml_var_df"><a class="viewcode-back" href="../../api.html#namematch.generate_must_links.GenerateMustLinks.build_ml_var_df">[docs]</a>    <span class="k">def</span> <span class="nf">build_ml_var_df</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">all_names_file</span><span class="p">,</span> <span class="n">uid_vars_list</span><span class="p">,</span> <span class="n">eid_vars_list</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">):</span>
-        <span class="sd">&#39;&#39;&#39;Load the all-names file and limit it to the rows that have either</span>
-<span class="sd">        a non-missing UniqueID or ExistingID value.</span>
+<div class="viewcode-block" id="GenerateMustLinks.build_ml_var_df"><a class="viewcode-back" href="../../api.html#namematch.generate_must_links.GenerateMustLinks.build_ml_var_df">[docs]</a>    <span class="k">def</span> <span class="nf">build_ml_var_df</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">all_names_file</span><span class="p">,</span> <span class="n">uid_vars_list</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&#39;&#39;&#39;Load the all-names file and limit it to the rows that have</span>
+<span class="sd">        a non-missing UniqueID value.</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            all_names_file (str): path to the all-names file</span>
 <span class="sd">            uid_vars_list (list of strings): all-name columns with compare_type &quot;UniqueID&quot;</span>
-<span class="sd">            eid_vars_list (list of strings): all-name columns with compare_type &quot;ExistingID&quot;</span>
 
 <span class="sd">        Returns:</span>
 <span class="sd">            pd.DataFrame: a subset of the all-names file, relevant colums only</span>
@@ -159,30 +163,32 @@
 <span class="sd">            ======================   =======================================================</span>
 <span class="sd">            record_id                unique record identifier</span>
 <span class="sd">            blockstring              concatenation of all the blocking variables (sep by ::)</span>
-<span class="sd">            file_type                either &quot;new&quot; or &quot;existing&quot;</span>
 <span class="sd">            drop_from_nm             flag, 1 if met any &quot;to drop&quot; criteria 0 otherwise</span>
+<span class="sd">            new_record               either True or False</span>
 <span class="sd">            &lt;UniqueID column(s)&gt;     variables of compare_type UniqueID</span>
-<span class="sd">            &lt;ExistingID column(s)&gt;   variables of compare_type ExistingID</span>
 <span class="sd">            has_ml_var               flag, always 1 in output (ml stands for must-link)</span>
 <span class="sd">            ======================   =======================================================</span>
 <span class="sd">        &#39;&#39;&#39;</span>
 
-        <span class="n">cols</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;record_id&#39;</span><span class="p">,</span> <span class="s1">&#39;blockstring&#39;</span><span class="p">,</span> <span class="s1">&#39;drop_from_nm&#39;</span><span class="p">,</span>
-                <span class="s1">&#39;file_type&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="n">uid_vars_list</span> <span class="o">+</span> <span class="n">eid_vars_list</span>
+        <span class="n">cols</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;record_id&#39;</span><span class="p">,</span> <span class="s1">&#39;blockstring&#39;</span><span class="p">,</span>  <span class="s1">&#39;drop_from_nm&#39;</span><span class="p">,</span> <span class="s1">&#39;file_type&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="n">uid_vars_list</span>
 
         <span class="n">table</span> <span class="o">=</span> <span class="n">pq</span><span class="o">.</span><span class="n">read_table</span><span class="p">(</span><span class="n">all_names_file</span><span class="p">)</span>
         <span class="n">an</span> <span class="o">=</span> <span class="n">table</span><span class="o">.</span><span class="n">to_pandas</span><span class="p">()[</span><span class="n">cols</span><span class="p">]</span>
 
-        <span class="n">an</span><span class="p">[</span><span class="s1">&#39;has_ml_var&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
-        <span class="k">for</span> <span class="n">ml_var</span> <span class="ow">in</span> <span class="p">(</span><span class="n">uid_vars_list</span> <span class="o">+</span> <span class="n">eid_vars_list</span><span class="p">):</span>
-            <span class="n">an</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">an</span><span class="p">[</span><span class="n">ml_var</span><span class="p">]</span> <span class="o">!=</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="s1">&#39;has_ml_var&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="n">an</span><span class="p">[</span><span class="s1">&#39;new_record&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">an</span><span class="o">.</span><span class="n">file_type</span> <span class="o">==</span> <span class="s1">&#39;new&#39;</span>
 
-        <span class="k">return</span> <span class="n">an</span><span class="p">[</span><span class="n">an</span><span class="o">.</span><span class="n">has_ml_var</span> <span class="o">==</span> <span class="mi">1</span><span class="p">]</span></div>
+        <span class="n">an</span><span class="p">[</span><span class="s1">&#39;has_ml_var&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="k">for</span> <span class="n">ml_var</span> <span class="ow">in</span> <span class="n">uid_vars_list</span><span class="p">:</span>
+            <span class="n">an</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">an</span><span class="p">[</span><span class="n">ml_var</span><span class="p">]</span> <span class="o">!=</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="s1">&#39;has_ml_var&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
+
+        <span class="n">an</span> <span class="o">=</span> <span class="n">an</span><span class="p">[</span><span class="n">an</span><span class="o">.</span><span class="n">has_ml_var</span> <span class="o">==</span> <span class="kc">True</span><span class="p">]</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;has_ml_var&#39;</span><span class="p">,</span> <span class="s1">&#39;file_type&#39;</span><span class="p">])</span>
+
+        <span class="k">return</span> <span class="n">an</span></div>
 
     <span class="c1"># @log_runtime_and_memory</span>
 <div class="viewcode-block" id="GenerateMustLinks.get_must_links"><a class="viewcode-back" href="../../api.html#namematch.generate_must_links.GenerateMustLinks.get_must_links">[docs]</a>    <span class="nd">@profile</span>
-    <span class="k">def</span> <span class="nf">get_must_links</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ml_var_df</span><span class="p">,</span> <span class="n">uid_vars_list</span><span class="p">,</span> <span class="n">eid_vars_list</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">):</span>
-        <span class="sd">&#39;&#39;&#39;Expand the list of records with must-link information to pairs of records</span>
+    <span class="k">def</span> <span class="nf">get_must_links</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ml_var_df</span><span class="p">,</span> <span class="n">uid_vars_list</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&#39;&#39;&#39;Expand the list of records with must-link information to pairs of records</span>
 <span class="sd">        that must be linked togehter in the final match.</span>
 
 <span class="sd">        Args:</span>
@@ -190,15 +196,13 @@
 <span class="sd">                ======================   =======================================================</span>
 <span class="sd">                record_id                unique record identifier</span>
 <span class="sd">                blockstring              concatenation of all the blocking variables (sep by ::)</span>
-<span class="sd">                file_type                either &quot;new&quot; or &quot;existing&quot;</span>
 <span class="sd">                drop_from_nm             flag, 1 if met any &quot;to drop&quot; criteria 0 otherwise</span>
+<span class="sd">                new_record               either True or False</span>
 <span class="sd">                &lt;UniqueID column(s)&gt;     variables of compare_type UniqueID</span>
-<span class="sd">                &lt;ExistingID column(s)&gt;   variables of compare_type ExistingID</span>
 <span class="sd">                has_ml_var               flag, always 1 in output (ml stands for must-link)</span>
 <span class="sd">                ======================   =======================================================</span>
 
 <span class="sd">            uid_vars_list (list of strings): all-name columns with compare_type &quot;UniqueID&quot;</span>
-<span class="sd">            eid_vars_list (list of strings): all-name columns with compare_type &quot;ExistingID&quot;</span>
 
 <span class="sd">        Returns:</span>
 <span class="sd">            pd.DataFrame: list of must-link record pairs</span>
@@ -208,9 +212,8 @@
 <span class="sd">            record_id_2           unique identifier for the second record in the pair</span>
 <span class="sd">            blockstring_1         blockstring for the first record in the pair</span>
 <span class="sd">            blockstring_2         blockstring for the second record in the pair</span>
-<span class="sd">            drop_from_nm_1        flag, 1 if the first record in the pair was not eligible for matching</span>
-<span class="sd">            drop_from_nm_2        flag, 1 if the second record in the pair was not eligible for matching</span>
-<span class="sd">            existing              flag, 1 if the pair is must-link because of ExistingID</span>
+<span class="sd">            drop_from_nm_1        flag, True if the first record in the pair was not eligible for matching</span>
+<span class="sd">            drop_from_nm_2        flag, True if the second record in the pair was not eligible for matching</span>
 <span class="sd">            ===================   =======================================================</span>
 <span class="sd">        &#39;&#39;&#39;</span>
 
@@ -218,7 +221,9 @@
 
         <span class="c1"># for each UniqueID variable, merge the data frame on itself to get must-links</span>
         <span class="n">must_link_df_list</span> <span class="o">=</span> <span class="p">[]</span>
-        <span class="k">for</span> <span class="n">ml_var</span> <span class="ow">in</span> <span class="p">(</span><span class="n">uid_vars_list</span> <span class="o">+</span> <span class="n">eid_vars_list</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">ml_var</span> <span class="ow">in</span> <span class="n">uid_vars_list</span><span class="p">:</span>
+
+            <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Getting must-link pairs from </span><span class="si">{</span><span class="n">ml_var</span><span class="si">}</span><span class="s2">...&quot;</span><span class="p">)</span>
 
             <span class="c1"># warn if any uids are used more than n times (might be</span>
             <span class="c1"># sign of misspecified missing uid)</span>
@@ -231,10 +236,13 @@
                                    <span class="sa">f</span><span class="s2">&quot;getting coded as values.&quot;</span><span class="p">)</span>
                     <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="n">uid_counts_high</span><span class="p">)</span>
                 <span class="k">if</span> <span class="n">uid_counts</span><span class="o">.</span><span class="n">max</span><span class="p">()</span> <span class="o">&gt;</span> <span class="mi">1000</span><span class="p">:</span>
+                    <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;There are uids with more than 1000 records&quot;</span><span class="p">)</span>
                     <span class="k">raise</span><span class="p">()</span>
 
+            <span class="n">ml_var_nonmissing_ix</span> <span class="o">=</span> <span class="n">ml_var_df</span><span class="p">[</span><span class="n">ml_var</span><span class="p">]</span> <span class="o">!=</span> <span class="s1">&#39;&#39;</span>
             <span class="n">must_link_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span>
-                    <span class="n">ml_var_df</span><span class="p">[</span><span class="n">ml_var_df</span><span class="p">[</span><span class="n">ml_var</span><span class="p">]</span> <span class="o">!=</span> <span class="s1">&#39;&#39;</span><span class="p">],</span> <span class="n">ml_var_df</span><span class="p">,</span>
+                    <span class="n">ml_var_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">ml_var_nonmissing_ix</span><span class="p">],</span>
+                    <span class="n">ml_var_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">ml_var_nonmissing_ix</span><span class="p">],</span>
                     <span class="n">on</span><span class="o">=</span><span class="n">ml_var</span><span class="p">,</span> <span class="n">suffixes</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;_1&#39;</span><span class="p">,</span> <span class="s1">&#39;_2&#39;</span><span class="p">])</span>
 
             <span class="n">must_link_df</span> <span class="o">=</span> <span class="n">must_link_df</span><span class="p">[</span>
@@ -242,37 +250,30 @@
                     <span class="p">((</span><span class="n">must_link_df</span><span class="o">.</span><span class="n">blockstring_1</span> <span class="o">==</span> <span class="n">must_link_df</span><span class="o">.</span><span class="n">blockstring_2</span><span class="p">)</span> <span class="o">&amp;</span>
                      <span class="p">(</span><span class="n">must_link_df</span><span class="o">.</span><span class="n">record_id_1</span> <span class="o">&lt;</span> <span class="n">must_link_df</span><span class="o">.</span><span class="n">record_id_2</span><span class="p">))]</span>
 
-            <span class="n">must_link_df</span><span class="p">[</span><span class="s1">&#39;existing&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
-
             <span class="c1"># tweak for incremental matching</span>
-            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">eid_vars_list</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">params</span><span class="o">.</span><span class="n">incremental</span><span class="p">:</span>
                 <span class="k">if</span> <span class="n">ml_var</span> <span class="ow">in</span> <span class="n">uid_vars_list</span><span class="p">:</span>
                     <span class="n">must_link_df</span> <span class="o">=</span> <span class="n">must_link_df</span><span class="p">[</span>
-                            <span class="p">(</span><span class="n">must_link_df</span><span class="o">.</span><span class="n">file_type_1</span> <span class="o">==</span> <span class="s1">&#39;new&#39;</span><span class="p">)</span> <span class="o">|</span>
-                            <span class="p">(</span><span class="n">must_link_df</span><span class="o">.</span><span class="n">file_type_2</span> <span class="o">==</span> <span class="s1">&#39;new&#39;</span><span class="p">)]</span>
-                <span class="k">else</span><span class="p">:</span>
-                    <span class="n">must_link_df</span><span class="p">[</span><span class="s1">&#39;existing&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+                            <span class="p">(</span><span class="n">must_link_df</span><span class="o">.</span><span class="n">new_record_1</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span> <span class="o">|</span>
+                            <span class="p">(</span><span class="n">must_link_df</span><span class="o">.</span><span class="n">new_record_2</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)]</span>
 
-            <span class="n">must_link_df</span> <span class="o">=</span> <span class="n">must_link_df</span><span class="p">[</span>
-                    <span class="p">[</span><span class="s1">&#39;record_id_1&#39;</span><span class="p">,</span> <span class="s1">&#39;record_id_2&#39;</span><span class="p">,</span> <span class="s1">&#39;blockstring_1&#39;</span><span class="p">,</span> <span class="s1">&#39;blockstring_2&#39;</span><span class="p">,</span>
-                    <span class="s1">&#39;drop_from_nm_1&#39;</span><span class="p">,</span> <span class="s1">&#39;drop_from_nm_2&#39;</span><span class="p">,</span> <span class="s1">&#39;existing&#39;</span><span class="p">]]</span>
+            <span class="n">must_link_df</span> <span class="o">=</span> <span class="n">must_link_df</span><span class="p">[[</span>
+                    <span class="s1">&#39;record_id_1&#39;</span><span class="p">,</span> <span class="s1">&#39;record_id_2&#39;</span><span class="p">,</span> <span class="s1">&#39;blockstring_1&#39;</span><span class="p">,</span> <span class="s1">&#39;blockstring_2&#39;</span><span class="p">,</span>
+                    <span class="s1">&#39;drop_from_nm_1&#39;</span><span class="p">,</span> <span class="s1">&#39;drop_from_nm_2&#39;</span><span class="p">]]</span>
 
             <span class="n">must_link_df_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">must_link_df</span><span class="o">.</span><span class="n">copy</span><span class="p">())</span>
 
         <span class="n">must_link_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span><span class="n">must_link_df_list</span><span class="p">)</span>
-        <span class="n">must_link_df</span> <span class="o">=</span> <span class="n">must_link_df</span><span class="o">.</span><span class="n">sort_values</span><span class="p">([</span><span class="s1">&#39;existing&#39;</span><span class="p">],</span> <span class="n">ascending</span><span class="o">=</span><span class="p">[</span><span class="kc">False</span><span class="p">])</span>
-        <span class="c1"># NOTE: existing == 1 takes priority over existing == 0</span>
 
         <span class="c1"># remove duplicates (would occur if records match on multiple Unique IDs)</span>
         <span class="n">len_pre_drop_duplicates</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">must_link_df</span><span class="p">)</span>
         <span class="n">must_link_df</span> <span class="o">=</span> <span class="n">must_link_df</span><span class="o">.</span><span class="n">drop_duplicates</span><span class="p">(</span><span class="n">subset</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;record_id_1&#39;</span><span class="p">,</span> <span class="s1">&#39;record_id_2&#39;</span><span class="p">])</span>
         <span class="n">len_post_drop_duplicates</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">must_link_df</span><span class="p">)</span>
         <span class="k">if</span> <span class="p">(</span><span class="n">len_pre_drop_duplicates</span> <span class="o">&gt;</span> <span class="n">len_post_drop_duplicates</span><span class="p">):</span>
-            <span class="n">logger</span><span class="o">.</span><span class="n">trace</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Dropped </span><span class="si">{</span><span class="n">len_pre_drop_duplicates</span> <span class="o">-</span> <span class="n">len_post_drop_duplicates</span><span class="si">}</span><span class="s1"> &#39;</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">trace</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Dropped </span><span class="si">{</span><span class="n">len_pre_drop_duplicates</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">len_post_drop_duplicates</span><span class="si">}</span><span class="s1"> &#39;</span>
                          <span class="sa">f</span><span class="s1">&#39;duplicate ground truth rows&#39;</span><span class="p">)</span>
 
         <span class="k">return</span> <span class="n">must_link_df</span></div></div>
-
 </pre></div>
 
            </div>

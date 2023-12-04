@@ -1,19 +1,22 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>namematch.fit_model &mdash; namematch 1.2.1 documentation</title>
-      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=19f00094" />
+
+  
   <!--[if lt IE 9]>
     <script src="../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-        <script src="../../_static/jquery.js"></script>
-        <script src="../../_static/underscore.js"></script>
-        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js?v=e8fef1db"></script>
+        <script src="../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../_static/sphinx_highlight.js?v=4825356b"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="author" title="About these documents" href="../../about.html" />
     <link rel="index" title="Index" href="../../genindex.html" />
@@ -25,11 +28,18 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../../index.html" class="icon icon-home"> namematch
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            namematch
           </a>
+              <div class="version">
+                1.2.1
+              </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -56,9 +66,9 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="../index.html">Module code</a> &raquo;</li>
-      <li>namematch.fit_model</li>
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">namematch.fit_model</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -112,7 +122,7 @@
 
 
 <div class="viewcode-block" id="FitModel"><a class="viewcode-back" href="../../api.html#namematch.fit_model.FitModel">[docs]</a><span class="k">class</span> <span class="nc">FitModel</span><span class="p">(</span><span class="n">NamematchBase</span><span class="p">):</span>
-    <span class="sd">&#39;&#39;&#39;</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">    Args:</span>
 <span class="sd">        params (Parameters object): contains parameter values</span>
 <span class="sd">        all_names_file (str): path to the all-names file</span>
@@ -178,7 +188,7 @@
     <span class="c1"># @log_runtime_and_memory</span>
 <div class="viewcode-block" id="FitModel.main"><a class="viewcode-back" href="../../api.html#namematch.fit_model.FitModel.main">[docs]</a>    <span class="nd">@profile</span>
     <span class="k">def</span> <span class="nf">main</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">):</span>
-        <span class="sd">&#39;&#39;&#39;Train and evaluate random foreset model(s). Depending on the settings, this might involved</span>
+<span class="w">        </span><span class="sd">&#39;&#39;&#39;Train and evaluate random foreset model(s). Depending on the settings, this might involved</span>
 <span class="sd">        training and evaluating multiple types of models (e.g. selection and match models) and/or models</span>
 <span class="sd">        for different data-row types (e.g. basic and no-dob).</span>
 <span class="sd">        &#39;&#39;&#39;</span>
@@ -303,7 +313,7 @@
 
     <span class="c1"># @log_runtime_and_memory</span>
 <div class="viewcode-block" id="FitModel.fit_model"><a class="viewcode-back" href="../../api.html#namematch.fit_model.FitModel.fit_model">[docs]</a>    <span class="k">def</span> <span class="nf">fit_model</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">df</span><span class="p">,</span> <span class="n">vars_to_exclude</span><span class="p">,</span> <span class="n">outcome</span><span class="p">,</span> <span class="n">weights</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">n_jobs</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">):</span>
-        <span class="sd">&#39;&#39;&#39;Fit random forest model.</span>
+<span class="w">        </span><span class="sd">&#39;&#39;&#39;Fit random forest model.</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            df (pd.DataFrame): data rows, subset to training rows</span>
@@ -376,7 +386,7 @@
         <span class="k">return</span> <span class="n">mod</span><span class="p">,</span> <span class="n">feature_info</span></div>
 
 <div class="viewcode-block" id="FitModel.fit_models"><a class="viewcode-back" href="../../api.html#namematch.fit_model.FitModel.fit_models">[docs]</a>    <span class="k">def</span> <span class="nf">fit_models</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">train_df</span><span class="p">,</span> <span class="n">model_type</span><span class="p">,</span> <span class="n">model_info</span><span class="p">):</span>
-        <span class="sd">&#39;&#39;&#39;Fit random forest model.</span>
+<span class="w">        </span><span class="sd">&#39;&#39;&#39;Fit random forest model.</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            train_df (pd.DataFrame): data rows, subset to training rows</span>
@@ -440,7 +450,7 @@
                     <span class="p">)</span></div>
 
 <div class="viewcode-block" id="FitModel.get_train_eval_data"><a class="viewcode-back" href="../../api.html#namematch.fit_model.FitModel.get_train_eval_data">[docs]</a>    <span class="k">def</span> <span class="nf">get_train_eval_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">an_train_eligible_dict</span><span class="p">,</span> <span class="n">model_info</span><span class="p">,</span> <span class="n">params</span><span class="p">,</span> <span class="n">model_type</span><span class="p">,</span> <span class="n">any_train</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
-        <span class="sd">&#39;&#39;&#39;Load data-rows, filter to rows that are eligible for training a givem model type, and then split</span>
+<span class="w">        </span><span class="sd">&#39;&#39;&#39;Load data-rows, filter to rows that are eligible for training a givem model type, and then split</span>
 <span class="sd">        the data into a training set and a labeled evaulation set.</span>
 
 <span class="sd">        Args:</span>
@@ -532,7 +542,7 @@
 
     <span class="c1"># @log_runtime_and_memory</span>
 <div class="viewcode-block" id="FitModel.find_valid_training_records"><a class="viewcode-back" href="../../api.html#namematch.fit_model.FitModel.find_valid_training_records">[docs]</a>    <span class="k">def</span> <span class="nf">find_valid_training_records</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">an</span><span class="p">,</span> <span class="n">an_match_criteria</span><span class="p">):</span>
-        <span class="sd">&#39;&#39;&#39;Identify records that meet the all-names criteria for training data.</span>
+<span class="w">        </span><span class="sd">&#39;&#39;&#39;Identify records that meet the all-names criteria for training data.</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            an (pd.DataFrame): all-names table (one row per input record)</span>
@@ -563,7 +573,7 @@
 
 
 <div class="viewcode-block" id="get_feature_info"><a class="viewcode-back" href="../../api.html#namematch.fit_model.get_feature_info">[docs]</a><span class="k">def</span> <span class="nf">get_feature_info</span><span class="p">(</span><span class="n">pipeline</span><span class="p">,</span> <span class="n">raw_num_cols</span><span class="p">,</span> <span class="n">raw_cat_cols</span><span class="p">):</span>
-    <span class="sd">&#39;&#39;&#39;Extract the feature importance information from a sklearn model pipeline.</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;Extract the feature importance information from a sklearn model pipeline.</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        pipeline (skleran fitted pipeline): trained model</span>
@@ -613,7 +623,7 @@
 
 
 <div class="viewcode-block" id="save_models"><a class="viewcode-back" href="../../api.html#namematch.fit_model.save_models">[docs]</a><span class="k">def</span> <span class="nf">save_models</span><span class="p">(</span><span class="n">selection_models</span><span class="p">,</span> <span class="n">match_models</span><span class="p">,</span> <span class="n">model_info</span><span class="p">):</span>
-    <span class="sd">&#39;&#39;&#39;Save the models to file.</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;Save the models to file.</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        selection_models (dict): maps model name (e.g. basic or no-dob) to a fit match model object</span>
@@ -640,7 +650,7 @@
         <span class="n">selection_model_name</span><span class="o">=</span><span class="s1">&#39;basic_selection_model.pkl&#39;</span><span class="p">,</span>
         <span class="n">match_model_name</span><span class="o">=</span><span class="s1">&#39;basic_match_model.pkl&#39;</span><span class="p">,</span>
         <span class="p">):</span>
-    <span class="sd">&#39;&#39;&#39;Determine the different models needed (using a sample) and</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;Determine the different models needed (using a sample) and</span>
 <span class="sd">    define the characteristics of data that determine which</span>
 <span class="sd">    model should handle it.</span>
 
@@ -705,7 +715,7 @@
 
 
 <div class="viewcode-block" id="load_and_save_trained_model"><a class="viewcode-back" href="../../api.html#namematch.fit_model.load_and_save_trained_model">[docs]</a><span class="k">def</span> <span class="nf">load_and_save_trained_model</span><span class="p">(</span><span class="n">trained_model_info_file</span><span class="p">,</span> <span class="n">output_file</span><span class="p">):</span>
-    <span class="sd">&#39;&#39;&#39;Load a set of pre-trained models and copy them to the current run&#39;s</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;Load a set of pre-trained models and copy them to the current run&#39;s</span>
 <span class="sd">    output directory. Typically only used in incremental runs.</span>
 
 <span class="sd">    Args:</span>
@@ -734,7 +744,7 @@
 
 
 <div class="viewcode-block" id="get_match_train_eligible_flag"><a class="viewcode-back" href="../../api.html#namematch.fit_model.get_match_train_eligible_flag">[docs]</a><span class="k">def</span> <span class="nf">get_match_train_eligible_flag</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">dr_train_eligible_conditions_dict</span><span class="p">,</span> <span class="n">an_train_eligible_dict</span><span class="p">):</span>
-    <span class="sd">&#39;&#39;&#39;Determine if a data-row is eligible for training (for match models), according</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;Determine if a data-row is eligible for training (for match models), according</span>
 <span class="sd">    to both all-names eligibility criteria and data-row eligibility criteria.</span>
 
 <span class="sd">    Args:</span>
@@ -775,7 +785,7 @@
 
 
 <div class="viewcode-block" id="add_threshold_dict"><a class="viewcode-back" href="../../api.html#namematch.fit_model.add_threshold_dict">[docs]</a><span class="k">def</span> <span class="nf">add_threshold_dict</span><span class="p">(</span><span class="n">model_info</span><span class="p">,</span> <span class="n">thresholds_dict</span><span class="p">):</span>
-    <span class="sd">&#39;&#39;&#39;Add threshold information to the model_info dict, once it&#39;s been determined.</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;Add threshold information to the model_info dict, once it&#39;s been determined.</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        model_info (dict): dict with information about how to fit the model</span>
@@ -792,7 +802,7 @@
 
 
 <div class="viewcode-block" id="get_flipped0_potential_edges"><a class="viewcode-back" href="../../api.html#namematch.fit_model.get_flipped0_potential_edges">[docs]</a><span class="k">def</span> <span class="nf">get_flipped0_potential_edges</span><span class="p">(</span><span class="n">phats_df</span><span class="p">,</span> <span class="n">model_info</span><span class="p">,</span> <span class="n">allow_clusters_w_multiple_unique_ids</span><span class="p">):</span>
-    <span class="sd">&#39;&#39;&#39;If allowed, identify the set of labeled 0s with high phats so they can be treated</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;If allowed, identify the set of labeled 0s with high phats so they can be treated</span>
 <span class="sd">    as matches downstream.</span>
 
 <span class="sd">    Args:</span>

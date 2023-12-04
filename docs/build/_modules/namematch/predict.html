@@ -1,19 +1,22 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>namematch.predict &mdash; namematch 1.2.1 documentation</title>
-      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=19f00094" />
+
+  
   <!--[if lt IE 9]>
     <script src="../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-        <script src="../../_static/jquery.js"></script>
-        <script src="../../_static/underscore.js"></script>
-        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js?v=e8fef1db"></script>
+        <script src="../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../_static/sphinx_highlight.js?v=4825356b"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="author" title="About these documents" href="../../about.html" />
     <link rel="index" title="Index" href="../../genindex.html" />
@@ -25,11 +28,18 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../../index.html" class="icon icon-home"> namematch
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            namematch
           </a>
+              <div class="version">
+                1.2.1
+              </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -56,9 +66,9 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="../index.html">Module code</a> &raquo;</li>
-      <li>namematch.predict</li>
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">namematch.predict</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -92,7 +102,7 @@
 
 
 <div class="viewcode-block" id="Predict"><a class="viewcode-back" href="../../api.html#namematch.predict.Predict">[docs]</a><span class="k">class</span> <span class="nc">Predict</span><span class="p">(</span><span class="n">NamematchBase</span><span class="p">):</span>
-    <span class="sd">&#39;&#39;&#39;</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">     Args:</span>
 <span class="sd">        params (Parameters object): contains parameter values</span>
 <span class="sd">        model_info_file (str): path to the data-rows dir</span>
@@ -131,7 +141,7 @@
 
     <span class="c1"># @log_runtime_and_memory</span>
 <div class="viewcode-block" id="Predict.main"><a class="viewcode-back" href="../../api.html#namematch.predict.Predict.main">[docs]</a>    <span class="k">def</span> <span class="nf">main</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">):</span>
-        <span class="sd">&#39;&#39;&#39;Read in data-rows and predict (in parallel) for each unlabeled pair. Output</span>
+<span class="w">        </span><span class="sd">&#39;&#39;&#39;Read in data-rows and predict (in parallel) for each unlabeled pair. Output</span>
 <span class="sd">        the pairs above the threshold.</span>
 <span class="sd">        &#39;&#39;&#39;</span>
 
@@ -157,7 +167,7 @@
 <div class="viewcode-block" id="Predict.get_potential_edges"><a class="viewcode-back" href="../../api.html#namematch.predict.Predict.get_potential_edges">[docs]</a>    <span class="nd">@profile</span>
     <span class="k">def</span> <span class="nf">get_potential_edges</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dr_file</span><span class="p">,</span> <span class="n">match_models</span><span class="p">,</span> <span class="n">model_info</span><span class="p">,</span>
                 <span class="n">output_dir</span><span class="p">,</span> <span class="n">params</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">):</span>
-        <span class="sd">&#39;&#39;&#39;Read in data rows in chunks and predict as needed. Write (append)</span>
+<span class="w">        </span><span class="sd">&#39;&#39;&#39;Read in data rows in chunks and predict as needed. Write (append)</span>
 <span class="sd">        the edges above the threshold to the appropriate file.</span>
 
 <span class="sd">        Args:</span>
@@ -211,7 +221,7 @@
             
 
 <div class="viewcode-block" id="Predict.get_potential_edges_in_parallel"><a class="viewcode-back" href="../../api.html#namematch.predict.Predict.get_potential_edges_in_parallel">[docs]</a>    <span class="k">def</span> <span class="nf">get_potential_edges_in_parallel</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">match_models</span><span class="p">,</span> <span class="n">model_info</span><span class="p">,</span> <span class="n">output_dir</span><span class="p">,</span> <span class="n">params</span><span class="p">):</span>
-        <span class="sd">&#39;&#39;&#39;Dispatch the worker threads that will predict for unlabeled pairs in paralle.</span>
+<span class="w">        </span><span class="sd">&#39;&#39;&#39;Dispatch the worker threads that will predict for unlabeled pairs in paralle.</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            match_models (dict): maps model name (e.g. basic or no-dob) to a fit match model object</span>
@@ -248,7 +258,7 @@
 
 <div class="viewcode-block" id="Predict.predict"><a class="viewcode-back" href="../../api.html#namematch.predict.Predict.predict">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">predict</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">models</span><span class="p">,</span> <span class="n">df</span><span class="p">,</span> <span class="n">model_type</span><span class="p">,</span> <span class="n">oob</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">all_cols</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">all_models</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">prob_match_train</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-        <span class="sd">&#39;&#39;&#39;Use the trainined models to predict for pairs of records.</span>
+<span class="w">        </span><span class="sd">&#39;&#39;&#39;Use the trainined models to predict for pairs of records.</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            models (dict): maps model name (e.g. basic or no-dob) to a fit match model object</span>
