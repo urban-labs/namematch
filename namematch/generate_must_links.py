@@ -86,7 +86,6 @@ class GenerateMustLinks(NamematchBase):
             drop_from_nm             flag, 1 if met any "to drop" criteria 0 otherwise
             new_record               either True or False
             <UniqueID column(s)>     variables of compare_type UniqueID
-            has_ml_var               flag, always 1 in output (ml stands for must-link)
             ======================   =======================================================
         '''
 
@@ -119,7 +118,6 @@ class GenerateMustLinks(NamematchBase):
                 drop_from_nm             flag, 1 if met any "to drop" criteria 0 otherwise
                 new_record               either True or False
                 <UniqueID column(s)>     variables of compare_type UniqueID
-                has_ml_var               flag, always 1 in output (ml stands for must-link)
                 ======================   =======================================================
 
             uid_vars_list (list of strings): all-name columns with compare_type "UniqueID"
