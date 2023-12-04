@@ -39,7 +39,7 @@ class GenerateMustLinks(NamematchBase):
 
     # @log_runtime_and_memory
     def main(self, **kw):
-        '''Generate the list of must-link pairs using UniqueID and ExistingID info .
+        '''Generate the list of must-link pairs using UniqueID info .
 
         Args:
             params (Parameters object): contains parameter values
@@ -52,17 +52,13 @@ class GenerateMustLinks(NamematchBase):
         uid_vars_list = self.schema.variables.get_variables_where(
                 attr='compare_type', attr_value='UniqueID')
 
-        # get ExistingID variables (incremental)
-        eid_vars_list = self.schema.variables.get_variables_where(
-                attr='compare_type', attr_value='ExistingID')
-
         # get records with non-missing unique identifiers
         ml_var_df = self.build_ml_var_df(
                 self.all_names_file, uid_vars_list)
 
         # get the "must-link" record pairs
         must_links_df = self.get_must_links(
-                ml_var_df, uid_vars_list, eid_vars_list)
+                ml_var_df, uid_vars_list)
 
         # true record pairs
         must_links_df.to_parquet(
@@ -74,13 +70,12 @@ class GenerateMustLinks(NamematchBase):
             self.write_line_profile_stats(profile.line_profiler)
 
     def build_ml_var_df(self, all_names_file, uid_vars_list, **kw):
-        '''Load the all-names file and limit it to the rows that have either
-        a non-missing UniqueID or ExistingID value.
+        '''Load the all-names file and limit it to the rows that have
+        a non-missing UniqueID value.
 
         Args:
             all_names_file (str): path to the all-names file
             uid_vars_list (list of strings): all-name columns with compare_type "UniqueID"
-            eid_vars_list (list of strings): all-name columns with compare_type "ExistingID"
 
         Returns:
             pd.DataFrame: a subset of the all-names file, relevant colums only
@@ -91,7 +86,6 @@ class GenerateMustLinks(NamematchBase):
             drop_from_nm             flag, 1 if met any "to drop" criteria 0 otherwise
             new_record               either True or False
             <UniqueID column(s)>     variables of compare_type UniqueID
-            <ExistingID column(s)>   variables of compare_type ExistingID
             has_ml_var               flag, always 1 in output (ml stands for must-link)
             ======================   =======================================================
         '''
@@ -113,7 +107,7 @@ class GenerateMustLinks(NamematchBase):
 
     # @log_runtime_and_memory
     @profile
-    def get_must_links(self, ml_var_df, uid_vars_list, eid_vars_list, **kw):
+    def get_must_links(self, ml_var_df, uid_vars_list, **kw):
         '''Expand the list of records with must-link information to pairs of records
         that must be linked togehter in the final match.
 
@@ -125,12 +119,10 @@ class GenerateMustLinks(NamematchBase):
                 drop_from_nm             flag, 1 if met any "to drop" criteria 0 otherwise
                 new_record               either True or False
                 <UniqueID column(s)>     variables of compare_type UniqueID
-                <ExistingID column(s)>   variables of compare_type ExistingID
                 has_ml_var               flag, always 1 in output (ml stands for must-link)
                 ======================   =======================================================
 
             uid_vars_list (list of strings): all-name columns with compare_type "UniqueID"
-            eid_vars_list (list of strings): all-name columns with compare_type "ExistingID"
 
         Returns:
             pd.DataFrame: list of must-link record pairs
@@ -179,7 +171,7 @@ class GenerateMustLinks(NamematchBase):
                      (must_link_df.record_id_1 < must_link_df.record_id_2))]
 
             # tweak for incremental matching
-            if len(eid_vars_list) > 0:
+            if self.params.incremental:
                 if ml_var in uid_vars_list:
                     must_link_df = must_link_df[
                             (must_link_df.new_record_1 == 1) |

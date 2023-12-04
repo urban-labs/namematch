@@ -149,21 +149,22 @@ class Cluster(NamematchBase):
 
         # separate must-links if we can't initialize new 1s
         if not self.params.initialize_from_ground_truth_1s or self.params.incremental:
-            gt_1s_df = must_links_df.copy()
-            must_links_df = None
+            must_links_to_try_df = must_links_df.copy()
+            must_links_to_enforce_df = None
         else:
-            gt_1s_df = None
+            must_links_to_try_df = None
+            must_links_to_enforce_df = must_links_df.copy()
 
         # create a starting point using must-links
         logger.info("Initializing initial clusters.")
         clusters, cluster_assignments, original_cluster_ids = \
-                self.get_initial_clusters(must_links_df, cluster_info, eid_col)
+                self.get_initial_clusters(must_links_to_enforce_df, cluster_info, eid_col)
         # potential_edges is sorted (decreasing) by phat
         logger.info("Loading potential links.")
         potential_edges_files = [os.path.join(self.potential_edges_dir, pe_file)
                                  for pe_file in os.listdir(self.potential_edges_dir)]
         self.get_potential_edges(
-                potential_edges_files, self.flipped0_edges_file, gt_1s_df, cluster_logic,
+                potential_edges_files, self.flipped0_edges_file, must_links_to_try_df, cluster_logic,
                 cluster_info, uid_cols, eid_col)
 
         logger.info("Clustering potential links.")
@@ -442,7 +443,7 @@ class Cluster(NamematchBase):
         Args:
             potential_edges_files (list): paths to the potential links files
             flipped0_edges_file (str): path to the flipped0-links file
-            gt_1s_df (pd.DataFrame): for incremental runs, subset of the must-link df that are "new" 1s
+            gt_1s_df (pd.DataFrame): known y=1s; will be matched, pending the edge/cluster validity
             cluster_logic (module): user-defined constraint functions
             cluster_info (pd.DataFrame): all-names file, with only the columns relevant for clustering
             uid_cols (list): all-name columns with compare_type UniqueID

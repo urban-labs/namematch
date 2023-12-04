@@ -44,7 +44,7 @@ class NameMatcher(object):
         output_dir: str='output',
         output_temp_dir: str=None,
         all_names_file: str='all_names.parquet',
-        must_links: str='must_links.csv',
+        must_links: str='must_links.parquet',
         blocking_index_bin_file: str='blocking_index.bin',
         candidate_pairs_file: str='candidate_pairs.parquet',
         data_rows_dir: str='data_rows',
