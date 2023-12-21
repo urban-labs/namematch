@@ -1,19 +1,22 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>namematch.block &mdash; namematch 1.2.1 documentation</title>
-      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=19f00094" />
+
+  
   <!--[if lt IE 9]>
     <script src="../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-        <script src="../../_static/jquery.js"></script>
-        <script src="../../_static/underscore.js"></script>
-        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js?v=e8fef1db"></script>
+        <script src="../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../_static/sphinx_highlight.js?v=4825356b"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="author" title="About these documents" href="../../about.html" />
     <link rel="index" title="Index" href="../../genindex.html" />
@@ -25,11 +28,18 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../../index.html" class="icon icon-home"> namematch
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            namematch
           </a>
+              <div class="version">
+                1.2.1
+              </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -56,9 +66,9 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="../index.html">Module code</a> &raquo;</li>
-      <li>namematch.block</li>
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">namematch.block</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -107,7 +117,7 @@
 <span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">()</span>
 
 <div class="viewcode-block" id="Block"><a class="viewcode-back" href="../../api.html#namematch.block.Block">[docs]</a><span class="k">class</span> <span class="nc">Block</span><span class="p">(</span><span class="n">NamematchBase</span><span class="p">):</span>
-    <span class="sd">&#39;&#39;&#39;</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">    Args:</span>
 <span class="sd">        params (Parameters object): contains matching parameter values</span>
 <span class="sd">        schema (Schema object): contains match schema info (files to match, variables to use, etc.)</span>
@@ -123,7 +133,7 @@
         <span class="n">params</span><span class="p">,</span>
         <span class="n">schema</span><span class="p">,</span>
         <span class="n">all_names_file</span><span class="o">=</span><span class="s1">&#39;all_names.parquet&#39;</span><span class="p">,</span>
-        <span class="n">must_links_file</span><span class="o">=</span><span class="s1">&#39;must_links.csv&#39;</span><span class="p">,</span>
+        <span class="n">must_links_file</span><span class="o">=</span><span class="s1">&#39;must_links.parquet&#39;</span><span class="p">,</span>
         <span class="n">candidate_pairs_file</span><span class="o">=</span><span class="s1">&#39;candidate_pairs.parquet&#39;</span><span class="p">,</span>
         <span class="n">blocking_index_bin_file</span><span class="o">=</span><span class="s1">&#39;blocking_index.bin&#39;</span><span class="p">,</span>
         <span class="n">og_blocking_index_file</span><span class="o">=</span><span class="s1">&#39;None&#39;</span><span class="p">,</span>
@@ -154,7 +164,7 @@
     <span class="c1"># @log_runtime_and_memory</span>
 <div class="viewcode-block" id="Block.main"><a class="viewcode-back" href="../../api.html#namematch.block.Block.main">[docs]</a>    <span class="nd">@profile</span>
     <span class="k">def</span> <span class="nf">main</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">):</span>
-        <span class="sd">&#39;&#39;&#39;Generate the candidate-pairs list using the blocking scheme outlined in the config.&#39;&#39;&#39;</span>
+<span class="w">        </span><span class="sd">&#39;&#39;&#39;Generate the candidate-pairs list using the blocking scheme outlined in the config.&#39;&#39;&#39;</span>
         <span class="n">temp_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">candidate_pairs_file</span><span class="p">)</span>
 
         <span class="n">nn_cols</span><span class="p">,</span> <span class="n">ed_col</span><span class="p">,</span> <span class="n">absval_col</span> <span class="o">=</span> <span class="n">get_blocking_columns</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">params</span><span class="o">.</span><span class="n">blocking_scheme</span><span class="p">)</span>
@@ -205,7 +215,7 @@
 
         <span class="c1"># evaluate blocking</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">params</span><span class="o">.</span><span class="n">incremental</span><span class="p">:</span>
-            <span class="n">must_links_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">must_links_file</span><span class="p">)</span>
+            <span class="n">must_links_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_parquet</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">must_links_file</span><span class="p">)</span>
 
             <span class="n">true_pairs_df</span> <span class="o">=</span> <span class="n">generate_true_pairs</span><span class="p">(</span><span class="n">must_links_df</span><span class="p">)</span>
             <span class="n">uncovered_pairs_df</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">evaluate_blocking</span><span class="p">(</span>
@@ -229,7 +239,7 @@
     <span class="c1"># @log_runtime_and_memory</span>
 <div class="viewcode-block" id="Block.split_last_names"><a class="viewcode-back" href="../../api.html#namematch.block.Block.split_last_names">[docs]</a>    <span class="nd">@profile</span>
     <span class="k">def</span> <span class="nf">split_last_names</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">df</span><span class="p">,</span> <span class="n">last_name_column</span><span class="p">,</span> <span class="n">blocking_scheme</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">):</span>
-        <span class="sd">&#39;&#39;&#39;Expand the processed all-names file to handle double last names (e.g. SAM SMITH-BROWN</span>
+<span class="w">        </span><span class="sd">&#39;&#39;&#39;Expand the processed all-names file to handle double last names (e.g. SAM SMITH-BROWN</span>
 <span class="sd">        becomes SAM SMITH and SAM BROWN).</span>
 
 <span class="sd">        Args:</span>
@@ -288,7 +298,7 @@
     <span class="c1"># @log_runtime_and_memory</span>
 <div class="viewcode-block" id="Block.convert_all_names_to_blockstring_info"><a class="viewcode-back" href="../../api.html#namematch.block.Block.convert_all_names_to_blockstring_info">[docs]</a>    <span class="nd">@profile</span>
     <span class="k">def</span> <span class="nf">convert_all_names_to_blockstring_info</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">an</span><span class="p">,</span> <span class="n">absval_col</span><span class="p">,</span> <span class="n">params</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">):</span>
-        <span class="sd">&#39;&#39;&#39;Create a table with information about blockstrings. If the split_names parameter is True,</span>
+<span class="w">        </span><span class="sd">&#39;&#39;&#39;Create a table with information about blockstrings. If the split_names parameter is True,</span>
 <span class="sd">        then this function expands double last names to create two new &quot;records&quot; (e.g. SAM SMITH-BROWN</span>
 <span class="sd">        becomes SAM SMITH and SAM BROWN).</span>
 
@@ -381,7 +391,7 @@
 
 
 <div class="viewcode-block" id="Block.get_query_strings"><a class="viewcode-back" href="../../api.html#namematch.block.Block.get_query_strings">[docs]</a>    <span class="k">def</span> <span class="nf">get_query_strings</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nn_string_info</span><span class="p">,</span> <span class="n">blocking_scheme</span><span class="p">):</span>
-        <span class="sd">&#39;&#39;&#39;Filter to nn_strings that appear in the new data -- these are the only strings</span>
+<span class="w">        </span><span class="sd">&#39;&#39;&#39;Filter to nn_strings that appear in the new data -- these are the only strings</span>
 <span class="sd">        for which we need near-neighbors. If incremental is False, this filtering step does nothing.</span>
 
 <span class="sd">        Args:</span>
@@ -428,7 +438,7 @@
             <span class="n">matrix_type</span><span class="p">,</span>
             <span class="n">verbose</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
             <span class="o">**</span><span class="n">kw</span><span class="p">):</span>
-        <span class="sd">&#39;&#39;&#39;Return a weighted sparse matrix of 2-shingles</span>
+<span class="w">        </span><span class="sd">&#39;&#39;&#39;Return a weighted sparse matrix of 2-shingles</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            alpha (float): weight of LAST relative to FIRST</span>
@@ -475,7 +485,7 @@
     <span class="c1"># @log_runtime_and_memory</span>
 <div class="viewcode-block" id="Block.load_main_index"><a class="viewcode-back" href="../../api.html#namematch.block.Block.load_main_index">[docs]</a>    <span class="nd">@profile</span>
     <span class="k">def</span> <span class="nf">load_main_index</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">index_file</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">):</span>
-        <span class="sd">&#39;&#39;&#39;Load the main index, which is reusable over time as data is added incrementally.</span>
+<span class="w">        </span><span class="sd">&#39;&#39;&#39;Load the main index, which is reusable over time as data is added incrementally.</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            index_file (str): path to stored index</span>
@@ -501,7 +511,7 @@
             <span class="n">power</span><span class="p">,</span>
             <span class="n">print_progress</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
             <span class="o">**</span><span class="n">kw</span><span class="p">):</span>
-        <span class="sd">&#39;&#39;&#39;Build an nmslib index based on a list of nn_strings and a set of parameters.</span>
+<span class="w">        </span><span class="sd">&#39;&#39;&#39;Build an nmslib index based on a list of nn_strings and a set of parameters.</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            nn_strings (list): strings of the form &#39;FIRST::LAST&#39; to shingle and put in matrix (rows)</span>
@@ -535,7 +545,7 @@
     <span class="c1"># @log_runtime_and_memory</span>
 <div class="viewcode-block" id="Block.get_indices"><a class="viewcode-back" href="../../api.html#namematch.block.Block.get_indices">[docs]</a>    <span class="nd">@profile</span>
     <span class="k">def</span> <span class="nf">get_indices</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">params</span><span class="p">,</span> <span class="n">all_nn_strings</span><span class="p">,</span> <span class="n">og_blocking_index_file</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">):</span>
-        <span class="sd">&#39;&#39;&#39;Wrapper function coordinating the creation and/or loading of the nmslib indices.</span>
+<span class="w">        </span><span class="sd">&#39;&#39;&#39;Wrapper function coordinating the creation and/or loading of the nmslib indices.</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            params (Parameters object): contains matching parameter values</span>
@@ -616,7 +626,7 @@
         <span class="n">batch_size</span><span class="p">,</span>
         <span class="o">**</span><span class="n">kw</span>
     <span class="p">):</span>
-        <span class="sd">&#39;&#39;&#39;Wrapper function for querying the nmslib index (or indices) and getting</span>
+<span class="w">        </span><span class="sd">&#39;&#39;&#39;Wrapper function for querying the nmslib index (or indices) and getting</span>
 <span class="sd">        non-matching candidate pairs.</span>
 
 <span class="sd">        Args:</span>
@@ -757,7 +767,7 @@
 
     <span class="c1"># @log_runtime_and_memory</span>
 <div class="viewcode-block" id="Block.compute_cosine_sim"><a class="viewcode-back" href="../../api.html#namematch.block.Block.compute_cosine_sim">[docs]</a>    <span class="k">def</span> <span class="nf">compute_cosine_sim</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">blockstrings_in_pairs</span><span class="p">,</span> <span class="n">pairs_df</span><span class="p">,</span> <span class="n">shingles_matrix</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">):</span>
-        <span class="sd">&#39;&#39;&#39;Fast cosine similarity computation using the shingles matrix.</span>
+<span class="w">        </span><span class="sd">&#39;&#39;&#39;Fast cosine similarity computation using the shingles matrix.</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            blockstrings_in_pairs (list): used to get index of different strings in shingles_matrix</span>
@@ -809,7 +819,7 @@
     <span class="c1"># @log_runtime_and_memory</span>
 <div class="viewcode-block" id="Block.evaluate_blocking"><a class="viewcode-back" href="../../api.html#namematch.block.Block.evaluate_blocking">[docs]</a>    <span class="nd">@profile</span>
     <span class="k">def</span> <span class="nf">evaluate_blocking</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cp_df</span><span class="p">,</span> <span class="n">tp_df</span><span class="p">,</span> <span class="n">blocking_scheme</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">):</span>
-        <span class="sd">&#39;&#39;&#39;The evaluate_blocking function computes the pair completeness metrics to</span>
+<span class="w">        </span><span class="sd">&#39;&#39;&#39;The evaluate_blocking function computes the pair completeness metrics to</span>
 <span class="sd">        determine how successful blocking was at minimizing comparisons and</span>
 <span class="sd">        maximizing true positives (i.e. generating a candidate pair between</span>
 <span class="sd">        records that are actually matches).</span>
@@ -909,9 +919,9 @@
                     <span class="mi">1</span> <span class="o">-</span> <span class="p">(</span><span class="n">pc_numerator_nn_string_level</span> <span class="o">/</span> <span class="n">pc_denominator_nn_string_level</span><span class="p">)</span>
             <span class="n">pc_blockstring_level</span> <span class="o">=</span> \
                     <span class="mi">1</span> <span class="o">-</span> <span class="p">(</span><span class="n">pc_numerator_blockstring_level</span> <span class="o">/</span> <span class="n">pc_denominator_blockstring_level</span><span class="p">)</span>
-            <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Pair completeness, including equal blockstrings (cosine level): </span><span class="si">{</span><span class="nb">round</span><span class="p">(</span><span class="n">pc_nn_string_level</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Pair completeness, including equal blockstrings (cosine level): </span><span class="si">{</span><span class="nb">round</span><span class="p">(</span><span class="n">pc_nn_string_level</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">stats_dict</span><span class="p">[</span><span class="s1">&#39;pc_eq_cos&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="n">pc_nn_string_level</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
-            <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Pair completeness, including equal blockstrings (cosine + editdistance level): </span><span class="si">{</span><span class="nb">round</span><span class="p">(</span><span class="n">pc_blockstring_level</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Pair completeness, including equal blockstrings (cosine + editdistance level): </span><span class="si">{</span><span class="nb">round</span><span class="p">(</span><span class="n">pc_blockstring_level</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">stats_dict</span><span class="p">[</span><span class="s1">&#39;pc_eq_cosed&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="n">pc_blockstring_level</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
         <span class="k">except</span><span class="p">:</span>
             <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Pair completeness cannot be calculated. Make sure necessary &quot;</span>
@@ -927,9 +937,9 @@
                     <span class="mi">1</span> <span class="o">-</span> <span class="p">(</span><span class="n">pc_numerator_nn_string_level</span> <span class="o">/</span> <span class="n">pc_denominator_nonequal_nn_string_level</span><span class="p">)</span>
             <span class="n">pc_blockstring_level</span> <span class="o">=</span> \
                     <span class="mi">1</span> <span class="o">-</span> <span class="p">(</span><span class="n">pc_numerator_blockstring_level</span> <span class="o">/</span> <span class="n">pc_denominator_nonequal_blockstring_level</span><span class="p">)</span>
-            <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Pair completeness, non-equal blockstrings (cosine level): </span><span class="si">{</span><span class="nb">round</span><span class="p">(</span><span class="n">pc_nn_string_level</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Pair completeness, non-equal blockstrings (cosine level): </span><span class="si">{</span><span class="nb">round</span><span class="p">(</span><span class="n">pc_nn_string_level</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">stats_dict</span><span class="p">[</span><span class="s1">&#39;pc_neq_cos&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="n">pc_nn_string_level</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
-            <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Pair completeness, non-equal blockstrings (cosine + editdistance level): </span><span class="si">{</span><span class="nb">round</span><span class="p">(</span><span class="n">pc_blockstring_level</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Pair completeness, non-equal blockstrings (cosine + editdistance level): </span><span class="si">{</span><span class="nb">round</span><span class="p">(</span><span class="n">pc_blockstring_level</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">stats_dict</span><span class="p">[</span><span class="s1">&#39;pc_neq_cosed&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="n">pc_blockstring_level</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
         <span class="k">except</span><span class="p">:</span>
             <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Pair completeness (non-equal blockstrings) cannot be calculated. &quot;</span>
@@ -940,7 +950,7 @@
         <span class="k">return</span> <span class="n">up_df</span></div>
 
 <div class="viewcode-block" id="Block.add_uncovered_pairs"><a class="viewcode-back" href="../../api.html#namematch.block.Block.add_uncovered_pairs">[docs]</a>    <span class="k">def</span> <span class="nf">add_uncovered_pairs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">candidate_pairs_df</span><span class="p">,</span> <span class="n">uncovered_pairs_df</span><span class="p">):</span>
-        <span class="sd">&#39;&#39;&#39;Add the uncovered pairs to the candidate pairs dataframe so that all of the</span>
+<span class="w">        </span><span class="sd">&#39;&#39;&#39;Add the uncovered pairs to the candidate pairs dataframe so that all of the</span>
 <span class="sd">        known pairs are in the candidate pairs list.</span>
 
 <span class="sd">        Args:</span>
@@ -975,7 +985,7 @@
 
 <div class="viewcode-block" id="Block.apply_blocking_filter"><a class="viewcode-back" href="../../api.html#namematch.block.Block.apply_blocking_filter">[docs]</a>    <span class="nd">@profile</span>
     <span class="k">def</span> <span class="nf">apply_blocking_filter</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">df</span><span class="p">,</span> <span class="n">thresholds</span><span class="p">,</span> <span class="n">nn_string_expanded_df</span><span class="p">,</span> <span class="n">nns_match</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
-        <span class="sd">&#39;&#39;&#39;Compare similarity of names and DOBs to see if a pair of records are likely to be a match.</span>
+<span class="w">        </span><span class="sd">&#39;&#39;&#39;Compare similarity of names and DOBs to see if a pair of records are likely to be a match.</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            df (pd.DataFrame): holds similarity and commonness info about pairs of names</span>
@@ -1068,7 +1078,7 @@
 
 <div class="viewcode-block" id="Block.disallow_switched_pairs"><a class="viewcode-back" href="../../api.html#namematch.block.Block.disallow_switched_pairs">[docs]</a>    <span class="nd">@profile</span>
     <span class="k">def</span> <span class="nf">disallow_switched_pairs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">df</span><span class="p">,</span> <span class="n">incremental</span><span class="p">,</span> <span class="n">nn_strings_to_query</span><span class="p">):</span>
-        <span class="sd">&#39;&#39;&#39;Look through the columns nn_string_1 and nn_string_2 and keep only rows where</span>
+<span class="w">        </span><span class="sd">&#39;&#39;&#39;Look through the columns nn_string_1 and nn_string_2 and keep only rows where</span>
 <span class="sd">        nn_string1 &lt;= nn_string2 to prevent duplicates in the end (i.e. ABBY-&gt;ZABBY &amp;</span>
 <span class="sd">        ZABBY-&gt;ABBY; only one is needed). Special case for incremental runs.</span>
 
@@ -1108,7 +1118,7 @@
             <span class="n">thresholds</span><span class="p">,</span>
             <span class="n">incremental</span><span class="p">,</span>
             <span class="n">output</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-        <span class="sd">&#39;&#39;&#39;Actually determines whether two names become candidates; this function is launched by</span>
+<span class="w">        </span><span class="sd">&#39;&#39;&#39;Actually determines whether two names become candidates; this function is launched by</span>
 <span class="sd">        generate_candidate_pairs() and run on individual worker threads to speed up processing.</span>
 
 <span class="sd">        Args:</span>
@@ -1166,7 +1176,7 @@
             <span class="n">nn_string_info</span><span class="p">,</span>
             <span class="n">nn_strings_this_index</span><span class="p">,</span>
             <span class="n">nn_strings_queried_this_batch</span><span class="p">):</span>
-        <span class="sd">&#39;&#39;&#39;For a small batch of names (nn_strings_queried_this_batch), format a dataframe that</span>
+<span class="w">        </span><span class="sd">&#39;&#39;&#39;For a small batch of names (nn_strings_queried_this_batch), format a dataframe that</span>
 <span class="sd">        enumerates every pair of (name in this batch, a near neighbor), along with information about</span>
 <span class="sd">        similarity and commonness.</span>
 
@@ -1233,7 +1243,7 @@
         <span class="k">return</span> <span class="n">df</span></div>
 
 <div class="viewcode-block" id="Block.get_exact_match_candidate_pairs"><a class="viewcode-back" href="../../api.html#namematch.block.Block.get_exact_match_candidate_pairs">[docs]</a>    <span class="k">def</span> <span class="nf">get_exact_match_candidate_pairs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nn_string_info_multi</span><span class="p">,</span> <span class="n">nn_string_expanded_df</span><span class="p">,</span> <span class="n">blocking_thresholds</span><span class="p">):</span>
-        <span class="sd">&#39;&#39;&#39;All nn_strings that appear more than once need to have a corresponding</span>
+<span class="w">        </span><span class="sd">&#39;&#39;&#39;All nn_strings that appear more than once need to have a corresponding</span>
 <span class="sd">        nn_string, nn_string candidate pair -- we can skip the &quot;approximation&quot; easily</span>
 <span class="sd">        for this type of candidate pair.</span>
 
@@ -1278,7 +1288,7 @@
 
 
 <div class="viewcode-block" id="get_blocking_columns"><a class="viewcode-back" href="../../api.html#namematch.block.get_blocking_columns">[docs]</a><span class="k">def</span> <span class="nf">get_blocking_columns</span><span class="p">(</span><span class="n">blocking_scheme</span><span class="p">):</span>
-    <span class="sd">&#39;&#39;&#39;Get the list of blocking variables for each type of blocking:</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;Get the list of blocking variables for each type of blocking:</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        blocking_scheme (dict): dictionary with info on how to do blocking</span>
@@ -1305,7 +1315,7 @@
 
 
 <div class="viewcode-block" id="read_an"><a class="viewcode-back" href="../../api.html#namematch.block.read_an">[docs]</a><span class="k">def</span> <span class="nf">read_an</span><span class="p">(</span><span class="n">an_file</span><span class="p">,</span> <span class="n">nn_cols</span><span class="p">,</span> <span class="n">ed_col</span><span class="p">,</span> <span class="n">absval_col</span><span class="p">):</span>
-    <span class="sd">&#39;&#39;&#39;Read in relevant columns for blocking from the all-names file.</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;Read in relevant columns for blocking from the all-names file.</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        an_file (str): path to the all-names file</span>
@@ -1359,7 +1369,7 @@
 
 
 <div class="viewcode-block" id="get_nn_string_counts"><a class="viewcode-back" href="../../api.html#namematch.block.get_nn_string_counts">[docs]</a><span class="k">def</span> <span class="nf">get_nn_string_counts</span><span class="p">(</span><span class="n">an</span><span class="p">):</span>
-    <span class="sd">&#39;&#39;&#39;Count number of records per nn_strings (per file_type).</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;Count number of records per nn_strings (per file_type).</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        an (pd.DataFrame): all-names table, relevant columns only (where drop_from_nm == 0)</span>
@@ -1397,7 +1407,7 @@
 
 
 <div class="viewcode-block" id="get_common_name_penalties"><a class="viewcode-back" href="../../api.html#namematch.block.get_common_name_penalties">[docs]</a><span class="k">def</span> <span class="nf">get_common_name_penalties</span><span class="p">(</span><span class="n">clean_last_names</span><span class="p">,</span> <span class="n">max_penalty</span><span class="p">,</span> <span class="n">num_threshold_bins</span><span class="o">=</span><span class="mi">1000</span><span class="p">):</span>
-    <span class="sd">&#39;&#39;&#39;Create a dictionary mapping each last name to a &quot;commonness penalty.&quot; Two SMITHs are</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;Create a dictionary mapping each last name to a &quot;commonness penalty.&quot; Two SMITHs are</span>
 <span class="sd">    less likely to be the same person than two HANDAs, since SMITH is such a common name. This</span>
 <span class="sd">    function quantifies this penalty for use in later blocking calculations. A more common name</span>
 <span class="sd">    recieves a higher number, topping out at max_penalty.</span>
@@ -1440,7 +1450,7 @@
 
 
 <div class="viewcode-block" id="get_all_shingles"><a class="viewcode-back" href="../../api.html#namematch.block.get_all_shingles">[docs]</a><span class="k">def</span> <span class="nf">get_all_shingles</span><span class="p">():</span>
-    <span class="sd">&#39;&#39;&#39;Get all valid 2-shingles.</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;Get all valid 2-shingles.</span>
 
 <span class="sd">    Returns:</span>
 <span class="sd">        list: valid 2-shingles</span>
@@ -1456,7 +1466,7 @@
 
 
 <div class="viewcode-block" id="prep_index"><a class="viewcode-back" href="../../api.html#namematch.block.prep_index">[docs]</a><span class="k">def</span> <span class="nf">prep_index</span><span class="p">():</span>
-    <span class="sd">&#39;&#39;&#39;Initialize index data structure, which will store similarity information</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;Initialize index data structure, which will store similarity information</span>
 <span class="sd">    about the names, and load processed shingles into it.</span>
 
 <span class="sd">    Returns:</span>
@@ -1479,7 +1489,7 @@
 
 
 <div class="viewcode-block" id="get_second_index_nn_strings"><a class="viewcode-back" href="../../api.html#namematch.block.get_second_index_nn_strings">[docs]</a><span class="k">def</span> <span class="nf">get_second_index_nn_strings</span><span class="p">(</span><span class="n">all_nn_strings</span><span class="p">,</span> <span class="n">main_nn_strings</span><span class="p">):</span>
-    <span class="sd">&#39;&#39;&#39;Get nn_strings that haven&#39;t already been stored in the main index.</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;Get nn_strings that haven&#39;t already been stored in the main index.</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        all_nn_strings (list): list of all nn_strings in the data (expanded if split_names is True)</span>
@@ -1500,7 +1510,7 @@
 
 
 <div class="viewcode-block" id="save_main_index"><a class="viewcode-back" href="../../api.html#namematch.block.save_main_index">[docs]</a><span class="k">def</span> <span class="nf">save_main_index</span><span class="p">(</span><span class="n">main_index</span><span class="p">,</span> <span class="n">main_index_nn_strings</span><span class="p">,</span> <span class="n">main_index_file</span><span class="p">):</span>
-    <span class="sd">&#39;&#39;&#39;Save the main nmslib index and pickle dump the associated nn_strings list.</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;Save the main nmslib index and pickle dump the associated nn_strings list.</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        main_index (nmslib.FloatIndex): the main, built nmslib index</span>
@@ -1515,7 +1525,7 @@
 
 
 <div class="viewcode-block" id="load_main_index_nn_strings"><a class="viewcode-back" href="../../api.html#namematch.block.load_main_index_nn_strings">[docs]</a><span class="k">def</span> <span class="nf">load_main_index_nn_strings</span><span class="p">(</span><span class="n">og_blocking_index_file</span><span class="p">):</span>
-    <span class="sd">&#39;&#39;&#39;Load the nn_strings that are in an existing nmslbi index file.</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;Load the nn_strings that are in an existing nmslbi index file.</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        og_blocking_index_file (str): path to original blocking index</span>
@@ -1531,7 +1541,7 @@
 
 
 <div class="viewcode-block" id="write_some_cps"><a class="viewcode-back" href="../../api.html#namematch.block.write_some_cps">[docs]</a><span class="k">def</span> <span class="nf">write_some_cps</span><span class="p">(</span><span class="n">cand_pairs</span><span class="p">,</span> <span class="n">candidate_pairs_file</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
-    <span class="sd">&#39;&#39;&#39;Write out a portion of the candidate-pairs.</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;Write out a portion of the candidate-pairs.</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        cand_pairs (pd.DataFrame): chunk of the candidate-pairs file</span>
@@ -1548,7 +1558,7 @@
 
 
 <div class="viewcode-block" id="generate_true_pairs"><a class="viewcode-back" href="../../api.html#namematch.block.generate_true_pairs">[docs]</a><span class="k">def</span> <span class="nf">generate_true_pairs</span><span class="p">(</span><span class="n">must_links_df</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Reduce the must-link records pairs must-link blockstring pairs.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Reduce the must-link records pairs must-link blockstring pairs.</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        must_links_df (pd.DataFrame): list of must-link record pairs</span>
@@ -1578,7 +1588,6 @@
     <span class="n">true_pairs_df</span> <span class="o">=</span> <span class="n">must_links_df</span><span class="p">[[</span><span class="s1">&#39;blockstring_1&#39;</span><span class="p">,</span> <span class="s1">&#39;blockstring_2&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">drop_duplicates</span><span class="p">()</span>
 
     <span class="k">return</span> <span class="n">true_pairs_df</span></div>
-
 </pre></div>
 
            </div>

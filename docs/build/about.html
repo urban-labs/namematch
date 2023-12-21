@@ -1,20 +1,23 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en">
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>About Name Match &mdash; namematch 1.2.1 documentation</title>
-      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
+
+  
   <!--[if lt IE 9]>
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-        <script src="_static/jquery.js"></script>
-        <script src="_static/underscore.js"></script>
-        <script src="_static/doctools.js"></script>
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js?v=e8fef1db"></script>
+        <script src="_static/doctools.js?v=888ff710"></script>
+        <script src="_static/sphinx_highlight.js?v=4825356b"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="author" title="About these documents" href="#" />
     <link rel="index" title="Index" href="genindex.html" />
@@ -28,14 +31,18 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="index.html" class="icon icon-home"> namematch
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            namematch
           </a>
               <div class="version">
                 1.2.1
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -67,8 +74,8 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>About Name Match</li>
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">About Name Match</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/about.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -79,11 +86,11 @@
            <div itemprop="articleBody">
              
   <section id="about-name-match">
-<h1>About Name Match<a class="headerlink" href="#about-name-match" title="Permalink to this headline"></a></h1>
+<h1>About Name Match<a class="headerlink" href="#about-name-match" title="Permalink to this heading"></a></h1>
 <p>Name Match is a tool for probabilistically linking the records of individual entities (e.g. people) within and across datasets.</p>
 <p>The code is optimized for linking people in criminal justice datasets (arrests, victimizations, city programs, etc.) using at least first name, last name, date of birth, and age (some missingness in DOB and age is tolerated). If available, other data fields (like middle initial, race, gender, address, and zipcode) can be included to strengthen the quality of the match.</p>
 <section id="what-is-name-match-doing">
-<h2>What is Name Match doing?<a class="headerlink" href="#what-is-name-match-doing" title="Permalink to this headline"></a></h2>
+<h2>What is Name Match doing?<a class="headerlink" href="#what-is-name-match-doing" title="Permalink to this heading"></a></h2>
 <p>The goal of Name Match is to add a universal person identifier column to the input dataset(s) so that it is possible to easily identify all records that refer to the same person. To do this, it uses training data to learn a model about what record pairs look like when they refer to the same person (or “match) vs. when they don’t refer to the same person. This model is then used to predict the likelihood that two records match. Once we know which pairs of records match, we can assign each record a unique person identifier that links it to all of its matches.</p>
 <p>Because Name Match’s primary output is a person identifier assigned to all input records, Name Match can be thought of as both a record <em>linkage</em> tool and a <em>deduplication</em> tool. That is, once each input dataset has a universal person identifier column, the datasets can be linked and/or collapsed to one row per person (deduplicated).</p>
 <p><strong>How are records compared to each other?</strong> Each record contains fields that help identify a person, such as name, date of birth, and gender. When two records are compared, we generate a series of similarity metrics by comparing each field from one record to the corresponding field in another record. Exactly what similarity metric is used to compare two fields depends on the type of information in the field (i.e. string, date, categorical variable). Edit distance between first name fields, number of days between dob fields, and whether or not the gender fields exactly match are all examples of similarity metrics that might be generated.</p>
@@ -94,7 +101,7 @@
 <img alt="clustering" src="_images/clustering.png" />
 </section>
 <section id="requirements-for-using-name-match">
-<span id="id1"></span><h2>Requirements for using Name Match<a class="headerlink" href="#requirements-for-using-name-match" title="Permalink to this headline"></a></h2>
+<span id="id1"></span><h2>Requirements for using Name Match<a class="headerlink" href="#requirements-for-using-name-match" title="Permalink to this heading"></a></h2>
 <p>In order to use Name Match to deduplicate or link data, <strong>a portion of the input data must meet the following criteria</strong>:</p>
 <ol class="arabic simple">
 <li><p>Already have a unique person or entity identifier that can be used to link records (e.g. Social Security Number or Fingerprint ID)</p></li>
@@ -107,7 +114,7 @@
 <p>Another requirement for record linkage, not specific to Name Match, is having common identifying information across the files that are being linked. First name, last name, dob, and are are required fields, but additional information like middle initial, race, gender, and address can improve the quality of the match. In order for these extra fields to be helpful, however, they have to be present in all input datasets. If one dataset has name, dob, age, and address and the other dataset has name, dob, age, and gender, only name, dob, and age can be used by the matching algorithm.</p>
 </section>
 <section id="inputs-and-outputs">
-<h2>Inputs and outputs<a class="headerlink" href="#inputs-and-outputs" title="Permalink to this headline"></a></h2>
+<h2>Inputs and outputs<a class="headerlink" href="#inputs-and-outputs" title="Permalink to this heading"></a></h2>
 <p><strong>Inputs:</strong></p>
 <ul class="simple">
 <li><p>One or more CSV files</p></li>

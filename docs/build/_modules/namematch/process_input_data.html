@@ -1,19 +1,22 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>namematch.process_input_data &mdash; namematch 1.2.1 documentation</title>
-      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=19f00094" />
+
+  
   <!--[if lt IE 9]>
     <script src="../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-        <script src="../../_static/jquery.js"></script>
-        <script src="../../_static/underscore.js"></script>
-        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js?v=e8fef1db"></script>
+        <script src="../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../_static/sphinx_highlight.js?v=4825356b"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="author" title="About these documents" href="../../about.html" />
     <link rel="index" title="Index" href="../../genindex.html" />
@@ -25,11 +28,18 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../../index.html" class="icon icon-home"> namematch
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            namematch
           </a>
+              <div class="version">
+                1.2.1
+              </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -56,9 +66,9 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="../index.html">Module code</a> &raquo;</li>
-      <li>namematch.process_input_data</li>
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">namematch.process_input_data</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -118,7 +128,7 @@
 
     <span class="c1"># @log_runtime_and_memory</span>
 <div class="viewcode-block" id="ProcessInputData.main"><a class="viewcode-back" href="../../api.html#namematch.process_input_data.ProcessInputData.main">[docs]</a>    <span class="k">def</span> <span class="nf">main</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">):</span>
-        <span class="sd">&#39;&#39;&#39;Follow the instructions in the schema and params objects to build the all-names file from</span>
+<span class="w">        </span><span class="sd">&#39;&#39;&#39;Follow the instructions in the schema and params objects to build the all-names file from</span>
 <span class="sd">        the raw input file(s).</span>
 
 <span class="sd">        Args:</span>
@@ -165,7 +175,7 @@
                     <span class="k">break</span>
 
                 <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">params</span><span class="o">.</span><span class="n">verbose</span> <span class="o">!=</span> <span class="kc">None</span><span class="p">:</span>
-                    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;  Processing: read </span><span class="si">{</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">params</span><span class="o">.</span><span class="n">input_data_batch_size</span><span class="si">}</span><span class="s1"> rows.&#39;</span><span class="p">)</span>
+                    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;  Processing: read </span><span class="si">{</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="bp">self</span><span class="o">.</span><span class="n">params</span><span class="o">.</span><span class="n">input_data_batch_size</span><span class="si">}</span><span class="s1"> rows.&#39;</span><span class="p">)</span>
 
                 <span class="n">df</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">process_data</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">schema</span><span class="o">.</span><span class="n">variables</span><span class="p">,</span> <span class="n">data_file</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">params</span><span class="p">)</span>
 
@@ -201,7 +211,7 @@
 
 <div class="viewcode-block" id="ProcessInputData.process_geo_column"><a class="viewcode-back" href="../../api.html#namematch.process_input_data.ProcessInputData.process_geo_column">[docs]</a>    <span class="nd">@profile</span>
     <span class="k">def</span> <span class="nf">process_geo_column</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">df</span><span class="p">,</span> <span class="n">variable</span><span class="p">):</span>
-        <span class="sd">&#39;&#39;&#39;Take dataframe of geographic data (either in &quot;lat,lon&quot; format or in</span>
+<span class="w">        </span><span class="sd">&#39;&#39;&#39;Take dataframe of geographic data (either in &quot;lat,lon&quot; format or in</span>
 <span class="sd">        &quot;lat&quot;, &quot;lon&quot; format) and ensure it has just one column.</span>
 
 <span class="sd">        Args:</span>
@@ -247,7 +257,7 @@
 
 <div class="viewcode-block" id="ProcessInputData.parse_address"><a class="viewcode-back" href="../../api.html#namematch.process_input_data.ProcessInputData.parse_address">[docs]</a>    <span class="nd">@profile</span>
     <span class="k">def</span> <span class="nf">parse_address</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">address</span><span class="p">):</span>
-        <span class="sd">&#39;&#39;&#39;Parse an address string into distinct parts.</span>
+<span class="w">        </span><span class="sd">&#39;&#39;&#39;Parse an address string into distinct parts.</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            address (str): string of full address (e.g. 54 East 18th Rd.)</span>
@@ -296,7 +306,7 @@
 
 <div class="viewcode-block" id="ProcessInputData.process_address_column"><a class="viewcode-back" href="../../api.html#namematch.process_input_data.ProcessInputData.process_address_column">[docs]</a>    <span class="nd">@profile</span>
     <span class="k">def</span> <span class="nf">process_address_column</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">df</span><span class="p">,</span> <span class="n">logger</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-        <span class="sd">&#39;&#39;&#39;Take dataframe of address data (either in &quot;123 Main St.&quot; format or</span>
+<span class="w">        </span><span class="sd">&#39;&#39;&#39;Take dataframe of address data (either in &quot;123 Main St.&quot; format or</span>
 <span class="sd">        &quot;123&quot;, &quot;Main&quot;, &quot;St.&quot; format, order matters) and parse as needed to produce</span>
 <span class="sd">        three clean columns: street number, street name, and street type.</span>
 
@@ -331,7 +341,7 @@
 
 <div class="viewcode-block" id="ProcessInputData.process_check"><a class="viewcode-back" href="../../api.html#namematch.process_input_data.ProcessInputData.process_check">[docs]</a>    <span class="nd">@profile</span>
     <span class="k">def</span> <span class="nf">process_check</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">s</span><span class="p">,</span> <span class="n">variable</span><span class="p">):</span>
-        <span class="sd">&#39;&#39;&#39;Check the validity of the values in a given all-names column (according to the data type</span>
+<span class="w">        </span><span class="sd">&#39;&#39;&#39;Check the validity of the values in a given all-names column (according to the data type</span>
 <span class="sd">        and config instructions) and set the series name correctly.</span>
 
 <span class="sd">        Args:</span>
@@ -362,7 +372,7 @@
             <span class="n">after</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
             <span class="k">if</span> <span class="p">(</span><span class="n">before</span> <span class="o">-</span> <span class="n">after</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
                 <span class="n">logger</span><span class="o">.</span><span class="n">trace</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Setting </span><span class="si">{</span><span class="n">s</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s1"> variable to missing for &#39;</span>
-                             <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">before</span> <span class="o">-</span> <span class="n">after</span><span class="si">}</span><span class="s1"> rows (fails check).&#39;</span><span class="p">)</span>
+                             <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">before</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">after</span><span class="si">}</span><span class="s1"> rows (fails check).&#39;</span><span class="p">)</span>
             <span class="c1"># convert to string in python date format: e.g. 2014-05-31</span>
             <span class="n">s</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%Y-%m-</span><span class="si">%d</span><span class="s1">&#39;</span><span class="p">)</span>
             <span class="n">s</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;NaT&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
@@ -387,7 +397,7 @@
 
 <div class="viewcode-block" id="ProcessInputData.process_data"><a class="viewcode-back" href="../../api.html#namematch.process_input_data.ProcessInputData.process_data">[docs]</a>    <span class="nd">@profile</span>
     <span class="k">def</span> <span class="nf">process_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">df</span><span class="p">,</span> <span class="n">variables</span><span class="p">,</span> <span class="n">data_file</span><span class="p">,</span> <span class="n">params</span><span class="p">):</span>
-        <span class="sd">&#39;&#39;&#39;Read in part of an input file and process it according to the config in order</span>
+<span class="w">        </span><span class="sd">&#39;&#39;&#39;Read in part of an input file and process it according to the config in order</span>
 <span class="sd">        to create part of the all-names file.</span>
 
 <span class="sd">        Args:</span>
@@ -500,7 +510,7 @@
         <span class="k">return</span> <span class="n">an</span></div></div>
 
 <div class="viewcode-block" id="process_set_missing"><a class="viewcode-back" href="../../api.html#namematch.process_input_data.process_set_missing">[docs]</a><span class="k">def</span> <span class="nf">process_set_missing</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">set_missing_list</span><span class="p">):</span>
-    <span class="sd">&#39;&#39;&#39;Set values in a series to missing as needed.</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;Set values in a series to missing as needed.</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        s (pd.Series): strings to process</span>
@@ -521,7 +531,7 @@
 
 
 <div class="viewcode-block" id="process_drop"><a class="viewcode-back" href="../../api.html#namematch.process_input_data.process_drop">[docs]</a><span class="k">def</span> <span class="nf">process_drop</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">drop_list</span><span class="p">):</span>
-    <span class="sd">&#39;&#39;&#39;Get the records in a series that have invalid values.</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;Get the records in a series that have invalid values.</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        s (pd.Series): series being processed</span>
@@ -541,7 +551,7 @@
 
 
 <div class="viewcode-block" id="process_auto_drops"><a class="viewcode-back" href="../../api.html#namematch.process_input_data.process_auto_drops">[docs]</a><span class="k">def</span> <span class="nf">process_auto_drops</span><span class="p">(</span><span class="n">an</span><span class="p">,</span> <span class="n">existing_drop_list</span><span class="p">,</span> <span class="n">drop_logic</span><span class="p">):</span>
-    <span class="sd">&#39;&#39;&#39;Get the records in all-names that have invalid values due to combination</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;Get the records in all-names that have invalid values due to combination</span>
 <span class="sd">    of multiple columns (based on logic in the private config).</span>
 
 <span class="sd">    Args:</span>

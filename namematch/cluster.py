@@ -98,7 +98,7 @@ class Cluster(NamematchBase):
         self,
         params,
         schema,
-        must_links_file="must_links.csv",
+        must_links_file="must_links.parquet",
         potential_edges_dir="potential_links",
         flipped0_edges_file="flipped0_potential_links.csv",
         all_names_file="all_names.parquet",
@@ -133,7 +133,7 @@ class Cluster(NamematchBase):
 
         # loading must links
         logger.info("Loading must-link links.")
-        must_links_df = pd.read_csv(self.must_links_file, low_memory=False)
+        must_links_df = pd.read_parquet(self.must_links_file)
         # get uid and eid cols
         uid_cols = self.schema.variables.get_variables_where(
                 attr='compare_type', attr_value='UniqueID')
@@ -149,21 +149,22 @@ class Cluster(NamematchBase):
 
         # separate must-links if we can't initialize new 1s
         if not self.params.initialize_from_ground_truth_1s or self.params.incremental:
-            gt_1s_df = must_links_df[must_links_df.existing == 0].copy()
-            must_links_df = must_links_df[must_links_df.existing == 1].copy()
+            must_links_to_try_df = must_links_df.copy()
+            must_links_to_enforce_df = None
         else:
-            gt_1s_df = None
+            must_links_to_try_df = None
+            must_links_to_enforce_df = must_links_df.copy()
 
         # create a starting point using must-links
         logger.info("Initializing initial clusters.")
         clusters, cluster_assignments, original_cluster_ids = \
-                self.get_initial_clusters(must_links_df, cluster_info, eid_col)
+                self.get_initial_clusters(must_links_to_enforce_df, cluster_info, eid_col)
         # potential_edges is sorted (decreasing) by phat
         logger.info("Loading potential links.")
         potential_edges_files = [os.path.join(self.potential_edges_dir, pe_file)
                                  for pe_file in os.listdir(self.potential_edges_dir)]
         self.get_potential_edges(
-                potential_edges_files, self.flipped0_edges_file, gt_1s_df, cluster_logic,
+                potential_edges_files, self.flipped0_edges_file, must_links_to_try_df, cluster_logic,
                 cluster_info, uid_cols, eid_col)
 
         logger.info("Clustering potential links.")
@@ -365,7 +366,7 @@ class Cluster(NamematchBase):
             # make dictionary mapping cluster id to a list of records in that cluster
             eid_df = an_df[an_df[eid_col].notnull() & (an_df[eid_col] != '')].copy()
             eid_df[eid_col] = eid_df[eid_col].astype(int)
-            cluster_assignments = eid_df[[eid_col]].to_dict()[eid_col]
+            cluster_assignments = eid_df[eid_col].to_dict()
             clusters = {}
             for (record_id, cluster_id) in cluster_assignments.items():
                 if (cluster_id in clusters):
@@ -382,7 +383,7 @@ class Cluster(NamematchBase):
         else: # from scratch
             clusters = {}
 
-            if len(must_links_df) > 0:
+            if must_links_df is not None and len(must_links_df) > 0:
                 reversed_must_links_df = pd.DataFrame({
                     "record_id_1": must_links_df["record_id_2"],
                     "record_id_2": must_links_df["record_id_1"]
@@ -442,7 +443,7 @@ class Cluster(NamematchBase):
         Args:
             potential_edges_files (list): paths to the potential links files
             flipped0_edges_file (str): path to the flipped0-links file
-            gt_1s_df (pd.DataFrame): for incremental runs, subset of the must-link df that are "new" 1s
+            gt_1s_df (pd.DataFrame): known y=1s; will be matched, pending the edge/cluster validity
             cluster_logic (module): user-defined constraint functions
             cluster_info (pd.DataFrame): all-names file, with only the columns relevant for clustering
             uid_cols (list): all-name columns with compare_type UniqueID

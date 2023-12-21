@@ -1,19 +1,22 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>namematch.generate_output &mdash; namematch 1.2.1 documentation</title>
-      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=19f00094" />
+
+  
   <!--[if lt IE 9]>
     <script src="../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-        <script src="../../_static/jquery.js"></script>
-        <script src="../../_static/underscore.js"></script>
-        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js?v=e8fef1db"></script>
+        <script src="../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../_static/sphinx_highlight.js?v=4825356b"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="author" title="About these documents" href="../../about.html" />
     <link rel="index" title="Index" href="../../genindex.html" />
@@ -25,11 +28,18 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../../index.html" class="icon icon-home"> namematch
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            namematch
           </a>
+              <div class="version">
+                1.2.1
+              </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -56,9 +66,9 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="../index.html">Module code</a> &raquo;</li>
-      <li>namematch.generate_output</li>
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">namematch.generate_output</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -88,7 +98,7 @@
 <span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
 
 <div class="viewcode-block" id="GenerateOutput"><a class="viewcode-back" href="../../api.html#namematch.generate_output.GenerateOutput">[docs]</a><span class="k">class</span> <span class="nc">GenerateOutput</span><span class="p">(</span><span class="n">NamematchBase</span><span class="p">):</span>
-    <span class="sd">&#39;&#39;&#39;</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">    Args:</span>
 <span class="sd">        params (Parameters object): contains parameter values</span>
 <span class="sd">        schema (Schema object): contains match schema info (files to match, variables to use, etc.)</span>
@@ -131,7 +141,7 @@
         <span class="k">return</span> <span class="n">output_files</span>
 
 <div class="viewcode-block" id="GenerateOutput.main"><a class="viewcode-back" href="../../api.html#namematch.generate_output.GenerateOutput.main">[docs]</a>    <span class="k">def</span> <span class="nf">main</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">):</span>
-        <span class="sd">&#39;&#39;&#39;Read in the cluster assignments dictionary and use it to create all-names-with-cluster-id</span>
+<span class="w">        </span><span class="sd">&#39;&#39;&#39;Read in the cluster assignments dictionary and use it to create all-names-with-cluster-id</span>
 <span class="sd">        and the &quot;with-cluster-id&quot; versions of input dataset.</span>
 <span class="sd">        &#39;&#39;&#39;</span>
         <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cluster_assignments_file</span><span class="p">,</span> <span class="s2">&quot;rb&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
@@ -153,7 +163,7 @@
 
     <span class="c1"># @log_runtime_and_memory</span>
 <div class="viewcode-block" id="GenerateOutput.create_allnames_clusterid_file"><a class="viewcode-back" href="../../api.html#namematch.generate_output.GenerateOutput.create_allnames_clusterid_file">[docs]</a>    <span class="k">def</span> <span class="nf">create_allnames_clusterid_file</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">all_names_file</span><span class="p">,</span> <span class="n">cluster_assignments</span><span class="p">,</span> <span class="n">cleaned_col_names</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">):</span>
-        <span class="sd">&#39;&#39;&#39;Create all-names-with-clusterid dataframe.</span>
+<span class="w">        </span><span class="sd">&#39;&#39;&#39;Create all-names-with-clusterid dataframe.</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            all_names_file (str): path to the all-names file</span>
@@ -186,7 +196,7 @@
 
     <span class="c1"># @log_runtime_and_memory</span>
 <div class="viewcode-block" id="GenerateOutput.output_clusterid_files"><a class="viewcode-back" href="../../api.html#namematch.generate_output.GenerateOutput.output_clusterid_files">[docs]</a>    <span class="k">def</span> <span class="nf">output_clusterid_files</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data_files</span><span class="p">,</span> <span class="n">cluster_assignments</span><span class="p">,</span> <span class="n">output_dir</span><span class="p">,</span> <span class="n">output_file_uuid</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">):</span>
-        <span class="sd">&#39;&#39;&#39;For each input file, construct a matching output file that has the</span>
+<span class="w">        </span><span class="sd">&#39;&#39;&#39;For each input file, construct a matching output file that has the</span>
 <span class="sd">        cluster_id column, and write it.</span>
 
 <span class="sd">        Args:</span>

@@ -1,19 +1,22 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>namematch.generate_data_rows &mdash; namematch 1.2.1 documentation</title>
-      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=19f00094" />
+
+  
   <!--[if lt IE 9]>
     <script src="../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-        <script src="../../_static/jquery.js"></script>
-        <script src="../../_static/underscore.js"></script>
-        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js?v=e8fef1db"></script>
+        <script src="../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../_static/sphinx_highlight.js?v=4825356b"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="author" title="About these documents" href="../../about.html" />
     <link rel="index" title="Index" href="../../genindex.html" />
@@ -25,11 +28,18 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../../index.html" class="icon icon-home"> namematch
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            namematch
           </a>
+              <div class="version">
+                1.2.1
+              </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -56,9 +66,9 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="../index.html">Module code</a> &raquo;</li>
-      <li>namematch.generate_data_rows</li>
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">namematch.generate_data_rows</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -116,7 +126,7 @@
 
     <span class="c1"># @log_runtime_and_memory</span>
 <div class="viewcode-block" id="GenerateDataRows.main"><a class="viewcode-back" href="../../api.html#namematch.generate_data_rows.GenerateDataRows.main">[docs]</a>    <span class="k">def</span> <span class="nf">main</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">):</span>
-        <span class="sd">&#39;&#39;&#39;Take candidate pairs and merge on the all-names records (twice) to get a dataset at the</span>
+<span class="w">        </span><span class="sd">&#39;&#39;&#39;Take candidate pairs and merge on the all-names records (twice) to get a dataset at the</span>
 <span class="sd">        record pair level. Compute distance metrics between the records in the pair -- these are the</span>
 <span class="sd">        features for modeling.</span>
 
@@ -189,7 +199,7 @@
 
     <span class="c1"># @log_runtime_and_memory</span>
 <div class="viewcode-block" id="GenerateDataRows.generate_name_probabilities_object"><a class="viewcode-back" href="../../api.html#namematch.generate_data_rows.GenerateDataRows.generate_name_probabilities_object">[docs]</a>    <span class="k">def</span> <span class="nf">generate_name_probabilities_object</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">an</span><span class="p">,</span> <span class="n">fn_col</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">ln_col</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">):</span>
-        <span class="sd">&#39;&#39;&#39;The generate_name_probabilites function uses a list of names (from all_names</span>
+<span class="w">        </span><span class="sd">&#39;&#39;&#39;The generate_name_probabilites function uses a list of names (from all_names</span>
 <span class="sd">        file) and creates an object containing queryable probability</span>
 <span class="sd">        information for each name.</span>
 
@@ -231,7 +241,7 @@
 
 <div class="viewcode-block" id="GenerateDataRows.generate_actual_data_rows"><a class="viewcode-back" href="../../api.html#namematch.generate_data_rows.GenerateDataRows.generate_actual_data_rows">[docs]</a>    <span class="nd">@profile</span>
     <span class="k">def</span> <span class="nf">generate_actual_data_rows</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">params</span><span class="p">,</span> <span class="n">schema</span><span class="p">,</span> <span class="n">sbs_df</span><span class="p">,</span> <span class="n">np_object</span><span class="p">,</span> <span class="n">first_iter</span><span class="p">):</span>
-        <span class="sd">&#39;&#39;&#39;Create modeling dataframe by comparing each variable (via numerous distance metrics).</span>
+<span class="w">        </span><span class="sd">&#39;&#39;&#39;Create modeling dataframe by comparing each variable (via numerous distance metrics).</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            params (Parameters object): contains matching parameters</span>
@@ -395,7 +405,7 @@
     <span class="k">def</span> <span class="nf">generate_data_row_files</span><span class="p">(</span>
                 <span class="bp">self</span><span class="p">,</span> <span class="n">params</span><span class="p">,</span> <span class="n">schema</span><span class="p">,</span> <span class="n">an</span><span class="p">,</span> <span class="n">cp_df</span><span class="p">,</span> <span class="n">name_probs</span><span class="p">,</span>
                 <span class="n">start_ix_worker</span><span class="p">,</span> <span class="n">end_ix_worker</span><span class="p">,</span> <span class="n">dr_file</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">):</span>
-        <span class="sd">&#39;&#39;&#39;The get_data_row_files function is run in parallel to generate the data needed for</span>
+<span class="w">        </span><span class="sd">&#39;&#39;&#39;The get_data_row_files function is run in parallel to generate the data needed for</span>
 <span class="sd">        the random forest; it performs the merge between candidate pairs and all-names and</span>
 <span class="sd">        calls the function that calculates distance metrics.</span>
 
@@ -445,8 +455,8 @@
             <span class="n">start_ix_cp</span> <span class="o">=</span> <span class="mi">0</span>
             <span class="k">while</span> <span class="n">start_ix_cp</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">cp_df</span><span class="p">):</span>
                 <span class="k">if</span> <span class="p">(</span><span class="n">start_ix_worker</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">params</span><span class="o">.</span><span class="n">verbose</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">start_ix_cp</span> <span class="o">%</span> <span class="n">params</span><span class="o">.</span><span class="n">verbose</span> <span class="o">==</span> <span class="mi">0</span><span class="p">):</span>
-                    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;   Generated features for </span><span class="si">{</span><span class="n">start_ix_cp</span> <span class="o">*</span> <span class="n">params</span><span class="o">.</span><span class="n">num_workers</span><span class="si">}</span><span class="s2"> &quot;</span>
-                                <span class="sa">f</span><span class="s2">&quot;of ~</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">cp_df</span><span class="p">)</span> <span class="o">*</span> <span class="n">params</span><span class="o">.</span><span class="n">num_workers</span><span class="si">}</span><span class="s2"> pairs of blockstrings.&quot;</span><span class="p">)</span>
+                    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;   Generated features for </span><span class="si">{</span><span class="n">start_ix_cp</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">params</span><span class="o">.</span><span class="n">num_workers</span><span class="si">}</span><span class="s2"> &quot;</span>
+                                <span class="sa">f</span><span class="s2">&quot;of ~</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">cp_df</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">params</span><span class="o">.</span><span class="n">num_workers</span><span class="si">}</span><span class="s2"> pairs of blockstrings.&quot;</span><span class="p">)</span>
 
                 <span class="n">end_ix_cp</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">start_ix_cp</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">params</span><span class="o">.</span><span class="n">data_rows_batch_size</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">cp_df</span><span class="p">))</span>
 

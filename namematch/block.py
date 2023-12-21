@@ -53,7 +53,7 @@ class Block(NamematchBase):
         params,
         schema,
         all_names_file='all_names.parquet',
-        must_links_file='must_links.csv',
+        must_links_file='must_links.parquet',
         candidate_pairs_file='candidate_pairs.parquet',
         blocking_index_bin_file='blocking_index.bin',
         og_blocking_index_file='None',
@@ -135,7 +135,7 @@ class Block(NamematchBase):
 
         # evaluate blocking
         if not self.params.incremental:
-            must_links_df = pd.read_csv(self.must_links_file)
+            must_links_df = pd.read_parquet(self.must_links_file)
 
             true_pairs_df = generate_true_pairs(must_links_df)
             uncovered_pairs_df = self.evaluate_blocking(
@@ -1508,4 +1508,3 @@ def generate_true_pairs(must_links_df):
     true_pairs_df = must_links_df[['blockstring_1', 'blockstring_2']].drop_duplicates()
 
     return true_pairs_df
-

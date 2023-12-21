@@ -1,19 +1,22 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>namematch.namematcher &mdash; namematch 1.2.1 documentation</title>
-      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=19f00094" />
+
+  
   <!--[if lt IE 9]>
     <script src="../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-        <script src="../../_static/jquery.js"></script>
-        <script src="../../_static/underscore.js"></script>
-        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js?v=e8fef1db"></script>
+        <script src="../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../_static/sphinx_highlight.js?v=4825356b"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="author" title="About these documents" href="../../about.html" />
     <link rel="index" title="Index" href="../../genindex.html" />
@@ -25,11 +28,18 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../../index.html" class="icon icon-home"> namematch
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            namematch
           </a>
+              <div class="version">
+                1.2.1
+              </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -56,9 +66,9 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="../index.html">Module code</a> &raquo;</li>
-      <li>namematch.namematcher</li>
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">namematch.namematcher</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -99,7 +109,7 @@
 
 
 <div class="viewcode-block" id="NameMatcher"><a class="viewcode-back" href="../../api.html#namematch.namematcher.NameMatcher">[docs]</a><span class="k">class</span> <span class="nc">NameMatcher</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Main interface to run all the steps in namematch&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Main interface to run all the steps in namematch&quot;&quot;&quot;</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="c1"># inputs</span>
@@ -114,7 +124,7 @@
         <span class="n">output_dir</span><span class="p">:</span> <span class="nb">str</span><span class="o">=</span><span class="s1">&#39;output&#39;</span><span class="p">,</span>
         <span class="n">output_temp_dir</span><span class="p">:</span> <span class="nb">str</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
         <span class="n">all_names_file</span><span class="p">:</span> <span class="nb">str</span><span class="o">=</span><span class="s1">&#39;all_names.parquet&#39;</span><span class="p">,</span>
-        <span class="n">must_links</span><span class="p">:</span> <span class="nb">str</span><span class="o">=</span><span class="s1">&#39;must_links.csv&#39;</span><span class="p">,</span>
+        <span class="n">must_links</span><span class="p">:</span> <span class="nb">str</span><span class="o">=</span><span class="s1">&#39;must_links.parquet&#39;</span><span class="p">,</span>
         <span class="n">blocking_index_bin_file</span><span class="p">:</span> <span class="nb">str</span><span class="o">=</span><span class="s1">&#39;blocking_index.bin&#39;</span><span class="p">,</span>
         <span class="n">candidate_pairs_file</span><span class="p">:</span> <span class="nb">str</span><span class="o">=</span><span class="s1">&#39;candidate_pairs.parquet&#39;</span><span class="p">,</span>
         <span class="n">data_rows_dir</span><span class="p">:</span> <span class="nb">str</span><span class="o">=</span><span class="s1">&#39;data_rows&#39;</span><span class="p">,</span>
@@ -444,7 +454,7 @@
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">nm_metadata</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&#39;&#39;&#39;Namematch state including all the necessary attributes to recreate the NameMatcher object&#39;&#39;&#39;</span>
+<span class="w">        </span><span class="sd">&#39;&#39;&#39;Namematch state including all the necessary attributes to recreate the NameMatcher object&#39;&#39;&#39;</span>
         <span class="n">metadata</span> <span class="o">=</span> <span class="p">{}</span>
         <span class="c1"># metadata[&#39;metadata&#39;] = {}</span>
 
@@ -463,13 +473,13 @@
         <span class="k">return</span> <span class="n">metadata</span>
 
     <span class="k">def</span> <span class="nf">_process_config</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Process config file to create parameter and schema&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Process config file to create parameter and schema&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">params</span> <span class="o">=</span> <span class="n">Parameters</span><span class="o">.</span><span class="n">init</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">default_params</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">schema</span> <span class="o">=</span> <span class="n">Schema</span><span class="o">.</span><span class="n">init</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">params</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">params</span><span class="o">.</span><span class="n">validate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">schema</span><span class="o">.</span><span class="n">variables</span><span class="p">)</span>
 
 <div class="viewcode-block" id="NameMatcher.run"><a class="viewcode-back" href="../../api.html#namematch.namematcher.NameMatcher.run">[docs]</a>    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">force</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">write_params_schema_file</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">write_stats_file</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Main method to kick off the namematch process</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Main method to kick off the namematch process</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            force (bool): Force to run all the tasks</span>
@@ -481,7 +491,7 @@
 
 <div class="viewcode-block" id="NameMatcher.load_namematcher"><a class="viewcode-back" href="../../api.html#namematch.namematcher.NameMatcher.load_namematcher">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">load_namematcher</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">nm_info_file_path</span><span class="p">,</span> <span class="n">new_nm_info_file</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-        <span class="sd">&#39;&#39;&#39;To load NameMatcher instance given the nm_info_file.</span>
+<span class="w">        </span><span class="sd">&#39;&#39;&#39;To load NameMatcher instance given the nm_info_file.</span>
 <span class="sd">        This classmethod help us pick up where it left last time based on the information in the</span>
 <span class="sd">        nm_info_file. It will create a NameMatcher instance and recover all the attributes as</span>
 <span class="sd">        well as stats_dict for tasks that was already run.</span>
