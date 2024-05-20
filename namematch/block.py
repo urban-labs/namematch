@@ -119,7 +119,8 @@ class Block(NamematchBase):
                 nn_string_info_to_query[nn_string_info_to_query.n_total > 1],
                 nn_string_expanded_df,
                 self.params.blocking_thresholds)
-        write_some_cps(exact_match_cp_df, self.candidate_pairs_file, header=True)
+        write_some_cps(exact_match_cp_df, self.candidate_pairs_file)
+
         candidate_pairs_df = self.generate_candidate_pairs(
             nn_strings_to_query,
             shingles_to_query,
@@ -1459,7 +1460,7 @@ def load_main_index_nn_strings(og_blocking_index_file):
     return main_index_nn_strings
 
 
-def write_some_cps(cand_pairs, candidate_pairs_file, header=False):
+def write_some_cps(cand_pairs, candidate_pairs_file):
     '''Write out a portion of the candidate-pairs.
 
     Args:
