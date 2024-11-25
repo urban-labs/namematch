@@ -1461,12 +1461,11 @@ def load_main_index_nn_strings(og_blocking_index_file):
 
 
 def write_some_cps(cand_pairs, candidate_pairs_file):
-    '''Write out a portion of the candidate-pairs.
+    '''Write out a portion of the candidate-pairs to parquet.
 
     Args:
         cand_pairs (pd.DataFrame): chunk of the candidate-pairs file
         candidate_pairs_file (str): path to the candidate-pairs file
-        header (bool): True if this is the first time calling this function
     '''
     if os.path.exists(candidate_pairs_file):
         existing_data = pd.read_parquet(candidate_pairs_file)

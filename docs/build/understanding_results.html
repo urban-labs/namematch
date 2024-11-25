@@ -1,23 +1,20 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en">
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Understanding Results &mdash; namematch 1.2.1 documentation</title>
-      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
-      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
-
-  
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="_static/jquery.js?v=5d32c60e"></script>
-        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js?v=e8fef1db"></script>
-        <script src="_static/doctools.js?v=888ff710"></script>
-        <script src="_static/sphinx_highlight.js?v=4825356b"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="author" title="About these documents" href="about.html" />
     <link rel="index" title="Index" href="genindex.html" />
@@ -31,18 +28,14 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-
-          
-          
-          <a href="index.html" class="icon icon-home">
-            namematch
+            <a href="index.html" class="icon icon-home"> namematch
           </a>
               <div class="version">
                 1.2.1
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -74,8 +67,8 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">Understanding Results</li>
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Understanding Results</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/understanding_results.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -86,11 +79,11 @@
            <div itemprop="articleBody">
              
   <section id="understanding-results">
-<span id="id1"></span><h1>Understanding Results<a class="headerlink" href="#understanding-results" title="Permalink to this heading"></a></h1>
+<span id="id1"></span><h1>Understanding Results<a class="headerlink" href="#understanding-results" title="Permalink to this headline"></a></h1>
 <p>During the run, Name Match will log information about the matching process: tracking execution, reporting performance metrics, and flagging any issues. In addition to printing in the console, this log is written to file and can be found at <code class="docutils literal notranslate"><span class="pre">output/details/name_match.log</span></code>.</p>
 <p>The log contains several different metrics indicating how successful the match was, and should be checked after the match is finished to ensure high quality. Below is a breakdown of the terms and metrics you will see – what they mean and what values are reasonable.</p>
 <section id="blocking">
-<h2>Blocking<a class="headerlink" href="#blocking" title="Permalink to this heading"></a></h2>
+<h2>Blocking<a class="headerlink" href="#blocking" title="Permalink to this headline"></a></h2>
 <p><strong>Terms:</strong></p>
 <ul class="simple">
 <li><p>True pairs: pairs of first_name/last_name/dob values that we know refer to the same entity based on the <code class="docutils literal notranslate"><span class="pre">UniqueID</span></code></p></li>
@@ -108,7 +101,7 @@
 </ul>
 </section>
 <section id="modeling">
-<h2>Modeling<a class="headerlink" href="#modeling" title="Permalink to this heading"></a></h2>
+<h2>Modeling<a class="headerlink" href="#modeling" title="Permalink to this headline"></a></h2>
 <p><strong>Terms:</strong></p>
 <ul class="simple">
 <li><p>Threshold: which P(match) – <code class="docutils literal notranslate"><span class="pre">phat</span></code> – threshold is being used to classify a pair as a “match” vs. “non-match”</p></li>
@@ -120,7 +113,7 @@
 </ul>
 </section>
 <section id="clustering">
-<h2>Clustering<a class="headerlink" href="#clustering" title="Permalink to this heading"></a></h2>
+<h2>Clustering<a class="headerlink" href="#clustering" title="Permalink to this headline"></a></h2>
 <p><strong>Terms:</strong></p>
 <ul class="simple">
 <li><p>Cluster: a group of records all referring to the same entity (person). Every record in a cluster will get the same person identifier.</p></li>

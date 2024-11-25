@@ -1,22 +1,19 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en">
+<html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>namematch.cluster &mdash; namematch 1.2.1 documentation</title>
-      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
-      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=19f00094" />
-
-  
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../../_static/jquery.js?v=5d32c60e"></script>
-        <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js?v=e8fef1db"></script>
-        <script src="../../_static/doctools.js?v=888ff710"></script>
-        <script src="../../_static/sphinx_highlight.js?v=4825356b"></script>
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="author" title="About these documents" href="../../about.html" />
     <link rel="index" title="Index" href="../../genindex.html" />
@@ -28,18 +25,14 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-
-          
-          
-          <a href="../../index.html" class="icon icon-home">
-            namematch
+            <a href="../../index.html" class="icon icon-home"> namematch
           </a>
               <div class="version">
                 1.2.1
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -66,9 +59,9 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
-          <li class="breadcrumb-item"><a href="../index.html">Module code</a></li>
-      <li class="breadcrumb-item active">namematch.cluster</li>
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../index.html">Module code</a> &raquo;</li>
+      <li>namematch.cluster</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -119,7 +112,7 @@
             <span class="k">return</span> <span class="n">get_columns_used</span>
 
     <span class="nd">@get_columns_used</span><span class="o">.</span><span class="n">setter</span>
-    <span class="k">def</span> <span class="nf">get_columns_used</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">func</span><span class="p">:</span> <span class="nb">callable</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">get_columns_used</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">func</span><span class="p">:</span> <span class="n">callable</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_get_columns_used</span> <span class="o">=</span> <span class="n">func</span>
 
     <span class="nd">@property</span>
@@ -132,7 +125,7 @@
             <span class="k">return</span> <span class="n">is_valid_link</span>
 
     <span class="nd">@is_valid_link</span><span class="o">.</span><span class="n">setter</span>
-    <span class="k">def</span> <span class="nf">is_valid_link</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">func</span><span class="p">:</span> <span class="nb">callable</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">is_valid_link</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">func</span><span class="p">:</span> <span class="n">callable</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_is_valid_link</span> <span class="o">=</span> <span class="n">func</span>
 
     <span class="nd">@property</span>
@@ -145,7 +138,7 @@
             <span class="k">return</span> <span class="n">is_valid_cluster</span>
 
     <span class="nd">@is_valid_cluster</span><span class="o">.</span><span class="n">setter</span>
-    <span class="k">def</span> <span class="nf">is_valid_cluster</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">func</span><span class="p">:</span> <span class="nb">callable</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">is_valid_cluster</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">func</span><span class="p">:</span> <span class="n">callable</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_is_valid_cluster</span> <span class="o">=</span> <span class="n">func</span>
 
     <span class="nd">@property</span>
@@ -158,12 +151,12 @@
             <span class="k">return</span> <span class="n">apply_link_priority</span>
 
     <span class="nd">@apply_link_priority</span><span class="o">.</span><span class="n">setter</span>
-    <span class="k">def</span> <span class="nf">apply_link_priority</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">func</span><span class="p">:</span> <span class="nb">callable</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">apply_link_priority</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">func</span><span class="p">:</span> <span class="n">callable</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_apply_link_priority</span> <span class="o">=</span> <span class="n">func</span></div>
 
 
 <div class="viewcode-block" id="Cluster"><a class="viewcode-back" href="../../api.html#namematch.cluster.Cluster">[docs]</a><span class="k">class</span> <span class="nc">Cluster</span><span class="p">(</span><span class="n">NamematchBase</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
+    <span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">    Args:</span>
 <span class="sd">        params (Parameters object): contains parameter values</span>
 <span class="sd">        schema (Schema object): contains match schema info (files to match, variables to use, etc.)</span>
@@ -205,7 +198,7 @@
     <span class="c1"># @log_runtime_and_memory</span>
 <div class="viewcode-block" id="Cluster.main"><a class="viewcode-back" href="../../api.html#namematch.cluster.Cluster.main">[docs]</a>    <span class="nd">@profile</span>
     <span class="k">def</span> <span class="nf">main</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&#39;&#39;&#39;Read the record pairs with high probability of matching and connect them in a way</span>
+        <span class="sd">&#39;&#39;&#39;Read the record pairs with high probability of matching and connect them in a way</span>
 <span class="sd">        that doesn&#39;t violate any logic constraints to form clusters.</span>
 <span class="sd">        &#39;&#39;&#39;</span>
         <span class="c1"># loading cluster_logic functions</span>
@@ -291,7 +284,7 @@
                 <span class="n">edges_df</span><span class="p">,</span>
                 <span class="n">uid_cols</span><span class="p">,</span> <span class="n">allow_clusters_w_multiple_unique_ids</span><span class="p">,</span> <span class="n">leven_thresh</span><span class="p">,</span>
                 <span class="n">eid_col</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&#39;&#39;&#39;Check if two records would violate a unique id or existing id constraint.</span>
+        <span class="sd">&#39;&#39;&#39;Check if two records would violate a unique id or existing id constraint.</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            edges_df (pd.DataFrame): potential edges information</span>
@@ -355,7 +348,7 @@
                 <span class="n">cluster</span><span class="p">,</span>
                 <span class="n">uid_cols</span><span class="p">,</span> <span class="n">allow_clusters_w_multiple_unique_ids</span><span class="p">,</span> <span class="n">leven_thresh</span><span class="p">,</span>
                 <span class="n">eid_col</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&#39;&#39;&#39;Check if a proposed cluster would violate a unique id or existing id constraint.</span>
+        <span class="sd">&#39;&#39;&#39;Check if a proposed cluster would violate a unique id or existing id constraint.</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            cluster (pd.DataFrame): all-names file (relevant columns only) records for the proposed cluster</span>
@@ -406,7 +399,7 @@
     <span class="c1"># @log_runtime_and_memory</span>
 <div class="viewcode-block" id="Cluster.get_initial_clusters"><a class="viewcode-back" href="../../api.html#namematch.cluster.Cluster.get_initial_clusters">[docs]</a>    <span class="nd">@profile</span>
     <span class="k">def</span> <span class="nf">get_initial_clusters</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">must_links_df</span><span class="p">,</span> <span class="n">an_df</span><span class="p">,</span> <span class="n">eid_col</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&#39;&#39;&#39;Use must links (ground truth and/or a previous run) to create the</span>
+        <span class="sd">&#39;&#39;&#39;Use must links (ground truth and/or a previous run) to create the</span>
 <span class="sd">        starting clusters.</span>
 
 <span class="sd">        Args:</span>
@@ -516,7 +509,7 @@
     <span class="c1"># @log_runtime_and_memory</span>
 <div class="viewcode-block" id="Cluster.get_potential_edges"><a class="viewcode-back" href="../../api.html#namematch.cluster.Cluster.get_potential_edges">[docs]</a>    <span class="nd">@profile</span>
     <span class="k">def</span> <span class="nf">get_potential_edges</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">potential_edges_files</span><span class="p">,</span> <span class="n">flipped0_edges_file</span><span class="p">,</span> <span class="n">gt_1s_df</span><span class="p">,</span> <span class="n">cluster_logic</span><span class="p">,</span> <span class="n">cluster_info</span><span class="p">,</span> <span class="n">uid_cols</span><span class="p">,</span> <span class="n">eid_col</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
+        <span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">        Use all predictions file to make a list of edges that the constrained</span>
 <span class="sd">        clustering algorithm should try to add.</span>
 
@@ -614,7 +607,7 @@
     <span class="c1"># @log_runtime_and_memory</span>
 <div class="viewcode-block" id="Cluster.load_cluster_info"><a class="viewcode-back" href="../../api.html#namematch.cluster.Cluster.load_cluster_info">[docs]</a>    <span class="nd">@profile</span>
     <span class="k">def</span> <span class="nf">load_cluster_info</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">all_names_file</span><span class="p">,</span> <span class="n">uid_cols</span><span class="p">,</span> <span class="n">eid_col</span><span class="p">,</span> <span class="n">cluster_logic</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&#39;&#39;&#39;Read in the all_names information needed for cluster constraint checking. Columns</span>
+        <span class="sd">&#39;&#39;&#39;Read in the all_names information needed for cluster constraint checking. Columns</span>
 <span class="sd">        defined in the config as compare type UniqueID or ExistingID will automatically be loaded</span>
 <span class="sd">        (as strings, with missing values represented as NA). Other columns you wish to be loaded</span>
 <span class="sd">        should be defined in the user-defined `get_columns_used()` function.</span>
@@ -691,7 +684,7 @@
 <div class="viewcode-block" id="Cluster.cluster_potential_edges"><a class="viewcode-back" href="../../api.html#namematch.cluster.Cluster.cluster_potential_edges">[docs]</a>    <span class="nd">@profile</span>
     <span class="k">def</span> <span class="nf">cluster_potential_edges</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">clusters</span><span class="p">,</span> <span class="n">cluster_assignments</span><span class="p">,</span> <span class="n">original_cluster_ids</span><span class="p">,</span>
                 <span class="n">cluster_info</span><span class="p">,</span> <span class="n">cluster_logic</span><span class="p">,</span> <span class="n">uid_cols</span><span class="p">,</span> <span class="n">eid_col</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&#39;&#39;&#39;For clusters by add potential edges to the cluster graph in order of importance, skipping those</span>
+        <span class="sd">&#39;&#39;&#39;For clusters by add potential edges to the cluster graph in order of importance, skipping those</span>
 <span class="sd">        that cause violations.</span>
 
 <span class="sd">        Args:</span>
