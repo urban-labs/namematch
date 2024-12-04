@@ -1,23 +1,21 @@
+
+
 <!DOCTYPE html>
 <html class="writer-html5" lang="en">
 <head>
-  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Detailed Algorithm Documentation &mdash; namematch 1.2.1 documentation</title>
-      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
-      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css" />
 
   
-  <!--[if lt IE 9]>
-    <script src="_static/js/html5shiv.min.js"></script>
-  <![endif]-->
-  
-        <script src="_static/jquery.js?v=5d32c60e"></script>
-        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js?v=e8fef1db"></script>
-        <script src="_static/doctools.js?v=888ff710"></script>
-        <script src="_static/sphinx_highlight.js?v=4825356b"></script>
+      <script src="_static/jquery.js"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+      <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+      <script src="_static/doctools.js"></script>
+      <script src="_static/sphinx_highlight.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="author" title="About these documents" href="about.html" />
     <link rel="index" title="Index" href="genindex.html" />
@@ -37,9 +35,6 @@
           <a href="index.html" class="icon icon-home">
             namematch
           </a>
-              <div class="version">
-                1.2.1
-              </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
@@ -306,19 +301,19 @@
 </ul>
 <p class="rubric">Footnotes</p>
 <aside class="footnote-list brackets">
-<aside class="footnote brackets" id="f1" role="doc-footnote">
+<aside class="footnote brackets" id="f1" role="note">
 <span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id2">1</a><span class="fn-bracket">]</span></span>
 <p>Similarity scores are values between 0 and 1, where higher means more similar</p>
 </aside>
-<aside class="footnote brackets" id="f2" role="doc-footnote">
+<aside class="footnote brackets" id="f2" role="note">
 <span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id3">2</a><span class="fn-bracket">]</span></span>
 <p>During clustering, it’s helpful to think about each record as a node in a graph or network. Records that are deemed a match are then connected by an “link” (hence, the potential links list). A “cluster” is then a set or records that are connected in some way via links. For example, if records A and B have an link between them, and records B and C have an link between them, the records A, B, and C make up a cluster.</p>
 </aside>
-<aside class="footnote brackets" id="f3" role="doc-footnote">
+<aside class="footnote brackets" id="f3" role="note">
 <span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id4">3</a><span class="fn-bracket">]</span></span>
 <p>Remember that the model training universe is limited to the ground truth 1s and the ground truth 0s that made it past blocking. If the number of rows with UniqueID is small in your input data, it’s is less likely that records with different UniqueIDs (what will become ground truth 0s) will be similar enough to each other to make it past blocking</p>
 </aside>
-<aside class="footnote brackets" id="f4" role="doc-footnote">
+<aside class="footnote brackets" id="f4" role="note">
 <span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id5">4</a><span class="fn-bracket">]</span></span>
 <p>For example, if you’re using SSN as the Unique ID, copy SSN into a new column called “partial_ssn” and replace some percentage of the values with missing. Then set this “partial_ssn” as Name Match’s UniqueID in the config file.</p>
 </aside>

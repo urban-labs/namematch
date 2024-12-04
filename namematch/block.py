@@ -119,7 +119,7 @@ class Block(NamematchBase):
                 nn_string_info_to_query[nn_string_info_to_query.n_total > 1],
                 nn_string_expanded_df,
                 self.params.blocking_thresholds)
-        write_some_cps(exact_match_cp_df, self.candidate_pairs_file, header=True)
+        write_some_cps(exact_match_cp_df, self.candidate_pairs_file)
 
         candidate_pairs_df = self.generate_candidate_pairs(
             nn_strings_to_query,
@@ -676,12 +676,12 @@ class Block(NamematchBase):
         # have to load so we can drop duplicates at global level...
         # because of split names
         logger.trace('Loading candidate pairs to drop duplicates.')
-        cand_pair_df = pd.read_csv(self.candidate_pairs_file)
+        cand_pair_df = pd.read_parquet(self.candidate_pairs_file)
         cand_pair_df = cand_pair_df.drop_duplicates(subset=['blockstring_1', 'blockstring_2'])
-        cand_pair_df.to_csv(
-                self.candidate_pairs_file,
-                index=False,
-                quoting=csv.QUOTE_NONNUMERIC)
+        cand_pair_df.to_parquet(
+            self.candidate_pairs_file,
+            index=False,
+        )
 
         return cand_pair_df
 
@@ -1460,21 +1460,23 @@ def load_main_index_nn_strings(og_blocking_index_file):
     return main_index_nn_strings
 
 
-def write_some_cps(cand_pairs, candidate_pairs_file, header=False):
-    '''Write out a portion of the candidate-pairs.
+def write_some_cps(cand_pairs, candidate_pairs_file):
+    '''Write out a portion of the candidate-pairs to parquet.
 
     Args:
         cand_pairs (pd.DataFrame): chunk of the candidate-pairs file
         candidate_pairs_file (str): path to the candidate-pairs file
-        header (bool): True if this is the first time calling this function
     '''
+    if os.path.exists(candidate_pairs_file):
+        existing_data = pd.read_parquet(candidate_pairs_file)
+        combined_data = pd.concat([existing_data, cand_pairs])
+    else:
+        combined_data = cand_pairs
 
-    cand_pairs.to_csv(
-            candidate_pairs_file,
-            mode='a',
-            index=False,
-            header=header,
-            quoting=csv.QUOTE_NONNUMERIC)
+    combined_data.to_parquet(
+        candidate_pairs_file,
+        index=False
+    )
 
 
 def generate_true_pairs(must_links_df):

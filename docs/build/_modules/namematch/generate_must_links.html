@@ -1,22 +1,19 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en">
+<html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>namematch.generate_must_links &mdash; namematch 1.2.1 documentation</title>
-      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
-      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=19f00094" />
-
-  
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../../_static/jquery.js?v=5d32c60e"></script>
-        <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js?v=e8fef1db"></script>
-        <script src="../../_static/doctools.js?v=888ff710"></script>
-        <script src="../../_static/sphinx_highlight.js?v=4825356b"></script>
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="author" title="About these documents" href="../../about.html" />
     <link rel="index" title="Index" href="../../genindex.html" />
@@ -28,18 +25,14 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-
-          
-          
-          <a href="../../index.html" class="icon icon-home">
-            namematch
+            <a href="../../index.html" class="icon icon-home"> namematch
           </a>
               <div class="version">
                 1.2.1
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -66,9 +59,9 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
-          <li class="breadcrumb-item"><a href="../index.html">Module code</a></li>
-      <li class="breadcrumb-item active">namematch.generate_must_links</li>
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../index.html">Module code</a> &raquo;</li>
+      <li>namematch.generate_must_links</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -119,7 +112,7 @@
 
     <span class="c1"># @log_runtime_and_memory</span>
 <div class="viewcode-block" id="GenerateMustLinks.main"><a class="viewcode-back" href="../../api.html#namematch.generate_must_links.GenerateMustLinks.main">[docs]</a>    <span class="k">def</span> <span class="nf">main</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&#39;&#39;&#39;Generate the list of must-link pairs using UniqueID info .</span>
+        <span class="sd">&#39;&#39;&#39;Generate the list of must-link pairs using UniqueID info .</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            params (Parameters object): contains parameter values</span>
@@ -150,7 +143,7 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">write_line_profile_stats</span><span class="p">(</span><span class="n">profile</span><span class="o">.</span><span class="n">line_profiler</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="GenerateMustLinks.build_ml_var_df"><a class="viewcode-back" href="../../api.html#namematch.generate_must_links.GenerateMustLinks.build_ml_var_df">[docs]</a>    <span class="k">def</span> <span class="nf">build_ml_var_df</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">all_names_file</span><span class="p">,</span> <span class="n">uid_vars_list</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&#39;&#39;&#39;Load the all-names file and limit it to the rows that have</span>
+        <span class="sd">&#39;&#39;&#39;Load the all-names file and limit it to the rows that have</span>
 <span class="sd">        a non-missing UniqueID value.</span>
 
 <span class="sd">        Args:</span>
@@ -187,7 +180,7 @@
     <span class="c1"># @log_runtime_and_memory</span>
 <div class="viewcode-block" id="GenerateMustLinks.get_must_links"><a class="viewcode-back" href="../../api.html#namematch.generate_must_links.GenerateMustLinks.get_must_links">[docs]</a>    <span class="nd">@profile</span>
     <span class="k">def</span> <span class="nf">get_must_links</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ml_var_df</span><span class="p">,</span> <span class="n">uid_vars_list</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&#39;&#39;&#39;Expand the list of records with must-link information to pairs of records</span>
+        <span class="sd">&#39;&#39;&#39;Expand the list of records with must-link information to pairs of records</span>
 <span class="sd">        that must be linked togehter in the final match.</span>
 
 <span class="sd">        Args:</span>
@@ -268,7 +261,7 @@
         <span class="n">must_link_df</span> <span class="o">=</span> <span class="n">must_link_df</span><span class="o">.</span><span class="n">drop_duplicates</span><span class="p">(</span><span class="n">subset</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;record_id_1&#39;</span><span class="p">,</span> <span class="s1">&#39;record_id_2&#39;</span><span class="p">])</span>
         <span class="n">len_post_drop_duplicates</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">must_link_df</span><span class="p">)</span>
         <span class="k">if</span> <span class="p">(</span><span class="n">len_pre_drop_duplicates</span> <span class="o">&gt;</span> <span class="n">len_post_drop_duplicates</span><span class="p">):</span>
-            <span class="n">logger</span><span class="o">.</span><span class="n">trace</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Dropped </span><span class="si">{</span><span class="n">len_pre_drop_duplicates</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">len_post_drop_duplicates</span><span class="si">}</span><span class="s1"> &#39;</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">trace</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Dropped </span><span class="si">{</span><span class="n">len_pre_drop_duplicates</span> <span class="o">-</span> <span class="n">len_post_drop_duplicates</span><span class="si">}</span><span class="s1"> &#39;</span>
                          <span class="sa">f</span><span class="s1">&#39;duplicate ground truth rows&#39;</span><span class="p">)</span>
 
         <span class="k">return</span> <span class="n">must_link_df</span></div></div>
