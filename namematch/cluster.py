@@ -465,7 +465,7 @@ class Cluster(NamematchBase):
                     potential_edges_df = potential_edges_df.reset_index(drop=True)
 
             # get clustering_phat
-            potential_edges_df['phat'] = -1
+            potential_edges_df['phat'] = -1.0
             for model_name in potential_edges_df.model_to_use.unique():
                 potential_edges_df.loc[potential_edges_df.model_to_use == model_name, 'phat'] = \
                         potential_edges_df['%s_match_phat' % model_name]

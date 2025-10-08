@@ -209,7 +209,7 @@ class Predict(NamematchBase):
             phat_col = f'{model_name}_{model_type}_phat'
 
             # initialize phat cols
-            phats[phat_col] = np.NaN
+            phats[phat_col] = np.nan
 
             if oob:
                 phats[phat_col] = mod.best_estimator_.named_steps['clf'].oob_decision_function_[:, MATCH_COL]

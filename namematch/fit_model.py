@@ -357,6 +357,26 @@ class FitModel(NamematchBase):
             fscore_beta=1.0,
             **kw
             ):
+        # Load demographic data for subgroup analysis
+        demographic_variables = None
+        all_names_df = None
+        try:
+            # Load nm_info to get categorical variables from ProcessInputData
+            import yaml
+            nm_info_path = os.path.join(os.path.dirname(self.all_names_file), 'nm_info.yaml')
+            if os.path.exists(nm_info_path):
+                with open(nm_info_path, 'r') as f:
+                    nm_info = yaml.safe_load(f)
+                demographic_variables = nm_info.get('stats', {}).get('ProcessInputData', {}).get('categorical_variables', [])
+
+            if demographic_variables and len(demographic_variables) > 0:
+                # Load all_names file
+                all_names_table = pq.read_table(self.all_names_file)
+                all_names_df = all_names_table.to_pandas()
+                logger.info(f"Loaded demographic data for {len(demographic_variables)} categorical variables: {demographic_variables}")
+        except Exception as e:
+            logger.warning(f"Could not load demographic data for subgroup analysis: {e}")
+
         return evaluate_models(
                     phats_df,
                     outcome,
@@ -367,6 +387,8 @@ class FitModel(NamematchBase):
                     optimize_threshold,
                     fscore_beta,
                     self.stats_dict,
+                    demographic_variables,
+                    all_names_df,
                     )
 
     def get_train_eval_data(self, an_train_eligible_dict, model_info, params, model_type, any_train=True):

@@ -186,7 +186,7 @@ class Block(NamematchBase):
             # if there are multiple spaces, split on the last one
             names_to_expand["split_names"] = (
                     names_to_expand[last_name_column].str
-                    .rsplit(" ", 1))
+                    .rsplit(pat=" ", n=1))
 
             # unpack the list of splits, so each is in its own row
             id_vars = names_to_expand.columns.tolist()
@@ -782,8 +782,8 @@ class Block(NamematchBase):
 
         # calculate cosine distance between true pairs (non-matching)
         blockstrings_in_true_pairs = \
-                tp_df.blockstring_1.append(
-                tp_df.blockstring_2, ignore_index=True).drop_duplicates().tolist()
+                pd.concat([tp_df.blockstring_1,
+                tp_df.blockstring_2], ignore_index=True).drop_duplicates().tolist()
         tp_shingles_matrix = self.generate_shingles_matrix(
                 blockstrings_in_true_pairs,
                 blocking_scheme['alpha'], blocking_scheme['power'],
@@ -792,9 +792,9 @@ class Block(NamematchBase):
                 tp_df_nonmatching, tp_shingles_matrix)
 
         # get the distribution of cosine distances in non-matching true pairs
-        tp_nonmatching_cos_distr = pd.value_counts(
-                pd.cut(tp_df_nonmatching.cos_dist, np.arange(0, 1.1, .1)),
-                normalize=True, sort=False)
+        tp_nonmatching_cos_distr = pd.Series(
+                pd.cut(tp_df_nonmatching.cos_dist, np.arange(0, 1.1, .1))
+                ).value_counts(normalize=True, sort=False)
         logger.trace(f'Cosine distribution of non-matching true pairs: \n{tp_nonmatching_cos_distr.to_string()}')
         self.stats_dict['tp_cosine_distribution'] = tp_nonmatching_cos_distr.tolist()
 
@@ -816,9 +816,9 @@ class Block(NamematchBase):
 
         # get the distribution of cosine distances in uncovered pairs
         # NOTE: fine that coming from non-matching df because no uncovered pairs will ever match
-        uncovered_pair_cos_distr = pd.value_counts(
-                pd.cut(up_df.cos_dist, np.arange(0, 1.1, .1)),
-                normalize=True, sort=False)
+        uncovered_pair_cos_distr = pd.Series(
+                pd.cut(up_df.cos_dist, np.arange(0, 1.1, .1))
+                ).value_counts(normalize=True, sort=False)
         logger.trace(f'Cosine distribution of uncovered pairs: \n{uncovered_pair_cos_distr.to_string()}')
         self.stats_dict['up_cosine_distribution'] = uncovered_pair_cos_distr.tolist()
 
@@ -1282,7 +1282,7 @@ def read_an(an_file, nn_cols, ed_col, absval_col):
     an['ed_string'] = an[ed_col]
     if absval_col is not None:
         an['absval_string'] = an[absval_col]
-        an.loc[an.absval_string == '', 'absval_string'] = np.NaN
+        an.loc[an.absval_string == '', 'absval_string'] = np.nan
         an['absval_string'] = an.absval_string.astype(float)
 
     return an
