@@ -296,7 +296,7 @@ class ProcessInputData(NamematchBase):
             # convert to string in python date format: e.g. 2014-05-31
             s = s.dt.strftime('%Y-%m-%d')
             s = s.replace('NaT', '')
-            s = s.replace(np.NaN, '')
+            s = s.replace(np.nan, '')
 
         elif variable.compare_type == 'Categorical' and variable.check != '':
             options = variable.check.split(',')

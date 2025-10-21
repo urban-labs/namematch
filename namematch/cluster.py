@@ -1,4 +1,4 @@
-import editdistance
+from rapidfuzz.distance import Levenshtein
 import importlib.util
 import logging
 import networkx as nx
@@ -258,7 +258,7 @@ class Cluster(NamematchBase):
                     edges_df[both_uids_known_ix & uids_different_ix].violations + 1
             else:
                 edges_df.loc[both_uids_known_ix & uids_different_ix, f'{uid_col}_edit_dist'] = \
-                    np.vectorize(editdistance.eval, otypes=['float'])(
+                    np.vectorize(Levenshtein.distance, otypes=['float'])(
                         edges_df[both_uids_known_ix & uids_different_ix][f"{uid_col}_1"].values,
                         edges_df[both_uids_known_ix & uids_different_ix][f"{uid_col}_2"].values)
                 leven_violated = edges_df[f'{uid_col}_edit_dist'] > leven_thresh
@@ -316,7 +316,7 @@ class Cluster(NamematchBase):
                     uid_df['dummy'] = 1
                     uid_df = pd.merge(uid_df, uid_df, on='dummy', suffixes = ['_1', '_2'])
                     uid_df = uid_df[uid_df[f'{uid_col}_1'] != uid_df[f'{uid_col}_2']].copy()
-                    uid_df['ed'] = np.vectorize(editdistance.eval)(
+                    uid_df['ed'] = np.vectorize(Levenshtein.distance)(
                             uid_df[f'{uid_col}_1'].values, uid_df[f'{uid_col}_2'].values)
                     min_ed = uid_df.groupby(f'{uid_col}_1').ed.min()
                     return (min_ed > leven_thresh).sum() == 0
@@ -465,7 +465,7 @@ class Cluster(NamematchBase):
                     potential_edges_df = potential_edges_df.reset_index(drop=True)
 
             # get clustering_phat
-            potential_edges_df['phat'] = -1
+            potential_edges_df['phat'] = -1.0
             for model_name in potential_edges_df.model_to_use.unique():
                 potential_edges_df.loc[potential_edges_df.model_to_use == model_name, 'phat'] = \
                         potential_edges_df['%s_match_phat' % model_name]

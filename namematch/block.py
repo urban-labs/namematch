@@ -1,12 +1,10 @@
 import csv
-import editdistance
+from rapidfuzz.distance import Levenshtein
 import logging
 import os
 import multiprocessing as mp
 
-# suppress super-verbose nmslib logging
-logging.getLogger('nmslib').setLevel(logging.WARNING)
-import nmslib
+import faiss
 
 import numpy as np
 import itertools
@@ -24,7 +22,6 @@ from namematch.data_structures.schema import Schema
 from namematch.data_structures.parameters import Parameters
 from namematch.base import NamematchBase
 from namematch.utils.utils import (
-    log_runtime_and_memory,
     get_nn_string_from_blockstring,
     build_blockstring,
     get_endpoints,
@@ -44,7 +41,7 @@ class Block(NamematchBase):
         all_names_file (str): path to the all-names file
         must_links_file (str): path to the must-links file
         blocking_index_bin_file: name of blocking index file
-        og_blocking_index_file (str): path to a pre-built nmslib index (optional, if doesn't exist then None)
+        og_blocking_index_file (str): path to a pre-built ann index (optional, if doesn't exist then None)
         candidate_pairs_file (str): path to the candidate-pairs file
 
     '''
@@ -81,7 +78,6 @@ class Block(NamematchBase):
             output_files.append(os.path.join(temp_dir, 'uncovered_pairs.csv'))
         return output_files
 
-    # @log_runtime_and_memory
     @profile
     def main(self, **kw):
         '''Generate the candidate-pairs list using the blocking scheme outlined in the config.'''
@@ -156,7 +152,6 @@ class Block(NamematchBase):
         if self.enable_lprof:
             self.write_line_profile_stats(profile.line_profiler)
 
-    # @log_runtime_and_memory
     @profile
     def split_last_names(self, df, last_name_column, blocking_scheme, **kw):
         '''Expand the processed all-names file to handle double last names (e.g. SAM SMITH-BROWN
@@ -186,7 +181,7 @@ class Block(NamematchBase):
             # if there are multiple spaces, split on the last one
             names_to_expand["split_names"] = (
                     names_to_expand[last_name_column].str
-                    .rsplit(" ", 1))
+                    .rsplit(pat=" ", n=1))
 
             # unpack the list of splits, so each is in its own row
             id_vars = names_to_expand.columns.tolist()
@@ -215,7 +210,6 @@ class Block(NamematchBase):
 
         return df
 
-    # @log_runtime_and_memory
     @profile
     def convert_all_names_to_blockstring_info(self, an, absval_col, params, **kw):
         '''Create a table with information about blockstrings. If the split_names parameter is True,
@@ -348,7 +342,6 @@ class Block(NamematchBase):
 
         return nn_string_info_to_query, nn_strings_to_query, shingles_to_query
 
-    # @log_runtime_and_memory
     @profile
     def generate_shingles_matrix(
             self,
@@ -402,7 +395,6 @@ class Block(NamematchBase):
 
         return shingles_matrix
 
-    # @log_runtime_and_memory
     @profile
     def load_main_index(self, index_file, **kw):
         '''Load the main index, which is reusable over time as data is added incrementally.
@@ -411,74 +403,68 @@ class Block(NamematchBase):
             index_file (str): path to stored index
 
         Returns:
-            nmslib.FloatIndex: nmslib index object
+            faiss.IndexHNSWFlat: ann index object
         '''
 
-        ix = prep_index()
-        ix.loadIndex(index_file, load_data=True)
+        ix = faiss.read_index(index_file)
 
         return ix
 
-    # @log_runtime_and_memory
     def generate_index(
             self,
             nn_strings,
             num_workers,
             M,
             efC,
-            post,
+            efS,
             alpha,
             power,
             print_progress=True,
             **kw):
-        '''Build an nmslib index based on a list of nn_strings and a set of parameters.
+        '''Build an ann index based on a list of nn_strings and a set of parameters.
 
         Args:
             nn_strings (list): strings of the form 'FIRST::LAST' to shingle and put in matrix (rows)
-            num_workers (int): number of threads nmslib should use when parallelizing
-            M, efc, post: nmslib parameters
+            num_workers (int): number of threads the ann algorithm should use when parallelizing
+            M, efC, efS: ann parameters
             alpha (float): weight of last-name relative to first-name
             power (float): parameter controlling the impact of name length on cosine distance
             print_progress (bool): controls verbosity of index creation
 
         Returns:
-            nmslib.FloatIndex: nmslib index object
+            faiss.IndexHNSWFlat: ann index object
         '''
 
-        index_params = {
-            'M' : M,
-            'indexThreadQty' : num_workers,
-            'efConstruction' : efC,
-            'post' : post
-        }
-
         shingles_matrix = self.generate_shingles_matrix(nn_strings, alpha, power, 'index')
-        ix = prep_index()
-        # batch load data points
-        temp = ix.addDataPointBatch(
-            data=shingles_matrix,
-            ids=np.arange(shingles_matrix.shape[0], dtype=np.int32))
-        ix.createIndex(index_params, print_progress=print_progress)
+
+        dense_shingles_matrix = shingles_matrix.toarray().astype('float32')
+        faiss.normalize_L2(dense_shingles_matrix)
+
+        dim = dense_shingles_matrix.shape[1]
+        ix = faiss.IndexHNSWFlat(dim, M)
+        ix.hnsw.efConstruction = efC
+        #ix.hnsw.efSearch = efS
+
+        ix.add(dense_shingles_matrix)
 
         return ix
 
-    # @log_runtime_and_memory
     @profile
     def get_indices(self, params, all_nn_strings, og_blocking_index_file, **kw):
-        '''Wrapper function coordinating the creation and/or loading of the nmslib indices.
+        '''Wrapper function coordinating the creation and/or loading of the ann indices.
 
         Args:
             params (Parameters object): contains matching parameter values
             all_nn_strings: list of all unique nn_strings in the data (expanded if split_names is True)
-            og_blocking_index_file: path to a pre-build nmslib index (optional, if doesn't exist then None)
+            og_blocking_index_file: path to a pre-build ann index (optional, if doesn't exist then None)
 
         Returns:
                tuple: tuple containing:
 
-                - **main_index** (*nmslib.FloatIndex*): the main nmslib index
-                - **main_index_nn_strings** (*list*): nn_strings that are in the main nmslib index
-                - **second_index** (*nmslib.FloatIndex*): the secondary nmslib index for querying new nn_strings during incremental runs (often None)
-                - **second_index_nn_strings** (*list*): nn_strings that are in the secondary nmslib index (often None)
+                - **main_index** (*faiss.IndexHNSWFlat*): the main ann index
+                - **main_index_nn_strings** (*list*): nn_strings that are in the main ann index
+                - **second_index** (*faiss.IndexHNSWFlat*): the secondary ann index for querying new nn_strings during incremental runs (often None)
+                - **second_index_nn_strings** (*list*): nn_strings that are in the secondary ann index (often None)
         '''
 
 
@@ -503,8 +489,9 @@ class Block(NamematchBase):
             logger.trace('Building index from scratch.')
             main_index = self.generate_index(
                     all_nn_strings,
-                    params.num_workers, params.nmslib['M'], params.nmslib['efC'],
-                    params.nmslib['post'], params.blocking_scheme['alpha'],
+                    params.num_workers,
+                    params.faiss['M'], params.faiss['efC'], params.faiss['efS'],
+                    params.blocking_scheme['alpha'],
                     params.blocking_scheme['power'])
             main_index_nn_strings = all_nn_strings[:]
 
@@ -525,13 +512,13 @@ class Block(NamematchBase):
                 logger.trace('Building second index.')
                 second_index = self.generate_index(
                         second_index_nn_strings,
-                        params.num_workers, params.nmslib['M'], params.nmslib['efC'],
-                        params.nmslib['post'], params.blocking_scheme['alpha'],
+                        params.num_workers,
+                        params.faiss['M'], params.faiss['efC'], params.faiss['efS'],
+                        params.blocking_scheme['alpha'],
                         params.blocking_scheme['power'])
 
         return main_index, main_index_nn_strings, second_index, second_index_nn_strings
 
-    # @log_runtime_and_memory
     @profile
     def generate_candidate_pairs(
         self,
@@ -546,7 +533,7 @@ class Block(NamematchBase):
         batch_size,
         **kw
     ):
-        '''Wrapper function for querying the nmslib index (or indices) and getting
+        '''Wrapper function for querying the ann index (or indices) and getting
         non-matching candidate pairs.
 
         Args:
@@ -554,9 +541,9 @@ class Block(NamematchBase):
             shingles_to_query (csr_matrix): shingles matrix for nn_strings_to_query
             nn_string_info (pd.DataFrame):  table with one row per nn_string (or expanded nn_string)
             nn_string_expanded_df (pd.DataFrame): maps a nn_string to a ed_string and absval_string
-            main_index (nmslib index): the main nmslib index for querying
+            main_index (ann index): the main ann index for querying
             main_index_nn_strings (list): nn_strings in main_index
-            second_index (nmslib index): the secondary nmslib index, for some incremental runs
+            second_index (ann index): the secondary ann index, for some incremental runs
             second_index_nn_strings (list): nn_strings in second_index
             batch_size (int): batch size. Default is 10000 and can be modify in config.yaml file.
         Returns:
@@ -565,7 +552,7 @@ class Block(NamematchBase):
             ======================   =======================================================
             blockstring_1            concatenated version of blocking columns for first element in pair (sep by ::)
             blockstring_2            concatenated version of blocking columns for second element in pair (sep by ::)
-            cos_dist                 approximate cosine distance between two nn_strings (nmslib)
+            cos_dist                 approximate cosine distance between two nn_strings (ann)
             edit_dist                number of character edits between ed-strings
             covered_pair             flag; 1 for pairs that made it through blocking, 0 otherwise; all 1s here
             ======================   =======================================================
@@ -608,14 +595,19 @@ class Block(NamematchBase):
                     logger.error('Variable "index_type" must be "main" or "secondary."')
                     raise ValueError
 
-                # query the nmslib index:
+                # query the ann index:
                 # pass in a group of names, and get back the k most similar names)
-                near_neighbors_list = index_to_query.knnQueryBatch(
-                    queries=shingles_to_query[start_ix_batch:end_ix_batch],
-                    k=self.params.nmslib['k'],
-                    num_threads=self.params.num_workers)
+                queries = shingles_to_query[start_ix_batch:end_ix_batch]
+                dense_queries = queries.toarray().astype('float32')
+                faiss.normalize_L2(dense_queries)
+                faiss.omp_set_num_threads(self.params.num_workers)
+                near_neighbor_distances, near_neighbor_ids = index_to_query.search(
+                    dense_queries,
+                    k=self.params.faiss['k'])
 
                 nn_strings_queried_this_batch = nn_strings_to_query[start_ix_batch:end_ix_batch]
+
+                near_neighbors_list = list(zip(near_neighbor_ids, near_neighbor_distances))
 
                 near_neighbors_df = self.get_near_neighbors_df(
                         near_neighbors_list,
@@ -685,7 +677,6 @@ class Block(NamematchBase):
 
         return cand_pair_df
 
-    # @log_runtime_and_memory
     def compute_cosine_sim(self, blockstrings_in_pairs, pairs_df, shingles_matrix, **kw):
         '''Fast cosine similarity computation using the shingles matrix.
 
@@ -736,7 +727,6 @@ class Block(NamematchBase):
 
         return pair_cos
 
-    # @log_runtime_and_memory
     @profile
     def evaluate_blocking(self, cp_df, tp_df, blocking_scheme, **kw):
         '''The evaluate_blocking function computes the pair completeness metrics to
@@ -781,9 +771,10 @@ class Block(NamematchBase):
                 tp_df[tp_df.blockstring_1 != tp_df.blockstring_2].copy()
 
         # calculate cosine distance between true pairs (non-matching)
-        blockstrings_in_true_pairs = \
-                tp_df.blockstring_1.append(
-                tp_df.blockstring_2, ignore_index=True).drop_duplicates().tolist()
+        blockstrings_in_true_pairs = pd.concat([
+            tp_df.blockstring_1,
+            tp_df.blockstring_2
+        ], ignore_index=True).drop_duplicates().tolist()
         tp_shingles_matrix = self.generate_shingles_matrix(
                 blockstrings_in_true_pairs,
                 blocking_scheme['alpha'], blocking_scheme['power'],
@@ -792,8 +783,7 @@ class Block(NamematchBase):
                 tp_df_nonmatching, tp_shingles_matrix)
 
         # get the distribution of cosine distances in non-matching true pairs
-        tp_nonmatching_cos_distr = pd.value_counts(
-                pd.cut(tp_df_nonmatching.cos_dist, np.arange(0, 1.1, .1)),
+        tp_nonmatching_cos_distr = pd.cut(tp_df_nonmatching.cos_dist, np.arange(0, 1.1, .1)).value_counts(
                 normalize=True, sort=False)
         logger.trace(f'Cosine distribution of non-matching true pairs: \n{tp_nonmatching_cos_distr.to_string()}')
         self.stats_dict['tp_cosine_distribution'] = tp_nonmatching_cos_distr.tolist()
@@ -804,7 +794,7 @@ class Block(NamematchBase):
                 get_ed_string_from_blockstring, otypes=['object'])(up_df.blockstring_1)
         up_df['ed_string_2'] = np.vectorize(
                 get_ed_string_from_blockstring, otypes=['object'])(up_df.blockstring_2)
-        up_df['edit_dist'] = np.vectorize(editdistance.eval, otypes=['float'])(
+        up_df['edit_dist'] = np.vectorize(Levenshtein.distance, otypes=['float'])(
                 up_df.ed_string_1.values, up_df.ed_string_2.values)
         up_df = up_df[['blockstring_1', 'blockstring_2', 'cos_dist',
                                                  'edit_dist', 'covered_pair']].copy()
@@ -816,8 +806,7 @@ class Block(NamematchBase):
 
         # get the distribution of cosine distances in uncovered pairs
         # NOTE: fine that coming from non-matching df because no uncovered pairs will ever match
-        uncovered_pair_cos_distr = pd.value_counts(
-                pd.cut(up_df.cos_dist, np.arange(0, 1.1, .1)),
+        uncovered_pair_cos_distr = pd.cut(up_df.cos_dist, np.arange(0, 1.1, .1)).value_counts(
                 normalize=True, sort=False)
         logger.trace(f'Cosine distribution of uncovered pairs: \n{uncovered_pair_cos_distr.to_string()}')
         self.stats_dict['up_cosine_distribution'] = uncovered_pair_cos_distr.tolist()
@@ -883,7 +872,7 @@ class Block(NamematchBase):
             ======================   =======================================================
             blockstring_1            concatenated version of blocking columns for first element in pair (sep by ::)
             blockstring_2            concatenated version of blocking columns for second element in pair (sep by ::)
-            cos_dist                 approximate cosine distance between two nn_strings (nmslib)
+            cos_dist                 approximate cosine distance between two nn_strings (ann)
             edit_dist                number of character edits between ed-strings
             covered_pair             flag; 1 for pairs that made it through blocking, 0 otherwise
             ======================   =======================================================
@@ -913,7 +902,7 @@ class Block(NamematchBase):
                 ======================   ==================================================================================
                 nn_string_1              concatenated version of nn-blocking columns for first element in pair (sep by ::)
                 nn_string_2              concatenated version of nn-blocking columns for second element in pair (sep by ::)
-                cos_dist                 approximate cosine distance between two nn_strings (nmslib)
+                cos_dist                 approximate cosine distance between two nn_strings (ann)
                 commonness_penalty_1     penalty for last-name commonness for first element in pair
                 commonness_penalty_2     penalty for last-name commonness for second element in pair
                 ======================   ==================================================================================
@@ -928,7 +917,7 @@ class Block(NamematchBase):
             ==============   ===============================================================================
             blockstring_1    concatenated version of blocking columns for first element in pair (sep by ::)
             blockstring_2    concatenated version of blocking columns for second element in pair (sep by ::)
-            cos_dist         approximate cosine distance between two nn_strings (nmslib)
+            cos_dist         approximate cosine distance between two nn_strings (ann)
             edit_dist        number of character edits between ed-strings
             covered_pair     flag; 1 for pairs that made it through blocking, 0 otherwise; all 1s here
             ==============   ===============================================================================
@@ -955,7 +944,7 @@ class Block(NamematchBase):
         df['edit_dist'] = ((df.ed_string_1 != '') & (df.ed_string_1 == df.ed_string_2)) - 1
         where_calc_ed = ((df.ed_string_1 != '') & (df.ed_string_2 != '') & (df.ed_string_1 != df.ed_string_2))
         df.loc[where_calc_ed, 'edit_dist'] = \
-                np.vectorize(editdistance.eval, otypes=['float'])(
+                np.vectorize(Levenshtein.distance, otypes=['float'])(
                     df[where_calc_ed].ed_string_1.values, df[where_calc_ed].ed_string_2.values)
 
         df['absval_diff'] = 0
@@ -1049,7 +1038,7 @@ class Block(NamematchBase):
                 nn_string_ix             a string with nn_string_ix = i is the string located at nn_strings_queried_this_batch[i]
                 nn_string_1              concatenated version of nn-blocking columns for first element in pair (sep by ::)
                 nn_string_2              concatenated version of nn-blocking columns for second element in pair (sep by ::)
-                cos_dist                 approximate cosine distance between two nn_strings (nmslib)
+                cos_dist                 approximate cosine distance between two nn_strings (ann)
                 commonness_penalty_1     penalty for last-name commonness for first element in pair
                 commonness_penalty_2     penalty for last-name commonness for second element in pair
                 ======================   =======================================================
@@ -1066,7 +1055,7 @@ class Block(NamematchBase):
             ======================   =======================================================
             blockstring_1            concatenated version of blocking columns for first element in pair (sep by ::)
             blockstring_2            concatenated version of blocking columns for second element in pair (sep by ::)
-            cos_dist                 approximate cosine distance between two nn_strings (nmslib)
+            cos_dist                 approximate cosine distance between two nn_strings (ann)
             edit_dist                number of character edits between ed-strings
             covered_pair             flag; 1 for pairs that made it through blocking, 0 otherwise; all 1s here
             ======================   =======================================================
@@ -1114,7 +1103,7 @@ class Block(NamematchBase):
             nn_string_ix           a string with nn_string_ix = i is the string located at nn_strings_queried_this_batch[i]
             nn_string_1            concatenated version of nn-blocking columns for first element in pair (sep by ::)
             nn_string_2            concatenated version of nn-blocking columns for second element in pair (sep by ::)
-            cos_dist               approximate cosine distance between two nn_strings (nmslib)
+            cos_dist               approximate cosine distance between two nn_strings (ann)
             commonness_penalty_1   penalty for last-name commonness for first element in pair
             commonness_penalty_2   penalty for last-name commonness for second element in pair
             ====================   ========================================================================================
@@ -1282,7 +1271,7 @@ def read_an(an_file, nn_cols, ed_col, absval_col):
     an['ed_string'] = an[ed_col]
     if absval_col is not None:
         an['absval_string'] = an[absval_col]
-        an.loc[an.absval_string == '', 'absval_string'] = np.NaN
+        an.loc[an.absval_string == '', 'absval_string'] = np.nan
         an['absval_string'] = an.absval_string.astype(float)
 
     return an
@@ -1385,29 +1374,6 @@ def get_all_shingles():
     return valid_two_shingles
 
 
-def prep_index():
-    '''Initialize index data structure, which will store similarity information
-    about the names, and load processed shingles into it.
-
-    Returns:
-        nnmslib.FloatIndex: nmslib index object (pre time-consuming build call)
-    '''
-
-    # intialize index
-    space_type = 'cosinesimil_sparse'
-    space_params = {}
-    method_name = 'hnsw'
-
-    ix = nmslib.init(
-        space=space_type,
-        space_params=space_params,
-        method=method_name,
-        data_type=nmslib.DataType.SPARSE_VECTOR,
-        dtype=nmslib.DistType.FLOAT)
-
-    return ix
-
-
 def get_second_index_nn_strings(all_nn_strings, main_nn_strings):
     '''Get nn_strings that haven't already been stored in the main index.
 
@@ -1430,28 +1396,28 @@ def get_second_index_nn_strings(all_nn_strings, main_nn_strings):
 
 
 def save_main_index(main_index, main_index_nn_strings, main_index_file):
-    '''Save the main nmslib index and pickle dump the associated nn_strings list.
+    '''Save the main ann index and pickle dump the associated nn_strings list.
 
     Args:
-        main_index (nmslib.FloatIndex): the main, built nmslib index
+        main_index (faiss.IndexHNSWFlat): the main, built ann index
         main_index_nn_strings (list): list of nn_strings in the main index
-        main_index_file (str): path to store the main nmslib index
+        main_index_file (str): path to store the main ann index
     '''
 
-    main_index.saveIndex(main_index_file, save_data=True)
+    faiss.write_index(main_index, main_index_file)
 
     with open(main_index_file + '.pkl', 'wb') as pf:
         pickle.dump(main_index_nn_strings, pf, protocol=pickle.HIGHEST_PROTOCOL)
 
 
 def load_main_index_nn_strings(og_blocking_index_file):
-    '''Load the nn_strings that are in an existing nmslbi index file.
+    '''Load the nn_strings that are in an existing ann index file.
 
     Args:
         og_blocking_index_file (str): path to original blocking index
 
     Returns:
-        list: loaded list of nn_strings in an existing nmslib index
+        list: loaded list of nn_strings in an existing ann index
     '''
 
     with open(og_blocking_index_file + '.pkl', 'rb') as f:

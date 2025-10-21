@@ -54,7 +54,7 @@ def default_params_dict():
             'rebuild_main_index': 'if_secondary_index_exceeds_limit',
             'secondary_index_limit': 500000
         },
-        'nmslib': {'M': 100, 'efC': 1000, 'post': 0, 'efS': 750, 'k': 500},
+        'faiss': {'M': 100, 'efC': 1000, 'efS': 750, 'k': 500},
         # modeling
         'pct_train' : 0.9,
         'use_uncovered_phats': False,

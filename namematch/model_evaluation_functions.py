@@ -129,7 +129,11 @@ def pairwise_metrics(labeled_preds, threshold, phat_col, outcome, fscore_beta, w
         weights = [1 for i in np.arange(len(labeled_preds))]
 
     base_rate = np.average(labels, weights=weights)
-    auc = metrics.roc_auc_score(labels, preds, sample_weight=weights)
+
+    if labels.nunique() < 2:
+        auc = None
+    else:
+        auc = metrics.roc_auc_score(labels, preds, sample_weight=weights)
 
     eval_df = pd.DataFrame(data={
         'phat':preds, 
@@ -277,12 +281,12 @@ def evaluate_predictions(phat_df, model_type, phat_col, outcome, weight=False,
         try:
 
             one_phats = phat_univ_df[phat_univ_df[outcome] == 1][phat_col]
-            one_phat_dist = pd.value_counts(pd.cut(one_phats, np.arange(0, 1.1, .1)), normalize=True, sort=False)
+            one_phat_dist = pd.cut(one_phats, np.arange(0, 1.1, .1)).value_counts(normalize=True, sort=False)
             logger.trace(f'Phat distribution of actual 1s ({universe}): \n{one_phat_dist.to_string()}')
             model_stats['phat_distribution_1s'] = list(one_phat_dist)
 
             zero_phats = phat_univ_df[phat_univ_df[outcome] == 0][phat_col]
-            zero_phat_dist = pd.value_counts(pd.cut(zero_phats, np.arange(0, 1.1, .1)), normalize=True, sort=False)
+            zero_phat_dist = pd.cut(zero_phats, np.arange(0, 1.1, .1)).value_counts(normalize=True, sort=False)
             logger.trace(f'Phat distribution of actual 0s ({universe}): \n{zero_phat_dist.to_string()}')
             model_stats['phat_distribution_0s'] = list(zero_phat_dist)
 
@@ -297,25 +301,25 @@ def evaluate_predictions(phat_df, model_type, phat_col, outcome, weight=False,
                     phat_univ_df, threshold, phat_col, outcome, fscore_beta, weight)
 
             logger.info(f"Base rate ({universe}): {baserate}")
-            model_stats['baserate'] = float(baserate) if baserate else None
+            model_stats['baserate'] = float(baserate) if baserate is not None else None
 
             logger.info(f"Precision ({universe}): {precision}")
-            model_stats['precision'] = float(precision) if precision else None
+            model_stats['precision'] = float(precision) if precision is not None else None
 
             logger.info(f"Recall ({universe}): {recall}")
-            model_stats['recall'] = float(recall) if recall else None
+            model_stats['recall'] = float(recall) if recall is not None else None
 
             logger.info(f"False positive rate ({universe}): {fpr}")
-            model_stats['fp_rate'] = float(fpr) if fpr else None
+            model_stats['fp_rate'] = float(fpr) if fpr is not None else None
 
             logger.info(f"False negative rate ({universe}): {fnr}")
-            model_stats['fn_rate'] = float(fnr) if fnr else None
+            model_stats['fn_rate'] = float(fnr) if fnr is not None else None
 
             logger.info(f"AUC ({universe}): {auc}")
-            model_stats['auc'] = float(auc) if auc else None
+            model_stats['auc'] = float(auc) if auc is not None else None
 
             logger.info(f"F-score ({universe}): {fscore}")
-            model_stats['fscore'] = float(fscore) if fscore else None
+            model_stats['fscore'] = float(fscore) if fscore is not None else None
 
         except:
             message = f"Issue with given threshold -- not all areas of confusion matrix present ({universe})."

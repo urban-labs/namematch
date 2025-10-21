@@ -47,10 +47,9 @@ blocking_thresholds :
 index: 
   'rebuild_main_index' : 'if_secondary_index_exceeds_limit'
   'secondary_index_limit' : 500000
-nmslib : 
+faiss : 
   'M' : 100
   'efC' : 1000
-  'post' : 0
   'efS' : 750
   'k' : 500
 

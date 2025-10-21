@@ -1,4 +1,4 @@
-import editdistance
+from rapidfuzz.distance import Levenshtein
 import jellyfish
 import logging
 import numpy as np
@@ -97,9 +97,9 @@ def try_switch_first_last_name(df, first_name_col, last_name_col):
     df['reversed_full_name_1'] = df[last_name_col + '_1'] + df[first_name_col + '_1']
 
     # compare name_1 to name_2, and the reversed name_1 to name_2, to see which are more similar
-    df['name_ed'] = np.vectorize(editdistance.eval, otypes=['float'])(
+    df['name_ed'] = np.vectorize(Levenshtein.distance, otypes=['float'])(
             df.full_name_1.values, df.full_name_2.values)
-    df['reversed_name_ed'] = np.vectorize(editdistance.eval, otypes=['float'])(
+    df['reversed_name_ed'] = np.vectorize(Levenshtein.distance, otypes=['float'])(
             df.reversed_full_name_1.values, df.full_name_2.values)
 
     df['least_likely_name'] = (df.prob_name_2 < df.prob_name_1).astype(int) + 1
@@ -178,7 +178,7 @@ def compare_strings(df, varname):
     features_df[varname + '_missing'] = df.msng
 
     features_df.loc[df.msng == 0, varname + '_edit_dist'] = \
-            np.vectorize(editdistance.eval, otypes=['float'])(
+            np.vectorize(Levenshtein.distance, otypes=['float'])(
                 df[df.msng == 0][col1].values,
                 df[df.msng == 0][col2].values)
 
@@ -302,7 +302,7 @@ def compare_dates(df, varname):
     features_df[varname + '_missing'] = (df.date1.isnull() | df.date2.isnull()).astype(int)
 
     features_df.loc[features_df[varname + '_missing'] == 0, varname + '_edit_dist'] = \
-            np.vectorize(editdistance.eval, otypes=['float'])(
+            np.vectorize(Levenshtein.distance, otypes=['float'])(
                 df[features_df[varname + '_missing'] == 0][col1].values,
                 df[features_df[varname + '_missing'] == 0][col2].values).astype(float)
 
@@ -334,7 +334,7 @@ def compare_geographies(df, varname):
 
     df[['x1', 'y1']] = df[col1].str.split(',', n=1, expand=True)
     df[['x2', 'y2']] = df[col2].str.split(',', n=1, expand=True)
-    df[['x1', 'y1', 'x2', 'y2']] = df[['x1', 'y1', 'x2', 'y2']].replace('', np.NaN)
+    df[['x1', 'y1', 'x2', 'y2']] = df[['x1', 'y1', 'x2', 'y2']].replace('', np.nan)
     df['x1_minus_x2_squared'] = np.square(df.x1.astype(float) - df.x2.astype(float))
     df['y1_minus_y2_squared'] = np.square(df.y1.astype(float) - df.y2.astype(float))
 
@@ -377,7 +377,7 @@ def generate_label(df, uid_vars, leven_thresh):
 
         # if leven_thresh is in use, set missing all labels that are too close
         if leven_thresh is not None:
-            label_df[uid + '_ed'] =  np.vectorize(editdistance.eval, otypes=['float'])(
+            label_df[uid + '_ed'] =  np.vectorize(Levenshtein.distance, otypes=['float'])(
                     df[col1].values, df[col2].values)
             label_df.loc[(label_df[uid + '_ed'] <= leven_thresh) &
                     (label_df[uid + '_ed'] > 0), uid + '_label'] = ''

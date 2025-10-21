@@ -24,7 +24,7 @@ params_lookup = {
         'incremental',
         'index',
         'num_workers',
-        'nmslib',
+        'faiss',
         'verbose',
         'parallelize'
         ],
