@@ -70,8 +70,7 @@ class Block(NamematchBase):
         output_files = [
             self.candidate_pairs_file,
             self.main_index_file,
-            self.main_index_file + '.pkl',
-            self.main_index_file + '.dat'
+            self.main_index_file + '.pkl'
         ]
         if not self.params.incremental:
             temp_dir = os.path.dirname(self.candidate_pairs_file)

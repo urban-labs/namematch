@@ -307,7 +307,7 @@ def compare_dates(df, varname):
                 df[features_df[varname + '_missing'] == 0][col2].values).astype(float)
 
     features_df.loc[features_df[varname + '_missing'] == 0, varname + '_day_diff'] = \
-            ((df.date1 - df.date2) / np.timedelta64(1, 'D')).abs().astype(float)
+            (df.date1 - df.date2).dt.days.abs().astype(float)
 
     return features_df
 
