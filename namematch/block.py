@@ -586,6 +586,10 @@ class Block(NamematchBase):
         # batch_size = 2000 # NOTE can be parameterized/reduced if RAM is issue
         logger.debug(f"batch size: {batch_size}")
 
+        # Initialize tracking for NMSLIB filtering efficiency
+        total_neighbors_queried = 0
+        total_candidates_accepted = 0
+
         start_ix_batch = 0
         while start_ix_batch < len(nn_strings_to_query):
             end_ix_batch = min(start_ix_batch + batch_size, len(nn_strings_to_query))
@@ -622,6 +626,15 @@ class Block(NamematchBase):
                         nn_string_info,
                         nn_strings_this_index,
                         nn_strings_queried_this_batch)
+
+                # DEBUG: Save near_neighbors before any filtering (first batch only)
+                if start_ix_batch == 0 and index_type == 'main' and self.output_dir is not None:
+                    from pathlib import Path
+                    output_path = Path(self.output_dir) / 'details' / 'near_neighbors_raw.parquet'
+                    near_neighbors_df.to_parquet(output_path, index=False)
+
+                # Track total neighbors returned by NMSLIB before filtering
+                total_neighbors_queried += len(near_neighbors_df)
 
                 # parallelize the paring down for possible candidate pairs to actual candidate pairs
                 end_points = get_endpoints(len(near_neighbors_df), self.params.num_workers)
@@ -669,6 +682,9 @@ class Block(NamematchBase):
             cand_pair_df = cand_pair_df.drop_duplicates(subset=['blockstring_1', 'blockstring_2'])
             # because same name might be in both indices
 
+            # Track total candidates accepted after filtering (deduplicated within batch)
+            total_candidates_accepted += len(cand_pair_df)
+
             # update total number candidate pairs generated so far; write to file
             write_some_cps(cand_pair_df, self.candidate_pairs_file)
             del cand_pair_df
@@ -682,6 +698,29 @@ class Block(NamematchBase):
             self.candidate_pairs_file,
             index=False,
         )
+
+        # Log NMSLIB filtering efficiency statistics
+        final_candidates_after_global_dedup = len(cand_pair_df)
+        if total_neighbors_queried > 0:
+            acceptance_rate = (final_candidates_after_global_dedup / total_neighbors_queried) * 100
+            avg_neighbors_per_query = total_neighbors_queried / len(nn_strings_to_query) if len(nn_strings_to_query) > 0 else 0
+            avg_candidates_per_query = final_candidates_after_global_dedup / len(nn_strings_to_query) if len(nn_strings_to_query) > 0 else 0
+
+            logger.info(f'NMSLIB filtering efficiency:')
+            logger.info(f'  Total neighbors from NMSLIB (k={self.params.nmslib["k"]} per query): {total_neighbors_queried:,}')
+            logger.info(f'  Candidates before global dedup: {total_candidates_accepted:,}')
+            logger.info(f'  Final candidates after filtering & dedup: {final_candidates_after_global_dedup:,}')
+            logger.info(f'  Acceptance rate: {acceptance_rate:.3f}% ({final_candidates_after_global_dedup:,} / {total_neighbors_queried:,})')
+            logger.info(f'  Avg neighbors per query: {avg_neighbors_per_query:.1f}')
+            logger.info(f'  Avg final candidates per query: {avg_candidates_per_query:.1f}')
+
+            # Save to stats_dict for reporting
+            self.stats_dict['nmslib_neighbors_queried'] = total_neighbors_queried
+            self.stats_dict['nmslib_candidates_before_dedup'] = total_candidates_accepted
+            self.stats_dict['nmslib_candidates_after_dedup'] = final_candidates_after_global_dedup
+            self.stats_dict['nmslib_acceptance_rate'] = acceptance_rate
+            self.stats_dict['nmslib_avg_neighbors_per_query'] = avg_neighbors_per_query
+            self.stats_dict['nmslib_avg_candidates_per_query'] = avg_candidates_per_query
 
         return cand_pair_df
 
@@ -938,9 +977,18 @@ class Block(NamematchBase):
                 df[['commonness_penalty_1', 'commonness_penalty_2']].mean(axis=1)
         df = df.drop(columns=['commonness_penalty_1', 'commonness_penalty_2'])
 
+        # Preserve nn_string_ix if it exists (for balanced sampling)
+        has_nn_string_ix = 'nn_string_ix' in df.columns
+        if has_nn_string_ix:
+            nn_string_ix_col = df['nn_string_ix'].copy()
+
         # expand to full-name/dob/age(?) level
         df = pd.merge(df, nn_string_expanded_df, left_on='nn_string_1', right_index=True)
         df = pd.merge(df, nn_string_expanded_df, left_on='nn_string_2', right_index=True, suffixes=['_1', '_2'])
+
+        # Restore nn_string_ix after merges
+        if has_nn_string_ix:
+            df['nn_string_ix'] = nn_string_ix_col
         df = df.reset_index(drop=True)
         if 'nn_string_full' in nn_string_expanded_df:
             df['nn_string_1'] = df.nn_string_full_1 # swap nn_string for nn_string_full
@@ -988,7 +1036,12 @@ class Block(NamematchBase):
         df.loc[df.nns1_is_min == False, 'blockstring_1'] = df.nn_string_2.astype(str) + '::' + df.ed_string_2.astype(str)
         df.loc[df.nns1_is_min == False, 'blockstring_2'] = df.nn_string_1.astype(str) + '::' + df.ed_string_1.astype(str)
 
-        cand_pairs = df[['blockstring_1', 'blockstring_2', 'cos_dist', 'edit_dist']].copy()
+        # Keep nn_string_ix if it exists (needed for balanced sampling)
+        cols_to_keep = ['blockstring_1', 'blockstring_2', 'cos_dist', 'edit_dist']
+        if 'nn_string_ix' in df.columns:
+            cols_to_keep.append('nn_string_ix')
+
+        cand_pairs = df[cols_to_keep].copy()
 
         # once we've applied all the filters, the rows that are left will make it through blocking
         cand_pairs['covered_pair'] = 1
@@ -1074,6 +1127,9 @@ class Block(NamematchBase):
 
         near_neighbors_df = near_neighbors_df.copy()
 
+        # Keep track of original neighbors (before any filtering)
+        original_neighbors_df = near_neighbors_df.copy()
+
         # narrow down to reasaonable cosine distance
         near_neighbors_df = near_neighbors_df[near_neighbors_df.cos_dist <= thresholds['low_cosine_bar']]
 
@@ -1082,6 +1138,50 @@ class Block(NamematchBase):
 
         # filter out low edit or cosine distances
         cand_pairs_df = self.apply_blocking_filter(near_neighbors_df, thresholds, nn_string_expanded_df)
+
+        # Balanced sampling: For each query, if N pairs passed blocking, sample N from those that failed
+        # This creates a balanced dataset of positive and negative blocking examples
+        if thresholds.get('sample_negative_pairs', False) and len(cand_pairs_df) > 0:
+            # Get pairs that passed blocking (covered_pair = 1)
+            passed_pairs = cand_pairs_df.copy()
+            passed_pairs['covered_pair'] = 1
+
+            # Identify pairs that failed blocking by anti-joining
+            # Create a set of (nn_string_1, nn_string_2) tuples that passed
+            # Use nn_string for matching since original_neighbors_df has nn_string, not blockstring
+            passed_set = set(zip(near_neighbors_df['nn_string_1'], near_neighbors_df['nn_string_2']))
+
+            # Filter original neighbors to only those that didn't pass
+            failed_mask = ~original_neighbors_df.apply(
+                lambda row: (row['nn_string_1'], row['nn_string_2']) in passed_set, axis=1)
+            failed_pairs_df = original_neighbors_df[failed_mask].copy()
+
+            # Group by query (nn_string_ix) and sample
+            sampled_failed_pairs = []
+            for nn_string_ix, passed_group in passed_pairs.groupby('nn_string_ix'):
+                n_passed = len(passed_group)
+
+                # Get failed pairs for this query
+                failed_for_query = failed_pairs_df[failed_pairs_df['nn_string_ix'] == nn_string_ix]
+
+                if len(failed_for_query) > 0:
+                    # Sample min(n_passed, n_failed) pairs
+                    n_to_sample = min(n_passed, len(failed_for_query))
+                    sampled = failed_for_query.sample(n=n_to_sample, random_state=42)
+
+                    # Need to get blockstring columns for sampled pairs
+                    # Use nn_string_1 and nn_string_2 as blockstrings (they are the same)
+                    sampled_with_blockstrings = sampled[['nn_string_1', 'nn_string_2', 'cos_dist', 'nn_string_ix']].copy()
+                    sampled_with_blockstrings.columns = ['blockstring_1', 'blockstring_2', 'cos_dist', 'nn_string_ix']
+                    sampled_with_blockstrings['edit_dist'] = -1  # Mark as not computed
+                    sampled_with_blockstrings['covered_pair'] = 0  # Mark as not covered
+
+                    sampled_failed_pairs.append(sampled_with_blockstrings)
+
+            # Combine passed and sampled failed pairs
+            if sampled_failed_pairs:
+                sampled_failed_df = pd.concat(sampled_failed_pairs, ignore_index=True)
+                cand_pairs_df = pd.concat([passed_pairs, sampled_failed_df], ignore_index=True)
 
         if output is None:
             return cand_pairs_df
@@ -1266,6 +1366,10 @@ def read_an(an_file, nn_cols, ed_col, absval_col):
     if absval_col is not None:
         cols_to_read = nn_cols + [ed_col, absval_col, \
                 'blockstring', 'file_type', 'drop_from_nm', 'record_id']
+
+    # Remove duplicate column names while preserving order
+    # (e.g., if ed_col is same as one of nn_cols)
+    cols_to_read = list(dict.fromkeys(cols_to_read))
 
     table = pq.read_table(an_file)
     an =  table.to_pandas()
