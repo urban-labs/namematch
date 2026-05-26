@@ -216,7 +216,8 @@ def get_cv_metrics(mod):
 
 def evaluate_predictions(phat_df, model_type, phat_col, outcome, weight=False,
         default_threshold=0.5, missingness_model_threshold_boost=0.2,
-        optimize_threshold=False, fscore_beta=1.0, demographic_variables=None, all_names_df=None):
+        optimize_threshold=False, fscore_beta=1.0, demographic_variables=None, all_names_df=None,
+        max_demographic_values=10):
     '''Calculates metrics such as precision, recall, fscore, etc. for the pairwise record
     match predictions. Also, get the threshold that maximizes f score.
 
@@ -232,6 +233,7 @@ def evaluate_predictions(phat_df, model_type, phat_col, outcome, weight=False,
         fscore_beta (float): ratio of recall weighting to precision weighting (e.g. 0.5 weights precision double)
         demographic_variables (list): list of demographic/categorical variable names for subgroup analysis
         all_names_df (pd.DataFrame): all_names dataframe with demographic columns and record_id
+        max_demographic_values (int): maximum number of unique values for a demographic variable to report performance by category (default: 10)
 
     Returns:
         float: probability threshold that optimizes fscore
@@ -288,6 +290,12 @@ def evaluate_predictions(phat_df, model_type, phat_col, outcome, weight=False,
                     values_1 = set(phat_df[col1].dropna().unique())
                     values_2 = set(phat_df[col2].dropna().unique())
                     all_values = values_1 | values_2
+
+                    # Skip demographic variable if it has too many unique values
+                    n_unique_values = len(all_values)
+                    if n_unique_values > max_demographic_values:
+                        logger.info(f"Skipping demographic variable '{demog_var}' ({n_unique_values} unique values > max {max_demographic_values})")
+                        continue
 
                     # Create universe for each value (only if enough samples)
                     for value in all_values:
@@ -360,25 +368,36 @@ def evaluate_predictions(phat_df, model_type, phat_col, outcome, weight=False,
                 baserate, precision, recall, fpr, fnr, auc, accuracy, fscore = pairwise_metrics(
                     phat_univ_df, threshold, phat_col, outcome, fscore_beta, weight)
 
-            logger.info(f"Base rate ({universe}): {baserate}")
+            # Only log performance metrics for base universes, not demographic subgroups
+            # Demographic stats are still saved to stats_dict for the matching report
+            is_demographic_universe = ':' in universe
+
+            if not is_demographic_universe:
+                logger.info(f"Base rate ({universe}): {baserate}")
             model_stats['baserate'] = float(baserate) if baserate is not None else None
 
-            logger.info(f"Precision ({universe}): {precision}")
+            if not is_demographic_universe:
+                logger.info(f"Precision ({universe}): {precision}")
             model_stats['precision'] = float(precision) if precision is not None else None
 
-            logger.info(f"Recall ({universe}): {recall}")
+            if not is_demographic_universe:
+                logger.info(f"Recall ({universe}): {recall}")
             model_stats['recall'] = float(recall) if recall is not None else None
 
-            logger.info(f"False positive rate ({universe}): {fpr}")
+            if not is_demographic_universe:
+                logger.info(f"False positive rate ({universe}): {fpr}")
             model_stats['fp_rate'] = float(fpr) if fpr is not None else None
 
-            logger.info(f"False negative rate ({universe}): {fnr}")
+            if not is_demographic_universe:
+                logger.info(f"False negative rate ({universe}): {fnr}")
             model_stats['fn_rate'] = float(fnr) if fnr is not None else None
 
-            logger.info(f"AUC ({universe}): {auc}")
+            if not is_demographic_universe:
+                logger.info(f"AUC ({universe}): {auc}")
             model_stats['auc'] = float(auc) if auc is not None else None
 
-            logger.info(f"F-score ({universe}): {fscore}")
+            if not is_demographic_universe:
+                logger.info(f"F-score ({universe}): {fscore}")
             model_stats['fscore'] = float(fscore) if fscore is not None else None
 
         except:
@@ -395,7 +414,7 @@ def evaluate_predictions(phat_df, model_type, phat_col, outcome, weight=False,
 
 def evaluate_models(phats_df, outcome, model_type, weight=False, default_threshold=0.5,
             missingness_model_threshold_boost=0.2, optimize_threshold=False, fscore_beta=1.0,
-            stats_dict=None, demographic_variables=None, all_names_df=None):
+            stats_dict=None, demographic_variables=None, all_names_df=None, max_demographic_values=10):
     '''Wrapper for evaluating different models (e.g. basic and no-dob) on different universes.
 
     Args:
@@ -409,6 +428,7 @@ def evaluate_models(phats_df, outcome, model_type, weight=False, default_thresho
         fscore_beta (float): ratio of recall weighting to precision weighting (e.g. 0.5 weights precision double)
         demographic_variables (list): list of demographic/categorical variable names for subgroup analysis
         all_names_df (pd.DataFrame): all_names dataframe with demographic columns and record_id
+        max_demographic_values (int): maximum number of unique values for a demographic variable to report performance by category (default: 10)
 
     Return:
         dict: maps model name (e.g. basic, no-dob) to thresholds (no return type)
@@ -437,7 +457,7 @@ def evaluate_models(phats_df, outcome, model_type, weight=False, default_thresho
         model_type_model_stats[model_name] = evaluate_predictions(
                 phats_to_eval_df, model_type, phat_col, outcome, weight,
                 default_threshold, missingness_model_threshold_boost, optimize_threshold, fscore_beta,
-                demographic_variables, all_names_df)
+                demographic_variables, all_names_df, max_demographic_values)
     
     stats_dict[f"model_stats__{model_type}"] = model_type_model_stats
     if model_type == 'match':
