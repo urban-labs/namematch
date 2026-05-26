@@ -118,10 +118,29 @@ class Predict(NamematchBase):
                 df = self.predict(match_models, df, 'match')
 
                 df['potential_edge'] = 0
+                # Optional per-match-type thresholds: when params.match_type_thresholds
+                # is set, exact-match pairs and inexact-match pairs use different
+                # decision thresholds. Falls back to the single match_thresh
+                # otherwise (existing behavior unchanged).
+                mtt = getattr(params, 'match_type_thresholds', None)
                 for model_name in df.model_to_use.unique():
-                    threshold = model_info[model_name]['match_thresh']
-                    df.loc[(df.model_to_use == model_name) &
-                           (df[f'{model_name}_match_phat'] >= threshold), 'potential_edge'] = 1
+                    base_threshold = model_info[model_name]['match_thresh']
+                    phat_col = f'{model_name}_match_phat'
+                    model_mask = df.model_to_use == model_name
+
+                    if mtt and 'exactmatch' in df.columns:
+                        # Per-row threshold; pairs that don't fit any configured
+                        # bucket fall back to the model's base threshold.
+                        row_thresh = pd.Series(base_threshold, index=df.index)
+                        if 'exact_all' in mtt:
+                            row_thresh.loc[df.exactmatch == 1] = mtt['exact_all']
+                        if 'inexact_any' in mtt:
+                            row_thresh.loc[df.exactmatch == 0] = mtt['inexact_any']
+                        df.loc[model_mask & (df[phat_col] >= row_thresh),
+                               'potential_edge'] = 1
+                    else:
+                        df.loc[model_mask & (df[phat_col] >= base_threshold),
+                               'potential_edge'] = 1
 
                 if not params.use_uncovered_phats:
                     df.loc[df.covered_pair == 0, 'potential_edge'] = 0
