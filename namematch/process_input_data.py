@@ -72,7 +72,8 @@ class ProcessInputData(NamematchBase):
         data_file_list = self.schema.data_files.get_all_data_files()
 
         # store categorical variables for report
-        cat_vars = [v.name for v in self.schema.variables.varlist if v.compare_type == "Categorical"]
+        cat_vars = [v.name for v in self.schema.variables.varlist
+                    if v.compare_type in ["Categorical", "Category"]]
         self.stats_dict["categorical_variables"] = cat_vars
 
         n_an_rows = 0
@@ -296,7 +297,7 @@ class ProcessInputData(NamematchBase):
             # convert to string in python date format: e.g. 2014-05-31
             s = s.dt.strftime('%Y-%m-%d')
             s = s.replace('NaT', '')
-            s = s.replace(np.NaN, '')
+            s = s.replace(np.nan, '')
 
         elif variable.compare_type == 'Categorical' and variable.check != '':
             options = variable.check.split(',')

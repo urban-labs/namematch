@@ -334,7 +334,7 @@ def compare_geographies(df, varname):
 
     df[['x1', 'y1']] = df[col1].str.split(',', n=1, expand=True)
     df[['x2', 'y2']] = df[col2].str.split(',', n=1, expand=True)
-    df[['x1', 'y1', 'x2', 'y2']] = df[['x1', 'y1', 'x2', 'y2']].replace('', np.NaN)
+    df[['x1', 'y1', 'x2', 'y2']] = df[['x1', 'y1', 'x2', 'y2']].replace('', np.nan)
     df['x1_minus_x2_squared'] = np.square(df.x1.astype(float) - df.x2.astype(float))
     df['y1_minus_y2_squared'] = np.square(df.y1.astype(float) - df.y2.astype(float))
 

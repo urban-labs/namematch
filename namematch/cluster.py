@@ -465,7 +465,7 @@ class Cluster(NamematchBase):
                     potential_edges_df = potential_edges_df.reset_index(drop=True)
 
             # get clustering_phat
-            potential_edges_df['phat'] = -1
+            potential_edges_df['phat'] = -1.0
             for model_name in potential_edges_df.model_to_use.unique():
                 potential_edges_df.loc[potential_edges_df.model_to_use == model_name, 'phat'] = \
                         potential_edges_df['%s_match_phat' % model_name]
@@ -721,6 +721,20 @@ class Cluster(NamematchBase):
         n_singleton_clusters = len([recs for c_id, recs in clusters.items() if (len(recs) == 1)])
         logger.info(f"Number of singleton clusters: {n_singleton_clusters}")
         self.stats_dict['n_singleton_clusters'] = n_singleton_clusters
+
+        # Save rejection reasons if available from constraints module
+        try:
+            constraints_module = cluster_logic.is_valid_cluster.__module__
+            if constraints_module != 'namematch.default_constraints':
+                import importlib
+                constraints = importlib.import_module(constraints_module)
+                if hasattr(constraints, 'rejection_reasons'):
+                    rejection_reasons_dict = dict(constraints.rejection_reasons)
+                    if rejection_reasons_dict:
+                        self.stats_dict['cluster_rejection_reasons'] = rejection_reasons_dict
+                        logger.info(f"Saved {len(rejection_reasons_dict)} rejection reason categories to stats")
+        except Exception as e:
+            logger.debug(f"Could not save rejection reasons: {e}")
 
         cluster_assignments = {k: str(v) for k, v in cluster_assignments.items()}
         return cluster_assignments

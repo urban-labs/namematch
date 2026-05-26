@@ -34,6 +34,18 @@ def is_valid_cluster(cluster, phat):
 
     Returns:
         bool: True for default version
+
+    Note:
+        If you replace this function in a custom constraints file and want to see
+        a breakdown of *which* of your rules rejected merges (rather than just the
+        total ``n_invalid_clusters``), declare a module-level ``rejection_reasons``
+        counter (a ``Counter`` or ``defaultdict(int)``) and increment it before each
+        ``return False``. Name Match will pick it up after clustering and render
+        a sorted table in the matching report. The hook is opt-in — omitting the
+        counter leaves behavior unchanged. See the
+        "Tracking rejection reasons" subsection in
+        docs/source/match_setup.rst and examples/clue_constraints.py for a
+        worked example.
     '''
 
     return True

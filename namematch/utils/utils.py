@@ -531,11 +531,15 @@ def load_logging_params(logging_params_file=None):
 
 
 def reformat_dict(d: dict):
-    '''make all the string values in the yaml file have double quotes'''
+    '''make all the string values in the yaml file have double quotes and convert numpy types to Python types'''
     d = d.copy()
     for k, v in d.items():
         if isinstance(v, str):
             d[k] = DoubleQuotedScalarString(v)
+        elif isinstance(v, (np.integer, np.floating)):
+            d[k] = v.item()  # Convert numpy types to Python native types
+        elif isinstance(v, dict):
+            d[k] = reformat_dict(v)  # Recursively handle nested dicts
     return d
 
 

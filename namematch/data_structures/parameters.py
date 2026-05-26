@@ -248,8 +248,8 @@ class Parameters():
         if len(self.blocking_scheme['cosine_distance']['variables']) > 2:
             logger.warning(f"Only the first two variables in blocking_scheme"
                            f"['cosine_distance'] will be used.")
-            self.blocking_scheme['cosine_distance']['variable'] = \
-                    self.blocking_scheme['cosine_distance']['variable'][0:2]
+            self.blocking_scheme['cosine_distance']['variables'] = \
+                    self.blocking_scheme['cosine_distance']['variables'][0:2]
 
         if type(self.blocking_scheme['edit_distance']['variable']) == list:
             logger.warning(f"Only one variable allowed in blocking_scheme"
