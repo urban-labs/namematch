@@ -70,6 +70,19 @@ default_threshold : 0.7
 missingness_model_threshold_boost : 0.2
 optimize_threshold : True
 
+# Optional per-match-type thresholds. Default (null) keeps the single
+# default_threshold behavior. When set to a dict, candidate pairs are
+# bucketed by whether all `exact_match_variables` agree exactly:
+#   exact_all   : pair agrees on every variable in exact_match_variables
+#   inexact_any : at least one variable disagrees (typos, nicknames, etc.)
+# and each bucket gets its own decision threshold. If
+# `optimize_threshold: True` is also set, find_best_threshold runs per
+# bucket and writes the optimum back into this dict. Example:
+#   match_type_thresholds :
+#     'exact_all'   : 0.40
+#     'inexact_any' : 0.30
+match_type_thresholds : null
+
 match_train_criteria : 
   'data_rows' : {} # note, covered_pairs == 0 are already never trained on
   'all_names' : {}

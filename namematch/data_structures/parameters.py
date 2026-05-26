@@ -46,6 +46,7 @@ params_lookup = {
         'weight_using_selection_model',
         'default_threshold',
         'optimize_threshold',
+        'match_type_thresholds',
         'fscore_beta',
         'match_train_criteria',
         'pct_train',
@@ -55,6 +56,7 @@ params_lookup = {
     'predict': [
         'use_uncovered_phats',
         'parallelize',
+        'match_type_thresholds',
         ],
     'cluster': [
         'initialize_from_ground_truth_1s',
@@ -118,6 +120,31 @@ class Parameters():
                 if param_value not in params__specific_value[param]:
                     valid = False
 
+        # Validate match_type_thresholds: must be None or a dict whose keys
+        # are a subset of the supported match-type bucket names and whose
+        # values are numeric and in (0, 1].
+        if param == 'match_type_thresholds' and not same_as_default:
+            allowed_keys = {'exact_all', 'inexact_any'}
+            if param_value is None:
+                pass  # explicit None disables the feature; same as default
+            elif not isinstance(param_value, dict):
+                valid = False
+            else:
+                unknown_keys = set(param_value.keys()) - allowed_keys
+                if unknown_keys:
+                    logger.warning(
+                        f"match_type_thresholds contains unknown bucket keys "
+                        f"{sorted(unknown_keys)}; allowed keys are "
+                        f"{sorted(allowed_keys)}. The unknown keys will be "
+                        f"ignored."
+                    )
+                for k, v in param_value.items():
+                    if k in allowed_keys and (
+                        not isinstance(v, (int, float)) or not (0.0 < v <= 1.0)
+                    ):
+                        valid = False
+                        break
+
         if not valid:
             logger.warning(f"The {param} parameter has taken an illegal value "
                            f"({param_value}). Default value ({defaults[param]}) "
@@ -178,6 +205,25 @@ class Parameters():
 
         if param_dict['num_workers'] > 1:
             param_dict['parallelize'] = True
+
+        # Defensive coercion for match_type_thresholds: the generic
+        # check_integrity loop logs warnings on invalid values but does not
+        # reset them to default (pre-existing behavior unchanged in this PR).
+        # Downstream code (Predict, FitModel) assumes this param is either None
+        # or a dict of {known_bucket_name: numeric_in_(0,1]}; we enforce that
+        # shape here so consumers don't have to repeat the check.
+        mtt = param_dict.get('match_type_thresholds')
+        if mtt is not None:
+            if not isinstance(mtt, dict):
+                param_dict['match_type_thresholds'] = None
+            else:
+                cleaned = {
+                    k: float(v) for k, v in mtt.items()
+                    if k in ('exact_all', 'inexact_any')
+                    and isinstance(v, (int, float))
+                    and 0.0 < float(v) <= 1.0
+                }
+                param_dict['match_type_thresholds'] = cleaned if cleaned else None
 
         return cls(param_dict)
 
