@@ -224,6 +224,41 @@ If there is no special logic you wish to encode, this function should simply ret
 
 Notice the optional ``phat`` parameter being passed into ``is_valid_cluster()``. This float is the prediction from the model, or the probability that the two records belong to the same person. This information might be useful if, for example, you want to apply looser constraints to links the model is more confident in.
 
+Tracking rejection reasons (optional)
++++++++++++++++++++++++++++++++++++++
+
+By default, Name Match's clustering step tracks a single count of how many candidate merges were rejected by ``is_valid_cluster()`` (``n_invalid_clusters`` in the stats). If your constraint function has more than one rule, you may want to know which rule rejected each merge — for example, to tune thresholds or to confirm that an unused rule is actually firing.
+
+To opt into this, declare a module-level ``rejection_reasons`` counter (a ``Counter`` or ``defaultdict(int)``) in your constraints file and increment it before each ``return False`` with a string label describing the reason. After clustering completes, Name Match looks for this attribute on your module and, if present, surfaces a sorted (reason, count, percentage) table in the matching report.
+
+**Example:**
+::
+
+    from collections import defaultdict
+
+    # Module-level counter — Name Match reads this after clustering
+    rejection_reasons = defaultdict(int)
+
+    def is_valid_cluster(cluster, phat=None):
+
+        if cluster["school_id"].nunique() > 5:
+            rejection_reasons['too_many_schools_>5'] += 1
+            return False
+
+        if cluster["age"].max() - cluster["age"].min() > 3:
+            rejection_reasons['age_range_>3_years'] += 1
+            return False
+
+        return True
+
+The labels are free-form strings of your choosing. They appear in the **Cluster Rejection Reasons** section of ``matching_report.html``. If you omit the ``rejection_reasons`` declaration entirely, nothing breaks — the report's rejection-reasons section simply shows "no rejections recorded". See `examples/clue_constraints.py <https://github.com/urban-labs/namematch/blob/master/examples/clue_constraints.py>`_ for a complete working file.
+
+A few caveats:
+
+* The counter is module-level state and is not reset between ``NameMatcher.run()`` calls within the same Python process. Add ``rejection_reasons.clear()`` somewhere in your module setup if you need per-run isolation.
+* The counter is not thread-safe. Clustering is currently single-threaded, but be aware if you adapt Name Match's internals to parallelize clustering.
+* Today only ``is_valid_cluster`` rejections are tracked. ``is_valid_link`` rejections are counted but not categorized.
+
 **A quick note about missing values:** In the dataframes passed to ``is_valid_link()`` and ``is_valid_cluster()``, missing values will be encoded as ``np.NaN`` for ID columns, numeric columns, and date columns. Missing values will be encoded as empty strings ("") for string/object columns. For control over the data type each column is represetned as, see the section on the ``get_columns_used`` function below. 
 
 **A quick note about variable names:** Notice how we reference a column called ``school_id`` in the ``is_valid_cluster`` example above. This is made possible via the Name Match config file where we defined a variable called `school_id`, like so:
