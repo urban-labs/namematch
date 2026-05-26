@@ -224,6 +224,19 @@ If there is no special logic you wish to encode, this function should simply ret
 
 Notice the optional ``phat`` parameter being passed into ``is_valid_cluster()``. This float is the prediction from the model, or the probability that the two records belong to the same person. This information might be useful if, for example, you want to apply looser constraints to links the model is more confident in.
 
+**A quick note about missing values:** In the dataframes passed to ``is_valid_link()`` and ``is_valid_cluster()``, missing values will be encoded as ``np.NaN`` for ID columns, numeric columns, and date columns. Missing values will be encoded as empty strings ("") for string/object columns. For control over the data type each column is represetned as, see the section on the ``get_columns_used`` function below. 
+
+**A quick note about variable names:** Notice how we reference a column called ``school_id`` in the ``is_valid_cluster`` example above. This is made possible via the Name Match config file where we defined a variable called `school_id`, like so:
+::
+
+    - 'name' : 'school_id'
+      'compare_type' : null 
+      'dataset_1_col' : 'SchoolID'
+      'dataset_2_col' : 'SCHOOL_IDENTIFIER'
+
+This then allows us to access the ``school_id`` field in ``is_valid_link`` and ``is_valid_cluster``. Also note that by specifiying a ``null`` compare type, we have indicated that we only want the field to be used in constraint-checking (**not in the prediction model**).
+
+
 Tracking rejection reasons (optional)
 +++++++++++++++++++++++++++++++++++++
 
@@ -258,19 +271,6 @@ A few caveats:
 * The counter is module-level state and is not reset between ``NameMatcher.run()`` calls within the same Python process. Add ``rejection_reasons.clear()`` somewhere in your module setup if you need per-run isolation.
 * The counter is not thread-safe. Clustering is currently single-threaded, but be aware if you adapt Name Match's internals to parallelize clustering.
 * Today only ``is_valid_cluster`` rejections are tracked. ``is_valid_link`` rejections are counted but not categorized.
-
-**A quick note about missing values:** In the dataframes passed to ``is_valid_link()`` and ``is_valid_cluster()``, missing values will be encoded as ``np.NaN`` for ID columns, numeric columns, and date columns. Missing values will be encoded as empty strings ("") for string/object columns. For control over the data type each column is represetned as, see the section on the ``get_columns_used`` function below. 
-
-**A quick note about variable names:** Notice how we reference a column called ``school_id`` in the ``is_valid_cluster`` example above. This is made possible via the Name Match config file where we defined a variable called `school_id`, like so:
-::
-
-    - 'name' : 'school_id'
-      'compare_type' : null 
-      'dataset_1_col' : 'SchoolID'
-      'dataset_2_col' : 'SCHOOL_IDENTIFIER'
-
-This then allows us to access the ``school_id`` field in ``is_valid_link`` and ``is_valid_cluster``. Also note that by specifiying a ``null`` compare type, we have indicated that we only want the field to be used in constraint-checking (**not in the prediction model**).
-
 
 Additional user-defined functions
 ##################################
