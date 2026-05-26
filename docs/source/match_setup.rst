@@ -148,6 +148,16 @@ There are a number of different parameters that can be set to configure exactly 
 
 * ``default_threshold``: *(float, default=0.7)* If ``optimize_threshold=False`` or an error is encountered during optimization, what threshold should be used to distinguish predicted links from predicted non-links?
 
+* ``match_type_thresholds``: *(dict or None, default=None)* Optional per-match-type decision thresholds. When set to a dict, candidate pairs are bucketed by whether every variable in ``exact_match_variables`` (typically ``first_name``, ``last_name``, ``dob``) agrees exactly, and each bucket is gated against its own threshold. Supported bucket keys are ``exact_all`` (every exact-match variable agrees) and ``inexact_any`` (at least one disagrees, e.g. typos or nicknames). When ``optimize_threshold=True`` is also set, the F-score-optimal threshold is computed *per bucket* on the heldout evaluation set and written back into the dict; otherwise the manual values are used as-is. Leaving this ``None`` (the default) preserves the original single-threshold behavior. Example:
+
+  .. code-block:: yaml
+
+      match_type_thresholds:
+        exact_all:   0.40
+        inexact_any: 0.30
+
+  Use this when the exact-match population and the inexact population behave so differently that one threshold is a poor compromise — typically when raising the bar on inexact pairs would let through too few true matches.
+
 
 Pre-processing: making sure your data is ready for Name Match
 #############################################################

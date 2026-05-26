@@ -32,6 +32,18 @@ and this project does not yet follow [Semantic Versioning](https://semver.org/sp
   the `rejection_reasons` hook, with four cluster-level constraints (size,
   dob uniqueness, age range, name+dob combos) and a `print_rejection_summary`
   helper.
+- **`match_type_thresholds` parameter** in `fit_model` and `predict`. Optional
+  per-match-type decision thresholds: when set to a dict with keys `exact_all`
+  and/or `inexact_any`, candidate pairs are bucketed by whether every variable
+  in `exact_match_variables` agrees exactly, and each bucket is gated against
+  its own threshold (one for exact-on-everything pairs, another for pairs with
+  at least one inexact field). When `optimize_threshold: True` is also set,
+  `find_best_threshold` runs per bucket on the heldout evaluation set and the
+  optima are written back into the same dict, so the prediction step
+  transparently picks up the optimized values. The matching report renders the
+  final per-bucket values and the threshold used for each universe in the
+  pair-type performance table. Default `null` preserves the single-threshold
+  behavior. See `docs/source/match_setup.rst`.
 
 ### Changed
 
