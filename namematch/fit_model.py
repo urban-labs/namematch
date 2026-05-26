@@ -212,6 +212,7 @@ class FitModel(NamematchBase):
                 self.params.missingness_model_threshold_boost,
                 self.params.optimize_threshold,
                 self.params.fscore_beta,
+                match_type_thresholds=self.params.match_type_thresholds,
             )
 
             self.model_info = add_threshold_dict(self.model_info, thresholds_dict)
@@ -355,6 +356,7 @@ class FitModel(NamematchBase):
             missingness_model_threshold_boost=0.2,
             optimize_threshold=False,
             fscore_beta=1.0,
+            match_type_thresholds=None,
             **kw
             ):
         # Load demographic data for subgroup analysis
@@ -389,6 +391,7 @@ class FitModel(NamematchBase):
                     self.stats_dict,
                     demographic_variables,
                     all_names_df,
+                    match_type_thresholds=match_type_thresholds,
                     )
 
     def get_train_eval_data(self, an_train_eligible_dict, model_info, params, model_type, any_train=True):

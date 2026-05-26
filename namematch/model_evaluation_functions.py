@@ -217,7 +217,7 @@ def get_cv_metrics(mod):
 def evaluate_predictions(phat_df, model_type, phat_col, outcome, weight=False,
         default_threshold=0.5, missingness_model_threshold_boost=0.2,
         optimize_threshold=False, fscore_beta=1.0, demographic_variables=None, all_names_df=None,
-        max_demographic_values=10):
+        max_demographic_values=10, match_type_thresholds=None):
     '''Calculates metrics such as precision, recall, fscore, etc. for the pairwise record
     match predictions. Also, get the threshold that maximizes f score.
 
@@ -325,6 +325,40 @@ def evaluate_predictions(phat_df, model_type, phat_col, outcome, weight=False,
         threshold = default_threshold
     logger.info(f"Threshold: {threshold}")
 
+    # Per-bucket threshold optimization (when match_type_thresholds is set):
+    # find_best_threshold per universe subset and update the dict in-place.
+    # Mirrors the per-row gate in predict.py so reported metrics match what
+    # production gating will produce.
+    if match_type_thresholds is not None:
+        bucket_subsets = [('exact_all', phat_df[phat_df.exactmatch == 1]),
+                          ('inexact_any', phat_df[phat_df.exactmatch == 0])]
+        for bucket_name, subset_df in bucket_subsets:
+            if bucket_name not in match_type_thresholds:
+                continue
+            if optimize_threshold and len(subset_df) > 0:
+                try:
+                    bucket_df = subset_df[[phat_col, outcome, weight_col]].copy()
+                    bucket_df.columns = ['phat', 'outcome', 'weight']
+                    optimum = find_best_threshold(bucket_df, fscore_beta, weight)
+                    logger.info(
+                        f"Per-bucket threshold optimum [{bucket_name}]: "
+                        f"{optimum:.3f} (was {match_type_thresholds[bucket_name]:.3f}); "
+                        f"updating match_type_thresholds in place"
+                    )
+                    match_type_thresholds[bucket_name] = optimum
+                except Exception as e:
+                    logger.warning(
+                        f"Could not optimize threshold for bucket "
+                        f"[{bucket_name}], keeping configured value "
+                        f"{match_type_thresholds[bucket_name]}: {e}"
+                    )
+            else:
+                logger.info(
+                    f"Per-bucket threshold [{bucket_name}] manual value: "
+                    f"{match_type_thresholds[bucket_name]:.3f} "
+                    f"(optimize_threshold={optimize_threshold})"
+                )
+
     # Build list of universes to evaluate
     base_universes = ['all pairs', 'non exactmatch pairs', 'exactmatch pairs']
     all_universes = base_universes + demographic_universes
@@ -332,6 +366,16 @@ def evaluate_predictions(phat_df, model_type, phat_col, outcome, weight=False,
     for universe in all_universes:
 
         model_stats = {}
+
+        # Choose the threshold to apply when computing metrics for this
+        # universe. Per-bucket thresholds (when configured) align reported
+        # metrics with what predict.py will actually gate on.
+        universe_threshold = threshold
+        if match_type_thresholds is not None:
+            if universe == 'exactmatch pairs' and 'exact_all' in match_type_thresholds:
+                universe_threshold = match_type_thresholds['exact_all']
+            elif universe == 'non exactmatch pairs' and 'inexact_any' in match_type_thresholds:
+                universe_threshold = match_type_thresholds['inexact_any']
 
         phat_univ_df = phat_df.copy()
         if universe == 'non exactmatch pairs':
@@ -366,7 +410,10 @@ def evaluate_predictions(phat_df, model_type, phat_col, outcome, weight=False,
                 baserate = precision = recall = fpr = fnr = auc = accuracy = fscore = None
             else:
                 baserate, precision, recall, fpr, fnr, auc, accuracy, fscore = pairwise_metrics(
-                    phat_univ_df, threshold, phat_col, outcome, fscore_beta, weight)
+                    phat_univ_df, universe_threshold, phat_col, outcome, fscore_beta, weight)
+
+            model_stats['threshold'] = float(universe_threshold) \
+                if universe_threshold is not None else None
 
             # Only log performance metrics for base universes, not demographic subgroups
             # Demographic stats are still saved to stats_dict for the matching report
@@ -414,7 +461,8 @@ def evaluate_predictions(phat_df, model_type, phat_col, outcome, weight=False,
 
 def evaluate_models(phats_df, outcome, model_type, weight=False, default_threshold=0.5,
             missingness_model_threshold_boost=0.2, optimize_threshold=False, fscore_beta=1.0,
-            stats_dict=None, demographic_variables=None, all_names_df=None, max_demographic_values=10):
+            stats_dict=None, demographic_variables=None, all_names_df=None, max_demographic_values=10,
+            match_type_thresholds=None):
     '''Wrapper for evaluating different models (e.g. basic and no-dob) on different universes.
 
     Args:
@@ -457,11 +505,17 @@ def evaluate_models(phats_df, outcome, model_type, weight=False, default_thresho
         model_type_model_stats[model_name] = evaluate_predictions(
                 phats_to_eval_df, model_type, phat_col, outcome, weight,
                 default_threshold, missingness_model_threshold_boost, optimize_threshold, fscore_beta,
-                demographic_variables, all_names_df, max_demographic_values)
-    
+                demographic_variables, all_names_df, max_demographic_values,
+                match_type_thresholds=match_type_thresholds)
+
     stats_dict[f"model_stats__{model_type}"] = model_type_model_stats
     if model_type == 'match':
         stats_dict[f"model_thresholds__{model_type}"] = thresholds
+        # When per-match-type thresholds are configured, surface the (possibly
+        # optimized) per-bucket values alongside the single-threshold dict so
+        # the matching report and predict.py can both consume them.
+        if match_type_thresholds is not None:
+            stats_dict[f"match_type_thresholds__{model_type}"] = dict(match_type_thresholds)
 
     if model_type == 'match':
         return thresholds
