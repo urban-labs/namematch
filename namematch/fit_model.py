@@ -408,15 +408,20 @@ class FitModel(NamematchBase):
             float: share of data rows that are labeled
         '''
 
-        temp_dr = load_parquet_list(
-            self.dr_file_list,
-            cols=['dr_id', 'covered_pair', 'labeled_data'])
-        n_data_rows = len(temp_dr)
+        # Count rows without loading all into memory
+        n_data_rows = 0
+        n_covered_data_rows = 0
+        logger.info("Counting data rows (chunked to avoid OOM)...")
+        for dr_file in self.dr_file_list:
+            parquet_file = pq.ParquetFile(dr_file)
+            for batch in parquet_file.iter_batches(batch_size=10000000, columns=['dr_id', 'covered_pair', 'labeled_data']):
+                batch_df = batch.to_pandas()
+                n_data_rows += len(batch_df)
+                n_covered_data_rows += (batch_df['covered_pair'] == 1).sum()
+                del batch_df
         logger.info(f"Number of data rows: {n_data_rows}")
         self.stats_dict['n_data_rows'] = n_data_rows
-        n_covered_data_rows = len(temp_dr[temp_dr.covered_pair == 1])
         self.stats_dict['n_covered_data_rows'] = n_covered_data_rows
-        del temp_dr
 
         if model_type == 'selection':
             sample = params.max_selection_train_eval_n / n_data_rows
@@ -432,10 +437,28 @@ class FitModel(NamematchBase):
             logger.error("Invalid model_type supplied: must be either 'selection' or 'match.'")
             raise
 
-        train_eval_df = load_parquet_list(
-                self.dr_file_list,
-                conditions_dict=conditions_dict,
-                sample=sample)
+        # Load train/eval data in chunks to avoid OOM
+        logger.info(f"Loading train/eval data (chunked, sample={sample:.4f})...")
+        all_chunks = []
+        for dr_file in self.dr_file_list:
+            parquet_file = pq.ParquetFile(dr_file)
+            for batch in parquet_file.iter_batches(batch_size=10000000):
+                batch_df = batch.to_pandas()
+
+                # Apply conditions
+                for col, acceptable_value in conditions_dict.items():
+                    batch_df = batch_df[batch_df[col] == acceptable_value]
+
+                # Apply sampling
+                if sample < 1:
+                    batch_df = batch_df.sample(frac=sample)
+
+                if len(batch_df) > 0:
+                    all_chunks.append(batch_df)
+                del batch_df
+
+        train_eval_df = pd.concat(all_chunks, ignore_index=True) if all_chunks else pd.DataFrame()
+        logger.info(f"Loaded {len(train_eval_df):,} train/eval rows")
 
         # create match_train_eligible flag (1 if labeled and meet data-row and all-names critiera, 0 otherwise)
         dr_train_eligible_conditions_dict = params.match_train_criteria.get('data_rows', {})
@@ -446,6 +469,19 @@ class FitModel(NamematchBase):
             prob_match_train = (train_eval_df.match_train_eligible.sum() / sample) / self.stats_dict['n_covered_data_rows']
             self.stats_dict['prob_match_train'] = float(prob_match_train)
             logger.info(f"P(s): {prob_match_train}")
+
+            # Validate base rate
+            if prob_match_train == 0.0:
+                raise ValueError(
+                    "Base rate P(s) = 0.0: No positive training examples found! "
+                    "Check that ground truth UIDs are present in the data."
+                )
+            if prob_match_train == 1.0:
+                raise ValueError(
+                    "Base rate P(s) = 1.0: No negative training examples found! "
+                    "All candidate pairs are matches. This usually means blocking is too strict "
+                    "or you need to enable hard negative mining to add difficult non-matches."
+                )
         else:
             prob_match_train = self.stats_dict.get('prob_match_train', None)
 
@@ -478,6 +514,10 @@ class FitModel(NamematchBase):
                 eval_df = train_eval_df[
                         (train_eval_df.train == 0) &
                         (train_eval_df.match_train_eligible == 1)].copy()
+
+            # Log actual training set size after pct_train sampling
+            logger.info(f'Training rows for {model_type} model (pct_train={pct_train:.2f}): {len(train_df):,}')
+            logger.info(f'Evaluation rows for {model_type} model: {len(eval_df):,}')
 
         return train_df, eval_df, prob_match_train
 
