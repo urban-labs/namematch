@@ -722,6 +722,20 @@ class Cluster(NamematchBase):
         logger.info(f"Number of singleton clusters: {n_singleton_clusters}")
         self.stats_dict['n_singleton_clusters'] = n_singleton_clusters
 
+        # Save rejection reasons if available from constraints module
+        try:
+            constraints_module = cluster_logic.is_valid_cluster.__module__
+            if constraints_module != 'namematch.default_constraints':
+                import importlib
+                constraints = importlib.import_module(constraints_module)
+                if hasattr(constraints, 'rejection_reasons'):
+                    rejection_reasons_dict = dict(constraints.rejection_reasons)
+                    if rejection_reasons_dict:
+                        self.stats_dict['cluster_rejection_reasons'] = rejection_reasons_dict
+                        logger.info(f"Saved {len(rejection_reasons_dict)} rejection reason categories to stats")
+        except Exception as e:
+            logger.debug(f"Could not save rejection reasons: {e}")
+
         cluster_assignments = {k: str(v) for k, v in cluster_assignments.items()}
         return cluster_assignments
 
