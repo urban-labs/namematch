@@ -16,6 +16,7 @@ import pyarrow as pa
 import pyarrow.parquet as pq
 
 from namematch.base import NamematchBase
+from namematch.cluster_state import ClusterStateStore
 from namematch.data_structures.parameters import Parameters
 from namematch.data_structures.schema import Schema
 from namematch.utils.utils import log_runtime_and_memory, load_parquet
@@ -80,6 +81,43 @@ class Constraints(object):
     @apply_link_priority.setter
     def apply_link_priority(self, func: callable):
         self._apply_link_priority = func
+
+    # --- Fast constraint API (opt-in) ---------------------------------------
+    # A constraints module opts in by exposing all three of:
+    #   - is_valid_cluster_fast(summary_dict, phat) -> bool
+    #   - required_aggregations:  dict[str, str]  (agg_name -> agg_type)
+    #   - aggregation_sources:    dict[str, tuple[str, ...]]  (optional)
+    # If declared, the clustering loop bypasses pandas DataFrame slicing and
+    # passes a pre-aggregated summary dict to the user's function instead.
+    # See docs/plans/2026-05-27-cluster-rewrite.md and cluster_state.py.
+
+    is_valid_cluster_fast = None
+    required_aggregations = None
+    aggregation_sources = None
+
+    def uses_fast_api(self):
+        '''True if the constraints module fully opted into the fast API.
+
+        Raises ValueError if only one half of the declaration is present
+        (is_valid_cluster_fast without required_aggregations, or vice
+        versa) - that's almost always a user mistake.
+        '''
+        has_fn = self.is_valid_cluster_fast is not None
+        has_aggs = self.required_aggregations is not None
+        if has_fn and not has_aggs:
+            raise ValueError(
+                "Constraints define is_valid_cluster_fast but not "
+                "required_aggregations. Both must be declared together "
+                "to enable the fast API. See "
+                "docs/plans/2026-05-27-cluster-rewrite.md."
+            )
+        if has_aggs and not has_fn:
+            raise ValueError(
+                "Constraints define required_aggregations but not "
+                "is_valid_cluster_fast. Both must be declared together "
+                "to enable the fast API."
+            )
+        return has_fn and has_aggs
 
 
 class Cluster(NamematchBase):
@@ -147,6 +185,25 @@ class Cluster(NamematchBase):
         logger.info("Creating dictionary of cluster information.")
         cluster_info = self.load_cluster_info(self.all_names_file, uid_cols, eid_col, cluster_logic)
 
+        # When the fast constraint API is in use, build the per-cluster
+        # aggregated-state store now. Phase 3 swaps this in for the pandas
+        # slicing path; for now it's built but not consumed.
+        cluster_state = None
+        if cluster_logic.uses_fast_api():
+            logger.info(
+                "Building ClusterStateStore for fast constraint API "
+                "(%d records)", len(cluster_info))
+            # Store expects record_id as a column; cluster_info has it as
+            # the index. The reset_index is a cheap view, not a copy.
+            uid_col_for_store = uid_cols[0] if uid_cols else None
+            cluster_state = ClusterStateStore(
+                cluster_info.reset_index(),
+                aggregations=cluster_logic.required_aggregations,
+                sources=cluster_logic.aggregation_sources or {},
+                record_id_col='record_id',
+                uid_col=uid_col_for_store,
+            )
+
         # separate must-links if we can't initialize new 1s
         if not self.params.initialize_from_ground_truth_1s or self.params.incremental:
             must_links_to_try_df = must_links_df.copy()
@@ -170,7 +227,7 @@ class Cluster(NamematchBase):
         logger.info("Clustering potential links.")
         cluster_assignments = self.cluster_potential_edges(
                 clusters, cluster_assignments, original_cluster_ids, cluster_info,
-                cluster_logic, uid_cols, eid_col)
+                cluster_logic, uid_cols, eid_col, cluster_state=cluster_state)
 
         with open(self.cluster_assignments, "wb") as f:
             pickle.dump(cluster_assignments, f)
@@ -202,6 +259,22 @@ class Cluster(NamematchBase):
         cluster_logic.is_valid_cluster = constraints.is_valid_cluster
         cluster_logic.apply_link_priority = constraints.apply_link_priority
         cluster_logic.enable_lprof = self.enable_lprof
+
+        # Fast-API opt-in: copy over if present. Missing attributes leave
+        # the class-level None defaults intact, so uses_fast_api() returns
+        # False and the legacy path is taken.
+        cluster_logic.is_valid_cluster_fast = getattr(
+            constraints, 'is_valid_cluster_fast', None)
+        cluster_logic.required_aggregations = getattr(
+            constraints, 'required_aggregations', None)
+        cluster_logic.aggregation_sources = getattr(
+            constraints, 'aggregation_sources', None)
+        if cluster_logic.uses_fast_api():
+            logger.info(
+                "Fast constraint API detected (is_valid_cluster_fast + "
+                "required_aggregations). Aggregations: %s",
+                cluster_logic.required_aggregations,
+            )
 
         return cluster_logic
 
@@ -561,12 +634,26 @@ class Cluster(NamematchBase):
         cols_needed = cluster_logic.get_columns_used()
         if cols_needed == 'all':
             column_dtypes = {field:'object' for field in self.schema.variables.get_an_column_names()}
-        else: 
+        else:
             column_dtypes = cols_needed.copy()
             if ("record_id" not in column_dtypes):
                 column_dtypes["record_id"] = 'object'
             if ("dataset" not in column_dtypes):
                 column_dtypes["dataset"] = 'object'
+
+        # If the constraints module opted into the fast API, every column
+        # referenced by required_aggregations / aggregation_sources must be
+        # loaded too - otherwise ClusterStateStore can't build its initial
+        # state. We default missing columns to 'object'; downstream the
+        # store coerces values per-aggregation (int_min_max -> int, etc.).
+        if cluster_logic.uses_fast_api():
+            agg_sources = cluster_logic.aggregation_sources or {}
+            for agg_name in cluster_logic.required_aggregations:
+                cols = agg_sources.get(agg_name, (agg_name,))
+                if isinstance(cols, str):
+                    cols = (cols,)
+                for c in cols:
+                    column_dtypes.setdefault(c, 'object')
 
         id_cols_to_load_as_obj = uid_cols
         if eid_col is not None:
@@ -610,7 +697,8 @@ class Cluster(NamematchBase):
     # @log_runtime_and_memory
     @profile
     def cluster_potential_edges(self, clusters, cluster_assignments, original_cluster_ids,
-                cluster_info, cluster_logic, uid_cols, eid_col, **kw):
+                cluster_info, cluster_logic, uid_cols, eid_col,
+                cluster_state=None, **kw):
         '''For clusters by add potential edges to the cluster graph in order of importance, skipping those
         that cause violations.
 
@@ -619,6 +707,10 @@ class Cluster(NamematchBase):
             cluster_assignments (dict): maps a record_id to a cluster_id -- post initialization
             original_cluster_ids (set): set: cluster ids that are already in use (only for incremental)
             cluster_info (pd.DataFrame): all-names file, with only the columns relevant for clustering
+            cluster_state (ClusterStateStore or None): per-cluster aggregated
+                state, set when the constraints module opts into the fast API.
+                Not yet consumed in this commit (phase 2); phase 3 wires the
+                fast path in here.
 
                 ===========================  =======================================================
                 record_id                    unique record identifier
