@@ -240,6 +240,108 @@ class TestCommitMerge:
             {'1990-01-01', '1990-02-01', '1991-01-01'}
 
 
+class TestEmpty:
+    """empty() must be the identity element for merge."""
+
+    def test_set_str_empty(self):
+        assert SetStr.empty() == set()
+        assert SetStr.merge(SetStr.empty(), {'A'}) == {'A'}
+        assert SetStr.merge({'A'}, SetStr.empty()) == {'A'}
+
+    def test_set_tuple_empty(self):
+        assert SetTuple.empty() == set()
+
+    def test_set_int_empty(self):
+        assert SetInt.empty() == set()
+
+    def test_int_min_max_empty_is_none(self):
+        assert IntMinMax.empty() is None
+        # Identity: None merged with state returns state unchanged
+        assert IntMinMax.merge(IntMinMax.empty(), (10, 20)) == (10, 20)
+        assert IntMinMax.merge((10, 20), IntMinMax.empty()) == (10, 20)
+
+    def test_int_sum_empty_is_zero(self):
+        assert IntSum.empty() == 0
+        assert IntSum.merge(IntSum.empty(), 5) == 5
+
+    def test_float_min_max_empty(self):
+        assert FloatMinMax.empty() is None
+
+
+class TestInitialClusters:
+    """initial_clusters mode: cluster_ids come from external mapping
+    rather than being one-per-record."""
+
+    def test_multi_record_per_cluster_aggregates_correctly(self):
+        df = make_df()
+        # Two clusters: {0: [r1, r2], 1: [r3]}  (r4 not assigned)
+        store = ClusterStateStore(
+            df,
+            aggregations={'dob': 'set_str', 'age': 'int_min_max'},
+            initial_clusters={0: ['r1', 'r2'], 1: ['r3']},
+        )
+        assert len(store) == 2
+        assert 0 in store
+        assert 1 in store
+        assert 'r1' not in store  # record_ids are NOT the cluster keys
+
+        s0 = store.summary(0)
+        assert s0['size'] == 2
+        assert s0['dob'] == {'1990-01-01', '1990-02-01'}
+        assert s0['uid'] == {'u1'}  # r1 and r2 share uid u1
+        assert s0['age_min'] == 36 and s0['age_max'] == 36
+
+        s1 = store.summary(1)
+        assert s1['size'] == 1
+        assert s1['dob'] == {'1991-01-01'}
+
+    def test_record_outside_initial_clusters_is_skipped(self):
+        df = make_df()
+        # r4 not assigned to any cluster
+        store = ClusterStateStore(
+            df,
+            aggregations={'dob': 'set_str'},
+            initial_clusters={'c1': ['r1'], 'c2': ['r2'], 'c3': ['r3']},
+        )
+        assert len(store) == 3
+        assert store.size['c1'] + store.size['c2'] + store.size['c3'] == 3
+
+    def test_singleton_init_via_initial_clusters_matches_default(self):
+        """initial_clusters with one record per cluster should produce
+        the same per-cluster state as default singleton init (modulo the
+        cluster_id naming)."""
+        df = make_df()
+        default = ClusterStateStore(df, aggregations={'dob': 'set_str'})
+        explicit = ClusterStateStore(
+            df,
+            aggregations={'dob': 'set_str'},
+            initial_clusters={rid: [rid] for rid in df.record_id},
+        )
+        # Same set of clusters, same summaries per record_id
+        assert set(default.size.keys()) == set(explicit.size.keys())
+        for rid in df.record_id:
+            assert default.summary(rid) == explicit.summary(rid)
+
+    def test_initial_clusters_then_merge(self):
+        """After initial_clusters init, merge_preview and commit_merge
+        work the same way as singleton init."""
+        df = make_df()
+        store = ClusterStateStore(
+            df,
+            aggregations={'dob': 'set_str'},
+            initial_clusters={0: ['r1', 'r2'], 1: ['r3', 'r4']},
+        )
+        preview = store.merge_preview(0, 1)
+        assert preview['size'] == 4
+        # r4 has null dob -> set has 3 elements
+        assert preview['dob'] == {'1990-01-01', '1990-02-01', '1991-01-01'}
+        assert preview['uid'] == {'u1', 'u2'}
+
+        store.commit_merge(0, 1)
+        assert 1 not in store
+        assert store.size[0] == 4
+
+
 class TestAssociativity:
     """All aggregations must be associative so merge order is irrelevant."""
 

@@ -185,24 +185,25 @@ class Cluster(NamematchBase):
         logger.info("Creating dictionary of cluster information.")
         cluster_info = self.load_cluster_info(self.all_names_file, uid_cols, eid_col, cluster_logic)
 
-        # When the fast constraint API is in use, build the per-cluster
-        # aggregated-state store now. Phase 3 swaps this in for the pandas
-        # slicing path; for now it's built but not consumed.
-        cluster_state = None
+        # Fast-API gating: phase 3 supports only the common case. eid and
+        # leven_thresh handling stays on the legacy path until we extend
+        # the auto-checks to the aggregated state. Refuse loudly rather
+        # than silently produce different cluster outputs.
         if cluster_logic.uses_fast_api():
-            logger.info(
-                "Building ClusterStateStore for fast constraint API "
-                "(%d records)", len(cluster_info))
-            # Store expects record_id as a column; cluster_info has it as
-            # the index. The reset_index is a cheap view, not a copy.
-            uid_col_for_store = uid_cols[0] if uid_cols else None
-            cluster_state = ClusterStateStore(
-                cluster_info.reset_index(),
-                aggregations=cluster_logic.required_aggregations,
-                sources=cluster_logic.aggregation_sources or {},
-                record_id_col='record_id',
-                uid_col=uid_col_for_store,
-            )
+            if eid_col is not None:
+                raise NotImplementedError(
+                    "Fast constraint API does not yet support "
+                    "ExistingID columns. Either remove "
+                    "is_valid_cluster_fast / required_aggregations to use "
+                    "the legacy API, or wait for the next phase."
+                )
+            if self.params.leven_thresh is not None:
+                raise NotImplementedError(
+                    "Fast constraint API does not yet support "
+                    "leven_thresh > 0. Either remove "
+                    "is_valid_cluster_fast / required_aggregations to use "
+                    "the legacy API, or set leven_thresh: None."
+                )
 
         # separate must-links if we can't initialize new 1s
         if not self.params.initialize_from_ground_truth_1s or self.params.incremental:
@@ -216,6 +217,26 @@ class Cluster(NamematchBase):
         logger.info("Initializing initial clusters.")
         clusters, cluster_assignments, original_cluster_ids = \
                 self.get_initial_clusters(must_links_to_enforce_df, cluster_info, eid_col)
+
+        # When the fast API is in use, build the ClusterStateStore now so
+        # that its keys match the cluster_ids assigned by
+        # get_initial_clusters (which folds must-link components together).
+        cluster_state = None
+        if cluster_logic.uses_fast_api():
+            logger.info(
+                "Building ClusterStateStore for fast constraint API "
+                "(%d records across %d initial clusters)",
+                len(cluster_info), len(clusters))
+            uid_col_for_store = uid_cols[0] if uid_cols else None
+            cluster_state = ClusterStateStore(
+                cluster_info.reset_index(),
+                aggregations=cluster_logic.required_aggregations,
+                sources=cluster_logic.aggregation_sources or {},
+                record_id_col='record_id',
+                uid_col=uid_col_for_store,
+                initial_clusters=clusters,
+            )
+
         # potential_edges is sorted (decreasing) by phat
         logger.info("Loading potential links.")
         potential_edges_files = [os.path.join(self.potential_edges_dir, pe_file)
@@ -702,6 +723,11 @@ class Cluster(NamematchBase):
         '''For clusters by add potential edges to the cluster graph in order of importance, skipping those
         that cause violations.
 
+        Dispatches to the fast path when the constraints module opted into
+        the new API; falls through to the legacy pandas-slicing loop
+        otherwise. Both paths produce the same cluster_assignments dict
+        when called with equivalent constraint definitions.
+
         Args:
             clusters (dict): maps a cluster id to a list of record ids -- post initialization
             cluster_assignments (dict): maps a record_id to a cluster_id -- post initialization
@@ -709,8 +735,8 @@ class Cluster(NamematchBase):
             cluster_info (pd.DataFrame): all-names file, with only the columns relevant for clustering
             cluster_state (ClusterStateStore or None): per-cluster aggregated
                 state, set when the constraints module opts into the fast API.
-                Not yet consumed in this commit (phase 2); phase 3 wires the
-                fast path in here.
+                When provided, the fast loop runs and bypasses pandas
+                DataFrame slicing entirely.
 
                 ===========================  =======================================================
                 record_id                    unique record identifier
@@ -727,6 +753,12 @@ class Cluster(NamematchBase):
         Returns:
             dict: maps record_id to cluster_id
         '''
+        if cluster_state is not None:
+            return self._cluster_potential_edges_fast(
+                clusters, cluster_assignments, original_cluster_ids,
+                cluster_logic, cluster_state)
+
+        # ---- LEGACY PATH (unchanged) --------------------------------------
         # track things
         invalid_edges = 0
         invalid_clusters = 0
@@ -825,6 +857,139 @@ class Cluster(NamematchBase):
                     if rejection_reasons_dict:
                         self.stats_dict['cluster_rejection_reasons'] = rejection_reasons_dict
                         logger.info(f"Saved {len(rejection_reasons_dict)} rejection reason categories to stats")
+        except Exception as e:
+            logger.debug(f"Could not save rejection reasons: {e}")
+
+        cluster_assignments = {k: str(v) for k, v in cluster_assignments.items()}
+        return cluster_assignments
+
+    @profile
+    def _cluster_potential_edges_fast(
+        self, clusters, cluster_assignments, original_cluster_ids,
+        cluster_logic, cluster_state,
+    ):
+        '''Fast path for cluster_potential_edges.
+
+        Same greedy union-find as the legacy loop, but the candidate-merge
+        check goes through ClusterStateStore.merge_preview() and the
+        user's is_valid_cluster_fast(summary, phat) instead of
+        pandas-slicing cluster_info and calling is_valid_cluster on a
+        DataFrame.
+
+        Invariants vs legacy:
+          - clusters[cid] -> [record_ids]    : maintained identically
+          - cluster_assignments[rid] -> cid  : maintained identically
+          - new_cluster_id selection         : identical (min of two ids,
+            unless one is in original_cluster_ids - same priority rule)
+          - 2-record merges skip is_valid_cluster_fast               (per
+            legacy convention: 2-record clusters are vetted only via
+            edge-level constraints, not cluster-level)
+        '''
+        is_valid_cluster_fast = cluster_logic.is_valid_cluster_fast
+        allow_multi_uid = self.params.allow_clusters_w_multiple_unique_ids
+
+        invalid_clusters = 0
+        merges = 0
+
+        pf = pq.ParquetFile(self.edges)
+        nrows = pf.metadata.num_rows
+        logger.info(f"total number of edges: {nrows}")
+        logger.debug(f"batch size: {self.params.cluster_batch_size}")
+
+        i = 0
+        for edge_pf in pf.iter_batches(
+                batch_size=self.params.cluster_batch_size, use_threads=True):
+            for edge in edge_pf.to_pylist():
+                if (self.params.verbose is not None) and (i % self.params.verbose == 0):
+                    logger.info(f"  Checked {i} of {nrows} edges: "
+                                f"{invalid_clusters} invalid clusters, "
+                                f"{merges} merges.")
+
+                record_id_1 = edge["record_id_1"]
+                record_id_2 = edge["record_id_2"]
+                edge_is_gt = (edge["gt"] == 1)
+                cluster_id_1 = cluster_assignments[record_id_1]
+                cluster_id_2 = cluster_assignments[record_id_2]
+
+                if cluster_id_1 == cluster_id_2:
+                    i += 1
+                    continue
+
+                new_size = (cluster_state.size[cluster_id_1]
+                            + cluster_state.size[cluster_id_2])
+
+                # 2-record clusters skip the cluster-level checks - same
+                # convention the legacy loop follows. Singletons combining
+                # into a pair are deemed valid because the edge-level
+                # constraints already gated this pair into potential links.
+                if new_size == 2:
+                    accept = True
+                else:
+                    summary = cluster_state.merge_preview(
+                        cluster_id_1, cluster_id_2)
+                    if (not allow_multi_uid) and len(summary['uid']) > 1:
+                        accept = False
+                    elif edge_is_gt:
+                        accept = True
+                    else:
+                        accept = is_valid_cluster_fast(summary, edge['phat'])
+
+                if accept:
+                    # Same id-selection rule as the legacy loop. Keep this
+                    # in sync if the legacy rule ever changes.
+                    new_cluster_id = min(cluster_id_1, cluster_id_2)
+                    if original_cluster_ids is not None:
+                        if cluster_id_1 in original_cluster_ids:
+                            new_cluster_id = cluster_id_1
+                        elif cluster_id_2 in original_cluster_ids:
+                            new_cluster_id = cluster_id_2
+
+                    cluster_1 = clusters[cluster_id_1]
+                    cluster_2 = clusters[cluster_id_2]
+                    new_cluster = cluster_1 + cluster_2
+
+                    clusters.pop(cluster_id_1)
+                    clusters.pop(cluster_id_2)
+                    clusters[new_cluster_id] = new_cluster
+                    for record_id in new_cluster:
+                        cluster_assignments[record_id] = new_cluster_id
+
+                    # Mirror the in-memory merge into the aggregated state
+                    # store so subsequent edges see the updated summary.
+                    cid_drop = (cluster_id_1 if new_cluster_id == cluster_id_2
+                                else cluster_id_2)
+                    cluster_state.commit_merge(new_cluster_id, cid_drop)
+
+                    merges += 1
+                else:
+                    invalid_clusters += 1
+
+                i += 1
+
+        logger.info(f"Invalid clusters: {invalid_clusters}")
+        self.stats_dict['n_invalid_clusters'] = invalid_clusters
+        logger.info(f"n_merges: {merges}")
+        n_clusters = len(clusters)
+        logger.info(f"Number of clusters total: {n_clusters}")
+        self.stats_dict['n_clusters'] = n_clusters
+        n_singleton_clusters = len([recs for c_id, recs in clusters.items()
+                                     if (len(recs) == 1)])
+        logger.info(f"Number of singleton clusters: {n_singleton_clusters}")
+        self.stats_dict['n_singleton_clusters'] = n_singleton_clusters
+
+        # Mirror the legacy path's rejection-reasons capture so user
+        # constraints can populate the matching report identically.
+        try:
+            constraints_module = is_valid_cluster_fast.__module__
+            if constraints_module != 'namematch.default_constraints':
+                import importlib
+                constraints = importlib.import_module(constraints_module)
+                if hasattr(constraints, 'rejection_reasons'):
+                    rejection_reasons_dict = dict(constraints.rejection_reasons)
+                    if rejection_reasons_dict:
+                        self.stats_dict['cluster_rejection_reasons'] = rejection_reasons_dict
+                        logger.info(f"Saved {len(rejection_reasons_dict)} "
+                                    f"rejection reason categories to stats")
         except Exception as e:
             logger.debug(f"Could not save rejection reasons: {e}")
 

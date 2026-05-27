@@ -31,6 +31,7 @@ class Aggregation:
     Subclasses must implement:
       - init_from_record(values): build state from one record's source values
       - merge(a, b): combine two states into one (must be associative)
+      - empty(): identity element for merge (so empty.merge(x) == x)
 
     Subclasses can override unpack() if their internal storage shape differs
     from how callers expect to see the result in the summary dict.
@@ -42,6 +43,11 @@ class Aggregation:
 
     @classmethod
     def merge(cls, a: Any, b: Any) -> Any:
+        raise NotImplementedError
+
+    @classmethod
+    def empty(cls) -> Any:
+        """Identity element: empty.merge(state) == state for any state."""
         raise NotImplementedError
 
     @classmethod
@@ -60,6 +66,10 @@ class SetStr(Aggregation):
     def merge(cls, a, b):
         return a | b
 
+    @classmethod
+    def empty(cls):
+        return set()
+
 
 class SetInt(Aggregation):
     @classmethod
@@ -70,6 +80,10 @@ class SetInt(Aggregation):
     @classmethod
     def merge(cls, a, b):
         return a | b
+
+    @classmethod
+    def empty(cls):
+        return set()
 
 
 class SetTuple(Aggregation):
@@ -84,6 +98,10 @@ class SetTuple(Aggregation):
     @classmethod
     def merge(cls, a, b):
         return a | b
+
+    @classmethod
+    def empty(cls):
+        return set()
 
 
 class IntMinMax(Aggregation):
@@ -104,6 +122,10 @@ class IntMinMax(Aggregation):
         if b is None:
             return a
         return (min(a[0], b[0]), max(a[1], b[1]))
+
+    @classmethod
+    def empty(cls):
+        return None
 
     @classmethod
     def unpack(cls, name, state):
@@ -131,6 +153,10 @@ class IntSum(Aggregation):
     @classmethod
     def merge(cls, a, b):
         return a + b
+
+    @classmethod
+    def empty(cls):
+        return 0
 
 
 AGGREGATIONS: Dict[str, type] = {
@@ -162,6 +188,7 @@ class ClusterStateStore:
         sources: Mapping[str, Tuple[str, ...]] = None,
         record_id_col: str = 'record_id',
         uid_col: str = 'uid',
+        initial_clusters: Mapping[Any, Sequence[Any]] = None,
     ):
         """
         Args:
@@ -174,6 +201,13 @@ class ClusterStateStore:
             record_id_col: column holding the record id.
             uid_col: column holding the uid. Always tracked as set_str.
                 Set to None to skip uid aggregation entirely.
+            initial_clusters: {cluster_id: [record_id, ...]} mapping. When
+                provided, the store uses these cluster_ids (not record_ids)
+                as its keys and aggregates each cluster's records together.
+                When None (default), each record becomes its own singleton
+                cluster keyed by record_id. The non-None form is how
+                Cluster.main() seeds the store after must-links produce
+                multi-record initial clusters.
         """
         sources = sources or {}
 
@@ -217,19 +251,27 @@ class ClusterStateStore:
         # agg_name -> {cluster_id -> state}
         self.state: Dict[str, Dict[Any, Any]] = {a: {} for a in self._aggs}
 
-        self._init_from_df(all_names_df, record_id_col)
+        if initial_clusters is None:
+            self._init_singletons(all_names_df, record_id_col)
+        else:
+            self._init_with_clusters(
+                all_names_df, record_id_col, initial_clusters)
 
-    def _init_from_df(self, df: pd.DataFrame, record_id_col: str) -> None:
-        # Pre-extract column arrays once to avoid repeated pandas attribute
-        # access in the per-row loop. itertuples is still the fastest
-        # row-wise iterator but column lookup via attribute is also fine.
+    def _extract_column_arrays(self, df: pd.DataFrame, record_id_col: str):
+        """Cache numpy arrays for each source column to avoid repeated
+        pandas attribute lookups in the per-row init loop."""
         record_ids = df[record_id_col].values
         uid_values = df[self._uid_col].values if self._uid_col else None
-
         agg_col_arrays = {
             agg_name: tuple(df[c].values for c in cols)
             for agg_name, cols in self._sources.items()
         }
+        return record_ids, uid_values, agg_col_arrays
+
+    def _init_singletons(self, df: pd.DataFrame, record_id_col: str) -> None:
+        """One cluster per record; cluster_id = record_id."""
+        record_ids, uid_values, agg_col_arrays = \
+            self._extract_column_arrays(df, record_id_col)
 
         n = len(df)
         for i in range(n):
@@ -244,6 +286,53 @@ class ClusterStateStore:
                 col_arrays = agg_col_arrays[agg_name]
                 values = tuple(arr[i] for arr in col_arrays)
                 self.state[agg_name][rid] = agg_cls.init_from_record(values)
+
+    def _init_with_clusters(
+        self,
+        df: pd.DataFrame,
+        record_id_col: str,
+        initial_clusters: Mapping[Any, Sequence[Any]],
+    ) -> None:
+        """Multi-record-per-cluster init. cluster_ids come from the keys
+        of initial_clusters; each cluster's state is the merge of its
+        records' contributions."""
+        # record_id -> cluster_id lookup
+        rid_to_cid: Dict[Any, Any] = {}
+        for cid, rids in initial_clusters.items():
+            for rid in rids:
+                rid_to_cid[rid] = cid
+
+        # Seed every cluster with the identity (empty) state.
+        for cid in initial_clusters:
+            self.size[cid] = 0
+            self.uid[cid] = set()
+            for agg_name, agg_cls in self._aggs.items():
+                self.state[agg_name][cid] = agg_cls.empty()
+
+        record_ids, uid_values, agg_col_arrays = \
+            self._extract_column_arrays(df, record_id_col)
+
+        n = len(df)
+        for i in range(n):
+            rid = record_ids[i]
+            cid = rid_to_cid.get(rid)
+            if cid is None:
+                # Record not present in any initial cluster - skipped.
+                # This shouldn't happen in normal namematch flow because
+                # get_initial_clusters returns clusters covering all of
+                # all_names (singletons + must-link components).
+                continue
+            self.size[cid] += 1
+            if uid_values is not None:
+                u = uid_values[i]
+                if pd.notna(u):
+                    self.uid[cid].add(str(u))
+            for agg_name, agg_cls in self._aggs.items():
+                col_arrays = agg_col_arrays[agg_name]
+                values = tuple(arr[i] for arr in col_arrays)
+                contrib = agg_cls.init_from_record(values)
+                self.state[agg_name][cid] = agg_cls.merge(
+                    self.state[agg_name][cid], contrib)
 
     def summary(self, cid: Any) -> Dict[str, Any]:
         """Summary dict for a single cluster (no merge)."""
