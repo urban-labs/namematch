@@ -282,6 +282,81 @@ A few caveats:
 * The counter is not thread-safe. Clustering is currently single-threaded, but be aware if you adapt Name Match's internals to parallelize clustering.
 * Today only ``is_valid_cluster`` rejections are tracked. ``is_valid_link`` rejections are counted but not categorized.
 
+
+Fast cluster constraint API (optional)
+++++++++++++++++++++++++++++++++++++++
+
+For large datasets, the default ``is_valid_cluster(cluster_df, phat)`` function gets called millions of times during the clustering step, and each call requires Name Match to build a fresh pandas DataFrame view of the candidate merged cluster. That DataFrame allocation is the dominant cost in the hot loop -- on a 43M-edge run the legacy path spent ~3 hours in pandas overhead alone.
+
+The **fast API** opts your constraints module into an alternate path where Name Match maintains per-cluster summary state incrementally and passes your function a small dict instead of a DataFrame. On a real-world 7M-record dataset the fast path completed the same clustering step in ~24 minutes (~6× faster) with bit-identical cluster assignments.
+
+The opt-in is two attributes on your constraints module:
+
+1. ``required_aggregations``: a dict declaring what Name Match should maintain per cluster.
+2. ``is_valid_cluster_fast(summary, phat)``: your replacement for ``is_valid_cluster``, called with a pre-aggregated summary dict instead of a DataFrame.
+
+**Supported aggregation types** (declare the value side as a string):
+
+================  ===========================================================
+``set_str``       Union of distinct string values from one column.
+``set_int``       Union of distinct ints from one column.
+``set_tuple``     Union of distinct tuples assembled from multiple columns.
+``int_min_max``   Cluster-wide min and max as ints.
+``float_min_max`` Cluster-wide min and max as floats.
+``int_sum``       Running total.
+================  ===========================================================
+
+Multi-column aggregations (``set_tuple``) need their source columns declared via the optional ``aggregation_sources`` dict. Single-column aggregations default to a column with the same name as the aggregation.
+
+**Example** — the same four rules from the ``is_valid_cluster`` example earlier in this page, expressed via the fast API:
+::
+
+    from collections import defaultdict
+
+    required_aggregations = {
+        'dob':       'set_str',
+        'age':       'int_min_max',
+        'fn_ln_dob': 'set_tuple',
+    }
+    aggregation_sources = {
+        'fn_ln_dob': ('first_name', 'last_name', 'dob'),
+    }
+
+    rejection_reasons = defaultdict(int)
+
+    def is_valid_cluster_fast(summary, phat):
+        # summary keys (always present):
+        #     'size' (int), 'uid' (set[str])
+        # plus one key per required_aggregations entry:
+        #     'dob'       -> set[str]
+        #     'age_min'   -> int or None   (int_min_max unpacks to two keys)
+        #     'age_max'   -> int or None
+        #     'fn_ln_dob' -> set[tuple]
+        if summary['size'] > 300:
+            rejection_reasons['too_many_records'] += 1
+            return False
+        if len(summary['dob']) > 5:
+            rejection_reasons['too_many_dobs'] += 1
+            return False
+        if summary['age_min'] is not None:
+            if summary['age_max'] - summary['age_min'] > 3:
+                rejection_reasons['age_range'] += 1
+                return False
+        if len(summary['fn_ln_dob']) > 6:
+            rejection_reasons['too_many_name_dob_combos'] += 1
+            return False
+        return True
+
+If a module defines both ``is_valid_cluster`` and ``is_valid_cluster_fast``, the fast version wins. Declaring only one half (e.g. ``is_valid_cluster_fast`` without ``required_aggregations``) raises ``ValueError`` at load time -- that's almost always a user mistake and silent fallback would be surprising. See ``examples/clue_constraints_fast.py`` for a complete working file alongside its legacy counterpart ``examples/clue_constraints.py``.
+
+A few notes:
+
+* ``rejection_reasons`` works the same way (same dict shape, same matching-report integration). You can keep your existing counter unchanged.
+* ``int_min_max`` returns ``None`` for both min and max when every record in the cluster has a missing value in the source column. Defensive constraint code checks ``summary['age_min'] is not None`` before doing arithmetic.
+* Name Match auto-includes every source column referenced by ``required_aggregations`` / ``aggregation_sources``, so you don't have to also list them in ``get_columns_used()``.
+* The current implementation does not yet support the fast path when an ``ExistingID`` column is configured (incremental runs) or when ``leven_thresh`` is set. Both raise ``NotImplementedError`` rather than silently produce different results. Stick with the legacy ``is_valid_cluster`` for those cases until the fast path gains parity.
+
+
 Additional user-defined functions
 ##################################
 

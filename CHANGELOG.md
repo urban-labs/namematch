@@ -44,6 +44,24 @@ and this project does not yet follow [Semantic Versioning](https://semver.org/sp
   final per-bucket values and the threshold used for each universe in the
   pair-type performance table. Default `null` preserves the single-threshold
   behavior. See `docs/source/match_setup.rst`.
+- **Fast cluster constraint API** (opt-in). New
+  `namematch/cluster_state.py` module provides a `ClusterStateStore` that
+  maintains per-cluster aggregated summaries (set unions, min/max, sum)
+  incrementally as clusters merge. A constraints module opts in by
+  declaring `required_aggregations` (and optionally
+  `aggregation_sources`) plus `is_valid_cluster_fast(summary, phat)`. The
+  clustering hot loop then bypasses pandas DataFrame slicing entirely
+  and passes a small pre-aggregated dict to the user's function. On a
+  real-world 7M-record dataset the clustering step ran ~6× faster
+  (23m vs 2h28m) with bit-identical cluster assignments. Backward
+  compatible: constraints modules without the fast attributes hit the
+  unchanged legacy path. Currently does not support `ExistingID` columns
+  (incremental runs) or `leven_thresh` -- raises `NotImplementedError`
+  rather than silently produce different results. See
+  `docs/source/match_setup.rst` ("Fast cluster constraint API"),
+  `examples/clue_constraints_fast.py` for a worked migration of an
+  existing constraints file, and `docs/plans/2026-05-27-cluster-rewrite.md`
+  for the design rationale.
 
 ### Changed
 
