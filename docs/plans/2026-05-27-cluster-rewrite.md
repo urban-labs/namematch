@@ -164,8 +164,18 @@ Detect `is_valid_cluster_fast` vs legacy. Add `required_aggregations` declaratio
 **Phase 3 — Fast path in `cluster_potential_edges`.**
 Branch on whether the user's constraints module declares `is_valid_cluster_fast`. If yes: run the new loop that calls `store.merge()`, passes `summary` to the user's function, and calls `store.apply()` on accept. Legacy users still hit the existing loop.
 
-**Phase 4 — Numba JIT of the default constraint path.**
-Optional default `is_valid_cluster_fast` exists in namematch's `default_constraints.py` that's always JITted. Users with no constraint customization automatically get the JITted version. Custom constraints stay pure-Python (still fast, just not JITted).
+**Phase 4 — Numba JIT of the default constraint path.**  *Skipped after phase 3 measurements.*
+
+Original plan: optional default `is_valid_cluster_fast` exists in `default_constraints.py` that's always JITted.
+
+**Why skipped:** Numba doesn't support arbitrary Python set operations. The hot loop's per-edge work is dominated by `set | set` unions on `set_str` / `set_tuple` aggregations, plus dict allocation for the summary - none of which JIT cleanly.
+
+Profile on a realistic 200K-edge workload after phase 3: **6 µs/edge** (vs ~500 µs in the legacy pandas-slicing loop = ~80× speedup). The biggest remaining levers are:
+- Passing precomputed merged state from `merge_preview()` to `commit_merge()` to avoid recomputing aggregations on accept: ~10% gain
+- Skipping summary unpacking when the constraint accesses raw state: ~4%
+- Declarative size-cap on the constraints module for early-reject before allocating summary: ~15% (when many edges are size-rejected)
+
+None changes the picture meaningfully once the 3h Cluster step is at ~4 minutes. Decision: don't chase the long tail; route the effort into phase 5 validation instead. If a future workload shows the fast path is still a bottleneck, revisit with profile data from that workload first.
 
 **Phase 5 — CLUE migration.**
 Port `clue_constraints.py` to the new API. Validate cluster outputs match the legacy run within tolerance (we'd expect bit-identical results since the constraints are deterministic, but verify).
